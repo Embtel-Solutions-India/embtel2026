@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Embtel Solutions</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1A6BFF;--blue-dim:rgba(26,107,255,.12);--blue-glow:rgba(26,107,255,.25);--teal:#00C896;--teal-dim:rgba(0,200,150,.1);--orange:#FF5C35;--ink:#09090B;--ink2:#111115;--s1:#18181C;--s2:#26262C;--s3:#38383F;--m1:#6B6B78;--m2:#9898A6;--m3:#C4C4D1;--off:#F4F4F8;--white:#FFFFFF;--r8:8px;--r14:14px;--r20:20px}
+html{scroll-behavior:smooth}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--ink);color:var(--m3);overflow-x:hidden;-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}ul{list-style:none}button{cursor:pointer;border:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}img{display:block;max-width:100%}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;border-bottom:1px solid rgba(255,255,255,.05)}.nav-blur{position:absolute;inset:0;background:rgba(9,9,11,.85);backdrop-filter:blur(24px)}.nav-in{position:relative;max-width:1300px;margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}.logo{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px}.logo em{color:var(--teal);font-style:normal}.nav-links{display:flex;gap:36px;align-items:center}.nav-links a{font-size:13.5px;font-weight:500;color:var(--m2);transition:color .2s}.nav-links a:hover{color:#fff}.nav-btn{background:var(--blue);color:#fff;font-size:13.5px;font-weight:600;padding:9px 22px;border-radius:var(--r8);transition:all .2s}.nav-btn:hover{background:#3B7FFF;transform:translateY(-1px)}
+.section{padding:100px 40px}.section-in{max-width:1300px;margin:0 auto}.stag{font-size:11.5px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}.sh{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(30px,3.5vw,46px);font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}.sh em{background:linear-gradient(90deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}.sl{font-size:16px;color:var(--m2);line-height:1.7;max-width:560px}.hdr{margin-bottom:60px}.hdr.center{text-align:center}.hdr.center .sl{margin:0 auto}
+.services-hero{padding:140px 40px 80px;background:var(--ink)}.services-hero-in{max-width:1300px;margin:0 auto}.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}.sc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);padding:40px 32px;position:relative;overflow:hidden;transition:all .3s;cursor:default}.sc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform .35s}.sc:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.12)}.sc:hover::after{transform:scaleX(1)}.sc-ico{width:52px;height:52px;border-radius:var(--r14);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:22px}.ico-b{background:var(--blue-dim)}.ico-t{background:var(--teal-dim)}.ico-o{background:rgba(255,92,53,.1)}.ico-p{background:rgba(150,100,255,.1)}.ico-y{background:rgba(255,200,0,.1)}.ico-r{background:rgba(255,80,120,.1)}.sc h3{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:10px}.sc p{font-size:14px;color:var(--m2);line-height:1.75}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-p:hover{background:#3B7FFF;transform:translateY(-2px);box-shadow:0 16px 40px rgba(26,107,255,.3)}.btn-g{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);color:var(--m3);border:1px solid rgba(255,255,255,.1);padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-g:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.about-hero{padding:140px 40px 80px;position:relative;overflow:hidden}.about-hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(26,107,255,.15),transparent 70%);pointer-events:none}.about-hero-in{max-width:980px;margin:0 auto;text-align:center;position:relative}.about-hero h1{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(38px,4.5vw,64px);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-2.5px;margin-bottom:24px}.about-hero h1 em{background:linear-gradient(90deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}.about-hero p{font-size:18px;color:var(--m2);line-height:1.75;max-width:680px;margin:0 auto}
+.story-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.story-img{background:linear-gradient(135deg,#0D1B40,#0A2E5A);border-radius:var(--r20);height:380px;display:flex;align-items:center;justify-content:center;font-size:120px;border:1px solid rgba(255,255,255,.06)}.story-text{text-align:left}.story-text p{font-size:15px;color:var(--m2);line-height:1.85;margin-bottom:18px;text-align:justify;text-align-last:left}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}.tm-card{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);padding:32px 28px;text-align:center;transition:all .3s}.tm-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.12)}.tm-ava{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:30px;font-weight:800;color:#fff;letter-spacing:-1px}.tm-name{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}.tm-role{font-size:12.5px;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}.tm-bio{font-size:13.5px;color:var(--m2);line-height:1.7}
+.faq-wrap{max-width:840px;margin:0 auto}.faq-item{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r14);margin-bottom:12px;overflow:hidden;transition:all .2s}.faq-item.open{border-color:rgba(255,255,255,.12)}.faq-q{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;cursor:pointer;gap:16px;transition:background .2s}.faq-q:hover{background:rgba(255,255,255,.03)}.faq-q span{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;font-weight:600;color:#fff;flex:1}.faq-ico{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:var(--m3);font-size:18px;font-weight:300;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;line-height:1}.faq-item.open .faq-ico{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(45deg)}.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 24px;color:var(--m2);font-size:14px;line-height:1.75}.faq-item.open .faq-a{max-height:300px;padding:0 24px 20px}
+.evolution-section{padding:100px 40px;background:var(--ink)}.evolution-wrap{max-width:1000px;margin:0 auto}.evolution-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4)}.evolution-table thead{background:linear-gradient(135deg,var(--ink2),var(--s2))}.evolution-table th{padding:24px 28px;text-align:left;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid rgba(255,255,255,.08)}.evolution-table td{padding:24px 28px;font-size:15px;color:var(--m2);line-height:1.7;border-bottom:1px solid rgba(255,255,255,.05)}.evolution-table tr:last-child td{border-bottom:none}.evolution-table tbody tr:hover{background:rgba(26,107,255,.06)}.evolution-table tbody tr:nth-child(even){background:rgba(255,255,255,.02)}.evolution-period{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:700;color:var(--teal)}.evolution-era{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:700;color:#fff}.evolution-focus{color:var(--m2)}@media(max-width:768px){.evolution-section{padding:60px 20px}.evolution-table{display:block;overflow-x:auto}.evolution-table th,.evolution-table td{padding:16px 20px;font-size:14px}}
+.phases-section{padding:100px 40px;background:var(--ink2)}.phases-wrap{max-width:1200px;margin:0 auto}.phase-block{margin-bottom:80px}.phase-header{margin-bottom:40px}.phase-number{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}.phase-title{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1.2;margin-bottom:12px}.phase-desc{font-size:16px;color:var(--m2);line-height:1.7;max-width:700px}.service-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.service-card{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);padding:28px 24px;transition:all .3s;position:relative;overflow:hidden}.service-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.12)}.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform .35s}.service-card:hover::before{transform:scaleX(1)}.service-name{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:12px}.service-desc{font-size:14px;color:var(--m2);line-height:1.7}@media(max-width:768px){.phases-section{padding:60px 20px}.service-cards{grid-template-columns:1fr}.phase-title{font-size:22px}}
+.counter-section{padding:80px 40px;background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}.counter-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}.ctr-wrap{padding:32px 20px;background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);position:relative;overflow:hidden}.ctr-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal))}.ctr-num{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:48px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1}.ctr-num em{color:var(--teal);font-style:normal}.ctr-label{font-size:13px;color:var(--m2);margin-top:8px;text-transform:uppercase;letter-spacing:.8px}.ctr-icon{font-size:28px;margin-bottom:12px}
+.cta-band{background:linear-gradient(135deg,#001233 0%,#00194a 60%,#001833 100%);border-top:1px solid rgba(26,107,255,.2);border-bottom:1px solid rgba(26,107,255,.15);padding:100px 40px;position:relative;overflow:hidden;text-align:center}.cta-band::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(26,107,255,.2),transparent 70%);pointer-events:none}.cta-band h2{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(34px,4vw,56px);font-weight:800;color:#fff;letter-spacing:-2px;margin-bottom:16px;line-height:1.1;position:relative}.cta-band h2 em{background:linear-gradient(90deg,var(--teal),#7BAAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}.cta-band p{font-size:17px;color:var(--m2);max-width:520px;margin:0 auto 40px;line-height:1.7;position:relative}.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding:64px 40px 32px}.footer-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}.f-logo{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:12px}.f-logo em{color:var(--teal);font-style:normal}.f-desc{font-size:13.5px;color:var(--m1);line-height:1.8;max-width:260px}.f-col h4{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:11px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}.f-col a{display:block;font-size:13.5px;color:var(--m2);margin-bottom:10px;transition:color .2s}.f-col a:hover{color:#fff}.footer-bot{max-width:1300px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--m1)}
+.hamburger{display:none;background:none;padding:8px;flex-direction:column;gap:5px}.hb{width:22px;height:2px;background:var(--m3);border-radius:2px;transition:all .3s}.mobile-menu{display:none;position:fixed;inset:68px 0 0;background:rgba(9,9,11,.97);backdrop-filter:blur(20px);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:36px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:24px;font-weight:700;color:#fff}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:10px}.wa-bubble{background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.4);cursor:pointer;transition:all .25s;text-decoration:none}.wa-bubble:hover{transform:scale(1.1)}.wa-tooltip{background:var(--s1);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:13px;padding:8px 16px;border-radius:var(--r8);white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .25s;pointer-events:none}.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+@media(max-width:960px){.story-wrap{grid-template-columns:1fr}.story-img{height:240px;font-size:80px}.team-grid{grid-template-columns:1fr}.sg{grid-template-columns:1fr}.counter-grid{grid-template-columns:repeat(2,1fr)}.footer-in{grid-template-columns:1fr}.nav-links,.nav-btn{display:none}.hamburger{display:flex}.section,.about-hero,.services-hero{padding:80px 20px}.about-hero{padding-top:110px}.cta-band{padding:70px 20px}footer{padding:48px 20px 24px}.wa-float{bottom:20px;right:20px}}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+<script src="includes/header.js"></script>
+
+<section class="about-hero">
+  <div class="about-hero-in">
+    <div class="stag">About Embtel Solutions</div>
+    <h1>We're a small team building <em>big results</em> for growing businesses.</h1>
+    <p>We take pride in delivering customised solutions that reflect your business targets and transform business challenges into success
+opportunities through our dedicated effort toward results-driven customer satisfaction.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px">
+  <div class="section-in">
+    <div class="story-wrap">
+      <div class="story-img"><img src="https://lh3.googleusercontent.com/p/AF1QipM81q_hRq8dgNsnqmPQNYHaawq6899qUK34ENiW=w800-h600-k-no" alt="Embtel Solutions Office Location" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="story-text">
+        <div class="stag"></div>
+        <h2 class="sh">Our Mission <em>and Vision.</em></h2>
+        <p> Embtel Solutions is dedicated to enabling businesses to use advanced digital solutions that advance their virtual exposure while stimulating business expansion. They provide innovative websites with excellent user experiences that enable successful brand-audience connections, making customer satisfaction the central focus of all operations.
+        </p>
+        <p>
+          The company strives to become an industry-leading digital solutions company known for superior quality, innovative creativity, and dependable performance. Their operation aims to develop enduring client relationships while supporting the lasting expansion of customers of all sizes, using modern technologies and proven industry practices.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="evolution-section">
+  <div class="evolution-wrap">
+    <div class="hdr center">
+      <div class="stag">Our Journey</div>
+      <div class="sh">Our <em>Evolution</em></div>
+      <p class="sl">From digitization to AI intelligence — our journey of continuous growth and innovation.</p>
+    </div>
+    <table class="evolution-table">
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Era</th>
+          <th>Focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="evolution-period">2018–2020</span></td>
+          <td><span class="evolution-era">Digitization Era</span></td>
+          <td><span class="evolution-focus">WordPress websites, social media setup, Google Business profiles. Helping businesses get online and be found.</span></td>
+        </tr>
+        <tr>
+          <td><span class="evolution-period">2020–2023</span></td>
+          <td><span class="evolution-era">Digital Marketing Era</span></td>
+          <td><span class="evolution-focus">Facebook & LinkedIn marketing, SEO, Google Ads, e-commerce, content strategy. Helping businesses grow online.</span></td>
+        </tr>
+        <tr>
+          <td><span class="evolution-period">2023–2025</span></td>
+          <td><span class="evolution-era">Automation Era</span></td>
+          <td><span class="evolution-focus">Workflow automation, CRM integration, RPA, cloud migration. Helping businesses operate efficiently.</span></td>
+        </tr>
+        <tr>
+          <td><span class="evolution-period">2025–Present</span></td>
+          <td><span class="evolution-era">AI & Intelligence Era</span></td>
+          <td><span class="evolution-focus">Custom AI chatbots, predictive analytics, machine learning, cybersecurity. Helping businesses compete with intelligence.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="phases-section">
+  <div class="phases-wrap">
+    <div class="hdr center" style="margin-bottom:80px">
+      <div class="stag">Our Services</div>
+      <div class="sh">Comprehensive Solutions <em>for Every Stage</em></div>
+      <p class="sl">From digital foundation to advanced AI — we provide end-to-end services to transform your business.</p>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">Phase 1</div>
+        <h3 class="phase-title">Digital Foundation</h3>
+        <p class="phase-desc">Your entry point into the digital world. We build your online presence so you can be found, trusted, and chosen by customers.</p>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-name">WordPress Website Design & Development</div>
+          <div class="service-desc">Custom-built, mobile-responsive websites with SEO-ready architecture, contact forms, and analytics integration.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Social Media Portfolio Setup</div>
+          <div class="service-desc">Professional Facebook, LinkedIn, Instagram, and Google Business profiles with branded visuals and optimized bios.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Search Engine Optimization (SEO)</div>
+          <div class="service-desc">On-page and technical SEO including keyword research, meta optimization, schema markup, and local SEO for Google Maps.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Content Marketing</div>
+          <div class="service-desc">Blog posts, articles, and social media content calendars with AI-assisted writing and scheduling.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Google & Meta Ads Management</div>
+          <div class="service-desc">Pay-per-click campaign setup, audience targeting, A/B testing, and monthly performance reporting.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">E-Commerce Storefront</div>
+          <div class="service-desc">WooCommerce or Shopify setup with payment gateways, product catalogs, inventory management, and shipping integration.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Brand Identity & Design</div>
+          <div class="service-desc">Logo design, brand guidelines, business card and collateral design, and consistent visual identity across all platforms.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">Phase 2</div>
+        <h3 class="phase-title">Business Automation</h3>
+        <p class="phase-desc">Eliminate repetitive work. We connect your tools and automate your workflows so your team focuses on growth, not busywork.</p>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-name">Workflow Automation</div>
+          <div class="service-desc">Connect CRM, email, invoicing, and scheduling tools using Zapier, Make, or n8n to create seamless automated pipelines.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">CRM Implementation & Optimization</div>
+          <div class="service-desc">Setup and customization of HubSpot, Zoho, Salesforce, or other CRM platforms to manage leads, deals, and customer relationships.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Automated Client Intake & Onboarding</div>
+          <div class="service-desc">Smart forms, document collection workflows, and automated welcome sequences for new clients or employees.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Invoice & Payment Automation</div>
+          <div class="service-desc">Automated invoice generation, payment reminders, and reconciliation with accounting software like QuickBooks or Xero.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Robotic Process Automation (RPA)</div>
+          <div class="service-desc">Bot-driven automation for data entry, report generation, email processing, and cross-system data synchronization.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Appointment & Scheduling Systems</div>
+          <div class="service-desc">Calendly, Acuity, or custom booking solutions integrated with your calendar, CRM, and payment systems.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">Phase 3</div>
+        <h3 class="phase-title">AI & Intelligent Tools</h3>
+        <p class="phase-desc">Bring the power of artificial intelligence into your daily operations. From smart chatbots to predictive analytics, AI becomes your competitive advantage.</p>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-name">Custom AI Chatbots & Virtual Assistants</div>
+          <div class="service-desc">AI chatbots trained on your business data that handle customer inquiries, bookings, FAQs, and lead qualification 24/7.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">AI-Powered Analytics & Insights</div>
+          <div class="service-desc">Dashboards that translate your sales, traffic, and social data into plain-English recommendations and alerts.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Document Intelligence & Processing</div>
+          <div class="service-desc">AI extraction, summarization, and organization of contracts, invoices, and client communications.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Predictive Business Tools</div>
+          <div class="service-desc">Demand forecasting for retail, lead scoring for service businesses, churn prediction for subscription models.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">AI Content Generation Pipelines</div>
+          <div class="service-desc">Automated content calendars with AI-generated posts, blogs, and newsletters, reviewed and published on schedule.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Machine Learning Model Development</div>
+          <div class="service-desc">Custom ML models for recommendation engines, pricing optimization, fraud detection, and customer segmentation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">Phase 4</div>
+        <h3 class="phase-title">Data & Analytics</h3>
+        <p class="phase-desc">Turn your raw data into strategic decisions. We build dashboards, mine insights, and help you understand your numbers like never before.</p>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-name">Business Intelligence Dashboards</div>
+          <div class="service-desc">Unified dashboards connecting POS, website, CRM, and social media using Google Looker Studio, Power BI, or Metabase.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Customer Segmentation & Analysis</div>
+          <div class="service-desc">Identify your most profitable customer segments, their behaviors, and how to attract more of them.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Financial Analytics & Forecasting</div>
+          <div class="service-desc">Margin analysis by product line, customer lifetime value calculations, and cash flow projections beyond basic bookkeeping.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Competitive Intelligence Monitoring</div>
+          <div class="service-desc">Track competitor pricing, online presence, customer reviews, and market positioning in real time.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Data Warehousing & Integration</div>
+          <div class="service-desc">Centralize data from multiple sources into a single, clean, queryable data warehouse for advanced analysis.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">Phase 5</div>
+        <h3 class="phase-title">Cybersecurity & Compliance</h3>
+        <p class="phase-desc">Protect what you have built. We secure your systems, train your team, and ensure you meet industry compliance requirements.</p>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-name">Security Audits & Vulnerability Assessment</div>
+          <div class="service-desc">Comprehensive assessment of your email, website, cloud storage, and endpoint vulnerabilities with prioritized remediation.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Managed Security Services</div>
+          <div class="service-desc">Endpoint protection, firewall management, email filtering, and dark web monitoring for leaked credentials.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Employee Security Training</div>
+          <div class="service-desc">Phishing simulations, password hygiene workshops, and security awareness programs tailored to your team.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Data Backup & Disaster Recovery</div>
+          <div class="service-desc">Automated backups, tested recovery procedures, and business continuity plans to minimize downtime.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Compliance Management</div>
+          <div class="service-desc">PCI-DSS for payment processing, HIPAA for healthcare, SOC 2 for B2B services, and CCPA privacy compliance.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Penetration Testing</div>
+          <div class="service-desc">Simulated cyberattacks to identify weaknesses before real attackers do, with detailed remediation reports.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">Phase 6</div>
+        <h3 class="phase-title">Cloud & Infrastructure</h3>
+        <p class="phase-desc">Scale with confidence. We migrate, manage, and optimize your cloud and IT infrastructure so technology never holds you back.</p>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-name">Cloud Migration & Management</div>
+          <div class="service-desc">Migrate to AWS, Google Cloud, or Azure with proper architecture, cost optimization, and ongoing management.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Managed Hosting & Performance</div>
+          <div class="service-desc">Enterprise-grade hosting with monitoring, uptime guarantees, CDN integration, and performance optimization.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Email & Collaboration Platforms</div>
+          <div class="service-desc">Microsoft 365 or Google Workspace setup, migration, user management, and ongoing administration.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">VoIP & Unified Communications</div>
+          <div class="service-desc">Cloud-based phone systems integrated with CRM and collaboration tools, replacing legacy telephony.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Network Design & Management</div>
+          <div class="service-desc">Office network setup, Wi-Fi optimization, VPN configuration, and remote access solutions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">Phase 7</div>
+        <h3 class="phase-title">E-Commerce & Digital Revenue</h3>
+        <p class="phase-desc">Expand your revenue channels. We build online stores, marketplace integrations, and digital product platforms to grow your top line.</p>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-name">Full E-Commerce Platform Builds</div>
+          <div class="service-desc">Shopify or WooCommerce stores with payment processing, shipping, inventory management, and customer portals.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Marketplace Integration</div>
+          <div class="service-desc">List and manage products on Amazon, Etsy, eBay, or industry-specific marketplaces with centralized inventory.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Subscription & Membership Models</div>
+          <div class="service-desc">Recurring revenue platforms for service businesses, communities, and content creators.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Digital Product Creation</div>
+          <div class="service-desc">Online courses, downloadable guides, paid webinars, and community platforms to monetize expertise.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Conversion Rate Optimization</div>
+          <div class="service-desc">A/B testing, funnel analysis, checkout optimization, and user experience improvements to maximize revenue.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">Phase 8</div>
+        <h3 class="phase-title">Managed IT — Your IT Department</h3>
+        <p class="phase-desc">The complete IT partnership. We become your permanent technology team on a monthly retainer, so you never need to hire an IT department.</p>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-name">Dedicated Help Desk & Support</div>
+          <div class="service-desc">Responsive technical support for day-to-day issues with guaranteed response times and escalation procedures.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Technology Reviews & Roadmapping</div>
+          <div class="service-desc">Quarterly technology assessments, upgrade recommendations, and multi-year IT investment roadmaps.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Vendor & License Management</div>
+          <div class="service-desc">Negotiate with software providers, manage subscriptions, track renewals, and eliminate redundant tools.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Employee Tech Lifecycle</div>
+          <div class="service-desc">New hire setup, device provisioning, access management, and secure offboarding when employees leave.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">IT Budgeting & Cost Optimization</div>
+          <div class="service-desc">Annual IT budget planning, cost-benefit analysis of technology investments, and ongoing spend optimization.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-name">Virtual CTO / IT Strategy Advisory</div>
+          <div class="service-desc">Executive-level technology guidance for business owners who need strategic IT leadership without a full-time hire.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="counter-section">
+  <div class="counter-grid">
+    <div class="ctr-wrap"><div class="ctr-num"><em>50</em>+</div><div class="ctr-label">Happy Clients</div></div>
+    <div class="ctr-wrap"><div class="ctr-num"><em>120</em>+</div><div class="ctr-label">Projects Shipped</div></div>
+    <div class="ctr-wrap"><div class="ctr-num"><em>8</em>yr</div><div class="ctr-label">In Business</div></div>
+    <div class="ctr-wrap"><div class="ctr-num"><em>4.9</em>/5</div><div class="ctr-label">Avg. Client Rating</div></div>
+  </div>
+</section>
+
+
+<section class="section bg2">
+  <div class="section-in">
+    <div class="hdr center">
+      <div class="stag">FAQs</div>
+      <h2 class="sh">Common <em>Questions</em></h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How long has Embtel Solutions been in business?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a">Embtel Solutions has been in business for 8 years, serving clients across India, UK, and North America with digital solutions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What makes Embtel Solutions different from other agencies?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a">We focus on outcome over output, radical transparency, speed with quality, and building long-term partnerships. Our senior practitioners handle projects end-to-end without handoffs to juniors.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What industries does Embtel Solutions serve?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a">We serve diverse industries including accounting, cleaning, cybersecurity, healthcare, home services, immigration, IT, legal, retail, and more.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How does Embtel Solutions ensure project quality?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a">We deliver clean, documented code with knowledge transfer. Our team follows proven industry practices and conducts thorough code reviews on every project.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What is the typical project timeline?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a">Most projects are completed in 2–6 weeks, depending on scope and complexity. We provide clear timelines and keep you updated throughout the process.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How do I get started with Embtel Solutions?</span>
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a">Simply contact us through our website or book a free consultation. We'll discuss your project, goals, and determine if we're a good fit to work together.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Want to <em>work with us?</em></h2>
+  <p>We take on a limited number of new partnerships each quarter. Tell us about your project and we'll let you know if we're a good fit.</p>
+  <div class="cta-btns">
+    <a class="btn-p" href="contact.html">Start a Conversation →</a>
+    <a class="btn-g" href="work.html">See Our Work</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="includes/footer.js"></script>
+
+<script>
+function showPage(name){var pages={home:'index.html',about:'about.html',services:'services.html',work:'work.html',process:'process.html',blog:'blog.html',contact:'contact.html'};if(pages[name]) window.location.href=pages[name];}
+function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
+function toggleFaq(el){el.parentElement.classList.toggle('open');}
+function handleSubmit(btn){btn.textContent='Message sent! ✓';btn.style.background='var(--teal)';btn.style.color='#000';btn.disabled=true;}
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(nav) nav.style.borderBottomColor=window.scrollY>30?'rgba(255,255,255,.08)':'rgba(255,255,255,.05)';});
+function animateCounters(){document.querySelectorAll('.count').forEach(function(el){var target=+el.dataset.target;var duration=2000;var step=target/(duration/16);var current=0;var timer=setInterval(function(){current+=step;if(current>=target){current=target;clearInterval(timer);}el.textContent=Math.floor(current).toLocaleString('en-IN');},16);});}
+var counterSection=document.querySelector('.counter-section');var counted=false;if(counterSection){var obs=new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!counted){counted=true;animateCounters();obs.disconnect();}},{threshold:0.3});obs.observe(counterSection);}
+</script>
+</body>
+</html>

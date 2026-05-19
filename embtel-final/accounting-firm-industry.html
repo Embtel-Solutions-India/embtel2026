@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accounting Firm Industry — Embtel Solutions</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1A6BFF;--blue-dim:rgba(26,107,255,.12);--teal:#00C896;--teal-dim:rgba(0,200,150,.1);--ink:#09090B;--ink2:#111115;--s1:#18181C;--s2:#26262C;--m1:#6B6B78;--m2:#9898A6;--m3:#C4C4D1;--r8:8px;--r14:14px;--r20:20px;--ac:#1A6BFF;--ac-dim:rgba(26,107,255,.12);--glow:rgba(26,107,255,.14)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--ink);color:var(--m3);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}ul{list-style:none}button{cursor:pointer;border:none;font-family:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-blur{position:absolute;inset:0;background:rgba(9,9,11,.85);backdrop-filter:blur(24px)}
+.nav-in{position:relative;max-width:1300px;margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px}.logo em{color:var(--teal);font-style:normal}
+.nav-links{display:flex;gap:36px;align-items:center}.nav-links a{font-size:13.5px;font-weight:500;color:var(--m2);transition:color .2s}.nav-links a:hover{color:#fff}
+.nav-btn{background:var(--blue);color:#fff;font-size:13.5px;font-weight:600;padding:9px 22px;border-radius:var(--r8);transition:all .2s}.nav-btn:hover{background:#3B7FFF;transform:translateY(-1px)}
+.hamburger{display:none;background:none;padding:8px;flex-direction:column;gap:5px}.hb{width:22px;height:2px;background:var(--m3);border-radius:2px}
+.mobile-menu{display:none;position:fixed;inset:68px 0 0;background:rgba(9,9,11,.97);backdrop-filter:blur(20px);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:36px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:'Manrope',sans-serif;font-size:28px;font-weight:700;color:#fff}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:10px}.wa-bubble{background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 24px rgba(37,211,102,.4);transition:all .25s;text-decoration:none;border:none}.wa-bubble:hover{transform:scale(1.1)}.wa-tooltip{background:var(--s1);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:13px;padding:8px 16px;border-radius:var(--r8);white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .25s;pointer-events:none}.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding:64px 40px 32px}.footer-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}.f-logo{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:12px}.f-logo em{color:var(--teal);font-style:normal}.f-desc{font-size:13.5px;color:var(--m1);line-height:1.8;max-width:260px}.f-col h4{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}.f-col a{display:block;font-size:13.5px;color:var(--m2);margin-bottom:10px;transition:color .2s}.f-col a:hover{color:#fff}.footer-bot{max-width:1300px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--m1)}
+.cta-band{background:linear-gradient(135deg,#001233,#00194a 60%,#001833);border-top:1px solid rgba(26,107,255,.2);padding:100px 40px;position:relative;overflow:hidden;text-align:center}.cta-band::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(26,107,255,.2),transparent 70%);pointer-events:none}.cta-band h2{font-family:'Manrope',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;color:#fff;letter-spacing:-2px;margin-bottom:16px;line-height:1.1;position:relative}.cta-band h2 em{background:linear-gradient(90deg,var(--teal),#7BAAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}.cta-band p{font-size:17px;color:var(--m2);max-width:520px;margin:0 auto 40px;line-height:1.7;position:relative}.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-p:hover{background:#3B7FFF;transform:translateY(-2px);box-shadow:0 16px 40px rgba(26,107,255,.3)}.btn-g{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);color:var(--m3);border:1px solid rgba(255,255,255,.1);padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-g:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.stag{font-size:11.5px;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+.sh{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}.sh em{background:linear-gradient(90deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+.sl{font-size:16px;color:var(--m2);line-height:1.7;max-width:560px}
+.svc-hero{padding:140px 40px 80px;background:var(--ink);position:relative;overflow:hidden}.svc-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none}
+.svc-hero-in{max-width:1300px;margin:0 auto;position:relative}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--m1);margin-bottom:28px}.breadcrumb a{color:var(--m2);transition:color .2s}.breadcrumb a:hover{color:#fff}
+.svc-hero h1{font-family:'Manrope',sans-serif;font-size:clamp(38px,5vw,68px);font-weight:800;color:#fff;letter-spacing:-2.5px;line-height:1.06;margin-bottom:24px;max-width:800px}.svc-hero h1 em{background:linear-gradient(90deg,var(--teal),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+.svc-lead{font-size:18px;color:var(--m2);line-height:1.75;max-width:640px;margin-bottom:44px}
+.svc-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px}
+.svc-stats{display:flex;gap:40px;flex-wrap:wrap}.svc-stat{border-left:2px solid rgba(255,255,255,.08);padding-left:20px}.svc-stat-n{font-family:'Manrope',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px}.svc-stat-n em{color:var(--teal);font-style:normal}.svc-stat-l{font-size:12px;color:var(--m1);margin-top:3px;text-transform:uppercase;letter-spacing:.8px}
+.section{padding:100px 40px}.section.bg2{background:var(--ink2)}.section-in{max-width:1300px;margin:0 auto}
+.hdr{margin-bottom:56px}.hdr.center{text-align:center}.hdr.center .sl{margin:0 auto}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);padding:36px 30px;transition:all .3s;position:relative;overflow:hidden}.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--teal));opacity:0;transition:opacity .3s}.fc:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.12)}.fc:hover::before{opacity:1}
+.fc h3{font-family:'Manrope',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:10px}.fc p{font-size:13.5px;color:var(--m2);line-height:1.75}
+.proc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);padding:32px;display:flex;gap:20px;align-items:start;transition:border-color .3s}.pc:hover{border-color:rgba(255,255,255,.12)}
+.pc-num{width:44px;height:44px;border-radius:50%;background:var(--ac-dim);border:1px solid rgba(26,107,255,.2);display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;color:var(--ac);flex-shrink:0}.pc h3{font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:6px}.pc p{font-size:13px;color:var(--m2);line-height:1.7}
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r14);padding:24px;display:flex;align-items:center;gap:14px;transition:all .25s}.rc:hover{border-color:rgba(255,255,255,.14);transform:translateY(-3px)}.rc h4{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}.rc p{font-size:12px;color:var(--m2)}
+@media(max-width:960px){.nav-links,.nav-btn{display:none}.hamburger{display:flex}.svc-hero{padding:110px 20px 60px}.svc-stats{gap:20px}.section{padding:70px 20px}.feat-grid,.proc-grid,.rel-grid{grid-template-columns:1fr}footer{padding:48px 20px 24px}.footer-in{grid-template-columns:1fr}.wa-float{bottom:20px;right:20px}.cta-band{padding:70px 20px}}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+<script src="includes/header.js"></script>
+
+<section class="svc-hero">
+  <div class="svc-hero-in">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <a href="industries.html">Industries</a> <span>›</span> <span>Accounting Firm</span></div>
+    <h1>Digital Solutions for <em>Accounting Firms</em></h1>
+    <p class="svc-lead">Streamline your financial services with secure, compliant digital platforms that build client trust.</p>
+    <div class="svc-btns">
+      <a href="contact.html" class="btn-p">Start a Project →</a>
+      <a href="work.html" class="btn-g">View Our Work</a>
+    </div>
+    <div class="svc-stats">
+      <div class="svc-stat"><div class="svc-stat-n">30<em>+</em></div><div class="svc-stat-l">Accounting Clients</div></div>
+      <div class="svc-stat"><div class="svc-stat-n">100<em>%</em></div><div class="svc-stat-l">Compliance Rate</div></div>
+      <div class="svc-stat"><div class="svc-stat-n">50<em>%</em></div><div class="svc-stat-l">Time Saved</div></div>
+      <div class="svc-stat"><div class="svc-stat-n">24/7</div><div class="svc-stat-l">Secure Access</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-in">
+    <div class="hdr center">
+      <div class="stag">What We Build</div>
+      <div class="sh">Solutions for <em>Modern Accounting</em></div>
+      <p class="sl">Digital tools designed specifically for accounting firms and financial service providers.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="fc">
+        <h3>Client Portals</h3><p>Secure, branded client portals for document sharing, tax filing, and real-time financial reporting with bank-level encryption.</p></div>
+      <div class="fc">
+        <h3>Automated Bookkeeping</h3><p>Integration with accounting software like QuickBooks and Xero for automated data entry, reconciliation, and reporting.</p></div>
+      <div class="fc">
+        <h3>Tax Preparation Systems</h3><p>Streamlined tax filing workflows with document management, deadline tracking, and client communication tools.</p></div>
+      <div class="fc">
+        <h3>Invoice & Payment Processing</h3><p>Custom invoicing systems with integrated payment gateways, automated reminders, and financial tracking dashboards.</p></div>
+      <div class="fc">
+        <h3>Compliance Management</h3><p>Tools to ensure regulatory compliance with automated checks, audit trails, and secure document retention.</p></div>
+      <div class="fc">
+        <h3>Financial Dashboards</h3><p>Real-time analytics and reporting dashboards for both your team and clients with customizable KPIs and visualizations.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg2">
+  <div class="section-in">
+    <div class="hdr center">
+      <div class="stag">Our Process</div>
+      <div class="sh">How we <em>deliver</em></div>
+      <p class="sl">A tailored approach for accounting firms with strict security and compliance requirements.</p>
+    </div>
+    <div class="proc-grid">
+      <div class="pc"><div class="pc-num">01</div><div><h3>Compliance Assessment</h3><p>We analyze your current systems and identify gaps in security, compliance, and efficiency specific to financial regulations.</p></div></div>
+      <div class="pc"><div class="pc-num">02</div><div><h3>Secure Architecture Design</h3><p>We design systems with bank-level security, encryption, and compliance frameworks built in from the ground up.</p></div></div>
+      <div class="pc"><div class="pc-num">03</div><div><h3>Integration & Development</h3><p>We build and integrate your custom solutions with existing accounting software and banking systems.</p></div></div>
+      <div class="pc"><div class="pc-num">04</div><div><h3>Training & Support</h3><p>Comprehensive team training and ongoing support to ensure smooth adoption and continued compliance.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg2">
+  <div class="section-in">
+    <div class="hdr center">
+      <div class="stag">Explore More</div>
+      <div class="sh">Related <em>Industries</em></div>
+    </div>
+    <div class="rel-grid">
+      <a href="law-industry.html" class="rc"><div><h4>Law Industry</h4><p>Legal firms & attorney services</p></div></a>
+      <a href="it-industry.html" class="rc"><div><h4>IT Industry</h4><p>Technology & software solutions</p></div></a>
+      <a href="business-automation.html" class="rc"><div><h4>Business Automation</h4><p>Automate your workflows</p></div></a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready to modernize your <em>accounting practice?</em></h2>
+  <p>Book a free 30-minute call. We'll discuss your specific needs and create a secure, compliant digital strategy.</p>
+  <div class="cta-btns"><a href="contact.html" class="btn-p">Book Free Discovery Call →</a></div>
+</div>
+
+<div id="site-footer"></div>
+<script src="includes/footer.js"></script>
+<script>
+function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(nav)nav.style.borderBottomColor=window.scrollY>30?'rgba(255,255,255,.08)':'rgba(255,255,255,.05)';});
+</script>
+</body>
+</html>

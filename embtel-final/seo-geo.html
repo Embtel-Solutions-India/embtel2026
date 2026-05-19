@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO & GEO — Embtel Solutions</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1A6BFF;--blue-dim:rgba(26,107,255,.12);--teal:#00C896;--teal-dim:rgba(0,200,150,.1);--ink:#09090B;--ink2:#111115;--s1:#18181C;--s2:#26262C;--m1:#6B6B78;--m2:#9898A6;--m3:#C4C4D1;--r8:8px;--r14:14px;--r20:20px;--ac:#FF5080;--ac-dim:rgba(255,80,128,.12);--glow:rgba(255,80,128,.1)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--ink);color:var(--m3);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}ul{list-style:none}button{cursor:pointer;border:none;font-family:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-blur{position:absolute;inset:0;background:rgba(9,9,11,.85);backdrop-filter:blur(24px)}
+.nav-in{position:relative;max-width:1300px;margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px}.logo em{color:var(--teal);font-style:normal}
+.nav-links{display:flex;gap:36px;align-items:center}.nav-links a{font-size:13.5px;font-weight:500;color:var(--m2);transition:color .2s}.nav-links a:hover{color:#fff}
+.nav-btn{background:var(--blue);color:#fff;font-size:13.5px;font-weight:600;padding:9px 22px;border-radius:var(--r8);transition:all .2s}.nav-btn:hover{background:#3B7FFF;transform:translateY(-1px)}
+.hamburger{display:none;background:none;padding:8px;flex-direction:column;gap:5px}.hb{width:22px;height:2px;background:var(--m3);border-radius:2px}
+.mobile-menu{display:none;position:fixed;inset:68px 0 0;background:rgba(9,9,11,.97);backdrop-filter:blur(20px);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:36px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:'Manrope',sans-serif;font-size:28px;font-weight:700;color:#fff}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:10px}.wa-bubble{background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 24px rgba(37,211,102,.4);transition:all .25s;text-decoration:none;border:none}.wa-bubble:hover{transform:scale(1.1)}.wa-tooltip{background:var(--s1);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:13px;padding:8px 16px;border-radius:var(--r8);white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .25s;pointer-events:none}.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding:64px 40px 32px}.footer-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}.f-logo{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:12px}.f-logo em{color:var(--teal);font-style:normal}.f-desc{font-size:13.5px;color:var(--m1);line-height:1.8;max-width:260px}.f-col h4{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}.f-col a{display:block;font-size:13.5px;color:var(--m2);margin-bottom:10px;transition:color .2s}.f-col a:hover{color:#fff}.footer-bot{max-width:1300px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--m1)}
+.cta-band{background:linear-gradient(135deg,#001233,#00194a 60%,#001833);border-top:1px solid rgba(26,107,255,.2);padding:100px 40px;position:relative;overflow:hidden;text-align:center}.cta-band::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(26,107,255,.2),transparent 70%);pointer-events:none}.cta-band h2{font-family:'Manrope',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;color:#fff;letter-spacing:-2px;margin-bottom:16px;line-height:1.1;position:relative}.cta-band h2 em{background:linear-gradient(90deg,var(--teal),#7BAAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}.cta-band p{font-size:17px;color:var(--m2);max-width:520px;margin:0 auto 40px;line-height:1.7;position:relative}.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-p:hover{background:#3B7FFF;transform:translateY(-2px);box-shadow:0 16px 40px rgba(26,107,255,.3)}.btn-g{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);color:var(--m3);border:1px solid rgba(255,255,255,.1);padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-g:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.stag{font-size:11.5px;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+.sh{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}.sh em{background:linear-gradient(90deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+.sl{font-size:16px;color:var(--m2);line-height:1.7;max-width:560px}
+.svc-hero{padding:140px 40px 80px;background:var(--ink);position:relative;overflow:hidden}.svc-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none}
+.svc-hero-in{max-width:1300px;margin:0 auto;position:relative}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--m1);margin-bottom:28px}.breadcrumb a{color:var(--m2);transition:color .2s}.breadcrumb a:hover{color:#fff}
+.svc-hero h1{font-family:'Manrope',sans-serif;font-size:clamp(38px,5vw,68px);font-weight:800;color:#fff;letter-spacing:-2.5px;line-height:1.06;margin-bottom:24px;max-width:800px}.svc-hero h1 em{background:linear-gradient(90deg,var(--teal),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+.svc-lead{font-size:18px;color:var(--m2);line-height:1.75;max-width:640px;margin-bottom:44px}
+.svc-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px}
+.svc-stats{display:flex;gap:40px;flex-wrap:wrap}.svc-stat{border-left:2px solid rgba(255,255,255,.08);padding-left:20px}.svc-stat-n{font-family:'Manrope',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px}.svc-stat-n em{color:var(--teal);font-style:normal}.svc-stat-l{font-size:12px;color:var(--m1);margin-top:3px;text-transform:uppercase;letter-spacing:.8px}
+.section{padding:100px 40px}.section.bg2{background:var(--ink2)}.section-in{max-width:1300px;margin:0 auto}
+.hdr{margin-bottom:56px}.hdr.center{text-align:center}.hdr.center .sl{margin:0 auto}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);padding:36px 30px;transition:all .3s;position:relative;overflow:hidden}.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--blue));opacity:0;transition:opacity .3s}.fc:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.12)}.fc:hover::before{opacity:1}
+.fc h3{font-family:'Manrope',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:10px}.fc p{font-size:13.5px;color:var(--m2);line-height:1.75}
+.proc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);padding:32px;display:flex;gap:20px;align-items:start;transition:border-color .3s}.pc:hover{border-color:rgba(255,255,255,.12)}
+.pc-num{width:44px;height:44px;border-radius:50%;background:var(--ac-dim);border:1px solid rgba(255,80,128,.2);display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;color:var(--ac);flex-shrink:0}.pc h3{font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:6px}.pc p{font-size:13px;color:var(--m2);line-height:1.7}
+.tech-wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:40px}.tp{display:flex;align-items:center;gap:8px;background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:100px;padding:10px 20px;transition:all .25s}.tp:hover{border-color:rgba(255,255,255,.18);background:var(--s2);transform:translateY(-2px)}.tp span{font-size:14px;font-weight:600;color:var(--m3)}.tp-i{font-size:18px}
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r14);padding:24px;display:flex;align-items:center;gap:14px;transition:all .25s}.rc:hover{border-color:rgba(255,255,255,.14);transform:translateY(-3px)}.rc h4{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}.rc p{font-size:12px;color:var(--m2)}
+@media(max-width:960px){.nav-links,.nav-btn{display:none}.hamburger{display:flex}.svc-hero{padding:110px 20px 60px}.svc-stats{gap:20px}.section{padding:70px 20px}.feat-grid,.proc-grid,.rel-grid{grid-template-columns:1fr}footer{padding:48px 20px 24px}.footer-in{grid-template-columns:1fr}.wa-float{bottom:20px;right:20px}.cta-band{padding:70px 20px}}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+<script src="includes/header.js"></script>
+
+<section class="svc-hero">
+  <div class="svc-hero-in">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> <a href="services.html">Services</a> <span>›</span> <span>SEO & GEO</span></div>
+    <h1>Paid Ads & GEO Targeting<br>that <em>Maximise Your ROI</em></h1>
+    <p class="svc-lead">Meta, Google, and LinkedIn ads managed for maximum return. Precise audience targeting, compelling creative, and relentless optimisation — every rupee accountable, every campaign scalable.</p>
+    <div class="svc-btns">
+      <a href="contact.html" class="btn-p">Launch My Campaigns →</a>
+      <a href="work.html" class="btn-g">View Results</a>
+    </div>
+    <div class="svc-stats">
+      <div class="svc-stat"><div class="svc-stat-n">4<em>x</em></div><div class="svc-stat-l">Average ROAS</div></div>
+      <div class="svc-stat"><div class="svc-stat-n">40<em>%</em></div><div class="svc-stat-l">Lower CPA</div></div>
+      <div class="svc-stat"><div class="svc-stat-n">300<em>%</em></div><div class="svc-stat-l">Avg ROI Increase</div></div>
+      <div class="svc-stat"><div class="svc-stat-n">7<em>d</em></div><div class="svc-stat-l">Avg Campaign Launch</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-in">
+    <div class="hdr center">
+      <div class="stag">What We Manage</div>
+      <div class="sh">Every paid channel, <em>fully optimised</em></div>
+      <p class="sl">From search intent to social discovery — we run campaigns that reach the right people at the right moment.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="fc"><div class="fc-ico"></div><h3>Google Search Ads</h3><p>High-intent keyword campaigns with smart bidding, ad copy testing, and Quality Score optimisation to capture buyers actively searching for you.</p></div>
+      <div class="fc"><div class="fc-ico"></div><h3>Meta Ads (FB & IG)</h3><p>Audience-driven social campaigns with creative testing, lookalike audiences, and funnel-stage targeting to turn scrollers into customers.</p></div>
+      <div class="fc"><div class="fc-ico"></div><h3>LinkedIn Ads</h3><p>B2B targeting by job title, company size, industry, and seniority — ideal for enterprise software, consulting, and professional services.</p></div>
+      <div class="fc"><div class="fc-ico"></div><h3>YouTube Ads</h3><p>Video ad campaigns for brand awareness and retargeting — skippable, non-skippable, and bumper ads optimised for view-through conversions.</p></div>
+      <div class="fc"><div class="fc-ico"></div><h3>GEO Targeting</h3><p>Hyper-local campaigns by city, postcode, or radius around your location — perfect for retail, hospitality, clinics, and local services.</p></div>
+      <div class="fc"><div class="fc-ico"></div><h3>Retargeting</h3><p>Re-engage website visitors, abandoned cart users, and warm audiences with precision retargeting that converts consideration into purchase.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg2">
+  <div class="section-in">
+    <div class="hdr center">
+      <div class="stag">Our Process</div>
+      <div class="sh">How we make <em>every rupee work</em></div>
+      <p class="sl">No set-and-forget campaigns. We monitor, test, and optimise continuously.</p>
+    </div>
+    <div class="proc-grid">
+      <div class="pc"><div class="pc-num">01</div><div><h3>Account Audit</h3><p>We analyse existing campaigns — identifying wasted spend, missed audiences, and quick wins that can improve performance immediately.</p></div></div>
+      <div class="pc"><div class="pc-num">02</div><div><h3>Strategy & Creative</h3><p>Audience research, campaign structure planning, ad copy writing, and creative briefing — all aligned to your specific conversion goals.</p></div></div>
+      <div class="pc"><div class="pc-num">03</div><div><h3>Launch & Optimise</h3><p>Campaigns launched with A/B testing baked in from day one. Bid adjustments, negative keywords, and creative swaps based on live data.</p></div></div>
+      <div class="pc"><div class="pc-num">04</div><div><h3>Weekly Reporting</h3><p>Clear weekly performance reports with impressions, clicks, conversions, CPA, and ROAS — no jargon, just the numbers that matter.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-in">
+    <div class="hdr center">
+      <div class="stag">Platforms & Tools</div>
+      <div class="sh">Certified on <em>every major ad platform</em></div>
+    </div>
+    <div class="tech-wrap">
+      <div class="tp"><span>Google Ads</span></div>
+      <div class="tp"><span>Meta Ads Manager</span></div>
+      <div class="tp"><span>LinkedIn Campaign Mgr</span></div>
+      <div class="tp"><span>YouTube Ads</span></div>
+      <div class="tp"><span>Google Tag Manager</span></div>
+      <div class="tp"><span>Google Analytics 4</span></div>
+      <div class="tp"><span>Hotjar</span></div>
+      <div class="tp"><span>Meta Pixel</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg2">
+  <div class="section-in">
+    <div class="hdr center"><div class="stag">Explore More</div><div class="sh">Related <em>Services</em></div></div>
+    <div class="rel-grid">
+      <a href="digital-marketing.html" class="rc"><div><h4>Digital Marketing</h4><p>Organic growth to complement paid ads</p></div></a>
+      <a href="analytics-dashboards.html" class="rc"><div><h4>Analytics & Dashboards</h4><p>Track ROAS and CPA in real time</p></div></a>
+      <a href="web-development.html" class="rc"><div><h4>Web Development</h4><p>High-converting landing pages for your ads</p></div></a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready to <em>scale your ad spend profitably?</em></h2>
+  <p>Book a free ad account audit. We'll show you exactly where budget is being wasted and how to fix it in 7 days.</p>
+  <div class="cta-btns"><a href="contact.html" class="btn-p">Get My Free Ad Audit →</a></div>
+</div>
+
+<div id="site-footer"></div>
+<script src="includes/footer.js"></script>
+<script>
+function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(nav)nav.style.borderBottomColor=window.scrollY>30?'rgba(255,255,255,.08)':'rgba(255,255,255,.05)';});
+</script>
+</body>
+</html>
