@@ -79,23 +79,7 @@ document.getElementById('site-footer').innerHTML = `
 .footer-legal span:hover{color:#fff;text-decoration:underline}
 .footer-in{grid-template-columns:2fr 1fr 1fr 1fr 1fr !important;gap:48px}
 @media(max-width:960px){.footer-in{grid-template-columns:1fr !important}}
-.wa-float{position:fixed;bottom:28px;right:28px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.wa-bubble{background:#1A6BFF;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 24px rgba(26,107,255,.4);transition:all .25s;text-decoration:none;border:none}
-.wa-bubble:hover{transform:scale(1.1)}
-.wa-tooltip{background:var(--s1);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:13px;padding:8px 16px;border-radius:var(--r8);white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .25s;pointer-events:none}
-.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
-@media(max-width:960px){.wa-float{bottom:20px;right:20px}}
 </style>
-
-<div class="wa-float">
-  <div class="wa-tooltip">Call us now �</div>
-  <a class="wa-bubble" href="tel:+15109627900" title="Call us">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 2C7.373 2 2 7.373 2 14c0 2.127.558 4.122 1.532 5.854L2 26l6.338-1.508A11.94 11.94 0 0014 26c6.627 0 12-5.373 12-12S20.627 2 14 2z" fill="white" fill-opacity="0.2"/>
-      <path d="M19.5 17.5l-2.5-1c-.3-.12-.65-.05-.85.2l-1.2 1.5c-2.1-1.1-3.8-2.8-4.9-4.9l1.5-1.2c.25-.2.32-.55.2-.85l-1-2.5c-.15-.35-.5-.55-.85-.5l-2.3.5c-.4.1-.65.5-.6.9 1.3 6.5 6.9 12.1 13.4 13.4.4.05.8-.2.9-.6l.5-2.3c.05-.35-.15-.7-.5-.85z" fill="white"/>
-    </svg>
-  </a>
-</div>
 `;
 
 /* Legal link navigation */
@@ -113,4 +97,17 @@ document.getElementById('site-footer').innerHTML = `
   var page = map[path] || 'home';
   var el = document.querySelector('.nav-links a[data-page="' + page + '"]');
   if (el) { el.style.color = '#fff'; el.style.fontWeight = '600'; }
+})();
+
+/* Elfsight WhatsApp Chat — loaded on every page */
+(function(){
+  var div = document.createElement('div');
+  div.className = 'elfsight-app-19ff2c59-ec86-44cf-a7a1-29208dffa251';
+  div.setAttribute('data-elfsight-app-lazy', '');
+  document.body.appendChild(div);
+
+  var s = document.createElement('script');
+  s.src = 'https://elfsightcdn.com/platform.js';
+  s.async = true;
+  document.body.appendChild(s);
 })();
