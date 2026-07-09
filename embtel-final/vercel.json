@@ -1,9 +1,25 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/da-ai/web-scrapping",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/da-ai/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/home",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]
