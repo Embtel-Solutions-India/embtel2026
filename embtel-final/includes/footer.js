@@ -103,11 +103,38 @@ document.getElementById('site-footer').innerHTML = `
 (function(){
   var div = document.createElement('div');
   div.className = 'elfsight-app-19ff2c59-ec86-44cf-a7a1-29208dffa251';
-  div.setAttribute('data-elfsight-app-lazy', '');
   document.body.appendChild(div);
 
   var s = document.createElement('script');
   s.src = 'https://elfsightcdn.com/platform.js';
   s.async = true;
   document.body.appendChild(s);
+})();
+
+/* Self-hosted WhatsApp float (fallback — hides itself if Elfsight renders) */
+(function(){
+  var wrap = document.createElement('div');
+  wrap.id = 'wa-fallback';
+  wrap.innerHTML = `
+    <a href="https://wa.me/15109627900?text=Hi%20Embtel%20Solutions%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="waf-bubble">
+      <svg viewBox="0 0 32 32" width="30" height="30" fill="#fff"><path d="M16.004 3C9.383 3 4 8.383 4 15.004c0 2.117.553 4.185 1.604 6.008L4 29l8.184-1.576a11.94 11.94 0 0 0 3.82.627h.001C22.625 28.05 28 22.667 28 16.046 28 8.383 22.625 3 16.004 3zm0 21.988h-.001a9.94 9.94 0 0 1-3.505-.643l-.251-.096-4.858.936.99-4.735-.164-.26a9.93 9.93 0 0 1-1.559-5.186c0-5.514 4.486-10 10.001-10 5.514 0 10 4.486 10 10s-4.486 9.984-10.653 9.984zm5.487-7.474c-.301-.15-1.781-.879-2.057-.979-.276-.101-.477-.15-.677.15-.201.301-.777.979-.953 1.18-.175.2-.351.226-.652.075-.301-.15-1.271-.468-2.42-1.493-.895-.798-1.499-1.784-1.674-2.085-.176-.301-.019-.464.132-.613.135-.135.301-.352.451-.528.151-.176.201-.301.301-.502.101-.2.05-.376-.025-.527-.075-.15-.677-1.63-.927-2.232-.244-.586-.492-.507-.677-.516l-.576-.01c-.2 0-.527.075-.803.376s-1.054 1.03-1.054 2.51 1.079 2.912 1.229 3.113c.15.2 2.123 3.242 5.144 4.546.719.31 1.28.495 1.717.634.722.229 1.379.197 1.898.119.579-.086 1.781-.728 2.032-1.431.251-.703.251-1.305.176-1.431-.075-.125-.276-.2-.577-.351z"/></svg>
+    </a>
+    <style>
+      #wa-fallback{position:fixed;bottom:28px;right:28px;z-index:999}
+      #wa-fallback .waf-bubble{background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.45);transition:transform .25s,box-shadow .25s;text-decoration:none}
+      #wa-fallback .waf-bubble:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(37,211,102,.6)}
+      @media(max-width:960px){#wa-fallback{bottom:20px;right:20px}}
+    </style>`;
+  document.body.appendChild(wrap);
+
+  /* Hide fallback if the Elfsight widget actually renders */
+  var checks = 0;
+  var t = setInterval(function(){
+    var el = document.querySelector('.elfsight-app-19ff2c59-ec86-44cf-a7a1-29208dffa251');
+    if (el && el.children.length > 0) {
+      wrap.style.display = 'none';
+      clearInterval(t);
+    }
+    if (++checks > 20) clearInterval(t);
+  }, 500);
 })();
