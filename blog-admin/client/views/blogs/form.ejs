@@ -1,0 +1,186 @@
+<div class="flex items-center justify-between flex-wrap gap-2 mb-6">
+  <div>
+    <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight"><%= blog ? 'Edit Blog' : 'New Blog' %></h1>
+    <p class="text-m2 text-sm mt-1">Fields marked <span class="text-red-400">*</span> must be completed before publishing.</p>
+  </div>
+  <div id="autosaveStatus" class="text-xs text-m2 flex items-center gap-1.5"></div>
+</div>
+
+<form id="blogForm" novalidate>
+  <input type="hidden" name="blogId" value="<%= blog ? blog._id : '' %>" />
+
+  <div class="grid lg:grid-cols-3 gap-5">
+    <div class="lg:col-span-2 space-y-5">
+      <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+        <h2 class="font-heading font-bold text-white text-sm mb-4">Content</h2>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-m2 mb-1.5">Title <span class="text-red-400">*</span></label>
+          <input type="text" name="title" required value="<%= blog ? blog.title : '' %>"
+            class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-m2 mb-1.5">Slug</label>
+          <input type="text" name="slug" placeholder="Auto-generated from title" value="<%= blog ? blog.slug : '' %>"
+            class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white placeholder-m1 outline-none focus:border-brand-teal transition" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-m2 mb-1.5">Short Description <span class="text-red-400">*</span></label>
+          <textarea name="shortDescription" rows="2" maxlength="300" required
+            class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition"><%= blog ? blog.shortDescription : '' %></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-m2 mb-1.5">Full Content <span class="text-red-400">*</span></label>
+          <textarea id="contentEditor" name="content"><%- blog ? blog.content : '' %></textarea>
+        </div>
+      </div>
+
+      <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+        <h2 class="font-heading font-bold text-white text-sm mb-4">Featured Image &amp; Gallery</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-m2 mb-1.5">Featured Image URL</label>
+            <div class="flex gap-2">
+              <input type="text" name="featuredImage" id="featuredImageInput" value="<%= blog ? blog.featuredImage : '' %>"
+                class="flex-1 min-w-0 bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+              <button type="button" id="pickFeaturedImageBtn" class="w-11 shrink-0 bg-s2 border border-white/10 rounded-r8 text-m2 hover:text-white transition"><i class="fa-solid fa-images"></i></button>
+            </div>
+            <img id="featuredImagePreview" src="<%= blog && blog.featuredImage ? blog.featuredImage : '' %>" class="mt-2 rounded-r14 border border-white/10 max-h-40 object-cover <%= blog && blog.featuredImage ? '' : 'hidden' %>" />
+          </div>
+          <div class="grid gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-m2 mb-1.5">Image Alt Text</label>
+              <input type="text" name="imageAltText" value="<%= blog ? blog.imageAltText : '' %>" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-m2 mb-1.5">Image Caption</label>
+              <input type="text" name="imageCaption" value="<%= blog ? blog.imageCaption : '' %>" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+            </div>
+          </div>
+        </div>
+        <hr class="border-white/5 my-4" />
+        <label class="block text-xs font-semibold text-m2 mb-2">Gallery Images</label>
+        <div id="galleryContainer" class="grid grid-cols-3 md:grid-cols-4 gap-2 mb-3"></div>
+        <button type="button" id="addGalleryImageBtn" class="text-xs font-semibold bg-white/5 hover:bg-white/10 text-white rounded-r8 px-3 py-2 transition"><i class="fa-solid fa-plus mr-1"></i>Add Gallery Image</button>
+      </div>
+
+      <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+        <h2 class="font-heading font-bold text-white text-sm mb-4">SEO</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-m2 mb-1.5">Meta Title</label>
+            <input type="text" name="metaTitle" value="<%= blog ? blog.seo.metaTitle : '' %>" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-m2 mb-1.5">Canonical URL</label>
+            <input type="text" name="canonicalUrl" value="<%= blog ? blog.seo.canonicalUrl : '' %>" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-xs font-semibold text-m2 mb-1.5">Meta Description</label>
+            <textarea name="metaDescription" rows="2" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition"><%= blog ? blog.seo.metaDescription : '' %></textarea>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-m2 mb-1.5">Focus Keywords (comma separated)</label>
+            <input type="text" name="keywords" value="<%= blog ? blog.seo.keywords.join(', ') : '' %>" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-m2 mb-1.5">Open Graph Image URL</label>
+            <input type="text" name="ogImage" value="<%= blog ? blog.seo.ogImage : '' %>" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-xs font-semibold text-m2 mb-1.5">Schema JSON-LD</label>
+            <textarea name="schemaJson" rows="3" placeholder='{ "@context": "https://schema.org", "@type": "BlogPosting" }' class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white font-mono text-xs outline-none focus:border-brand-teal transition"><%= blog ? blog.seo.schemaJson : '' %></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-5">
+      <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+        <h2 class="font-heading font-bold text-white text-sm mb-4">Publish</h2>
+        <div class="mb-3 flex items-center justify-between">
+          <span class="text-xs text-m2">Current status</span>
+          <span id="currentStatusBadge" class="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-white/10 text-m2"><%= blog ? blog.status : 'draft' %></span>
+        </div>
+        <div class="mb-3 <%= blog && blog.scheduledAt ? '' : 'hidden' %>" id="scheduleField">
+          <label class="block text-xs font-semibold text-m2 mb-1.5">Schedule Date &amp; Time</label>
+          <input type="datetime-local" name="scheduledAt" value="<%= blog && blog.scheduledAt ? blog.scheduledAt.toISOString().slice(0,16) : '' %>" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+        </div>
+        <label class="flex items-center gap-2.5 text-sm text-m2 mb-2 cursor-pointer">
+          <input type="checkbox" name="featured" id="featuredSwitch" class="rounded border-white/20 bg-s2 text-brand-teal" <%= blog && blog.featured ? 'checked' : '' %> />
+          Featured Blog
+        </label>
+        <label class="flex items-center gap-2.5 text-sm text-m2 mb-4 cursor-pointer">
+          <input type="checkbox" name="pinned" id="pinnedSwitch" class="rounded border-white/20 bg-s2 text-brand-teal" <%= blog && blog.pinned ? 'checked' : '' %> />
+          Pin as Featured Post
+        </label>
+
+        <div class="grid gap-2">
+          <button type="button" id="previewToggleBtn" class="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white text-sm font-semibold rounded-r8 py-2.5 transition"><i class="fa-solid fa-eye"></i>Live Preview</button>
+          <button type="button" class="bg-white/5 hover:bg-white/10 text-white text-sm font-semibold rounded-r8 py-2.5 transition" data-action="draft">Save as Draft</button>
+          <button type="button" class="bg-white/5 hover:bg-white/10 text-white text-sm font-semibold rounded-r8 py-2.5 transition" data-action="schedule">Schedule Publish</button>
+          <button type="button" class="bg-brand-teal text-ink text-sm font-heading font-bold rounded-r8 py-2.5 hover:brightness-110 transition" data-action="publish"><%= blog && blog.status === 'published' ? 'Update' : 'Publish' %></button>
+          <% if (blog && blog.status === 'published') { %>
+          <button type="button" class="bg-amber-500/10 text-amber-400 text-sm font-semibold rounded-r8 py-2.5 hover:bg-amber-500/20 transition" data-action="unpublish">Unpublish</button>
+          <% } %>
+          <% if (blog && blog.status === 'published') { %>
+          <a href="#" id="previewBtn" class="text-center bg-white/5 hover:bg-white/10 text-white text-sm font-semibold rounded-r8 py-2.5 transition"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>View Live</a>
+          <% } %>
+          <% if (blog) { %>
+          <button type="button" id="duplicateBtn" class="bg-white/5 hover:bg-white/10 text-white text-sm font-semibold rounded-r8 py-2.5 transition"><i class="fa-solid fa-copy mr-1"></i>Duplicate</button>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+        <h2 class="font-heading font-bold text-white text-sm mb-4">Organize</h2>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-m2 mb-1.5">Category <span class="text-red-400">*</span></label>
+          <select name="category" required class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition">
+            <option value="">Select category</option>
+            <% categories.forEach(c => { %>
+            <option value="<%= c._id %>" <%= blog && String(blog.category._id) === String(c._id) ? 'selected' : '' %>><%= c.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-m2 mb-1.5">Tags</label>
+          <select name="tags" multiple size="5" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition">
+            <% tags.forEach(t => { %>
+            <option value="<%= t._id %>" <%= blog && blog.tags.some(bt => String(bt._id) === String(t._id)) ? 'selected' : '' %>><%= t.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-m2 mb-1.5">Author</label>
+          <select name="author" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition">
+            <% authors.forEach(a => { %>
+            <option value="<%= a._id %>" <%= blog && String(blog.author) === String(a._id) ? 'selected' : (!blog && String(a._id) === String(currentUser._id) ? 'selected' : '') %>><%= a.name %></option>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Live preview slide-over -->
+<div id="previewPanel" class="hidden fixed inset-0 z-[80]">
+  <div class="absolute inset-0 bg-black/70" data-modal-close="previewPanel"></div>
+  <div class="absolute inset-y-0 right-0 w-full max-w-2xl bg-ink overflow-y-auto animate-fadeUp">
+    <div class="sticky top-0 bg-ink/90 backdrop-blur border-b border-white/10 px-6 py-4 flex items-center justify-between">
+      <span class="font-heading font-bold text-white text-sm">Live Preview</span>
+      <button data-modal-close="previewPanel" class="w-8 h-8 rounded-r8 text-m2 hover:text-white hover:bg-white/10 transition"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="p-6 sm:p-10 max-w-2xl mx-auto">
+      <img id="previewImage" class="hidden w-full rounded-r20 mb-6 max-h-72 object-cover" />
+      <h1 id="previewTitle" class="font-heading font-extrabold text-3xl text-white mb-4"></h1>
+      <div id="previewContent" class="prose prose-invert max-w-none text-m3 leading-relaxed"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.__INITIAL_GALLERY__ = <%- JSON.stringify(blog && blog.galleryImages ? blog.galleryImages : []) %>;
+</script>
+<script src="/tinymce/tinymce.min.js"></script>
+<script src="/js/blog-form.js"></script>

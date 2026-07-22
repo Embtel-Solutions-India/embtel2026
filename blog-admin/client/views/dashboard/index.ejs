@@ -1,0 +1,64 @@
+<div class="mb-6">
+  <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Dashboard</h1>
+  <p class="text-m2 text-sm mt-1">Welcome back<%= typeof currentUser !== 'undefined' && currentUser ? ', ' + currentUser.name : '' %>. Here's what's happening with your blog.</p>
+</div>
+
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6" id="statCards">
+  <div class="stat-card skeleton bg-s1 border border-white/5 rounded-r20 p-5 flex items-center gap-4" data-stat="totalBlogs">
+    <div class="w-11 h-11 rounded-r14 bg-brand-blueDim text-brand-blue flex items-center justify-center text-lg"><i class="fa-solid fa-file-lines"></i></div>
+    <div><div class="stat-value font-heading font-extrabold text-2xl text-white">—</div><div class="text-xs text-m2">Total Blogs</div></div>
+  </div>
+  <div class="stat-card skeleton bg-s1 border border-white/5 rounded-r20 p-5 flex items-center gap-4" data-stat="published">
+    <div class="w-11 h-11 rounded-r14 bg-brand-tealDim text-brand-teal flex items-center justify-center text-lg"><i class="fa-solid fa-circle-check"></i></div>
+    <div><div class="stat-value font-heading font-extrabold text-2xl text-white">—</div><div class="text-xs text-m2">Published</div></div>
+  </div>
+  <div class="stat-card skeleton bg-s1 border border-white/5 rounded-r20 p-5 flex items-center gap-4" data-stat="drafts">
+    <div class="w-11 h-11 rounded-r14 bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg"><i class="fa-solid fa-pen"></i></div>
+    <div><div class="stat-value font-heading font-extrabold text-2xl text-white">—</div><div class="text-xs text-m2">Drafts</div></div>
+  </div>
+  <div class="stat-card skeleton bg-s1 border border-white/5 rounded-r20 p-5 flex items-center gap-4" data-stat="categories">
+    <div class="w-11 h-11 rounded-r14 bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg"><i class="fa-solid fa-tags"></i></div>
+    <div><div class="stat-value font-heading font-extrabold text-2xl text-white">—</div><div class="text-xs text-m2">Categories</div></div>
+  </div>
+</div>
+
+<div class="grid lg:grid-cols-3 gap-5 mb-6">
+  <div class="lg:col-span-2 bg-s1 border border-white/5 rounded-r20 p-5">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="font-heading font-bold text-white text-sm">Website Visitors</h2>
+      <span class="text-[10px] font-bold uppercase tracking-wider bg-white/5 text-m2 px-2 py-1 rounded-full">Placeholder data</span>
+    </div>
+    <canvas id="visitorsChart" height="110"></canvas>
+  </div>
+  <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+    <h2 class="font-heading font-bold text-white text-sm mb-4">Quick Actions</h2>
+    <div class="grid gap-2">
+      <a href="/admin/blogs/new" class="flex items-center gap-2 bg-brand-teal text-ink font-semibold text-sm rounded-r8 px-4 py-2.5 hover:brightness-110 transition"><i class="fa-solid fa-plus"></i>New Blog Post</a>
+      <a href="/admin/categories" class="flex items-center gap-2 bg-white/5 text-m3 font-medium text-sm rounded-r8 px-4 py-2.5 hover:bg-white/10 hover:text-white transition"><i class="fa-solid fa-tags"></i>Manage Categories</a>
+      <a href="/admin/media" class="flex items-center gap-2 bg-white/5 text-m3 font-medium text-sm rounded-r8 px-4 py-2.5 hover:bg-white/10 hover:text-white transition"><i class="fa-solid fa-images"></i>Upload Media</a>
+      <a href="/admin/comments" class="flex items-center gap-2 bg-white/5 text-m3 font-medium text-sm rounded-r8 px-4 py-2.5 hover:bg-white/10 hover:text-white transition"><i class="fa-solid fa-comments"></i>Moderate Comments</a>
+    </div>
+  </div>
+</div>
+
+<div class="grid lg:grid-cols-2 gap-5">
+  <div class="bg-s1 border border-white/5 rounded-r20 overflow-hidden">
+    <div class="px-5 py-4 border-b border-white/5 font-heading font-bold text-white text-sm">Recent Activity</div>
+    <ul id="activityFeed" class="divide-y divide-white/5">
+      <li class="px-5 py-4"><div class="skeleton h-4 w-full rounded animate-shimmer"></div></li>
+      <li class="px-5 py-4"><div class="skeleton h-4 w-full rounded animate-shimmer"></div></li>
+      <li class="px-5 py-4"><div class="skeleton h-4 w-full rounded animate-shimmer"></div></li>
+    </ul>
+  </div>
+  <div class="bg-s1 border border-white/5 rounded-r20 overflow-hidden">
+    <div class="px-5 py-4 border-b border-white/5 font-heading font-bold text-white text-sm">Latest Comments</div>
+    <ul id="latestCommentsList" class="divide-y divide-white/5">
+      <li class="px-5 py-4"><div class="skeleton h-4 w-full rounded animate-shimmer"></div></li>
+      <li class="px-5 py-4"><div class="skeleton h-4 w-full rounded animate-shimmer"></div></li>
+      <li class="px-5 py-4"><div class="skeleton h-4 w-full rounded animate-shimmer"></div></li>
+    </ul>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="/js/dashboard.js"></script>

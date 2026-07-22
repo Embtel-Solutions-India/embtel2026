@@ -1,0 +1,30 @@
+<aside id="adminSidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-ink2 border-r border-white/5 -translate-x-full lg:translate-x-0 transition-transform duration-200 flex flex-col">
+  <div class="flex items-center gap-2.5 px-6 h-16 border-b border-white/5 shrink-0">
+    <img src="/images/logo.png" alt="Embtel" class="h-7 w-auto" onerror="this.style.display='none'" />
+    <span class="font-heading font-extrabold text-white text-[15px]">Blog Admin</span>
+  </div>
+
+  <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-0.5 text-[13.5px]">
+    <a href="/admin/dashboard" data-page="dashboard" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-gauge w-4 text-center"></i><span>Dashboard</span></a>
+    <a href="/admin/blogs" data-page="blogs" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-file-lines w-4 text-center"></i><span>Blogs</span></a>
+    <a href="/admin/blogs/new" data-page="blogs-new" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-circle-plus w-4 text-center"></i><span>New Blog</span></a>
+    <a href="/admin/blogs/trash" data-page="trash" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-trash w-4 text-center"></i><span>Trash</span></a>
+
+    <div class="pt-4 pb-1 px-3 text-[10.5px] font-bold uppercase tracking-wider text-m1">Organize</div>
+    <a href="/admin/categories" data-page="categories" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-tags w-4 text-center"></i><span>Categories</span></a>
+    <a href="/admin/tags" data-page="tags" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-tag w-4 text-center"></i><span>Tags</span></a>
+    <a href="/admin/comments" data-page="comments" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-comments w-4 text-center"></i><span>Comments</span></a>
+    <a href="/admin/media" data-page="media" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-images w-4 text-center"></i><span>Media Manager</span></a>
+
+    <div class="pt-4 pb-1 px-3 text-[10.5px] font-bold uppercase tracking-wider text-m1">Admin</div>
+    <a href="/admin/users" data-page="users" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-users w-4 text-center"></i><span>Team</span></a>
+    <a href="/admin/settings" data-page="settings" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-gear w-4 text-center"></i><span>Settings</span></a>
+    <a href="/" target="_blank" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-r8 text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-arrow-up-right-from-square w-4 text-center"></i><span>View Site</span></a>
+  </nav>
+
+  <div class="p-3 border-t border-white/5 shrink-0">
+    <div class="text-[11px] text-m1 px-2">© <%= new Date().getFullYear() %> Embtel Solutions</div>
+  </div>
+</aside>
+
+<div id="sidebarBackdrop" class="hidden fixed inset-0 bg-black/60 z-30 lg:hidden"></div>

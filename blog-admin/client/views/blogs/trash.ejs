@@ -1,0 +1,24 @@
+<div class="mb-6">
+  <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Trash</h1>
+  <p class="text-m2 text-sm mt-1">Soft-deleted posts. Restore them or remove permanently.</p>
+</div>
+
+<div class="bg-s1 border border-white/5 rounded-r20 overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-white/5 text-left text-[11px] font-bold uppercase tracking-wider text-m1">
+          <th class="px-4 py-3">Title</th>
+          <th class="px-4 py-3">Author</th>
+          <th class="px-4 py-3">Deleted At</th>
+          <th class="px-4 py-3 text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="trashTableBody" class="divide-y divide-white/5">
+        <tr><td colspan="4" class="px-4 py-4"><div class="skeleton h-4 w-full rounded animate-shimmer"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="/js/blogs-trash.js"></script>

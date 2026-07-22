@@ -2,6 +2,13 @@
    SHARED HEADER  (nav + mobile menu)
    Edit this file to update the header on EVERY page at once.
    ───────────────────────────────────────────────────────────── */
+// The Blog page lives on this site (blog.html) and fetches published posts
+// from the blog-admin backend's public API. Both this site and the API are
+// served by the SAME server/port (see blog-admin/server/app.js), so this is
+// a same-origin relative path — no separate host/port needed.
+var BLOG_URL = 'blog.html';
+var BLOG_API_BASE = '/api/public';
+
 document.getElementById('site-header').innerHTML = `
 <nav>
   <div class="nav-blur"></div>
@@ -39,6 +46,7 @@ document.getElementById('site-header').innerHTML = `
       </li>
       <li><a href="work.html" data-page="work">Work</a></li>
       <li><a href="process.html" data-page="process">Process</a></li>
+      <li><a href="${BLOG_URL}" data-page="blog">Blog</a></li>
       <li><a href="contact.html" data-page="contact">Contact</a></li>
     </ul>
     <a class="nav-btn" href="https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=organic">Get Started</a>
@@ -72,6 +80,7 @@ document.getElementById('site-header').innerHTML = `
   <a href="retail-industry.html" class="mob-sub">Retail Industry</a>
   <a href="work.html">Work</a>
   <a href="process.html">Process</a>
+  <a href="${BLOG_URL}">Blog</a>
   <a href="contact.html">Contact</a>
 </div>
 
@@ -99,7 +108,7 @@ document.getElementById('site-header').innerHTML = `
   var path = window.location.pathname.split('/').pop() || 'index.html';
   var map = {
     'index.html':'home','':'home','about.html':'about','services.html':'services',
-    'work.html':'work','process.html':'process','contact.html':'contact',
+    'work.html':'work','process.html':'process','blog.html':'blog','blog-details.html':'blog','contact.html':'contact',
     'web-development.html':'services','digital-marketing.html':'services','business-automation.html':'services',
     'ai-integrations.html':'services','analytics-dashboards.html':'services','seo-geo.html':'services','cybersecurity.html':'services','e-commerce.html':'services',
     'industries.html':'industries','accounting-firm-industry.html':'industries','cleaning-industry.html':'industries',

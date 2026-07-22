@@ -1,0 +1,46 @@
+<div class="mb-6">
+  <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Settings</h1>
+  <p class="text-m2 text-sm mt-1">Global site configuration used across the admin panel and public blog.</p>
+</div>
+
+<form id="settingsForm">
+  <div class="grid lg:grid-cols-2 gap-5">
+    <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+      <h2 class="font-heading font-bold text-white text-sm mb-4">General</h2>
+      <div class="space-y-4">
+        <div><label class="block text-xs font-semibold text-m2 mb-1.5">Website Name</label><input type="text" name="siteName" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+        <div><label class="block text-xs font-semibold text-m2 mb-1.5">Logo URL</label><input type="text" name="logo" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+        <div><label class="block text-xs font-semibold text-m2 mb-1.5">Favicon URL</label><input type="text" name="favicon" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+        <div><label class="block text-xs font-semibold text-m2 mb-1.5">Contact Email</label><input type="email" name="contactEmail" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+        <div><label class="block text-xs font-semibold text-m2 mb-1.5">Footer Text</label><textarea name="footerText" rows="2" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition"></textarea></div>
+      </div>
+    </div>
+
+    <div class="space-y-5">
+      <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+        <h2 class="font-heading font-bold text-white text-sm mb-4">Analytics &amp; Verification</h2>
+        <div class="space-y-4">
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">Google Analytics ID</label><input type="text" name="googleAnalyticsId" placeholder="G-XXXXXXXXXX" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white placeholder-m1 outline-none focus:border-brand-teal transition" /></div>
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">Google Search Console Verification</label><input type="text" name="googleSearchConsoleVerification" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">Facebook Pixel ID</label><input type="text" name="facebookPixelId" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">Meta Verification Tag</label><input type="text" name="metaVerification" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+        </div>
+      </div>
+
+      <div class="bg-s1 border border-white/5 rounded-r20 p-5">
+        <h2 class="font-heading font-bold text-white text-sm mb-4">Social Links</h2>
+        <div class="space-y-3">
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">Facebook</label><input type="text" name="socialLinks.facebook" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">Twitter / X</label><input type="text" name="socialLinks.twitter" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">Instagram</label><input type="text" name="socialLinks.instagram" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">LinkedIn</label><input type="text" name="socialLinks.linkedin" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+          <div><label class="block text-xs font-semibold text-m2 mb-1.5">YouTube</label><input type="text" name="socialLinks.youtube" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="mt-5 bg-brand-teal text-ink font-heading font-bold text-sm rounded-r8 px-6 py-2.5 hover:brightness-110 transition">Save Settings</button>
+</form>
+
+<script src="/js/settings.js"></script>

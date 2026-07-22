@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<title>Blog — Embtel Solutions</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1A6BFF;--blue-dim:rgba(26,107,255,.12);--blue-glow:rgba(26,107,255,.25);--teal:#00C896;--teal-dim:rgba(0,200,150,.1);--orange:#FF5C35;--ink:#09090B;--ink2:#111115;--s1:#18181C;--s2:#26262C;--s3:#38383F;--m1:#6B6B78;--m2:#9898A6;--m3:#C4C4D1;--off:#F4F4F8;--white:#FFFFFF;--r8:8px;--r14:14px;--r20:20px}
+html{scroll-behavior:smooth}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--ink);color:var(--m3);overflow-x:hidden;-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}ul{list-style:none}button{cursor:pointer;border:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}img{display:block;max-width:100%}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;border-bottom:1px solid rgba(255,255,255,.05)}.nav-blur{position:absolute;inset:0;background:rgba(9,9,11,.85);backdrop-filter:blur(24px)}.nav-in{position:relative;max-width:1300px;margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}.logo{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px}.logo em{color:var(--teal);font-style:normal}.nav-links{display:flex;gap:36px;align-items:center}.nav-links a{font-size:13.5px;font-weight:500;color:var(--m2);transition:color .2s}.nav-links a:hover{color:#fff}.nav-btn{background:var(--blue);color:#fff;font-size:13.5px;font-weight:600;padding:9px 22px;border-radius:var(--r8);transition:all .2s}.nav-btn:hover{background:#3B7FFF;transform:translateY(-1px)}
+.section{padding:100px 40px}.section-in{max-width:1300px;margin:0 auto}.stag{font-size:11.5px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}.sh{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(30px,3.5vw,46px);font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}.sh em{background:linear-gradient(90deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}.sl{font-size:16px;color:var(--m2);line-height:1.7;max-width:560px}.hdr{margin-bottom:60px}.hdr.center{text-align:center}.hdr.center .sl{margin:0 auto}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-p:hover{background:#3B7FFF;transform:translateY(-2px);box-shadow:0 16px 40px rgba(26,107,255,.3)}.btn-g{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);color:var(--m3);border:1px solid rgba(255,255,255,.1);padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-g:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+
+.blog-hero{padding:140px 40px 60px;position:relative;overflow:hidden}.blog-hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(26,107,255,.15),transparent 70%);pointer-events:none}.blog-hero-in{max-width:800px;margin:0 auto;text-align:center;position:relative}.blog-hero h1{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(36px,4.5vw,58px);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-2px;margin-bottom:20px}.blog-hero h1 em{background:linear-gradient(90deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}.blog-hero p{font-size:17px;color:var(--m2);line-height:1.7;max-width:560px;margin:0 auto 32px}
+.blog-search{display:flex;max-width:440px;margin:0 auto;gap:10px}.blog-search input{flex:1;background:var(--s1);border:1px solid rgba(255,255,255,.08);border-radius:var(--r8);padding:12px 16px;font-size:14px;color:#fff;font-family:'Inter',sans-serif;outline:none}.blog-search input::placeholder{color:var(--m1)}.blog-search button{background:var(--teal);color:#06120d;font-weight:700;padding:12px 20px;border-radius:var(--r8);font-size:14px}
+
+.blog-body{padding:20px 40px 100px}.blog-body-in{max-width:1300px;margin:0 auto}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.bc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r20);overflow:hidden;transition:all .3s;display:flex;flex-direction:column}.bc:hover{transform:translateY(-4px);border-color:rgba(0,200,150,.3)}
+.bc-img{width:100%;height:190px;object-fit:cover;background:linear-gradient(135deg,var(--s2),var(--s3))}
+.bc-body{padding:24px}.bc-cat{display:inline-block;font-size:11px;font-weight:700;color:var(--teal);background:var(--teal-dim);padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
+.bc-body h3{font-family:'Manrope',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.3}
+.bc-body p{font-size:13.5px;color:var(--m2);line-height:1.7;margin-bottom:14px}
+.bc-meta{font-size:12px;color:var(--m1);display:flex;gap:12px;align-items:center}
+.blog-state{text-align:center;padding:60px 20px;color:var(--m2);grid-column:1/-1}
+.blog-skel{background:linear-gradient(90deg,var(--s1) 25%,var(--s2) 50%,var(--s1) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:var(--r20);height:320px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media(max-width:960px){.blog-grid{grid-template-columns:1fr}.nav-links,.nav-btn{display:none}.hamburger{display:flex}.blog-hero{padding:110px 20px 40px}.blog-body{padding:20px 20px 60px}}
+
+footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding:64px 40px 32px}.footer-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}.f-logo{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:12px}.f-logo em{color:var(--teal);font-style:normal}.f-desc{font-size:13.5px;color:var(--m1);line-height:1.8;max-width:260px}.f-col h4{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:11px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}.f-col a{display:block;font-size:13.5px;color:var(--m2);margin-bottom:10px;transition:color .2s}.f-col a:hover{color:#fff}.footer-bot{max-width:1300px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--m1)}
+.hamburger{display:none;background:none;padding:8px;flex-direction:column;gap:5px}.hb{width:22px;height:2px;background:var(--m3);border-radius:2px;transition:all .3s}.mobile-menu{display:none;position:fixed;inset:68px 0 0;background:rgba(9,9,11,.97);backdrop-filter:blur(20px);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:36px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:24px;font-weight:700;color:#fff}
+@media(max-width:960px){.footer-in{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+<script src="includes/header.js"></script>
+
+<section class="blog-hero">
+  <div class="blog-hero-in">
+    <div class="stag">Insights &amp; Resources</div>
+    <h1>Ideas on growth, <em>automation & tech.</em></h1>
+    <p>Practical guides and case studies on web development, automation, and AI — written for growing businesses, not developers.</p>
+    <form class="blog-search" id="blogSearchForm">
+      <input type="search" id="blogSearchInput" placeholder="Search articles…" />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<section class="blog-body">
+  <div class="blog-body-in">
+    <div class="blog-grid" id="blogGrid">
+      <div class="blog-skel"></div>
+      <div class="blog-skel"></div>
+      <div class="blog-skel"></div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="includes/footer.js"></script>
+
+<script>
+function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(nav) nav.style.borderBottomColor=window.scrollY>30?'rgba(255,255,255,.08)':'rgba(255,255,255,.05)';});
+
+(function(){
+  var grid = document.getElementById('blogGrid');
+  var searchForm = document.getElementById('blogSearchForm');
+  var searchInput = document.getElementById('blogSearchInput');
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function formatDate(iso){
+    if (!iso) return '';
+    var d = new Date(iso);
+    return d.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+  }
+
+  function cardHtml(b){
+    var img = b.featuredImage || 'images/logo.png';
+    return '' +
+      '<a class="bc" href="blog-details.html?slug=' + encodeURIComponent(b.slug) + '">' +
+        '<img class="bc-img" src="' + escapeHtml(img) + '" alt="' + escapeHtml(b.imageAltText || b.title) + '" loading="lazy" />' +
+        '<div class="bc-body">' +
+          (b.category ? '<span class="bc-cat">' + escapeHtml(b.category.name) + '</span>' : '') +
+          '<h3>' + escapeHtml(b.title) + '</h3>' +
+          '<p>' + escapeHtml(b.shortDescription) + '</p>' +
+          '<div class="bc-meta"><span>' + formatDate(b.publishedAt) + '</span><span>&middot;</span><span>' + (b.readingTime || 1) + ' min read</span></div>' +
+        '</div>' +
+      '</a>';
+  }
+
+  function loadBlogs(query){
+    grid.innerHTML = '<div class="blog-skel"></div><div class="blog-skel"></div><div class="blog-skel"></div>';
+
+    var url = BLOG_API_BASE + '/blogs?limit=12' + (query ? '&search=' + encodeURIComponent(query) : '');
+
+    fetch(url)
+      .then(function(res){
+        if (!res.ok) throw new Error('Request failed (' + res.status + ')');
+        return res.json();
+      })
+      .then(function(json){
+        var blogs = (json.data && json.data.blogs) || [];
+        if (!blogs.length) {
+          grid.innerHTML = '<div class="blog-state">No articles found' + (query ? ' for "' + escapeHtml(query) + '"' : '') + '.</div>';
+          return;
+        }
+        grid.innerHTML = blogs.map(cardHtml).join('');
+      })
+      .catch(function(err){
+        grid.innerHTML = '<div class="blog-state">Couldn\'t load blog posts right now. Please try again shortly.</div>';
+        console.error('Failed to load blog feed:', err);
+      });
+  }
+
+  searchForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    loadBlogs(searchInput.value.trim());
+  });
+
+  loadBlogs();
+})();
+</script>
+</body>
+</html>

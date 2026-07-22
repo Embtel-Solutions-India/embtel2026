@@ -1,0 +1,54 @@
+<header class="h-16 sticky top-0 z-20 bg-ink/80 backdrop-blur-xl border-b border-white/5 flex items-center gap-4 px-4 sm:px-6">
+  <button id="sidebarToggle" class="lg:hidden w-9 h-9 rounded-r8 flex items-center justify-center text-m2 hover:text-white hover:bg-s1 transition">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <nav class="flex-1 min-w-0">
+    <ol class="flex items-center gap-2 text-sm text-m2 truncate">
+      <li><a href="/admin/dashboard" class="hover:text-white transition">Home</a></li>
+      <li class="text-m1">/</li>
+      <li class="text-white font-medium truncate"><%= typeof title !== 'undefined' ? title : '' %></li>
+    </ol>
+  </nav>
+
+  <div class="flex items-center gap-1.5 shrink-0">
+    <!-- Notifications -->
+    <div class="relative">
+      <button id="notifBtn" class="w-9 h-9 rounded-r8 flex items-center justify-center text-m2 hover:text-white hover:bg-s1 transition relative">
+        <i class="fa-solid fa-bell"></i>
+        <span id="notifBadge" class="hidden absolute top-1 right-1 w-2 h-2 rounded-full bg-brand-teal"></span>
+      </button>
+      <div id="notifPanel" class="hidden absolute right-0 mt-2 w-80 max-w-[85vw] bg-s1 border border-white/10 rounded-r14 shadow-2xl overflow-hidden animate-fadeUp">
+        <div class="px-4 py-3 border-b border-white/5 font-heading font-bold text-white text-sm">Notifications</div>
+        <div id="notifList" class="max-h-80 overflow-y-auto divide-y divide-white/5">
+          <div class="px-4 py-6 text-center text-m2 text-sm">Loading…</div>
+        </div>
+        <a href="/admin/comments" class="block text-center px-4 py-2.5 text-xs text-brand-teal hover:text-white border-t border-white/5 transition">View all comments</a>
+      </div>
+    </div>
+
+    <!-- Theme toggle -->
+    <button id="themeToggle" class="w-9 h-9 rounded-r8 flex items-center justify-center text-m2 hover:text-white hover:bg-s1 transition" title="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <!-- User menu -->
+    <div class="relative ml-1">
+      <button id="userMenuBtn" class="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-r8 hover:bg-s1 transition">
+        <div class="w-7 h-7 rounded-full bg-gradient-to-br from-brand-blue to-brand-teal flex items-center justify-center text-white text-xs font-bold font-heading">
+          <%= typeof currentUser !== 'undefined' && currentUser ? currentUser.name.charAt(0).toUpperCase() : '?' %>
+        </div>
+        <span class="hidden sm:block text-sm text-white font-medium max-w-[120px] truncate"><%= typeof currentUser !== 'undefined' && currentUser ? currentUser.name : '' %></span>
+        <i class="fa-solid fa-chevron-down text-[10px] text-m1"></i>
+      </button>
+      <div id="userMenuPanel" class="hidden absolute right-0 mt-2 w-56 bg-s1 border border-white/10 rounded-r14 shadow-2xl overflow-hidden animate-fadeUp">
+        <div class="px-4 py-3 border-b border-white/5">
+          <div class="text-xs text-m2">Signed in as</div>
+          <div class="text-sm font-semibold text-white truncate"><%= typeof currentUser !== 'undefined' && currentUser ? currentUser.name : '' %></div>
+        </div>
+        <a href="/admin/profile" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-m2 hover:bg-white/5 hover:text-white transition"><i class="fa-solid fa-user w-4"></i>My Profile</a>
+        <button id="logoutBtn" class="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 transition"><i class="fa-solid fa-arrow-right-from-bracket w-4"></i>Logout</button>
+      </div>
+    </div>
+  </div>
+</header>

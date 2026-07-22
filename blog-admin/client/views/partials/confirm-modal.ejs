@@ -1,0 +1,11 @@
+<div id="confirmModal" class="hidden fixed inset-0 z-[90] flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-modal-close="confirmModal"></div>
+  <div class="relative bg-s1 border border-white/10 rounded-r20 w-full max-w-sm p-6 animate-fadeUp">
+    <h3 id="confirmModalTitle" class="font-heading font-bold text-lg text-white mb-2">Are you sure?</h3>
+    <p id="confirmModalBody" class="text-sm text-m2 mb-6">This action cannot be undone.</p>
+    <div class="flex justify-end gap-2">
+      <button type="button" data-modal-close="confirmModal" class="px-4 py-2 rounded-r8 text-sm font-medium text-m2 hover:bg-white/5 hover:text-white transition">Cancel</button>
+      <button type="button" id="confirmModalOkBtn" class="px-4 py-2 rounded-r8 text-sm font-bold bg-red-500 text-white hover:bg-red-600 transition">Confirm</button>
+    </div>
+  </div>
+</div>

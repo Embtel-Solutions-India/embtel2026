@@ -1,0 +1,21 @@
+<div class="mb-6">
+  <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight">My Profile</h1>
+  <p class="text-m2 text-sm mt-1">Update your account password.</p>
+</div>
+
+<div class="bg-s1 border border-white/5 rounded-r20 p-6 max-w-md">
+  <div id="profileAlert" class="hidden mb-4 px-4 py-3 rounded-r8 text-sm"></div>
+  <form id="passwordForm" class="space-y-4">
+    <div>
+      <label class="block text-xs font-semibold text-m2 mb-1.5">Current Password</label>
+      <input type="password" name="currentPassword" required class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+    </div>
+    <div>
+      <label class="block text-xs font-semibold text-m2 mb-1.5">New Password</label>
+      <input type="password" name="newPassword" required minlength="8" class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+    </div>
+    <button type="submit" class="bg-brand-teal text-ink font-heading font-bold text-sm rounded-r8 px-6 py-2.5 hover:brightness-110 transition">Update Password</button>
+  </form>
+</div>
+
+<script src="/js/profile.js"></script>

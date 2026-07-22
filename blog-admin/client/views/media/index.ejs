@@ -1,0 +1,58 @@
+<div class="mb-6">
+  <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Media Manager</h1>
+  <p class="text-m2 text-sm mt-1">Upload, organize, and reuse images across your blog.</p>
+</div>
+
+<div class="bg-s1 border border-white/5 rounded-r20 p-5 mb-5">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+    <div>
+      <label class="block text-[11px] font-semibold text-m2 mb-1">Search</label>
+      <input type="text" id="mediaSearch" placeholder="Filename…" class="w-full bg-s2 border border-white/10 rounded-r8 px-3 py-2 text-sm text-white placeholder-m1 outline-none focus:border-brand-teal transition" />
+    </div>
+    <div>
+      <label class="block text-[11px] font-semibold text-m2 mb-1">Folder</label>
+      <select id="mediaFolderFilter" class="w-full bg-s2 border border-white/10 rounded-r8 px-3 py-2 text-sm text-white outline-none focus:border-brand-teal transition"><option value="">All folders</option></select>
+    </div>
+    <div>
+      <label class="block text-[11px] font-semibold text-m2 mb-1">Upload to folder</label>
+      <input type="text" id="uploadFolderInput" placeholder="general" value="general" class="w-full bg-s2 border border-white/10 rounded-r8 px-3 py-2 text-sm text-white placeholder-m1 outline-none focus:border-brand-teal transition" />
+    </div>
+  </div>
+
+  <div id="dropZone" class="border-2 border-dashed border-white/10 rounded-r20 p-8 text-center text-m2 cursor-pointer hover:border-brand-teal/50 transition">
+    <i class="fa-solid fa-cloud-arrow-up text-3xl mb-2 text-m1"></i>
+    <p class="mb-1 text-sm">Drag &amp; drop images here, or click to browse</p>
+    <p class="text-m1 text-xs">jpg, jpeg, png, webp, svg — max 5MB each</p>
+    <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp,.svg" multiple hidden />
+  </div>
+  <div id="uploadProgress" class="mt-3 space-y-1"></div>
+</div>
+
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4" id="mediaGrid"></div>
+<div id="mediaEmptyState" class="hidden text-center text-m2 py-16">
+  <i class="fa-solid fa-images text-3xl mb-3 text-m1"></i>
+  <p>No media found.</p>
+</div>
+
+<div id="renameModal" class="hidden fixed inset-0 z-[80] flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/70" data-modal-close="renameModal"></div>
+  <div class="relative bg-s1 border border-white/10 rounded-r20 w-full max-w-md animate-fadeUp">
+    <form id="renameForm">
+      <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between">
+        <h3 class="font-heading font-bold text-white text-sm">Rename Image</h3>
+        <button type="button" data-modal-close="renameModal" class="w-8 h-8 rounded-r8 text-m2 hover:text-white hover:bg-white/10 transition"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="p-6">
+        <input type="hidden" name="mediaId" />
+        <label class="block text-xs font-semibold text-m2 mb-1.5">New name</label>
+        <input type="text" name="originalName" required class="w-full bg-s2 border border-white/10 rounded-r8 px-3.5 py-2.5 text-white outline-none focus:border-brand-teal transition" />
+      </div>
+      <div class="px-6 py-4 border-t border-white/10 flex justify-end gap-2">
+        <button type="button" data-modal-close="renameModal" class="px-4 py-2 rounded-r8 text-sm font-medium text-m2 hover:bg-white/5 hover:text-white transition">Cancel</button>
+        <button type="submit" class="px-4 py-2 rounded-r8 text-sm font-bold bg-brand-teal text-ink hover:brightness-110 transition">Rename</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/media.js"></script>

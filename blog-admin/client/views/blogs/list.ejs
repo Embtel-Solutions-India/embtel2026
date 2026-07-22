@@ -1,0 +1,79 @@
+<div class="flex justify-between items-start flex-wrap gap-3 mb-6">
+  <div>
+    <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Blogs</h1>
+    <p class="text-m2 text-sm mt-1">Create, edit, and manage every post on your site.</p>
+  </div>
+  <a href="/admin/blogs/new" class="flex items-center gap-2 bg-brand-teal text-ink font-heading font-bold text-sm rounded-r8 px-4 py-2.5 hover:brightness-110 transition"><i class="fa-solid fa-plus"></i>New Blog</a>
+</div>
+
+<div class="bg-s1 border border-white/5 rounded-r20 p-4 mb-4">
+  <form id="filterForm" class="grid grid-cols-2 md:grid-cols-6 gap-3 items-end">
+    <div class="col-span-2 md:col-span-2">
+      <label class="block text-[11px] font-semibold text-m2 mb-1">Search</label>
+      <input type="text" name="search" placeholder="Title, content…" class="w-full bg-s2 border border-white/10 rounded-r8 px-3 py-2 text-sm text-white placeholder-m1 outline-none focus:border-brand-teal transition" />
+    </div>
+    <div>
+      <label class="block text-[11px] font-semibold text-m2 mb-1">Status</label>
+      <select name="status" class="w-full bg-s2 border border-white/10 rounded-r8 px-3 py-2 text-sm text-white outline-none focus:border-brand-teal transition">
+        <option value="">All</option>
+        <option value="draft">Draft</option>
+        <option value="published">Published</option>
+        <option value="scheduled">Scheduled</option>
+      </select>
+    </div>
+    <div>
+      <label class="block text-[11px] font-semibold text-m2 mb-1">Category</label>
+      <select name="category" id="categoryFilter" class="w-full bg-s2 border border-white/10 rounded-r8 px-3 py-2 text-sm text-white outline-none focus:border-brand-teal transition"><option value="">All</option></select>
+    </div>
+    <div>
+      <label class="block text-[11px] font-semibold text-m2 mb-1">Sort</label>
+      <select name="sort" class="w-full bg-s2 border border-white/10 rounded-r8 px-3 py-2 text-sm text-white outline-none focus:border-brand-teal transition">
+        <option value="recent">Recent</option>
+        <option value="popular">Popular</option>
+        <option value="title_asc">Title A–Z</option>
+      </select>
+    </div>
+    <button type="submit" class="bg-white/5 hover:bg-white/10 text-white rounded-r8 px-3 py-2 text-sm font-medium transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+</div>
+
+<div id="bulkBar" class="hidden bg-brand-teal/10 border border-brand-teal/30 rounded-r14 px-4 py-2.5 mb-4 flex items-center justify-between flex-wrap gap-2">
+  <span class="text-sm text-white"><span id="bulkCount">0</span> selected</span>
+  <div class="flex items-center gap-2 flex-wrap">
+    <button data-bulk="publish" class="text-xs font-semibold px-3 py-1.5 rounded-r8 bg-white/10 hover:bg-white/20 text-white transition">Publish</button>
+    <button data-bulk="unpublish" class="text-xs font-semibold px-3 py-1.5 rounded-r8 bg-white/10 hover:bg-white/20 text-white transition">Unpublish</button>
+    <button data-bulk="trash" class="text-xs font-semibold px-3 py-1.5 rounded-r8 bg-red-500/20 hover:bg-red-500/30 text-red-300 transition">Move to Trash</button>
+  </div>
+</div>
+
+<div class="bg-s1 border border-white/5 rounded-r20 overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-white/5 text-left text-[11px] font-bold uppercase tracking-wider text-m1">
+          <th class="px-4 py-3 w-10"><input type="checkbox" id="selectAll" class="rounded border-white/20 bg-s2 text-brand-teal" /></th>
+          <th class="px-4 py-3">Title</th>
+          <th class="px-4 py-3">Category</th>
+          <th class="px-4 py-3">Author</th>
+          <th class="px-4 py-3">Status</th>
+          <th class="px-4 py-3">Date</th>
+          <th class="px-4 py-3 text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="blogsTableBody" class="divide-y divide-white/5">
+        <tr><td colspan="7" class="px-4 py-4"><div class="skeleton h-4 w-full rounded animate-shimmer"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="px-4 py-3 border-t border-white/5 flex justify-between items-center flex-wrap gap-2">
+    <select id="limitSelect" class="bg-s2 border border-white/10 rounded-r8 px-2 py-1.5 text-xs text-white outline-none">
+      <option value="10">10 / page</option>
+      <option value="25">25 / page</option>
+      <option value="50">50 / page</option>
+      <option value="100">100 / page</option>
+    </select>
+    <div id="paginationControls" class="flex items-center gap-1"></div>
+  </div>
+</div>
+
+<script src="/js/blogs-list.js"></script>

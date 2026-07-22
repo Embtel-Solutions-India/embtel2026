@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<title id="pageTitle">Blog — Embtel Solutions</title>
+<meta id="metaDescription" name="description" content="" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1A6BFF;--blue-dim:rgba(26,107,255,.12);--blue-glow:rgba(26,107,255,.25);--teal:#00C896;--teal-dim:rgba(0,200,150,.1);--orange:#FF5C35;--ink:#09090B;--ink2:#111115;--s1:#18181C;--s2:#26262C;--s3:#38383F;--m1:#6B6B78;--m2:#9898A6;--m3:#C4C4D1;--off:#F4F4F8;--white:#FFFFFF;--r8:8px;--r14:14px;--r20:20px}
+html{scroll-behavior:smooth}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--ink);color:var(--m3);overflow-x:hidden;-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}ul{list-style:none}button{cursor:pointer;border:none;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}img{display:block;max-width:100%}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;border-bottom:1px solid rgba(255,255,255,.05)}.nav-blur{position:absolute;inset:0;background:rgba(9,9,11,.85);backdrop-filter:blur(24px)}.nav-in{position:relative;max-width:1300px;margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}.logo{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px}.logo em{color:var(--teal);font-style:normal}.nav-links{display:flex;gap:36px;align-items:center}.nav-links a{font-size:13.5px;font-weight:500;color:var(--m2);transition:color .2s}.nav-links a:hover{color:#fff}.nav-btn{background:var(--blue);color:#fff;font-size:13.5px;font-weight:600;padding:9px 22px;border-radius:var(--r8);transition:all .2s}.nav-btn:hover{background:#3B7FFF;transform:translateY(-1px)}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-p:hover{background:#3B7FFF;transform:translateY(-2px);box-shadow:0 16px 40px rgba(26,107,255,.3)}.btn-g{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);color:var(--m3);border:1px solid rgba(255,255,255,.1);padding:14px 32px;border-radius:var(--r14);font-size:15px;font-weight:600;transition:all .25s}.btn-g:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+
+.bd-wrap{max-width:820px;margin:0 auto;padding:140px 40px 100px}
+.bd-back{font-size:13.5px;color:var(--m2);margin-bottom:24px;display:inline-block}.bd-back:hover{color:var(--teal)}
+.bd-cat{display:inline-block;font-size:11px;font-weight:700;color:var(--teal);background:var(--teal-dim);padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:16px}
+.bd-title{font-family:'Manrope',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;color:#fff;letter-spacing:-1.2px;line-height:1.15;margin-bottom:16px}
+.bd-meta{font-size:13.5px;color:var(--m1);display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px}
+.bd-img{width:100%;max-height:420px;object-fit:cover;border-radius:var(--r20);margin-bottom:36px;background:var(--s1)}
+.bd-content{font-size:16.5px;line-height:1.85;color:var(--m3)}
+.bd-content h2,.bd-content h3{font-family:'Manrope',sans-serif;color:#fff;margin:32px 0 14px;letter-spacing:-.5px}
+.bd-content p{margin-bottom:18px}
+.bd-content img{border-radius:var(--r14);margin:20px 0}
+.bd-content a{color:var(--teal);text-decoration:underline}
+.bd-content blockquote{border-left:3px solid var(--teal);padding-left:18px;color:var(--m2);font-style:italic;margin:20px 0}
+.bd-content pre{background:var(--s1);border:1px solid rgba(255,255,255,.06);padding:18px;border-radius:var(--r14);overflow-x:auto}
+.bd-content ul,.bd-content ol{margin:0 0 18px 22px}
+.bd-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}.bd-tag{font-size:11.5px;font-weight:600;padding:5px 12px;border-radius:100px;background:rgba(26,107,255,.1);color:var(--blue)}
+.bd-share{display:flex;align-items:center;gap:10px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)}
+.bd-share span{font-size:13px;color:var(--m1)}
+.bd-share a,.bd-share button{width:36px;height:36px;border-radius:50%;background:var(--s1);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:var(--m3);transition:all .2s;font-size:14px}
+.bd-share a:hover,.bd-share button:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.bd-related{margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)}
+.bd-related h4{font-family:'Manrope',sans-serif;color:#fff;font-size:18px;margin-bottom:20px}
+.bd-related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.bd-rc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:var(--r14);overflow:hidden;transition:all .25s}.bd-rc:hover{transform:translateY(-3px);border-color:rgba(0,200,150,.25)}
+.bd-rc img{width:100%;height:100px;object-fit:cover;background:var(--s2)}
+.bd-rc-body{padding:14px}.bd-rc-body p{font-size:13px;font-weight:600;color:#fff;line-height:1.4}
+.bd-state{text-align:center;padding:60px 20px;color:var(--m2)}
+.bd-skel{background:linear-gradient(90deg,var(--s1) 25%,var(--s2) 50%,var(--s1) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:var(--r20);height:24px;margin-bottom:14px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media(max-width:768px){.bd-related-grid{grid-template-columns:1fr}.bd-wrap{padding:110px 20px 60px}.nav-links,.nav-btn{display:none}.hamburger{display:flex}}
+
+footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding:64px 40px 32px}.footer-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}.f-logo{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:12px}.f-logo em{color:var(--teal);font-style:normal}.f-desc{font-size:13.5px;color:var(--m1);line-height:1.8;max-width:260px}.f-col h4{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:11px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}.f-col a{display:block;font-size:13.5px;color:var(--m2);margin-bottom:10px;transition:color .2s}.f-col a:hover{color:#fff}.footer-bot{max-width:1300px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--m1)}
+.hamburger{display:none;background:none;padding:8px;flex-direction:column;gap:5px}.hb{width:22px;height:2px;background:var(--m3);border-radius:2px;transition:all .3s}.mobile-menu{display:none;position:fixed;inset:68px 0 0;background:rgba(9,9,11,.97);backdrop-filter:blur(20px);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:36px}.mobile-menu.open{display:flex}.mobile-menu a{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:24px;font-weight:700;color:#fff}
+@media(max-width:960px){.footer-in{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+<script src="includes/header.js"></script>
+
+<div class="bd-wrap" id="bdWrap">
+  <a class="bd-back" href="blog.html">&larr; Back to Blog</a>
+  <div class="bd-skel" style="width:120px;height:20px"></div>
+  <div class="bd-skel" style="width:90%;height:40px;margin-top:10px"></div>
+  <div class="bd-skel" style="width:100%;height:300px;margin-top:20px"></div>
+</div>
+
+<div id="site-footer"></div>
+<script src="includes/footer.js"></script>
+
+<script>
+function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(nav) nav.style.borderBottomColor=window.scrollY>30?'rgba(255,255,255,.08)':'rgba(255,255,255,.05)';});
+
+(function(){
+  var wrap = document.getElementById('bdWrap');
+  var slug = new URLSearchParams(window.location.search).get('slug');
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function formatDate(iso){
+    if (!iso) return '';
+    var d = new Date(iso);
+    return d.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+  }
+
+  function shareUrl(network, url, title){
+    var urls = {
+      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url),
+      twitter: 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title),
+      linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url)
+    };
+    return urls[network];
+  }
+
+  function renderNotFound(){
+    wrap.innerHTML = '<a class="bd-back" href="blog.html">&larr; Back to Blog</a>' +
+      '<div class="bd-state"><h2 style="color:#fff;font-family:Manrope,sans-serif;margin-bottom:10px">Post not found</h2>' +
+      '<p>This article may have been unpublished or the link is incorrect.</p></div>';
+  }
+
+  function render(blog, related){
+    document.getElementById('pageTitle').textContent = (blog.seo && blog.seo.metaTitle ? blog.seo.metaTitle : blog.title) + ' — Embtel Solutions';
+    document.getElementById('metaDescription').setAttribute('content', (blog.seo && blog.seo.metaDescription) || blog.shortDescription || '');
+
+    var pageUrl = window.location.href;
+    var relatedHtml = (related || []).map(function(r){
+      return '<a class="bd-rc" href="blog-details.html?slug=' + encodeURIComponent(r.slug) + '">' +
+        '<img src="' + escapeHtml(r.featuredImage || 'images/logo.png') + '" alt="' + escapeHtml(r.title) + '" loading="lazy" />' +
+        '<div class="bd-rc-body"><p>' + escapeHtml(r.title) + '</p></div></a>';
+    }).join('');
+
+    wrap.innerHTML =
+      '<a class="bd-back" href="blog.html">&larr; Back to Blog</a>' +
+      (blog.category ? '<span class="bd-cat">' + escapeHtml(blog.category.name) + '</span>' : '') +
+      '<h1 class="bd-title">' + escapeHtml(blog.title) + '</h1>' +
+      '<div class="bd-meta">' +
+        (blog.author ? '<span>By ' + escapeHtml(blog.author.name) + '</span>' : '') +
+        '<span>' + formatDate(blog.publishedAt) + '</span>' +
+        '<span>' + (blog.readingTime || 1) + ' min read</span>' +
+      '</div>' +
+      (blog.featuredImage ? '<img class="bd-img" src="' + escapeHtml(blog.featuredImage) + '" alt="' + escapeHtml(blog.imageAltText || blog.title) + '" />' : '') +
+      '<div class="bd-content">' + blog.content + '</div>' +
+      (blog.tags && blog.tags.length ? '<div class="bd-tags">' + blog.tags.map(function(t){ return '<span class="bd-tag">' + escapeHtml(t.name) + '</span>'; }).join('') + '</div>' : '') +
+      '<div class="bd-share">' +
+        '<span>Share:</span>' +
+        '<a href="' + shareUrl('facebook', pageUrl, blog.title) + '" target="_blank" rel="noopener">f</a>' +
+        '<a href="' + shareUrl('twitter', pageUrl, blog.title) + '" target="_blank" rel="noopener">x</a>' +
+        '<a href="' + shareUrl('linkedin', pageUrl, blog.title) + '" target="_blank" rel="noopener">in</a>' +
+      '</div>' +
+      (relatedHtml ? '<div class="bd-related"><h4>Related Posts</h4><div class="bd-related-grid">' + relatedHtml + '</div></div>' : '');
+  }
+
+  if (!slug) {
+    renderNotFound();
+  } else {
+    fetch(BLOG_API_BASE + '/blog/' + encodeURIComponent(slug))
+      .then(function(res){
+        if (res.status === 404) { renderNotFound(); return null; }
+        if (!res.ok) throw new Error('Request failed (' + res.status + ')');
+        return res.json();
+      })
+      .then(function(json){
+        if (!json) return;
+        render(json.data.blog, json.data.related);
+      })
+      .catch(function(err){
+        wrap.innerHTML = '<a class="bd-back" href="blog.html">&larr; Back to Blog</a><div class="bd-state">Couldn\'t load this article right now. Please try again shortly.</div>';
+        console.error('Failed to load blog post:', err);
+      });
+  }
+})();
+</script>
+</body>
+</html>

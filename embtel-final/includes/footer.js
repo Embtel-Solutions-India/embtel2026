@@ -38,6 +38,7 @@ document.getElementById('site-footer').innerHTML = `
       <a href="about.html">About Us</a>
       <a href="work.html">Case Studies</a>
       <a href="process.html">Our Process</a>
+      <a href="${BLOG_URL}">Blog</a>
       <a href="contact.html">Contact</a>
     </div>
     <div class="f-col">
