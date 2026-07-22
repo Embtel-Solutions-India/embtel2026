@@ -55,7 +55,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 <script src="includes/header.js"></script>
 
 <div class="bd-wrap" id="bdWrap">
-  <a class="bd-back" href="blog.html">&larr; Back to Blog</a>
+  <a class="bd-back" href="/blog">&larr; Back to Blog</a>
   <div class="bd-skel" style="width:120px;height:20px"></div>
   <div class="bd-skel" style="width:90%;height:40px;margin-top:10px"></div>
   <div class="bd-skel" style="width:100%;height:300px;margin-top:20px"></div>
@@ -94,7 +94,7 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
   }
 
   function renderNotFound(){
-    wrap.innerHTML = '<a class="bd-back" href="blog.html">&larr; Back to Blog</a>' +
+    wrap.innerHTML = '<a class="bd-back" href="/blog">&larr; Back to Blog</a>' +
       '<div class="bd-state"><h2 style="color:#fff;font-family:Manrope,sans-serif;margin-bottom:10px">Post not found</h2>' +
       '<p>This article may have been unpublished or the link is incorrect.</p></div>';
   }
@@ -105,13 +105,13 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
 
     var pageUrl = window.location.href;
     var relatedHtml = (related || []).map(function(r){
-      return '<a class="bd-rc" href="blog-details.html?slug=' + encodeURIComponent(r.slug) + '">' +
+      return '<a class="bd-rc" href="/blog-details?slug=' + encodeURIComponent(r.slug) + '">' +
         '<img src="' + escapeHtml(r.featuredImage || 'images/logo.png') + '" alt="' + escapeHtml(r.title) + '" loading="lazy" />' +
         '<div class="bd-rc-body"><p>' + escapeHtml(r.title) + '</p></div></a>';
     }).join('');
 
     wrap.innerHTML =
-      '<a class="bd-back" href="blog.html">&larr; Back to Blog</a>' +
+      '<a class="bd-back" href="/blog">&larr; Back to Blog</a>' +
       (blog.category ? '<span class="bd-cat">' + escapeHtml(blog.category.name) + '</span>' : '') +
       '<h1 class="bd-title">' + escapeHtml(blog.title) + '</h1>' +
       '<div class="bd-meta">' +
@@ -145,7 +145,7 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
         render(json.data.blog, json.data.related);
       })
       .catch(function(err){
-        wrap.innerHTML = '<a class="bd-back" href="blog.html">&larr; Back to Blog</a><div class="bd-state">Couldn\'t load this article right now. Please try again shortly.</div>';
+        wrap.innerHTML = '<a class="bd-back" href="/blog">&larr; Back to Blog</a><div class="bd-state">Couldn\'t load this article right now. Please try again shortly.</div>';
         console.error('Failed to load blog post:', err);
       });
   }

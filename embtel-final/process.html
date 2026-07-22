@@ -122,14 +122,14 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 <div class="cta-band">
   <h2>Ready to start the <em>conversation?</em></h2>
   <p>A free 30-minute discovery call is all it takes. We'll tell you exactly what we'd recommend — and what we wouldn't.</p>
-  <div class="cta-btns"><a href="contact.html" class="btn-p">Book Discovery Call →</a></div>
+  <div class="cta-btns"><a href="/contact" class="btn-p">Book Discovery Call →</a></div>
 </div>
 
 <div id="site-footer"></div>
 <script src="includes/footer.js"></script>
 
 <script>
-function showPage(name){var pages={home:'index.html',about:'about.html',services:'services.html',work:'work.html',process:'process.html',blog:'blog.html',contact:'contact.html'};if(pages[name]) window.location.href=pages[name];}
+function showPage(name){var pages={home:'/',about:'/about',services:'/services',work:'/work',process:'/process',blog:'/blog',contact:'/contact'};if(pages[name]) window.location.href=pages[name];}
 function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
 function toggleFaq(el){el.parentElement.classList.toggle('open');}
 function handleSubmit(btn){btn.textContent='Message sent! ✓';btn.style.background='var(--teal)';btn.style.color='#000';btn.disabled=true;}

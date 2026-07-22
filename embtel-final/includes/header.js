@@ -7,48 +7,48 @@
 // Locally (same server/port) this could be a relative '/api/public' path —
 // but since embtel-final and blog-admin are hosted on different domains in
 // production, this must be the full cross-origin URL.
-var BLOG_URL = 'blog.html';
+var BLOG_URL = '/blog';
 var BLOG_API_BASE = 'https://embtel2026.onrender.com/api/public';
 
 document.getElementById('site-header').innerHTML = `
 <nav>
   <div class="nav-blur"></div>
   <div class="nav-in">
-    <a class="logo" href="index.html"><img src="images/logo.png" alt="embtel solutions" style="height:48px;width:auto;"></a>
+    <a class="logo" href="/"><img src="images/logo.png" alt="embtel solutions" style="height:48px;width:auto;"></a>
     <ul class="nav-links">
-      <li><a href="index.html" data-page="home">Home</a></li>
-      <li><a href="about.html" data-page="about">About</a></li>
+      <li><a href="/" data-page="home">Home</a></li>
+      <li><a href="/about" data-page="about">About</a></li>
       <li class="has-drop">
-        <a href="services.html" data-page="services">Services <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="vertical-align:middle;margin-left:2px"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/services" data-page="services">Services <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="vertical-align:middle;margin-left:2px"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav-drop">
-          <a href="web-development.html" class="nd-item"><span class="nd-text"><strong>Web Development</strong><small>Websites, apps & landing pages</small></span></a>
-          <a href="digital-marketing.html" class="nd-item"><span class="nd-text"><strong>Digital Marketing</strong><small>SEO, content & growth strategy</small></span></a>
-          <a href="business-automation.html" class="nd-item"><span class="nd-text"><strong>Business Automation</strong><small>Workflows, CRM & billing automation</small></span></a>
-          <a href="ai-integrations.html" class="nd-item"><span class="nd-text"><strong>AI Integrations</strong><small>Chatbots, document AI & LLM workflows</small></span></a>
-          <a href="analytics-dashboards.html" class="nd-item"><span class="nd-text"><strong>Analytics & Dashboards</strong><small>Real-time data & custom dashboards</small></span></a>
-          <a href="seo-geo.html" class="nd-item"><span class="nd-text"><strong>SEO & GEO</strong><small>Paid ads, geo targeting & retargeting</small></span></a>
-          <a href="cybersecurity.html" class="nd-item"><span class="nd-text"><strong>Cybersecurity</strong><small>Security audits, compliance & protection</small></span></a>
-          <a href="e-commerce.html" class="nd-item"><span class="nd-text"><strong>E-Commerce</strong><small>Online stores, marketplaces & payments</small></span></a>
+          <a href="/web-development" class="nd-item"><span class="nd-text"><strong>Web Development</strong><small>Websites, apps & landing pages</small></span></a>
+          <a href="/digital-marketing" class="nd-item"><span class="nd-text"><strong>Digital Marketing</strong><small>SEO, content & growth strategy</small></span></a>
+          <a href="/business-automation" class="nd-item"><span class="nd-text"><strong>Business Automation</strong><small>Workflows, CRM & billing automation</small></span></a>
+          <a href="/ai-integrations" class="nd-item"><span class="nd-text"><strong>AI Integrations</strong><small>Chatbots, document AI & LLM workflows</small></span></a>
+          <a href="/analytics-dashboards" class="nd-item"><span class="nd-text"><strong>Analytics & Dashboards</strong><small>Real-time data & custom dashboards</small></span></a>
+          <a href="/seo-geo" class="nd-item"><span class="nd-text"><strong>SEO & GEO</strong><small>Paid ads, geo targeting & retargeting</small></span></a>
+          <a href="/cybersecurity" class="nd-item"><span class="nd-text"><strong>Cybersecurity</strong><small>Security audits, compliance & protection</small></span></a>
+          <a href="/e-commerce" class="nd-item"><span class="nd-text"><strong>E-Commerce</strong><small>Online stores, marketplaces & payments</small></span></a>
         </div>
       </li>
       <li class="has-drop">
-        <a href="industries.html" data-page="industries">Industries <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="vertical-align:middle;margin-left:2px"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/industries" data-page="industries">Industries <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="vertical-align:middle;margin-left:2px"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav-drop">
-          <a href="accounting-firm-industry.html" class="nd-item"><span class="nd-text"><strong>Accounting Firm</strong><small>Financial services & bookkeeping solutions</small></span></a>
-          <a href="cleaning-industry.html" class="nd-item"><span class="nd-text"><strong>Cleaning Industry</strong><small>Commercial & residential cleaning services</small></span></a>
-          <a href="cyber-security-industry.html" class="nd-item"><span class="nd-text"><strong>Cyber Security</strong><small>Protect your digital assets & data</small></span></a>
-          <a href="healthcare-industry.html" class="nd-item"><span class="nd-text"><strong>Healthcare</strong><small>Medical practices & health tech solutions</small></span></a>
-          <a href="home-services-industry.html" class="nd-item"><span class="nd-text"><strong>Home Services</strong><small>Home improvement & maintenance services</small></span></a>
-          <a href="immigration-firm-industry.html" class="nd-item"><span class="nd-text"><strong>Immigration Firm</strong><small>Visa & immigration legal services</small></span></a>
-          <a href="it-industry.html" class="nd-item"><span class="nd-text"><strong>IT Industry</strong><small>Technology & software solutions</small></span></a>
-          <a href="law-industry.html" class="nd-item"><span class="nd-text"><strong>Law Industry</strong><small>Legal firms & attorney services</small></span></a>
-          <a href="retail-industry.html" class="nd-item"><span class="nd-text"><strong>Retail Industry</strong><small>E-commerce & retail business solutions</small></span></a>
+          <a href="/accounting-firm-industry" class="nd-item"><span class="nd-text"><strong>Accounting Firm</strong><small>Financial services & bookkeeping solutions</small></span></a>
+          <a href="/cleaning-industry" class="nd-item"><span class="nd-text"><strong>Cleaning Industry</strong><small>Commercial & residential cleaning services</small></span></a>
+          <a href="/cyber-security-industry" class="nd-item"><span class="nd-text"><strong>Cyber Security</strong><small>Protect your digital assets & data</small></span></a>
+          <a href="/healthcare-industry" class="nd-item"><span class="nd-text"><strong>Healthcare</strong><small>Medical practices & health tech solutions</small></span></a>
+          <a href="/home-services-industry" class="nd-item"><span class="nd-text"><strong>Home Services</strong><small>Home improvement & maintenance services</small></span></a>
+          <a href="/immigration-firm-industry" class="nd-item"><span class="nd-text"><strong>Immigration Firm</strong><small>Visa & immigration legal services</small></span></a>
+          <a href="/it-industry" class="nd-item"><span class="nd-text"><strong>IT Industry</strong><small>Technology & software solutions</small></span></a>
+          <a href="/law-industry" class="nd-item"><span class="nd-text"><strong>Law Industry</strong><small>Legal firms & attorney services</small></span></a>
+          <a href="/retail-industry" class="nd-item"><span class="nd-text"><strong>Retail Industry</strong><small>E-commerce & retail business solutions</small></span></a>
         </div>
       </li>
-      <li><a href="work.html" data-page="work">Work</a></li>
-      <li><a href="process.html" data-page="process">Process</a></li>
+      <li><a href="/work" data-page="work">Work</a></li>
+      <li><a href="/process" data-page="process">Process</a></li>
       <li><a href="${BLOG_URL}" data-page="blog">Blog</a></li>
-      <li><a href="contact.html" data-page="contact">Contact</a></li>
+      <li><a href="/contact" data-page="contact">Contact</a></li>
     </ul>
     <a class="nav-btn" href="https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=organic">Get Started</a>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -58,31 +58,31 @@ document.getElementById('site-header').innerHTML = `
 </nav>
 
 <div class="mobile-menu" id="mob">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="web-development.html" class="mob-sub">Web Development</a>
-  <a href="digital-marketing.html" class="mob-sub">Digital Marketing</a>
-  <a href="business-automation.html" class="mob-sub">Business Automation</a>
-  <a href="ai-integrations.html" class="mob-sub">AI Integrations</a>
-  <a href="analytics-dashboards.html" class="mob-sub">Analytics & Dashboards</a>
-  <a href="seo-geo.html" class="mob-sub">SEO & GEO</a>
-  <a href="cybersecurity.html" class="mob-sub">Cybersecurity</a>
-  <a href="e-commerce.html" class="mob-sub">E-Commerce</a>
-  <a href="industries.html">Industries</a>
-  <a href="accounting-firm-industry.html" class="mob-sub">Accounting Firm</a>
-  <a href="cleaning-industry.html" class="mob-sub">Cleaning Industry</a>
-  <a href="cyber-security-industry.html" class="mob-sub">Cyber Security</a>
-  <a href="healthcare-industry.html" class="mob-sub">Healthcare</a>
-  <a href="home-services-industry.html" class="mob-sub">Home Services</a>
-  <a href="immigration-firm-industry.html" class="mob-sub">Immigration Firm</a>
-  <a href="it-industry.html" class="mob-sub">IT Industry</a>
-  <a href="law-industry.html" class="mob-sub">Law Industry</a>
-  <a href="retail-industry.html" class="mob-sub">Retail Industry</a>
-  <a href="work.html">Work</a>
-  <a href="process.html">Process</a>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/services">Services</a>
+  <a href="/web-development" class="mob-sub">Web Development</a>
+  <a href="/digital-marketing" class="mob-sub">Digital Marketing</a>
+  <a href="/business-automation" class="mob-sub">Business Automation</a>
+  <a href="/ai-integrations" class="mob-sub">AI Integrations</a>
+  <a href="/analytics-dashboards" class="mob-sub">Analytics & Dashboards</a>
+  <a href="/seo-geo" class="mob-sub">SEO & GEO</a>
+  <a href="/cybersecurity" class="mob-sub">Cybersecurity</a>
+  <a href="/e-commerce" class="mob-sub">E-Commerce</a>
+  <a href="/industries">Industries</a>
+  <a href="/accounting-firm-industry" class="mob-sub">Accounting Firm</a>
+  <a href="/cleaning-industry" class="mob-sub">Cleaning Industry</a>
+  <a href="/cyber-security-industry" class="mob-sub">Cyber Security</a>
+  <a href="/healthcare-industry" class="mob-sub">Healthcare</a>
+  <a href="/home-services-industry" class="mob-sub">Home Services</a>
+  <a href="/immigration-firm-industry" class="mob-sub">Immigration Firm</a>
+  <a href="/it-industry" class="mob-sub">IT Industry</a>
+  <a href="/law-industry" class="mob-sub">Law Industry</a>
+  <a href="/retail-industry" class="mob-sub">Retail Industry</a>
+  <a href="/work">Work</a>
+  <a href="/process">Process</a>
   <a href="${BLOG_URL}">Blog</a>
-  <a href="contact.html">Contact</a>
+  <a href="/contact">Contact</a>
 </div>
 
 <style>
@@ -106,16 +106,16 @@ document.getElementById('site-header').innerHTML = `
 </style>
 <script>
 (function(){
-  var path = window.location.pathname.split('/').pop() || 'index.html';
+  var path = window.location.pathname.split('/').pop() || '';
   var map = {
-    'index.html':'home','':'home','about.html':'about','services.html':'services',
-    'work.html':'work','process.html':'process','blog.html':'blog','blog-details.html':'blog','contact.html':'contact',
-    'web-development.html':'services','digital-marketing.html':'services','business-automation.html':'services',
-    'ai-integrations.html':'services','analytics-dashboards.html':'services','seo-geo.html':'services','cybersecurity.html':'services','e-commerce.html':'services',
-    'industries.html':'industries','accounting-firm-industry.html':'industries','cleaning-industry.html':'industries',
-    'cyber-security-industry.html':'industries','healthcare-industry.html':'industries','home-services-industry.html':'industries',
-    'immigration-firm-industry.html':'industries','it-industry.html':'industries','law-industry.html':'industries',
-    'retail-industry.html':'industries'
+    '':'home','index':'home','about':'about','services':'services',
+    'work':'work','process':'process','blog':'blog','blog-details':'blog','contact':'contact',
+    'web-development':'services','digital-marketing':'services','business-automation':'services',
+    'ai-integrations':'services','analytics-dashboards':'services','seo-geo':'services','cybersecurity':'services','e-commerce':'services',
+    'industries':'industries','accounting-firm-industry':'industries','cleaning-industry':'industries',
+    'cyber-security-industry':'industries','healthcare-industry':'industries','home-services-industry':'industries',
+    'immigration-firm-industry':'industries','it-industry':'industries','law-industry':'industries',
+    'retail-industry':'industries'
   };
   var page = map[path] || 'home';
   var el = document.querySelector('.nav-links a[data-page="' + page + '"]');

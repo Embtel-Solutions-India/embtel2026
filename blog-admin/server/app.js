@@ -95,7 +95,9 @@ app.use((req, res, next) => {
 // Mounted first: its own root-level HTML files (index.html, blog.html, ...)
 // take priority; anything it doesn't have (e.g. /css/admin.css, /js/admin.js
 // for this app's own admin UI) falls through to the static dir below.
-app.use(express.static(path.join(__dirname, '..', '..', 'embtel-final')));
+// `extensions: ['html']` mirrors Vercel's cleanUrls behavior (which handles
+// this automatically in production) so /about resolves to about.html locally too.
+app.use(express.static(path.join(__dirname, '..', '..', 'embtel-final'), { extensions: ['html'] }));
 app.use(express.static(path.join(__dirname, '..', 'client')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Self-hosted TinyMCE (npm package) — avoids the cloud CDN's "no API key"

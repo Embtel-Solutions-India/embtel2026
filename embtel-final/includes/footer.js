@@ -12,34 +12,34 @@ document.getElementById('site-footer').innerHTML = `
     </div>
     <div class="f-col">
       <h4>Services</h4>
-      <a href="web-development.html">Web Development</a>
-      <a href="digital-marketing.html">Digital Marketing</a>
-      <a href="business-automation.html">Business Automation</a>
-      <a href="ai-integrations.html">AI Integrations</a>
-      <a href="analytics-dashboards.html">Analytics & Dashboards</a>
-      <a href="seo-geo.html">SEO & GEO</a>
-      <a href="cybersecurity.html">Cybersecurity</a>
-      <a href="e-commerce.html">E-Commerce</a>
+      <a href="/web-development">Web Development</a>
+      <a href="/digital-marketing">Digital Marketing</a>
+      <a href="/business-automation">Business Automation</a>
+      <a href="/ai-integrations">AI Integrations</a>
+      <a href="/analytics-dashboards">Analytics & Dashboards</a>
+      <a href="/seo-geo">SEO & GEO</a>
+      <a href="/cybersecurity">Cybersecurity</a>
+      <a href="/e-commerce">E-Commerce</a>
     </div>
     <div class="f-col">
       <h4>Industries</h4>
-      <a href="accounting-firm-industry.html">Accounting Firm</a>
-      <a href="cleaning-industry.html">Cleaning Industry</a>
-      <a href="cyber-security-industry.html">Cyber Security</a>
-      <a href="healthcare-industry.html">Healthcare</a>
-      <a href="home-services-industry.html">Home Services</a>
-      <a href="immigration-firm-industry.html">Immigration Firm</a>
-      <a href="it-industry.html">IT Industry</a>
-      <a href="law-industry.html">Law Industry</a>
-      <a href="retail-industry.html">Retail Industry</a>
+      <a href="/accounting-firm-industry">Accounting Firm</a>
+      <a href="/cleaning-industry">Cleaning Industry</a>
+      <a href="/cyber-security-industry">Cyber Security</a>
+      <a href="/healthcare-industry">Healthcare</a>
+      <a href="/home-services-industry">Home Services</a>
+      <a href="/immigration-firm-industry">Immigration Firm</a>
+      <a href="/it-industry">IT Industry</a>
+      <a href="/law-industry">Law Industry</a>
+      <a href="/retail-industry">Retail Industry</a>
     </div>
     <div class="f-col">
       <h4>Company</h4>
-      <a href="about.html">About Us</a>
-      <a href="work.html">Case Studies</a>
-      <a href="process.html">Our Process</a>
+      <a href="/about">About Us</a>
+      <a href="/work">Case Studies</a>
+      <a href="/process">Our Process</a>
       <a href="${BLOG_URL}">Blog</a>
-      <a href="contact.html">Contact</a>
+      <a href="/contact">Contact</a>
     </div>
     <div class="f-col">
       <h4>Contact US</h4>
@@ -87,14 +87,14 @@ document.getElementById('site-footer').innerHTML = `
 (function(){
   var pp = document.querySelector('#site-footer .fl-pp');
   var tos = document.querySelector('#site-footer .fl-tos');
-  if(pp) pp.addEventListener('click', function(){ window.location.href='privacy-policy.html'; });
-  if(tos) tos.addEventListener('click', function(){ window.location.href='terms-of-service.html'; });
+  if(pp) pp.addEventListener('click', function(){ window.location.href='/privacy-policy'; });
+  if(tos) tos.addEventListener('click', function(){ window.location.href='/terms-of-service'; });
 })();
 
 /* Active nav link highlight (runs after header injection above) */
 (function(){
-  var path = window.location.pathname.split('/').pop() || 'index.html';
-  var map = {'index.html':'home','':'home','about.html':'about','services.html':'services','work.html':'work','process.html':'process','blog.html':'blog','contact.html':'contact'};
+  var path = window.location.pathname.split('/').pop() || '';
+  var map = {'':'home','index':'home','about':'about','services':'services','work':'work','process':'process','blog':'blog','blog-details':'blog','contact':'contact'};
   var page = map[path] || 'home';
   var el = document.querySelector('.nav-links a[data-page="' + page + '"]');
   if (el) { el.style.color = '#fff'; el.style.fontWeight = '600'; }

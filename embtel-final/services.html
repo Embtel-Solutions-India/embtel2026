@@ -301,10 +301,10 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 
 <section class="services-hero">
   <div class="services-hero-in">
-    <div class="breadcrumb" style="margin-bottom:28px"><a href="index.html">Home</a> <span>›</span> <span>Services</span></div>
+    <div class="breadcrumb" style="margin-bottom:28px"><a href="/">Home</a> <span>›</span> <span>Services</span></div>
     <div class="sh" style="max-width:800px;font-size:clamp(38px,5vw,68px);letter-spacing:-2.5px;line-height:1.06;margin-bottom:24px">Comprehensive<br>Digital <em>Solutions</em></div>
     <p class="sl" style="margin-bottom:28px">Embtel Solutions offers web design, SEO, digital marketing, AI & development — tailored strategies to grow and elevate your business.</p>
-    <a href="contact.html" class="btn-p">Start Your Project →</a>
+    <a href="/contact" class="btn-p">Start Your Project →</a>
   </div>
 </section>
 
@@ -316,47 +316,47 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
       <p class="sl">Get high-quality, modern and cost-effective development solutions by dedicated developers specially assigned to understand your business needs.</p>
     </div>
     <div class="sg">
-      <a href="business-automation.html" class="sc">
+      <a href="/business-automation" class="sc">
         <h3>Business Automation</h3>
         <p>Automate your workflows, CRM, billing, and repetitive tasks to save time and increase efficiency.</p>
         <div class="sc-arr">Explore more →</div>
       </a>
-      <a href="web-development.html" class="sc">
+      <a href="/web-development" class="sc">
         <h3>Web Design</h3>
         <p>Use our effective SEO techniques to increase your internet presence with fast, responsive, and search-optimized websites.</p>
         <div class="sc-arr">Explore more →</div>
       </a>
-      <a href="seo-geo.html" class="sc">
+      <a href="/seo-geo" class="sc">
         <h3>Pay Per Click PPC</h3>
         <p>Use our effective SEO techniques to increase your internet presence and drive high-converting traffic with targeted ad campaigns.</p>
         <div class="sc-arr">Explore more →</div>
       </a>
-      <a href="digital-marketing.html" class="sc">
+      <a href="/digital-marketing" class="sc">
         <h3>Digital Marketing</h3>
         <p>Maximize your brand visibility with our strategic marketing solutions with social media to targeted ads.</p>
         <div class="sc-arr">Explore more →</div>
       </a>
-      <a href="ai-integrations.html" class="sc">
+      <a href="/ai-integrations" class="sc">
         <h3>DA & AI</h3>
         <p>Leverage AI insights for smart decisions, performance and driving with data-driven strategies.</p>
         <div class="sc-arr">Explore more →</div>
       </a>
-      <a href="web-development.html" class="sc">
+      <a href="/web-development" class="sc">
         <h3>Graphic Designing</h3>
         <p>Elevate your brand with eye-catching designs that captivate audiences.</p>
         <div class="sc-arr">Explore more →</div>
       </a>
-      <a href="web-development.html" class="sc">
+      <a href="/web-development" class="sc">
         <h3>Development</h3>
         <p>We create websites tailored to your company's goals, ensuring a seamless online presence.</p>
         <div class="sc-arr">Explore more →</div>
       </a>
-      <a href="cybersecurity.html" class="sc">
+      <a href="/cybersecurity" class="sc">
         <h3>Cybersecurity</h3>
         <p>Protect your business with comprehensive security solutions including audits, monitoring, and compliance management.</p>
         <div class="sc-arr">Explore more →</div>
       </a>
-      <a href="e-commerce.html" class="sc">
+      <a href="/e-commerce" class="sc">
         <h3>E-Commerce</h3>
         <p>Build and scale your online store with Shopify, WooCommerce, and marketplace integrations for maximum revenue.</p>
         <div class="sc-arr">Explore more →</div>
@@ -500,14 +500,14 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 <div class="cta-band">
   <h2>Ready to grow your <em>business?</em></h2>
   <p>Book a free 30-minute strategy call. We'll discuss your goals and recommend the right digital solutions for your needs.</p>
-  <div class="cta-btns"><a href="contact.html" class="btn-p">Schedule a Call →</a></div>
+  <div class="cta-btns"><a href="/contact" class="btn-p">Schedule a Call →</a></div>
 </div>
 
 <div id="site-footer"></div>
 <script src="includes/footer.js"></script>
 
 <script>
-function showPage(name){var pages={home:'index.html',about:'about.html',services:'services.html',work:'work.html',process:'process.html',blog:'blog.html',contact:'contact.html'};if(pages[name]) window.location.href=pages[name];}
+function showPage(name){var pages={home:'/',about:'/about',services:'/services',work:'/work',process:'/process',blog:'/blog',contact:'/contact'};if(pages[name]) window.location.href=pages[name];}
 function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
 function toggleFaq(el){el.parentElement.classList.toggle('open');}
 function handleSubmit(btn){btn.textContent='Message sent! ✓';btn.style.background='var(--teal)';btn.style.color='#000';btn.disabled=true;}

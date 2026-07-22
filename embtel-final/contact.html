@@ -92,7 +92,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
             <input type="checkbox" id="smsConsent" name="smsConsent" value="yes" required>
             <label for="smsConsent">By providing your phone number, you agree to receive SMS messages from Embtel
 Solutions regarding IT services, meeting follow-ups, and client updates. Message
-frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time. View our <a href="privacy-policy.html">Privacy Policy</a>.</label>
+frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time. View our <a href="/privacy-policy">Privacy Policy</a>.</label>
           </div>
           <button type="submit" class="form-submit">Send Message →</button>
         </form>
@@ -105,7 +105,7 @@ frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> 
 <script src="includes/footer.js"></script>
 
 <script>
-function showPage(name){var pages={home:'index.html',about:'about.html',services:'services.html',work:'work.html',process:'process.html',blog:'blog.html',contact:'contact.html'};if(pages[name]) window.location.href=pages[name];}
+function showPage(name){var pages={home:'/',about:'/about',services:'/services',work:'/work',process:'/process',blog:'/blog',contact:'/contact'};if(pages[name]) window.location.href=pages[name];}
 function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
 function toggleFaq(el){el.parentElement.classList.toggle('open');}
 window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(nav) nav.style.borderBottomColor=window.scrollY>30?'rgba(255,255,255,.08)':'rgba(255,255,255,.05)';});
