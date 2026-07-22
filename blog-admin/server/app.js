@@ -44,12 +44,17 @@ app.use(
         // blocks, WhatsApp widget, contact form) on the same origin/port.
         // TinyMCE loads self-hosted (/tinymce, same origin) by default, or from
         // cdn.tiny.cloud when TINYMCE_API_KEY is set — both are allowed here.
-        scriptSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdn.tiny.cloud', 'cdnjs.cloudflare.com', 'cdn.tailwindcss.com', 'https://*.elfsight.com', 'https://*.elfsightcdn.com'],
-        styleSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'cdn.tiny.cloud', 'https://*.elfsightcdn.com'],
+        // Note: *.elfsight.com / *.elfsightcdn.com wildcards do NOT match the bare
+        // apex domain (elfsightcdn.com itself) — both forms are listed explicitly.
+        scriptSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdn.tiny.cloud', 'cdnjs.cloudflare.com', 'cdn.tailwindcss.com', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
+        styleSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'cdn.tiny.cloud', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
         fontSrc: ["'self'", 'fonts.gstatic.com', 'cdn.jsdelivr.net', 'cdn.tiny.cloud', 'cdnjs.cloudflare.com'],
         imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
-        connectSrc: ["'self'", 'cdn.tiny.cloud', 'https://formspree.io', 'https://*.elfsight.com', 'https://*.elfsightcdn.com'],
-        frameSrc: ["'self'", 'cdn.tiny.cloud', 'https://*.elfsight.com'],
+        // env.appUrl covers same-origin API calls; the explicit Render URL covers
+        // embtel-final calling the deployed API cross-origin when tested/served
+        // through this same unified server locally.
+        connectSrc: ["'self'", env.appUrl, 'https://embtel2026.onrender.com', 'cdn.tiny.cloud', 'https://formspree.io', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
+        frameSrc: ["'self'", 'cdn.tiny.cloud', 'https://elfsight.com', 'https://*.elfsight.com'],
       },
     },
   })
@@ -60,7 +65,9 @@ app.use(
     origin(origin, callback) {
       // Same-origin / non-browser requests (curl, server-to-server) send no Origin header.
       if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-      return callback(new Error(`Origin ${origin} is not allowed by CORS`));
+      const err = new Error(`Origin ${origin} is not allowed by CORS`);
+      err.statusCode = 403;
+      return callback(err);
     },
     credentials: true,
   })
