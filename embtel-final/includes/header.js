@@ -8,7 +8,7 @@
 // but since embtel-final and blog-admin are hosted on different domains in
 // production, this must be the full cross-origin URL.
 var BLOG_URL = '/blog';
-var BLOG_API_BASE = 'https://embtel2026.onrender.com/api/public';
+var BLOG_API_BASE = 'https://embtelsolutions.com/api/public';
 
 document.getElementById('site-header').innerHTML = `
 <nav>

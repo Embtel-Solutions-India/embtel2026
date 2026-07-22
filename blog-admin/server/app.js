@@ -53,7 +53,7 @@ app.use(
         // env.appUrl covers same-origin API calls; the explicit Render URL covers
         // embtel-final calling the deployed API cross-origin when tested/served
         // through this same unified server locally.
-        connectSrc: ["'self'", env.appUrl, 'https://embtel2026.onrender.com', 'cdn.tiny.cloud', 'https://formspree.io', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
+        connectSrc: ["'self'", env.appUrl, 'https://embtelsolutions.com','https://www.embtelsolutions.com', 'cdn.tiny.cloud', 'https://formspree.io', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
         frameSrc: ["'self'", 'cdn.tiny.cloud', 'https://elfsight.com', 'https://*.elfsight.com'],
       },
     },
