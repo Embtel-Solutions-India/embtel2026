@@ -3,11 +3,12 @@
    Edit this file to update the header on EVERY page at once.
    ───────────────────────────────────────────────────────────── */
 // The Blog page lives on this site (blog.html) and fetches published posts
-// from the blog-admin backend's public API. Both this site and the API are
-// served by the SAME server/port (see blog-admin/server/app.js), so this is
-// a same-origin relative path — no separate host/port needed.
+// from the blog-admin backend's public API, deployed separately on Render.
+// Locally (same server/port) this could be a relative '/api/public' path —
+// but since embtel-final and blog-admin are hosted on different domains in
+// production, this must be the full cross-origin URL.
 var BLOG_URL = 'blog.html';
-var BLOG_API_BASE = '/api/public';
+var BLOG_API_BASE = 'https://embtel2026.onrender.com/api/public';
 
 document.getElementById('site-header').innerHTML = `
 <nav>
