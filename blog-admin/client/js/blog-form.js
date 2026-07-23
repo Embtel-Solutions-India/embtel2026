@@ -29,17 +29,25 @@
   if (window.SUNEDITOR) {
     editorInstance = SUNEDITOR.create(document.getElementById('contentEditor'), {
       height: '480px',
+      // Every plugin-backed button (image, link, table, align, list, fontColor,
+      // backgroundColor, fontSize, blockStyle, codeBlock, ...) needs its plugin
+      // registered here — buttonList alone isn't enough to resolve them.
+      plugins: SUNEDITOR.plugins,
+      // Verified button/plugin names against the installed package's actual
+      // source (this version's naming differs from older SunEditor docs
+      // floating around online — e.g. it's "blockStyle" not "formatBlock",
+      // "backgroundColor" not "hiliteColor"; an unrecognized name throws
+      // synchronously and aborts the whole editor, leaving a plain textarea).
       buttonList: [
         ['undo', 'redo'],
-        ['formatBlock', 'fontSize'],
-        ['bold', 'italic', 'underline', 'strike'],
-        ['fontColor', 'hiliteColor', 'removeFormat'],
+        ['blockStyle', 'fontSize'],
+        ['bold', 'underline', 'italic', 'strike'],
+        ['fontColor', 'backgroundColor', 'removeFormat'],
         ['align', 'list', 'indent', 'outdent'],
         ['table', 'link', 'image', 'video'],
-        ['blockquote', 'codeView', 'showBlocks'],
-        ['horizontalRule', 'fullScreen'],
+        ['blockquote', 'codeBlock'],
+        ['hr', 'codeView', 'showBlocks', 'fullScreen'],
       ],
-      formats: ['p', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'pre'],
       // Image uploads are handled entirely ourselves (uploaded straight to S3
       // via /api/media/upload) instead of SunEditor's built-in uploader, so
       // no uploadUrl/uploadHeaders config is needed here — see onImageUploadBefore below.
