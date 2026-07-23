@@ -46,6 +46,12 @@ app.use(
         // Note: *.elfsight.com / *.elfsightcdn.com wildcards do NOT match the bare
         // apex domain (elfsightcdn.com itself) — both forms are listed explicitly.
         scriptSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'cdn.tailwindcss.com', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
+        // Helmet's default blocks inline event-handler attributes (onclick="...")
+        // separately from inline <script> blocks/tags above. embtel-final uses
+        // onclick="toggleMenu()" etc. in a few places (mobile menu, FAQ toggle,
+        // contact form reset) — allow it, consistent with the 'unsafe-inline'
+        // already granted for scriptSrc/styleSrc.
+        scriptSrcAttr: ["'unsafe-inline'"],
         styleSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
         fontSrc: ["'self'", 'fonts.gstatic.com', 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com'],
         imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
