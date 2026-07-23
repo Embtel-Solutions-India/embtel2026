@@ -3,12 +3,14 @@
    Edit this file to update the header on EVERY page at once.
    ───────────────────────────────────────────────────────────── */
 // The Blog page lives on this site (blog.html) and fetches published posts
-// from the blog-admin backend's public API, deployed separately on Render.
-// Locally (same server/port) this could be a relative '/api/public' path —
-// but since embtel-final and blog-admin are hosted on different domains in
-// production, this must be the full cross-origin URL.
+// from the blog-admin backend's public API. Both are served by the SAME
+// Render service/domain (www.embtelsolutions.com serves the marketing site,
+// /admin, and /api all together) — so this is a same-origin relative path.
+// Do NOT hardcode a domain here: the bare embtelsolutions.com (no www) 301s
+// to the www version, and that redirect hop breaks the CORS handshake for a
+// cross-origin fetch — a relative path sidesteps that entirely.
 var BLOG_URL = '/blog';
-var BLOG_API_BASE = 'https://embtelsolutions.com/api/public';
+var BLOG_API_BASE = '/api/public';
 
 document.getElementById('site-header').innerHTML = `
 <nav>
