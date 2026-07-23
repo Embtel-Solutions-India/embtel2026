@@ -89,7 +89,7 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
   function cardHtml(b){
     var img = b.featuredImage || 'images/logo.png';
     return '' +
-      '<a class="bc" href="/blog-details?slug=' + encodeURIComponent(b.slug) + '">' +
+      '<a class="bc" href="/blog/' + encodeURIComponent(b.slug) + '">' +
         '<img class="bc-img" src="' + escapeHtml(img) + '" alt="' + escapeHtml(b.imageAltText || b.title) + '" loading="lazy" />' +
         '<div class="bc-body">' +
           (b.category ? '<span class="bc-cat">' + escapeHtml(b.category.name) + '</span>' : '') +

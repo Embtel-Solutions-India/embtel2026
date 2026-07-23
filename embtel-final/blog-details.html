@@ -70,7 +70,10 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
 
 (function(){
   var wrap = document.getElementById('bdWrap');
-  var slug = new URLSearchParams(window.location.search).get('slug');
+  // Primary format: /blog/<slug>. Falls back to the old ?slug= query string
+  // so any previously-shared links still work.
+  var pathMatch = window.location.pathname.match(/^\/blog\/([^/]+)\/?$/);
+  var slug = pathMatch ? decodeURIComponent(pathMatch[1]) : new URLSearchParams(window.location.search).get('slug');
 
   function escapeHtml(str){
     return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
@@ -105,7 +108,7 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
 
     var pageUrl = window.location.href;
     var relatedHtml = (related || []).map(function(r){
-      return '<a class="bd-rc" href="/blog-details?slug=' + encodeURIComponent(r.slug) + '">' +
+      return '<a class="bd-rc" href="/blog/' + encodeURIComponent(r.slug) + '">' +
         '<img src="' + escapeHtml(r.featuredImage || 'images/logo.png') + '" alt="' + escapeHtml(r.title) + '" loading="lazy" />' +
         '<div class="bd-rc-body"><p>' + escapeHtml(r.title) + '</p></div></a>';
     }).join('');

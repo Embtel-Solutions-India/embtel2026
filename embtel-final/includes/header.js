@@ -108,7 +108,8 @@ document.getElementById('site-header').innerHTML = `
 </style>
 <script>
 (function(){
-  var path = window.location.pathname.split('/').pop() || '';
+  var pathname = window.location.pathname;
+  var path = pathname.split('/').pop() || '';
   var map = {
     '':'home','index':'home','about':'about','services':'services',
     'work':'work','process':'process','blog':'blog','blog-details':'blog','contact':'contact',
@@ -119,7 +120,9 @@ document.getElementById('site-header').innerHTML = `
     'immigration-firm-industry':'industries','it-industry':'industries','law-industry':'industries',
     'retail-industry':'industries'
   };
-  var page = map[path] || 'home';
+  // /blog/<slug> posts have an arbitrary last path segment (the slug itself),
+  // so a plain lookup by that segment would miss the map — check the prefix first.
+  var page = pathname.indexOf('/blog/') === 0 ? 'blog' : (map[path] || 'home');
   var el = document.querySelector('.nav-links a[data-page="' + page + '"]');
   if (el) { 
     el.style.color = '#fff'; 

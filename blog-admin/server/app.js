@@ -104,6 +104,15 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // read-only restriction entirely; no key needed for local/self-hosted use.
 app.use('/tinymce', express.static(path.join(__dirname, '..', 'node_modules', 'tinymce')));
 
+// /blog/:slug is a "virtual" path — there's no literal file per post. Serve
+// blog-details.html for any single-segment path under /blog/ and let its own
+// client-side JS read the slug straight from the URL (see blog-details.html).
+// This must come after the static mounts above so an actual file at that path
+// (there won't be one, but just in case) always wins.
+app.get('/blog/:slug', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'embtel-final', 'blog-details.html'));
+});
+
 // --- Routes ---
 // This app now serves three things on one port: the embtel-final marketing
 // site (static, above), the admin panel (/admin), and the API (/api) —

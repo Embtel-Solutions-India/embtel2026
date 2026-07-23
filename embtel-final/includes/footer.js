@@ -93,9 +93,10 @@ document.getElementById('site-footer').innerHTML = `
 
 /* Active nav link highlight (runs after header injection above) */
 (function(){
-  var path = window.location.pathname.split('/').pop() || '';
+  var pathname = window.location.pathname;
+  var path = pathname.split('/').pop() || '';
   var map = {'':'home','index':'home','about':'about','services':'services','work':'work','process':'process','blog':'blog','blog-details':'blog','contact':'contact'};
-  var page = map[path] || 'home';
+  var page = pathname.indexOf('/blog/') === 0 ? 'blog' : (map[path] || 'home');
   var el = document.querySelector('.nav-links a[data-page="' + page + '"]');
   if (el) { el.style.color = '#fff'; el.style.fontWeight = '600'; }
 })();
