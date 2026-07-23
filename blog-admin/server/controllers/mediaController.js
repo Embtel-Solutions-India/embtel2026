@@ -1,13 +1,15 @@
 const path = require('path');
-const fs = require('fs/promises');
+const crypto = require('crypto');
 const sharp = require('sharp');
+const { PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
+const { s3Client, publicUrlFor } = require('../config/s3');
 const Media = require('../models/Media');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
+const env = require('../config/env');
 
-const UPLOAD_DIR = path.join(__dirname, '..', 'uploads', 'media');
-const PUBLIC_PATH = '/uploads/media';
 const COMPRESSIBLE = new Set(['image/jpeg', 'image/jpg', 'image/png', 'image/webp']);
+const S3_PREFIX = 'media';
 
 // GET /api/media?search=&folder=&page=&limit=
 const getMedia = catchAsync(async (req, res) => {
@@ -32,37 +34,47 @@ const getMedia = catchAsync(async (req, res) => {
   });
 });
 
-// POST /api/media/upload (multipart, field name "file"; multer already ran)
+// POST /api/media/upload (multipart, field name "file"; multer buffers it in memory)
 const uploadMedia = catchAsync(async (req, res, next) => {
   if (!req.file) return next(new ApiError(400, 'No file uploaded.'));
+  if (!env.s3.bucket) return next(new ApiError(500, 'Media storage is not configured (missing AWS_S3_BUCKET).'));
 
-  const { filename, originalname, mimetype, size, path: filePath } = req.file;
+  const { originalname, mimetype, buffer: originalBuffer } = req.file;
+  let buffer = originalBuffer;
   let width;
   let height;
 
-  // Compress raster images in place to keep the upload dir lean; SVGs pass through untouched.
+  // Compress raster images before upload to keep S3 storage/bandwidth lean; SVGs pass through untouched.
   if (COMPRESSIBLE.has(mimetype)) {
     try {
-      const image = sharp(filePath);
+      const image = sharp(originalBuffer);
       const metadata = await image.metadata();
       width = metadata.width;
       height = metadata.height;
-
-      const compressed = await image
-        .resize({ width: Math.min(metadata.width || 1920, 1920), withoutEnlargement: true })
-        .toBuffer();
-      await fs.writeFile(filePath, compressed);
+      buffer = await image.resize({ width: Math.min(metadata.width || 1920, 1920), withoutEnlargement: true }).toBuffer();
     } catch (err) {
-      // If sharp fails on a given file, keep the original upload rather than failing the request.
+      // If sharp fails on a given file, upload the original rather than failing the request.
     }
   }
 
+  const ext = path.extname(originalname).toLowerCase();
+  const key = `${S3_PREFIX}/${Date.now()}-${crypto.randomBytes(6).toString('hex')}${ext}`;
+
+  await s3Client.send(
+    new PutObjectCommand({
+      Bucket: env.s3.bucket,
+      Key: key,
+      Body: buffer,
+      ContentType: mimetype,
+    })
+  );
+
   const media = await Media.create({
-    filename,
+    filename: key,
     originalName: originalname,
-    url: `${PUBLIC_PATH}/${filename}`,
+    url: publicUrlFor(key),
     mimeType: mimetype,
-    size,
+    size: buffer.length,
     folder: req.body.folder || 'general',
     width,
     height,
@@ -87,8 +99,7 @@ const deleteMedia = catchAsync(async (req, res, next) => {
   const media = await Media.findById(req.params.id);
   if (!media) return next(new ApiError(404, 'Media not found.'));
 
-  const filePath = path.join(UPLOAD_DIR, media.filename);
-  await fs.unlink(filePath).catch(() => {});
+  await s3Client.send(new DeleteObjectCommand({ Bucket: env.s3.bucket, Key: media.filename })).catch(() => {});
   await media.deleteOne();
 
   res.status(200).json({ status: 'success', message: 'Media deleted.' });

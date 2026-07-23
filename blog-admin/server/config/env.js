@@ -39,6 +39,18 @@ module.exports = {
 
   maxUploadMb: parseInt(process.env.MAX_UPLOAD_MB, 10) || 5,
 
+  // Media uploads go to S3 — Render's own disk is ephemeral and gets wiped on
+  // every redeploy/restart, which was silently losing every uploaded image.
+  s3: {
+    bucket: process.env.AWS_S3_BUCKET || '',
+    region: process.env.AWS_REGION || 'us-east-1',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    // Override if serving through a CloudFront distribution or custom domain
+    // instead of the bucket's own S3 URL.
+    publicUrlBase: process.env.AWS_S3_PUBLIC_URL_BASE || '',
+  },
+
   rateLimit: {
     windowMinutes: parseInt(process.env.RATE_LIMIT_WINDOW_MINUTES, 10) || 15,
     max: parseInt(process.env.RATE_LIMIT_MAX, 10) || 300,

@@ -1,6 +1,4 @@
 const multer = require('multer');
-const path = require('path');
-const crypto = require('crypto');
 const env = require('../config/env');
 const ApiError = require('../utils/ApiError');
 
@@ -12,16 +10,10 @@ const ALLOWED_MIME = new Set([
   'image/svg+xml',
 ]);
 
-const UPLOAD_DIR = path.join(__dirname, '..', 'uploads', 'media');
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, UPLOAD_DIR),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    const uniqueName = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}${ext}`;
-    cb(null, uniqueName);
-  },
-});
+// Buffered in memory, not written to local disk — this server's disk is
+// ephemeral (wiped on every redeploy/restart), so mediaController uploads
+// the (optionally sharp-compressed) buffer straight to S3 instead.
+const storage = multer.memoryStorage();
 
 function fileFilter(req, file, cb) {
   if (!ALLOWED_MIME.has(file.mimetype)) {
