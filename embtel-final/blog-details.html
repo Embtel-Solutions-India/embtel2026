@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="icon" type="image/png" href="/images/favicon.png">
 <title id="pageTitle">Blog — Embtel Solutions</title>
 <meta id="metaDescription" name="description" content="" />
 <style>
@@ -52,7 +52,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 <body>
 
 <div id="site-header"></div>
-<script src="includes/header.js"></script>
+<script src="/includes/header.js"></script>
 
 <div class="bd-wrap" id="bdWrap">
   <a class="bd-back" href="/blog">&larr; Back to Blog</a>
@@ -62,7 +62,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 </div>
 
 <div id="site-footer"></div>
-<script src="includes/footer.js"></script>
+<script src="/includes/footer.js"></script>
 
 <script>
 function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
@@ -109,7 +109,7 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
     var pageUrl = window.location.href;
     var relatedHtml = (related || []).map(function(r){
       return '<a class="bd-rc" href="/blog/' + encodeURIComponent(r.slug) + '">' +
-        '<img src="' + escapeHtml(r.featuredImage || 'images/logo.png') + '" alt="' + escapeHtml(r.title) + '" loading="lazy" />' +
+        '<img src="' + escapeHtml(r.featuredImage || '/images/logo.png') + '" alt="' + escapeHtml(r.title) + '" loading="lazy" />' +
         '<div class="bd-rc-body"><p>' + escapeHtml(r.title) + '</p></div></a>';
     }).join('');
 

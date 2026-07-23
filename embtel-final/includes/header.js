@@ -16,7 +16,7 @@ document.getElementById('site-header').innerHTML = `
 <nav>
   <div class="nav-blur"></div>
   <div class="nav-in">
-    <a class="logo" href="/"><img src="images/logo.png" alt="embtel solutions" style="height:48px;width:auto;"></a>
+    <a class="logo" href="/"><img src="/images/logo.png" alt="embtel solutions" style="height:48px;width:auto;"></a>
     <ul class="nav-links">
       <li><a href="/" data-page="home">Home</a></li>
       <li><a href="/about" data-page="about">About</a></li>

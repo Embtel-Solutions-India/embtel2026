@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="icon" type="image/png" href="/images/favicon.png">
 <title>Blog — Embtel Solutions</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap');
@@ -38,7 +38,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 <body>
 
 <div id="site-header"></div>
-<script src="includes/header.js"></script>
+<script src="/includes/header.js"></script>
 
 <section class="blog-hero">
   <div class="blog-hero-in">
@@ -63,7 +63,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 </section>
 
 <div id="site-footer"></div>
-<script src="includes/footer.js"></script>
+<script src="/includes/footer.js"></script>
 
 <script>
 function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
@@ -87,7 +87,7 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
   }
 
   function cardHtml(b){
-    var img = b.featuredImage || 'images/logo.png';
+    var img = b.featuredImage || '/images/logo.png';
     return '' +
       '<a class="bc" href="/blog/' + encodeURIComponent(b.slug) + '">' +
         '<img class="bc-img" src="' + escapeHtml(img) + '" alt="' + escapeHtml(b.imageAltText || b.title) + '" loading="lazy" />' +

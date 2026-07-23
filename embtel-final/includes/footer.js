@@ -6,7 +6,7 @@ document.getElementById('site-footer').innerHTML = `
 <footer>
   <div class="footer-in">
     <div>
-      <div class="f-logo"><img src="images/logo.png" alt="embtel solutions" style="height:48px;width:auto;"></div>
+      <div class="f-logo"><img src="/images/logo.png" alt="embtel solutions" style="height:48px;width:auto;"></div>
       <p class="f-desc">Embtel Solutions Ltd.
  delivers tailored web design, development, and digital marketing services focused on client success. We prioritize customer satisfaction through expert support and guidance at every stage.</p>
     </div>
