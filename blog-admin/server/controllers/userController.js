@@ -30,6 +30,26 @@ const updateUser = catchAsync(async (req, res, next) => {
   res.status(200).json({ status: 'success', data: { user: user.toSafeJSON() } });
 });
 
+// DELETE /api/users/:id (admin only)
+const deleteUser = catchAsync(async (req, res, next) => {
+  if (req.params.id === String(req.user._id)) {
+    return next(new ApiError(400, 'You cannot delete your own account.'));
+  }
+
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new ApiError(404, 'User not found.'));
+
+  if (user.role === 'admin') {
+    const otherActiveAdmins = await User.countDocuments({ role: 'admin', active: true, _id: { $ne: user._id } });
+    if (otherActiveAdmins === 0) {
+      return next(new ApiError(400, 'Cannot delete the last active admin account.'));
+    }
+  }
+
+  await user.deleteOne();
+  res.status(200).json({ status: 'success', message: 'User deleted.' });
+});
+
 // PATCH /api/users/me/password — current user changes their own password
 const updateMyPassword = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user._id).select('+password');
@@ -44,4 +64,4 @@ const updateMyPassword = catchAsync(async (req, res, next) => {
   res.status(200).json({ status: 'success', message: 'Password updated. Please log in again.' });
 });
 
-module.exports = { getUsers, createUser, updateUser, updateMyPassword };
+module.exports = { getUsers, createUser, updateUser, deleteUser, updateMyPassword };

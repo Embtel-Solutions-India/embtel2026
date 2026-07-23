@@ -16,6 +16,11 @@
           <div class="flex justify-end gap-1">
             <button data-action="toggle-role" title="Toggle role" class="w-8 h-8 rounded-r8 flex items-center justify-center text-m2 hover:text-white hover:bg-white/10 transition"><i class="fa-solid fa-arrows-rotate text-xs"></i></button>
             <button data-action="toggle-active" title="Toggle active" class="w-8 h-8 rounded-r8 flex items-center justify-center transition ${u.active ? 'text-amber-400 hover:bg-amber-500/10' : 'text-brand-teal hover:bg-brand-tealDim'}"><i class="fa-solid ${u.active ? 'fa-pause' : 'fa-play'} text-xs"></i></button>
+            ${
+              window.CURRENT_USER && window.CURRENT_USER.id === u._id
+                ? ''
+                : '<button data-action="delete" title="Delete" class="w-8 h-8 rounded-r8 flex items-center justify-center text-red-400 hover:text-red-300 hover:bg-red-500/10 transition"><i class="fa-solid fa-trash text-xs"></i></button>'
+            }
           </div>
         </td>
       </tr>`
@@ -65,6 +70,12 @@
       } else if (btn.dataset.action === 'toggle-active') {
         const isActive = row.querySelectorAll('span')[1].textContent.trim() === 'Active';
         await apiFetch(`/api/users/${id}`, { method: 'PATCH', body: { active: !isActive } });
+      } else if (btn.dataset.action === 'delete') {
+        const name = row.querySelector('td').textContent.trim();
+        const ok = await confirmAction({ title: 'Delete this user?', body: `${name}'s account will be permanently removed. This cannot be undone.`, confirmText: 'Delete' });
+        if (!ok) return;
+        await apiFetch(`/api/users/${id}`, { method: 'DELETE' });
+        showToast('User deleted.');
       }
       load();
     } catch (err) {
