@@ -91,7 +91,9 @@ document.getElementById('site-header').innerHTML = `
 .has-drop{position:relative}
 .has-drop::before{content:'';position:absolute;bottom:-8px;left:0;right:0;height:8px;z-index:1002}
 .nav-drop{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-4px);background:rgba(13,13,16,.97);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px;min-width:580px;display:grid;grid-template-columns:1fr 1fr;gap:6px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,.4);will-change:opacity,transform}
-.has-drop:hover .nav-drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.has-drop:hover .nav-drop,.has-drop.open .nav-drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.has-drop>a svg{transition:transform .2s ease}
+.has-drop.open>a svg{transform:rotate(180deg)}
 .has-drop > a{position:relative;z-index:1001}
 .nav-drop::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:12px;height:6px;background:rgba(13,13,16,.97);clip-path:polygon(50% 0%,0% 100%,100% 100%)}
 .nd-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:#C4C4D1;transition:background .15s ease;text-decoration:none}
@@ -106,7 +108,15 @@ document.getElementById('site-header').innerHTML = `
 #mob.mobile-menu .mob-sub::before{content:'';position:absolute;left:26px;top:50%;transform:translateY(-50%);width:8px;height:2px;background:#6B6B78;border-radius:1px}
 @media(max-width:960px){.nav-in{padding:0 20px}.footer-bot{flex-direction:column;gap:10px;text-align:center}}
 </style>
-<script>
+`;
+
+// NOTE: this logic used to live inside a <script> tag embedded in the
+// innerHTML string above. Per the HTML spec, <script> tags inserted via
+// innerHTML are never executed — that silently disabled both active-nav
+// highlighting and the dropdown toggle below. Running it here instead, as
+// real top-level code in this normally-loaded file, actually executes it.
+
+/* Active nav link highlight */
 (function(){
   var pathname = window.location.pathname;
   var path = pathname.split('/').pop() || '';
@@ -124,10 +134,29 @@ document.getElementById('site-header').innerHTML = `
   // so a plain lookup by that segment would miss the map — check the prefix first.
   var page = pathname.indexOf('/blog/') === 0 ? 'blog' : (map[path] || 'home');
   var el = document.querySelector('.nav-links a[data-page="' + page + '"]');
-  if (el) { 
-    el.style.color = '#fff'; 
-    el.style.fontWeight = '600'; 
+  if (el) {
+    el.style.color = '#fff';
+    el.style.fontWeight = '600';
   }
 })();
-</script>
-`;
+
+/* Services/Industries dropdowns: CSS :hover alone is unreliable on touch
+   screens and some trackpads, so clicking the arrow also toggles the
+   dropdown open/closed. Clicking the link text itself still navigates. */
+(function(){
+  document.querySelectorAll('.has-drop > a svg').forEach(function(svg){
+    svg.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var li = svg.closest('.has-drop');
+      var wasOpen = li.classList.contains('open');
+      document.querySelectorAll('.has-drop.open').forEach(function(el){ el.classList.remove('open'); });
+      if (!wasOpen) li.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.has-drop')) {
+      document.querySelectorAll('.has-drop.open').forEach(function(el){ el.classList.remove('open'); });
+    }
+  });
+})();
