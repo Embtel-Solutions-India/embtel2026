@@ -10,9 +10,9 @@ pages.
 ## Tech Stack
 
 - **Backend:** Node.js, Express, MongoDB/Mongoose, JWT, bcrypt, Multer + Sharp,
-  express-validator, Helmet, CORS, Morgan, dotenv
-- **Frontend:** EJS (server-rendered), Bootstrap 5, vanilla JavaScript,
-  TinyMCE (rich text), Chart.js (dashboard)
+  AWS S3, express-validator, Helmet, CORS, Morgan, dotenv
+- **Frontend:** EJS (server-rendered), Tailwind CSS, vanilla JavaScript,
+  SunEditor (rich text), Chart.js (dashboard)
 
 ## Folder Structure
 
@@ -149,9 +149,8 @@ State-changing requests require the `x-csrf-token` header to match the
 - **Website Visitors** on the dashboard is a placeholder chart — wire it up
   to your real analytics provider (e.g. Google Analytics Reporting API) when
   ready.
-- Image uploads are compressed/resized via Sharp on upload; SVGs pass through
-  untouched.
-- The rich text editor loads TinyMCE from its CDN without an API key, which
-  is fine for development but will show a "this domain is not registered"
-  console notice — get a free API key at https://www.tiny.cloud for
-  production and set it in `client/views/blogs/form.ejs`.
+- Image uploads are compressed/resized via Sharp before being stored in S3;
+  SVGs pass through untouched. Requires `AWS_S3_BUCKET` and friends set in
+  `.env` — see `.env.example`.
+- The rich text editor is SunEditor (MIT licensed, self-hosted from
+  `/suneditor`, no API key or account of any kind required).

@@ -35,8 +35,6 @@ module.exports = {
     password: process.env.SEED_ADMIN_PASSWORD || 'Admin@12345',
   },
 
-  tinymceApiKey: process.env.TINYMCE_API_KEY || '',
-
   maxUploadMb: parseInt(process.env.MAX_UPLOAD_MB, 10) || 5,
 
   // Media uploads go to S3 — Render's own disk is ephemeral and gets wiped on

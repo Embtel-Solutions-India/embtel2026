@@ -24,30 +24,47 @@
     previewBtn.target = '_blank';
   }
 
-  // --- Rich text editor ---
-  if (window.tinymce) {
-    tinymce.init({
-      selector: '#contentEditor',
-      height: 480,
-      menubar: false,
-      // Self-hosted under the GPL — required as of TinyMCE 6+ or the editor
-      // stays locked read-only with a "license key" banner.
-      license_key: 'gpl',
-      skin: 'oxide-dark',
-      content_css: 'dark',
-      plugins: 'lists link image media table code codesample fullscreen autosave',
-      toolbar:
-        'undo redo | blocks | bold italic forecolor | bullist numlist | ' +
-        'link image media table blockquote codesample hr | fullscreen | code',
-      block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3',
-      setup(editor) {
-        editor.on('input change undo redo', markDirty);
+  // --- Rich text editor (SunEditor — self-hosted, MIT licensed, no API key) ---
+  let editorInstance = null;
+  if (window.SUNEDITOR) {
+    editorInstance = SUNEDITOR.create(document.getElementById('contentEditor'), {
+      height: '480px',
+      buttonList: [
+        ['undo', 'redo'],
+        ['formatBlock', 'fontSize'],
+        ['bold', 'italic', 'underline', 'strike'],
+        ['fontColor', 'hiliteColor', 'removeFormat'],
+        ['align', 'list', 'indent', 'outdent'],
+        ['table', 'link', 'image', 'video'],
+        ['blockquote', 'codeView', 'showBlocks'],
+        ['horizontalRule', 'fullScreen'],
+      ],
+      formats: ['p', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'pre'],
+      // Image uploads are handled entirely ourselves (uploaded straight to S3
+      // via /api/media/upload) instead of SunEditor's built-in uploader, so
+      // no uploadUrl/uploadHeaders config is needed here — see onImageUploadBefore below.
+      onChange: () => markDirty(),
+      onImageUploadBefore: async ({ info }) => {
+        const files = info.files;
+        for (let i = 0; i < files.length; i += 1) {
+          try {
+            const formData = new FormData();
+            formData.append('file', files[i]);
+            formData.append('folder', 'blog-content');
+            const res = await apiFetch('/api/media/upload', { method: 'POST', body: formData });
+            editorInstance.$.html.insert(`<img src="${res.data.media.url}" alt="${escapeHtml(files[i].name)}" />`);
+          } catch (err) {
+            showToast(err.message, 'danger');
+          }
+        }
+        markDirty();
+        return false; // we've already inserted the image(s) ourselves
       },
     });
   }
 
   function getContent() {
-    return window.tinymce && tinymce.get('contentEditor') ? tinymce.get('contentEditor').getContent() : form.content?.value || '';
+    return editorInstance ? editorInstance.$.html.get() : form.content?.value || '';
   }
 
   // --- Slug auto-generation from title (only while creating, or slug field left blank) ---

@@ -29,7 +29,7 @@ app.set('views', path.join(__dirname, '..', 'client', 'views'));
 app.use(expressLayouts);
 app.set('layout', 'layouts/admin');
 // extractScripts/extractStyles default to false — leaving them off means each
-// page's own <script> tags (dashboard.js, blog-form.js, TinyMCE, ...) render
+// page's own <script> tags (dashboard.js, blog-form.js, SunEditor, ...) render
 // inline exactly where the page puts them, instead of being silently
 // stripped out with nowhere in the layout to re-render them.
 
@@ -42,19 +42,18 @@ app.use(
         // 'unsafe-inline' + the elfsight/formspree domains below are needed because this
         // server also serves the embtel-final marketing site (inline <style>/<script>
         // blocks, WhatsApp widget, contact form) on the same origin/port.
-        // TinyMCE loads self-hosted (/tinymce, same origin) by default, or from
-        // cdn.tiny.cloud when TINYMCE_API_KEY is set — both are allowed here.
+        // The rich text editor (SunEditor) is self-hosted from /suneditor — same origin, no CDN needed.
         // Note: *.elfsight.com / *.elfsightcdn.com wildcards do NOT match the bare
         // apex domain (elfsightcdn.com itself) — both forms are listed explicitly.
-        scriptSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdn.tiny.cloud', 'cdnjs.cloudflare.com', 'cdn.tailwindcss.com', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
-        styleSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'cdn.tiny.cloud', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
-        fontSrc: ["'self'", 'fonts.gstatic.com', 'cdn.jsdelivr.net', 'cdn.tiny.cloud', 'cdnjs.cloudflare.com'],
+        scriptSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'cdn.tailwindcss.com', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
+        styleSrc: ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
+        fontSrc: ["'self'", 'fonts.gstatic.com', 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com'],
         imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
         // env.appUrl covers same-origin API calls; the explicit Render URL covers
         // embtel-final calling the deployed API cross-origin when tested/served
         // through this same unified server locally.
-        connectSrc: ["'self'", env.appUrl, 'https://embtelsolutions.com','https://www.embtelsolutions.com', 'cdn.tiny.cloud', 'https://formspree.io', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
-        frameSrc: ["'self'", 'cdn.tiny.cloud', 'https://elfsight.com', 'https://*.elfsight.com'],
+        connectSrc: ["'self'", env.appUrl, 'https://embtelsolutions.com','https://www.embtelsolutions.com', 'https://formspree.io', 'https://elfsight.com', 'https://*.elfsight.com', 'https://elfsightcdn.com', 'https://*.elfsightcdn.com'],
+        frameSrc: ["'self'", 'https://elfsight.com', 'https://*.elfsight.com'],
       },
     },
   })
@@ -100,9 +99,9 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, '..', '..', 'embtel-final'), { extensions: ['html'] }));
 app.use(express.static(path.join(__dirname, '..', 'client')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// Self-hosted TinyMCE (npm package) — avoids the cloud CDN's "no API key"
-// read-only restriction entirely; no key needed for local/self-hosted use.
-app.use('/tinymce', express.static(path.join(__dirname, '..', 'node_modules', 'tinymce')));
+// Self-hosted rich text editor (SunEditor, npm package) — MIT licensed, no
+// API key or cloud dependency of any kind.
+app.use('/suneditor', express.static(path.join(__dirname, '..', 'node_modules', 'suneditor', 'dist')));
 
 // /blog/:slug is a "virtual" path — there's no literal file per post. Serve
 // blog-details.html for any single-segment path under /blog/ and let its own

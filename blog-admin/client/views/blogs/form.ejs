@@ -182,5 +182,37 @@
 <script>
   window.__INITIAL_GALLERY__ = <%- JSON.stringify(blog && blog.galleryImages ? blog.galleryImages : []) %>;
 </script>
-<script src="/tinymce/tinymce.min.js"></script>
+<link href="/suneditor/suneditor.min.css" rel="stylesheet" />
+<style>
+  /* SunEditor is themed entirely through CSS custom properties — dark-theme
+     it to match the admin panel instead of the default white editor chrome. */
+  .sun-editor {
+    --se-main-background-color: #18181c;
+    --se-main-color: #e5e7eb;
+    --se-main-font-color: #e5e7eb;
+    --se-main-color-lighter: #9898a6;
+    --se-main-border-color: rgba(255,255,255,.1);
+    --se-main-out-color: rgba(255,255,255,.1);
+    --se-main-divider-color: rgba(255,255,255,.08);
+    --se-main-outline-color: #00c896;
+    --se-main-shadow-color: rgba(0,0,0,.4);
+    --se-input-btn-border-color: rgba(255,255,255,.12);
+    --se-edit-background-color: #111115;
+    --se-edit-font-color: #e5e7eb;
+    --se-edit-border-light: rgba(255,255,255,.08);
+    --se-edit-border-dark: rgba(255,255,255,.16);
+    --se-dropdown-font-color: #e5e7eb;
+    --se-controller-background-color: #18181c;
+    --se-controller-color: #e5e7eb;
+    --se-controller-border-color: rgba(255,255,255,.12);
+    --se-code-view-background-color: #111115;
+    --se-code-view-color: #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .sun-editor .se-btn:hover, .sun-editor .se-btn-select:hover { background-color: rgba(255,255,255,.08); }
+  .sun-editor .se-dropdown, .sun-editor .se-menu-list, .sun-editor .se-list-layer { background-color: #18181c; border-color: rgba(255,255,255,.1); }
+  .sun-editor .se-btn-list:hover, .sun-editor .se-list-inner li:hover { background-color: rgba(255,255,255,.08); }
+</style>
+<script src="/suneditor/suneditor.min.js"></script>
 <script src="/js/blog-form.js"></script>
