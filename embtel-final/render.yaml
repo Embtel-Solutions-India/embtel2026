@@ -1,0 +1,90 @@
+services:
+  - type: web
+    name: embtel-final
+    runtime: static
+    staticPublishPath: ./
+    routes:
+      - type: rewrite
+        source: /about
+        destination: /about.html
+      - type: rewrite
+        source: /accounting-firm-industry
+        destination: /accounting-firm-industry.html
+      - type: rewrite
+        source: /ai-integrations
+        destination: /ai-integrations.html
+      - type: rewrite
+        source: /analytics-dashboards
+        destination: /analytics-dashboards.html
+      - type: rewrite
+        source: /blog-details
+        destination: /blog-details.html
+      - type: rewrite
+        source: /blog
+        destination: /blog.html
+      - type: rewrite
+        source: /business-automation
+        destination: /business-automation.html
+      - type: rewrite
+        source: /cleaning-industry
+        destination: /cleaning-industry.html
+      - type: rewrite
+        source: /contact
+        destination: /contact.html
+      - type: rewrite
+        source: /cyber-security-industry
+        destination: /cyber-security-industry.html
+      - type: rewrite
+        source: /cybersecurity
+        destination: /cybersecurity.html
+      - type: rewrite
+        source: /digital-marketing
+        destination: /digital-marketing.html
+      - type: rewrite
+        source: /e-commerce
+        destination: /e-commerce.html
+      - type: rewrite
+        source: /healthcare-industry
+        destination: /healthcare-industry.html
+      - type: rewrite
+        source: /home-services-industry
+        destination: /home-services-industry.html
+      - type: rewrite
+        source: /immigration-firm-industry
+        destination: /immigration-firm-industry.html
+      - type: rewrite
+        source: /industries
+        destination: /industries.html
+      - type: rewrite
+        source: /it-industry
+        destination: /it-industry.html
+      - type: rewrite
+        source: /law-industry
+        destination: /law-industry.html
+      - type: rewrite
+        source: /privacy-policy
+        destination: /privacy-policy.html
+      - type: rewrite
+        source: /process
+        destination: /process.html
+      - type: rewrite
+        source: /retail-industry
+        destination: /retail-industry.html
+      - type: rewrite
+        source: /seo-geo
+        destination: /seo-geo.html
+      - type: rewrite
+        source: /services
+        destination: /services.html
+      - type: rewrite
+        source: /terms-of-service
+        destination: /terms-of-service.html
+      - type: rewrite
+        source: /web-development
+        destination: /web-development.html
+      - type: rewrite
+        source: /work
+        destination: /work.html
+      - type: rewrite
+        source: /da-ai/*
+        destination: /
