@@ -452,42 +452,42 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
     </div>
     <div class="faq-wrap">
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>What makes Embtel Solutions different from its competitors?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">Our company provides tailored, technically advanced solutions alongside security measures, scalability features and innovative approaches for enduring business achievement.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>What support options does Embtel Solutions offer?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">Embtel Solutions offers 24/7 support combined with professional guidance and technical assistance for business operations excellence.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>How does Embtel Solutions enhance business security?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">Embtel Solutions strengthens business security with cutting-edge cybersecurity measures, protecting data, networks, and systems. We prevent cyber threats, ensuring safe and uninterrupted operations.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>How can we help our clients boost their business?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">Our company assists client growth with customized digital solutions together with expert development and data-driven strategies, as well as innovative marketing strategies that increase visibility while improving business efficiency and success.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>Why choose Embtel Solutions over others?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">Our team at Embtel Solutions delivers innovative solutions to businesses that grow their operations by following a client-focused method and using expert insights while achieving proven results for digital success.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>Who can benefit from your services?</span>
           <div class="faq-ico">+</div>
         </div>
@@ -510,6 +510,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 function showPage(name){var pages={home:'/',about:'/about',services:'/services',work:'/work',process:'/process',blog:'/blog',contact:'/contact'};if(pages[name]) window.location.href=pages[name];}
 function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
 function toggleFaq(el){el.parentElement.classList.toggle('open');}
+document.querySelectorAll('.faq-q').forEach(function(q){q.addEventListener('click',function(){toggleFaq(q);});});
 function handleSubmit(btn){btn.textContent='Message sent! ✓';btn.style.background='var(--teal)';btn.style.color='#000';btn.disabled=true;}
 window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(nav) nav.style.borderBottomColor=window.scrollY>30?'rgba(255,255,255,.08)':'rgba(255,255,255,.05)';});
 function animateCounters(){document.querySelectorAll('.count').forEach(function(el){var target=+el.dataset.target;var duration=2000;var step=target/(duration/16);var current=0;var timer=setInterval(function(){current+=step;if(current>=target){current=target;clearInterval(timer);}el.textContent=Math.floor(current).toLocaleString('en-IN');},16);});}

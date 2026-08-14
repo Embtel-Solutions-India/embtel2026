@@ -53,7 +53,7 @@ document.getElementById('site-header').innerHTML = `
       <li><a href="/contact" data-page="contact">Contact</a></li>
     </ul>
     <a class="nav-btn" href="https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=organic">Get Started</a>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <button class="hamburger" aria-label="Menu">
       <div class="hb"></div><div class="hb"></div><div class="hb"></div>
     </button>
   </div>
@@ -115,6 +115,15 @@ document.getElementById('site-header').innerHTML = `
 // innerHTML are never executed — that silently disabled both active-nav
 // highlighting and the dropdown toggle below. Running it here instead, as
 // real top-level code in this normally-loaded file, actually executes it.
+
+/* Hamburger toggle — attached via addEventListener because the live
+   server's CSP (script-src-attr 'none') blocks inline onclick handlers. */
+(function(){
+  var btn = document.querySelector('.hamburger');
+  if (btn) btn.addEventListener('click', function(){
+    document.getElementById('mob').classList.toggle('open');
+  });
+})();
 
 /* Active nav link highlight */
 (function(){

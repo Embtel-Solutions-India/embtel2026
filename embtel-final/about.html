@@ -392,42 +392,42 @@ opportunities through our dedicated effort toward results-driven customer satisf
     </div>
     <div class="faq-wrap">
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>How long has Embtel Solutions been in business?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">Embtel Solutions has been in business for 8 years, serving clients across India, UK, and North America with digital solutions.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>What makes Embtel Solutions different from other agencies?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">We focus on outcome over output, radical transparency, speed with quality, and building long-term partnerships. Our senior practitioners handle projects end-to-end without handoffs to juniors.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>What industries does Embtel Solutions serve?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">We serve diverse industries including accounting, cleaning, cybersecurity, healthcare, home services, immigration, IT, legal, retail, and more.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>How does Embtel Solutions ensure project quality?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">We deliver clean, documented code with knowledge transfer. Our team follows proven industry practices and conducts thorough code reviews on every project.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>What is the typical project timeline?</span>
           <div class="faq-ico">+</div>
         </div>
         <div class="faq-a">Most projects are completed in 2–6 weeks, depending on scope and complexity. We provide clear timelines and keep you updated throughout the process.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-q">
           <span>How do I get started with Embtel Solutions?</span>
           <div class="faq-ico">+</div>
         </div>
@@ -453,6 +453,7 @@ opportunities through our dedicated effort toward results-driven customer satisf
 function showPage(name){var pages={home:'/',about:'/about',services:'/services',work:'/work',process:'/process',blog:'/blog',contact:'/contact'};if(pages[name]) window.location.href=pages[name];}
 function toggleMenu(){document.getElementById('mob').classList.toggle('open');}
 function toggleFaq(el){el.parentElement.classList.toggle('open');}
+document.querySelectorAll('.faq-q').forEach(function(q){q.addEventListener('click',function(){toggleFaq(q);});});
 function handleSubmit(btn){btn.textContent='Message sent! ✓';btn.style.background='var(--teal)';btn.style.color='#000';btn.disabled=true;}
 window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(nav) nav.style.borderBottomColor=window.scrollY>30?'rgba(255,255,255,.08)':'rgba(255,255,255,.05)';});
 function animateCounters(){document.querySelectorAll('.count').forEach(function(el){var target=+el.dataset.target;var duration=2000;var step=target/(duration/16);var current=0;var timer=setInterval(function(){current+=step;if(current>=target){current=target;clearInterval(timer);}el.textContent=Math.floor(current).toLocaleString('en-IN');},16);});}
