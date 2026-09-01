@@ -23,6 +23,9 @@ services:
         source: /blog
         destination: /blog.html
       - type: rewrite
+        source: /blog/*
+        destination: /blog-details.html
+      - type: rewrite
         source: /business-automation
         destination: /business-automation.html
       - type: rewrite

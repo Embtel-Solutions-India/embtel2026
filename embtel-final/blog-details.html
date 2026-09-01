@@ -54,6 +54,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 
 <div id="site-header"></div>
 <script src="/includes/header.js"></script>
+<script src="/includes/blog-posts.js"></script>
 
 <div class="bd-wrap" id="bdWrap">
   <a class="bd-back" href="/blog">&larr; Back to Blog</a>
@@ -135,23 +136,18 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
       (relatedHtml ? '<div class="bd-related"><h4>Related Posts</h4><div class="bd-related-grid">' + relatedHtml + '</div></div>' : '');
   }
 
+  // Served from the static list in /includes/blog-posts.js for now — swap
+  // back to the BLOG_API_BASE fetch once the blog-admin backend is deployed.
   if (!slug) {
     renderNotFound();
   } else {
-    fetch(BLOG_API_BASE + '/blog/' + encodeURIComponent(slug))
-      .then(function(res){
-        if (res.status === 404) { renderNotFound(); return null; }
-        if (!res.ok) throw new Error('Request failed (' + res.status + ')');
-        return res.json();
-      })
-      .then(function(json){
-        if (!json) return;
-        render(json.data.blog, json.data.related);
-      })
-      .catch(function(err){
-        wrap.innerHTML = '<a class="bd-back" href="/blog">&larr; Back to Blog</a><div class="bd-state">Couldn\'t load this article right now. Please try again shortly.</div>';
-        console.error('Failed to load blog post:', err);
-      });
+    var blog = (STATIC_BLOG_POSTS || []).filter(function(b){ return b.slug === slug; })[0];
+    if (!blog) {
+      renderNotFound();
+    } else {
+      var related = (STATIC_BLOG_POSTS || []).filter(function(b){ return b.slug !== slug; }).slice(0, 3);
+      render(blog, related);
+    }
   }
 })();
 </script>

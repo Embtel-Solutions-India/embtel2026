@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/da-ai/(.*)", "destination": "/" }
+    { "source": "/da-ai/(.*)", "destination": "/" },
+    { "source": "/blog/(.*)", "destination": "/blog-details.html" }
   ]
 }

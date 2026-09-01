@@ -39,6 +39,7 @@ footer{background:var(--ink2);border-top:1px solid rgba(255,255,255,.05);padding
 
 <div id="site-header"></div>
 <script src="/includes/header.js"></script>
+<script src="/includes/blog-posts.js"></script>
 
 <section class="blog-hero">
   <div class="blog-hero-in">
@@ -100,28 +101,23 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
       '</a>';
   }
 
+  // Served from the static list in /includes/blog-posts.js for now — swap
+  // back to the BLOG_API_BASE fetch once the blog-admin backend is deployed.
   function loadBlogs(query){
-    grid.innerHTML = '<div class="blog-skel"></div><div class="blog-skel"></div><div class="blog-skel"></div>';
-
-    var url = BLOG_API_BASE + '/blogs?limit=12' + (query ? '&search=' + encodeURIComponent(query) : '');
-
-    fetch(url)
-      .then(function(res){
-        if (!res.ok) throw new Error('Request failed (' + res.status + ')');
-        return res.json();
-      })
-      .then(function(json){
-        var blogs = (json.data && json.data.blogs) || [];
-        if (!blogs.length) {
-          grid.innerHTML = '<div class="blog-state">No articles found' + (query ? ' for "' + escapeHtml(query) + '"' : '') + '.</div>';
-          return;
-        }
-        grid.innerHTML = blogs.map(cardHtml).join('');
-      })
-      .catch(function(err){
-        grid.innerHTML = '<div class="blog-state">Couldn\'t load blog posts right now. Please try again shortly.</div>';
-        console.error('Failed to load blog feed:', err);
+    var blogs = STATIC_BLOG_POSTS || [];
+    if (query) {
+      var q = query.toLowerCase();
+      blogs = blogs.filter(function(b){
+        return b.title.toLowerCase().indexOf(q) !== -1 ||
+          b.shortDescription.toLowerCase().indexOf(q) !== -1 ||
+          (b.category && b.category.name.toLowerCase().indexOf(q) !== -1);
       });
+    }
+    if (!blogs.length) {
+      grid.innerHTML = '<div class="blog-state">No articles found' + (query ? ' for "' + escapeHtml(query) + '"' : '') + '.</div>';
+      return;
+    }
+    grid.innerHTML = blogs.map(cardHtml).join('');
   }
 
   searchForm.addEventListener('submit', function(e){
