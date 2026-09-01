@@ -3,6 +3,6 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/da-ai/(.*)", "destination": "/" },
-    { "source": "/blog/(.*)", "destination": "/blog-details.html" }
+    { "source": "/blog/(.*)", "destination": "/blog-details" }
   ]
 }
