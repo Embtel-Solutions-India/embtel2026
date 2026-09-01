@@ -12,8 +12,8 @@ var STATIC_BLOG_POSTS = [
     author: { name: 'Embtel Team' },
     publishedAt: '2026-08-18T09:00:00.000Z',
     readingTime: 5,
-    featuredImage: '',
-    imageAltText: 'Automated workflow dashboard',
+    featuredImage: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+    imageAltText: 'Team mapping out a business workflow on sticky notes',
     seo: {
       metaTitle: '5 Ways Automation Saves Growing Businesses 20+ Hours a Week',
       metaDescription: 'Where automation pays back the fastest for small and mid-sized businesses, and how to spot the biggest time-sinks in your own workflow.'
@@ -42,8 +42,8 @@ var STATIC_BLOG_POSTS = [
     author: { name: 'Embtel Team' },
     publishedAt: '2026-08-25T09:00:00.000Z',
     readingTime: 6,
-    featuredImage: '',
-    imageAltText: 'Website analytics and search ranking growth',
+    featuredImage: 'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=80',
+    imageAltText: 'Hand-drawn website wireframe sketches',
     seo: {
       metaTitle: 'Why Every SMB Needs an SEO-Ready Website in 2026',
       metaDescription: 'What actually moves search rankings for small business websites in 2026, from technical fundamentals to AI-answer visibility.'
