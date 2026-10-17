@@ -31,10 +31,6 @@ document.getElementById('site-header').innerHTML = `
           <a href="/seo-geo" class="nd-item"><span class="nd-text"><strong>SEO & GEO</strong><small>Paid ads, geo targeting & retargeting</small></span></a>
           <a href="/cybersecurity" class="nd-item"><span class="nd-text"><strong>Cybersecurity</strong><small>Security audits, compliance & protection</small></span></a>
           <a href="/e-commerce" class="nd-item"><span class="nd-text"><strong>E-Commerce</strong><small>Online stores, marketplaces & payments</small></span></a>
-          <a href="/home-services-automation" class="nd-item"><span class="nd-text"><strong>AI for Home Services</strong><small>AI receptionist & job booking</small></span></a>
-          <a href="/dental-automation" class="nd-item"><span class="nd-text"><strong>AI for Dental & Med Spas</strong><small>Reminders, booking & patient recall</small></span></a>
-          <a href="/restaurant-automation" class="nd-item"><span class="nd-text"><strong>AI for Restaurants</strong><small>Commission-free ordering & reviews</small></span></a>
-          <a href="/real-estate-automation" class="nd-item"><span class="nd-text"><strong>AI for Real Estate</strong><small>Speed-to-lead & lead nurture</small></span></a>
         </div>
       </li>
       <li class="has-drop">
@@ -75,10 +71,6 @@ document.getElementById('site-header').innerHTML = `
   <a href="/seo-geo" class="mob-sub">SEO & GEO</a>
   <a href="/cybersecurity" class="mob-sub">Cybersecurity</a>
   <a href="/e-commerce" class="mob-sub">E-Commerce</a>
-  <a href="/home-services-automation" class="mob-sub">AI for Home Services</a>
-  <a href="/dental-automation" class="mob-sub">AI for Dental & Med Spas</a>
-  <a href="/restaurant-automation" class="mob-sub">AI for Restaurants</a>
-  <a href="/real-estate-automation" class="mob-sub">AI for Real Estate</a>
   <a href="/industries">Industries</a>
   <a href="/accounting-firm-industry" class="mob-sub">Accounting Firm</a>
   <a href="/cleaning-industry" class="mob-sub">Cleaning Industry</a>
