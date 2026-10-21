@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { verifySessionToken } from '@/lib/auth/token';
 
-const PUBLIC = /^\/admin\/(login|logout|forgot-password|reset-password)(\/|$)/;
+const PUBLIC = /^\/admin\/(login|forgot-password|reset-password)(\/|$)/;
 
 // Cheap gate: signature/expiry only. Active-user and password-change checks happen in requireUser().
 export async function proxy(req: NextRequest) {

@@ -9,7 +9,7 @@ describe('safeRedirect', () => {
 
   it.each([
     null, '', 'https://evil.com', '//evil.com', '/\\evil.com', '/blog', '/admin', 'admin/blogs',
-    '/admin/\\evil.com', '/admin/x\nLocation: https://evil.com',
+    '/admin/\\evil.com', '/admin/../blog', '/admin/%2E%2E/blog', '/admin/x/..','/admin/x\nLocation: https://evil.com',
   ])('%j falls back to dashboard', (t) => {
     expect(safeRedirect(t)).toBe('/admin/dashboard');
   });

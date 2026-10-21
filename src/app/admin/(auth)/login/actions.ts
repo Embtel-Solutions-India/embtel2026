@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
-import { hitRateLimit } from '@/lib/auth/rate-limit';
+import { hitRateLimit, resetRateLimit } from '@/lib/auth/rate-limit';
 import { safeRedirect } from '@/lib/auth/redirect';
 import { setSessionCookie } from '@/lib/auth/session';
 import { connectDB } from '@/lib/db/connect';
@@ -40,13 +40,19 @@ export async function loginAction(_prev: LoginState, formData: FormData): Promis
   const h = await headers();
   const ip = h.get('x-forwarded-for')?.split(',')[0].trim() || h.get('x-real-ip') || 'unknown';
 
+  // Per email+IP, plus a per-account cap that survives IP rotation (spoofed x-forwarded-for).
+  // Both are reset on success, so effectively only failures count.
+  const ipKey = `login:${email}:${ip}`;
+  const accountKey = `login-account:${email}`;
   await connectDB();
-  if (!(await hitRateLimit(`login:${email}:${ip}`, 10, 900)).allowed) return { error: LIMITED };
+  if (!(await hitRateLimit(ipKey, 10, 900)).allowed) return { error: LIMITED };
+  if (!(await hitRateLimit(accountKey, 50, 900)).allowed) return { error: LIMITED };
 
   const user = await User.findOne({ email }).select('+password');
   const ok = user ? await user.comparePassword(password) : await bcrypt.compare(password, await dummy());
   if (!user || !ok || !user.active) return { error: GENERIC };
 
+  await Promise.all([resetRateLimit(ipKey), resetRateLimit(accountKey)]);
   await User.updateOne({ _id: user._id }, { $set: { lastLoginAt: new Date() } });
   await setSessionCookie(String(user._id), remember === 'on');
   redirect(safeRedirect(parsed.data.redirect));

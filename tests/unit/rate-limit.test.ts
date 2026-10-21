@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { hitRateLimit } from '@/lib/auth/rate-limit';
 import { connectDB } from '@/lib/db/connect';
 import { RateLimit } from '@/lib/db/models/RateLimit';
@@ -19,11 +19,16 @@ const key = () => `login:${crypto.randomBytes(4).toString('hex')}@example.com:1.
 describe('hitRateLimit', () => {
   it('rate limits login: 10 allowed, 11th blocked, new window allowed', async () => {
     const k = key();
-    for (let i = 0; i < 10; i++) expect((await hitRateLimit(k, 10, 1)).allowed).toBe(true);
-    expect((await hitRateLimit(k, 10, 1)).allowed).toBe(false);
-    expect((await hitRateLimit(key(), 10, 1)).allowed).toBe(true); // other keys unaffected
-    await new Promise((r) => setTimeout(r, 1100));
-    expect((await hitRateLimit(k, 10, 1)).allowed).toBe(true);
+    vi.useFakeTimers({ toFake: ['Date'] }); // window math uses JS Date; freeze it so load can't flake
+    try {
+      for (let i = 0; i < 10; i++) expect((await hitRateLimit(k, 10, 900)).allowed).toBe(true);
+      expect((await hitRateLimit(k, 10, 900)).allowed).toBe(false);
+      expect((await hitRateLimit(key(), 10, 900)).allowed).toBe(true); // other keys unaffected
+      vi.setSystemTime(Date.now() + 901_000);
+      expect((await hitRateLimit(k, 10, 900)).allowed).toBe(true);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('counts concurrent hits atomically', async () => {

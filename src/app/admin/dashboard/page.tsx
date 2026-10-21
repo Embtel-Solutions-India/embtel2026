@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { requireUser } from '@/lib/auth/session';
+import { logoutAction } from './actions';
 
 async function Who() {
   const user = await requireUser();
@@ -19,7 +20,7 @@ export default function DashboardPage() {
       <Suspense fallback={<p>Loading…</p>}>
         <Who />
       </Suspense>
-      <form method="post" action="/admin/logout">
+      <form action={logoutAction}>
         <button type="submit" className="rounded bg-gray-900 px-4 py-2 text-white">
           Log out
         </button>

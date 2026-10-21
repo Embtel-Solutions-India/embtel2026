@@ -32,8 +32,8 @@ async function main() {
     ENCRYPTION_KEY: crypto.randomBytes(32).toString('base64'),
     AWS_S3_BUCKET: 'e2e-bucket',
     AWS_REGION: 'us-east-1',
-    AWS_ACCESS_KEY_ID: 'e2e-dummy',
-    AWS_SECRET_ACCESS_KEY: 'e2e-dummy',
+    AWS_ACCESS_KEY_ID: rnd(10),
+    AWS_SECRET_ACCESS_KEY: rnd(20),
   };
   const run = (args: string[]) =>
     new Promise<number>((resolve) => {
