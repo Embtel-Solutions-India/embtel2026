@@ -84,3 +84,54 @@ describe('BlockRenderer', () => {
     expect(bad).toBeTruthy();
   });
 });
+
+describe('specialised blocks', () => {
+  it('comparison table is a real table with column headers and text alternatives', () => {
+    const { container } = renderBlocks([byType('comparisonTable')]);
+    expect(container.querySelectorAll('table th[scope="col"]').length).toBeGreaterThanOrEqual(2);
+    expect(container.querySelector('tbody th[scope="row"]')?.textContent).toBe('Speed');
+    expect(container.textContent).toContain('Yes');
+    expect(container.textContent).toContain('No');
+  });
+
+  it('rich text renders sanitised HTML with a table of contents', () => {
+    const { container } = renderBlocks([
+      { type: 'richText', toc: true, html: '<h2>Data We Collect</h2><p>x</p><script>alert(1)</script>' },
+    ]);
+    expect(container.querySelector('script')).toBeNull();
+    const toc = container.querySelector('nav[aria-label="On this page"]');
+    expect(toc?.querySelector('a')?.getAttribute('href')).toBe('#data-we-collect');
+    expect(container.querySelector('h2#data-we-collect')).not.toBeNull();
+  });
+
+  it('testimonials render the widget only when an app id is configured', () => {
+    const block = byType('testimonials');
+    expect(renderBlocks([block]).container.querySelector('[class^="elfsight-app-"]')).toBeNull();
+    cleanup();
+    const settings = { ...DEFAULT_SETTINGS, integrations: { googleAdsId: '', elfsightReviewsAppId: '0804c920-a003-45d4-8ceb-8f4b7a45f7e4' } };
+    const { container } = render(<BlockRenderer blocks={[block]} settings={settings} />);
+    expect(container.querySelector('.elfsight-app-0804c920-a003-45d4-8ceb-8f4b7a45f7e4')).not.toBeNull();
+  });
+
+  it('contact info exposes the form slot', () => {
+    const { container } = renderBlocks([byType('contactInfo')]);
+    expect(container.querySelector('[data-slot="contact-form"]')).not.toBeNull();
+    expect(container.querySelector('a[href="mailto:info@embtelsolutions.com"]')).not.toBeNull();
+  });
+
+  it('work grid shows the emoji fallback when there is no logo', () => {
+    const grid = { ...byType('workGrid'), items: [{ ...byType('workGrid').items[0], fallbackEmoji: '🛂' }] };
+    const { container } = renderBlocks([grid]);
+    expect(container.textContent).toContain('🛂');
+  });
+
+  it('renders every specialised block type without throwing', () => {
+    const special = ['beforeAfter', 'comparisonTable', 'testimonials', 'contactInfo', 'workGrid', 'timeline', 'split', 'phases', 'roi', 'richText'] as const;
+    for (const t of special) {
+      const { container } = renderBlocks([byType(t)]);
+      // Each block sits in a wrapper div; the wrapper must not be empty.
+      expect(container.firstElementChild?.childElementCount, t).toBeGreaterThan(0);
+      cleanup();
+    }
+  });
+});

@@ -3,6 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
+  images: {
+    // Legacy content: client logos (Google favicon service) and the About page office photo.
+    remotePatterns: [
+      { protocol: "https", hostname: "www.google.com", pathname: "/s2/favicons" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+    ],
+  },
   partialPrefetching: true,
   turbopack: {
     rules: {

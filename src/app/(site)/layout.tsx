@@ -1,4 +1,5 @@
 import '@/components/blocks/blocks.css';
+import '@/components/blocks/blocks-special.css';
 import { Footer } from '@/components/site/Footer';
 import { Header } from '@/components/site/Header';
 import { WhatsAppLink } from '@/components/site/WhatsAppLink';

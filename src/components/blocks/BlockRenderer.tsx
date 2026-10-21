@@ -8,9 +8,9 @@ import { Marquee } from './Marquee';
 import { Pills } from './Pills';
 import { Stats } from './Stats';
 import { Steps } from './Steps';
+import { BeforeAfter, ComparisonTable, ContactInfo, Phases, RichText, Roi, Split, Testimonials, Timeline, WorkGrid } from './Special';
 
 function renderBlock(block: Block, primaryHero: boolean, settings: SiteSettings) {
-  void settings;
   switch (block.type) {
     case 'hero':
       return <Hero block={block} primary={primaryHero} />;
@@ -28,18 +28,26 @@ function renderBlock(block: Block, primaryHero: boolean, settings: SiteSettings)
       return <Faq block={block} />;
     case 'cta':
       return <Cta block={block} />;
-    // Specialised sections land in Task 7.
     case 'beforeAfter':
+      return <BeforeAfter block={block} />;
     case 'comparisonTable':
+      return <ComparisonTable block={block} />;
     case 'testimonials':
+      return <Testimonials block={block} settings={settings} />;
     case 'contactInfo':
+      return <ContactInfo block={block} />;
     case 'workGrid':
+      return <WorkGrid block={block} />;
     case 'timeline':
+      return <Timeline block={block} />;
     case 'split':
+      return <Split block={block} />;
     case 'phases':
+      return <Phases block={block} />;
     case 'roi':
+      return <Roi block={block} />;
     case 'richText':
-      return null;
+      return <RichText block={block} />;
     default: {
       const never: never = block;
       return never;
