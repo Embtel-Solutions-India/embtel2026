@@ -55,3 +55,25 @@ for (const path of ['/', '/law-industry']) {
     expect(json['@graph'].map((n: { '@type': string }) => n['@type'])).toContain('Organization');
   });
 }
+
+test('robots.txt blocks crawling outside production', async ({ request }) => {
+  const res = await request.get('/robots.txt');
+  expect(res.status()).toBe(200);
+  expect(await res.text()).toMatch(/User-Agent: \*\s+Disallow: \//i);
+});
+
+test('sitemap.xml lists published pages but not drafts', async ({ request }) => {
+  const xml = await (await request.get('/sitemap.xml')).text();
+  expect(xml).toContain(`<loc>http://localhost:${E2E_PORT}/</loc>`);
+  expect(xml).toContain(`<loc>http://localhost:${E2E_PORT}/law-industry</loc>`);
+  expect(xml).not.toContain('secret-draft');
+});
+
+test('llms.txt and the web manifest are served', async ({ request }) => {
+  const llms = await request.get('/llms.txt');
+  expect(llms.headers()['content-type']).toContain('text/plain');
+  expect(await llms.text()).toMatch(/^# Embtel Solutions/);
+  const manifest = await request.get('/manifest.webmanifest');
+  expect((await manifest.json()).name).toBe('Embtel Solutions');
+  expect((await request.get('/indexnow-key.txt')).status()).toBe(404); // no key configured in e2e
+});

@@ -21,6 +21,8 @@ const schema = z.object({
   SMTP_USER: z.string().optional(),
   SMTP_PASS: z.string().optional(),
   SMTP_FROM: z.string().optional(),
+  // IndexNow key (public by design: served at /indexnow-key.txt). Optional; pings are skipped without it.
+  INDEXNOW_KEY: z.string().regex(/^[A-Za-z0-9-]{8,128}$/).optional(),
 });
 
 export type Env = z.infer<typeof schema>;
