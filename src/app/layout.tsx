@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -18,7 +19,12 @@ export const metadata: Metadata = {
   robots: "noindex",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+// Nonce CSP (src/proxy.ts) needs every page rendered per request: a prerendered shell carries no
+// nonce and its scripts would be blocked. Hence connection() here and instant = false to allow it.
+export const instant = false;
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  await connection();
   return (
     <html
       lang="en"
