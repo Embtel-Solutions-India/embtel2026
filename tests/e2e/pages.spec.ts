@@ -77,3 +77,14 @@ test('llms.txt and the web manifest are served', async ({ request }) => {
   expect((await manifest.json()).name).toBe('Embtel Solutions');
   expect((await request.get('/indexnow-key.txt')).status()).toBe(404); // no key configured in e2e
 });
+
+test('Open Graph images are generated per page, with a default fallback', async ({ request, page }) => {
+  for (const path of ['/opengraph-image', '/law-industry/opengraph-image', '/nope/opengraph-image']) {
+    const res = await request.get(path);
+    expect(res.status(), path).toBe(200);
+    expect(res.headers()['content-type'], path).toBe('image/png');
+    expect((await res.body()).subarray(1, 4).toString(), path).toBe('PNG');
+  }
+  await page.goto('/law-industry');
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', `http://localhost:${E2E_PORT}/law-industry/opengraph-image`);
+});
