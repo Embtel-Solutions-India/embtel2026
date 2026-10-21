@@ -1,0 +1,25 @@
+{
+  "slug": "website-speed-costing-you-customers",
+  "title": "Why a One-Second Delay in Load Time Can Cost You Customers",
+  "shortDescription": "Speed isn’t a nice-to-have anymore — it’s often the difference between a visitor becoming a customer and bouncing straight to a competitor.",
+  "content": "<p>A visitor decides whether to stay on a page within the first few seconds — often before any content has finished loading. For small business sites, that window is usually lost to problems that have nothing to do with the design and everything to do with what’s happening behind the scenes.</p><h2>Where the seconds actually go</h2><p>Unoptimized images are the single biggest culprit we see — a hero photo exported straight from a phone can be ten times larger than it needs to be. After that, it’s usually third-party scripts: chat widgets, tracking pixels, and embeds that each add their own round trip before the page feels usable.</p><h2>Speed is a ranking factor, not just a UX one</h2><p>Search engines measure Core Web Vitals directly and use them in ranking. A fast site with mediocre content can outrank a beautiful site that takes too long to become interactive — speed is no longer separable from SEO.</p><h2>Mobile makes the problem worse</h2><p>Most small business traffic is mobile, often on a slower connection than whatever was used to build and test the site. A page that loads in two seconds on office wifi can take eight or more on a phone in the field — test on throttled mobile, not just a desktop browser.</p><h2>The fixes are usually small</h2><p>Compressing and correctly sizing images, lazy-loading anything below the fold, and trimming scripts that aren’t earning their keep will resolve most of the problem on an existing site — a full rebuild is rarely what’s actually needed.</p><blockquote>Customers don’t file a complaint about a slow website — they just leave, and most site owners never see it happen.</blockquote><p>If you don’t know your current numbers, that’s the first step: run the homepage and one or two key pages through a speed test and see where the time is actually going before changing anything.</p>",
+  "featuredImage": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80",
+  "imageAltText": "Developer reviewing code on a laptop screen",
+  "authorName": "Embtel Team",
+  "publishedAt": "2026-09-02T09:00:00.000Z",
+  "readingTime": 5,
+  "status": "published",
+  "category": "web-development",
+  "tags": [
+    "web-development",
+    "performance",
+    "ux"
+  ],
+  "seo": {
+    "metaTitle": "Why a One-Second Delay in Load Time Can Cost You Customers",
+    "metaDescription": "How page speed affects conversions and rankings for small business websites, and the fixes that make the biggest difference."
+  },
+  "faqs": [],
+  "keyTakeaways": [],
+  "sources": []
+}

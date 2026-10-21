@@ -40,8 +40,9 @@ Public pages are stored as page documents (ordered, validated blocks) in the `pa
 organisation details and the Google Ads / Elfsight IDs live in the `settings` document.
 
 - `npm run content:import` — one-time conversion of the legacy `embtel-final/` HTML into reviewable JSON in
-  `content/pages/` (30 pages; the blog arrives in Phase 3). Any section it does not recognise stops the import.
-- `npm run content:seed` — loads `content/settings.json` and `content/pages/*.json` into the database (env from
+  `content/pages/` (30 pages) and the legacy blog into `content/blog/` (6 posts, categories, tags with their
+  related-service links). Any section it does not recognise stops the import.
+- `npm run content:seed` — loads `content/settings.json`, `content/pages/*.json` and `content/blog/` into the database (env from
   `.env.local`). Idempotent: existing pages are never overwritten (admin edits win) unless named with
   `-- --force=home,about`; settings only receive fields that are empty. Refuses to run with `VERCEL_ENV=production`
   unless `-- --yes` is passed. Cached pages refresh on the next deploy (from Phase 5, on publish).

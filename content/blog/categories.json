@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Automation",
+    "slug": "automation",
+    "description": ""
+  },
+  {
+    "name": "SEO & Marketing",
+    "slug": "seo-marketing",
+    "description": ""
+  },
+  {
+    "name": "AI Integrations",
+    "slug": "ai-integrations",
+    "description": ""
+  },
+  {
+    "name": "Web Development",
+    "slug": "web-development",
+    "description": ""
+  },
+  {
+    "name": "Analytics & Dashboards",
+    "slug": "analytics-dashboards",
+    "description": ""
+  },
+  {
+    "name": "Cybersecurity",
+    "slug": "cybersecurity",
+    "description": ""
+  }
+]

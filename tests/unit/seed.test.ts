@@ -105,3 +105,42 @@ describe('seedContent settings validation', () => {
     expect((await db().collection('settings').findOne({ key: 'site' }))?.logo).toBe('/images/logo.png');
   });
 });
+
+describe('seedContent blog', () => {
+  const blog = {
+    categories: [{ name: 'Automation', slug: 'automation', description: '' }],
+    tags: [{ name: 'Workflows', slug: 'workflows', serviceSlug: 'business-automation' }],
+    posts: [{
+      slug: 'p1', title: 'Post one', shortDescription: 'S', content: '<p>x</p>', featuredImage: '', imageAltText: '', authorName: 'Embtel Team',
+      publishedAt: '2026-09-01T09:00:00.000Z', readingTime: 3, status: 'published' as const, category: 'automation', tags: ['workflows'],
+      seo: { metaTitle: '', metaDescription: '' }, faqs: [], keyTakeaways: [], sources: [],
+    }],
+  };
+
+  it('inserts posts with resolved category/tag ids, once', async () => {
+    const { seedContent } = await import('@/lib/content/seed');
+    await db().collection('blogs').deleteMany({});
+    await db().collection('categories').deleteMany({});
+    await db().collection('tags').deleteMany({});
+    const r1 = await seedContent({ pages: [], settings: SETTINGS, blog });
+    expect(r1.postsInserted).toEqual(['p1']);
+    const post = await db().collection('blogs').findOne({ slug: 'p1' });
+    const cat = await db().collection('categories').findOne({ slug: 'automation' });
+    const tag = await db().collection('tags').findOne({ slug: 'workflows' });
+    expect(String(post?.category)).toBe(String(cat?._id));
+    expect(post?.tags.map(String)).toEqual([String(tag?._id)]);
+    expect(post?.publishedAt).toBeInstanceOf(Date);
+    const r2 = await seedContent({ pages: [], settings: SETTINGS, blog });
+    expect(r2.postsInserted).toEqual([]);
+    expect(r2.postsSkipped).toEqual(['p1']);
+  });
+
+  it('never overwrites an edited post, category or tag', async () => {
+    const { seedContent } = await import('@/lib/content/seed');
+    await db().collection('blogs').updateOne({ slug: 'p1' }, { $set: { title: 'Edited' } });
+    await db().collection('tags').updateOne({ slug: 'workflows' }, { $set: { serviceSlug: 'web-development' } });
+    await seedContent({ pages: [], settings: SETTINGS, blog });
+    expect((await db().collection('blogs').findOne({ slug: 'p1' }))?.title).toBe('Edited');
+    expect((await db().collection('tags').findOne({ slug: 'workflows' }))?.serviceSlug).toBe('web-development');
+  });
+});

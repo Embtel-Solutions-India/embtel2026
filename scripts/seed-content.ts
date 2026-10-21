@@ -5,17 +5,25 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import mongoose from 'mongoose';
 import type { Page } from '../src/lib/content/blocks';
+import type { SeedBlog } from '../src/lib/content/blog-seed';
 import { seedContent } from '../src/lib/content/seed';
 import { SiteSettingsSchema, type SiteSettings } from '../src/lib/content/settings';
 
-export function readContent(dir = 'content'): { pages: Page[]; settings: SiteSettings } {
+export function readContent(dir = 'content'): { pages: Page[]; settings: SiteSettings; blog: SeedBlog } {
   const pagesDir = join(dir, 'pages');
   const pages = readdirSync(pagesDir)
     .filter((f) => f.endsWith('.json'))
     .sort()
     .map((f) => JSON.parse(readFileSync(join(pagesDir, f), 'utf8')) as Page);
   const settings = SiteSettingsSchema.parse(JSON.parse(readFileSync(join(dir, 'settings.json'), 'utf8')));
-  return { pages, settings };
+  const json = (f: string) => JSON.parse(readFileSync(join(dir, 'blog', f), 'utf8'));
+  const postsDir = join(dir, 'blog', 'posts');
+  const blog: SeedBlog = {
+    categories: json('categories.json'),
+    tags: json('tags.json'),
+    posts: readdirSync(postsDir).filter((f) => f.endsWith('.json')).sort().map((f) => JSON.parse(readFileSync(join(postsDir, f), 'utf8'))),
+  };
+  return { pages, settings, blog };
 }
 
 async function main() {
@@ -28,6 +36,7 @@ async function main() {
   const force = args.find((a) => a.startsWith('--force='))?.slice('--force='.length).split(',').filter(Boolean) ?? [];
   const r = await seedContent({ ...readContent(), force });
   console.log(`pages inserted: ${r.inserted.length}, skipped (already present): ${r.skipped.length}, settings fields filled: ${r.settingsFieldsFilled.length}`);
+  console.log(`posts inserted: ${r.postsInserted.length}, skipped (already present): ${r.postsSkipped.length}`);
   console.log('Cached pages refresh on the next deploy (or, from Phase 5, on publish).');
 }
 
