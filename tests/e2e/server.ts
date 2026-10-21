@@ -28,6 +28,10 @@ async function main() {
   await mongoose.connection.db!.collection('pages').insertMany(
     PAGE_FIXTURES.filter((p) => p.status === 'draft').map((p) => ({ ...p, updatedAt: new Date() })),
   );
+  // Authors: one with a published post (author page + byline link), one without (404).
+  const writer = await User.create({ name: 'Ritu Writer', email: 'ritu@example.com', password: rnd(16), role: 'marketing', slug: 'ritu-writer', bio: 'Writes about dashboards and reporting.', jobTitle: 'Content Lead', expertise: ['Analytics'] });
+  await User.create({ name: 'Idle Writer', email: 'idle@example.com', password: rnd(16), role: 'marketing', slug: 'idle-writer' });
+  await mongoose.connection.db!.collection('blogs').updateOne({ slug: 'dashboard-guide-for-growing-businesses' }, { $set: { author: writer._id } });
   // A draft post: its URL must 404 and it must never be listed.
   await mongoose.connection.db!.collection('blogs').insertOne({
     slug: 'secret-post', title: 'Secret Post', shortDescription: 'Hidden', content: '<p>Hidden</p>', status: 'draft',
