@@ -1,12 +1,14 @@
 import { fileURLToPath } from "node:url";
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  plugins: [react()],
   resolve: {
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
   test: {
-    include: ["src/**/*.test.ts", "tests/**/*.test.ts"],
+    include: ["src/**/*.test.{ts,tsx}", "tests/**/*.test.{ts,tsx}"],
     passWithNoTests: true,
     globalSetup: ["tests/helpers/global-setup.ts"],
     hookTimeout: 300_000, // first run may download mongod
