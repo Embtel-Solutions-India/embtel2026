@@ -42,3 +42,13 @@ test('login with messy-case email, then logout blocks dashboard again', async ({
   await page.goto('/admin/dashboard');
   await expect(page).toHaveURL(/\/admin\/login\?redirect=%2Fadmin%2Fdashboard$/);
 });
+
+test('/admin redirects: unauthenticated to login, authenticated to dashboard', async ({ page }) => {
+  await page.goto('/admin');
+  await expect(page).toHaveURL(/\/admin\/login\?redirect=%2Fadmin$/);
+  const { email, password } = creds();
+  await login(page, email, password);
+  await expect(page).toHaveURL(/\/admin\/dashboard$/);
+  await page.goto('/admin');
+  await expect(page).toHaveURL(/\/admin\/dashboard$/);
+});

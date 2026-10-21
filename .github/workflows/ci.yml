@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
 
 # gitleaks-action@v2 lists a PR's commits via the API, which needs pull-requests: read
@@ -12,7 +13,7 @@ permissions:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 env:
   MONGOMS_DOWNLOAD_DIR: /home/runner/.cache/mongodb-binaries
@@ -33,7 +34,7 @@ jobs:
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - id: mms
         name: Resolve mongodb-memory-server version

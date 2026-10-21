@@ -1,3 +1,5 @@
+// NOTE: src/proxy.ts does not protect server actions: they can be POSTed to any path.
+// Every admin server action must call requireUser()/requirePermission() itself.
 import 'server-only';
 import { cache } from 'react';
 import { cookies } from 'next/headers';

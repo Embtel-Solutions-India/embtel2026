@@ -1,7 +1,10 @@
 const freeze = (o: Record<string, readonly string[]>) =>
   Object.freeze(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Object.freeze([...v])])));
 
-// Single CSP allow-list. Phase 5 adds third-party origins (GTM/GA/Tawk) here. Frozen: no runtime mutation.
+// Single CSP allow-list. Frozen: no runtime mutation.
+// With 'strict-dynamic', CSP3 browsers ignore host allow-lists in script-src, so third-party
+// scripts (GTM, GA, Tawk) must be loaded via nonce'd next/script. Only img-src/connect-src/
+// frame-src hosts belong here.
 export const CSP_SOURCES: Readonly<Record<string, readonly string[]>> = freeze({
   'default-src': ["'self'"],
   'script-src': ["'self'"],
