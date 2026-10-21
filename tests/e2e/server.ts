@@ -28,6 +28,11 @@ async function main() {
   await mongoose.connection.db!.collection('pages').insertMany(
     PAGE_FIXTURES.filter((p) => p.status === 'draft').map((p) => ({ ...p, updatedAt: new Date() })),
   );
+  // A draft post: its URL must 404 and it must never be listed.
+  await mongoose.connection.db!.collection('blogs').insertOne({
+    slug: 'secret-post', title: 'Secret Post', shortDescription: 'Hidden', content: '<p>Hidden</p>', status: 'draft',
+    publishedAt: new Date('2026-09-01T09:00:00Z'), isDeleted: false, tags: [], updatedAt: new Date(),
+  });
   await mongoose.disconnect();
 
   fs.mkdirSync(path.dirname(CREDS_FILE), { recursive: true });

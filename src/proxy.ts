@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { verifySessionToken } from '@/lib/auth/token';
 import { RESERVED_SLUGS } from '@/lib/content/blocks';
-import { isPublishedSlug } from '@/lib/content/page-index';
+import { isKnownPath } from '@/lib/content/page-index';
 import { buildCsp } from '@/lib/security/csp';
 
 const ADMIN = /^\/admin(\/|$)/;
@@ -22,18 +22,26 @@ function withCsp(req: NextRequest, notFound = false) {
   return res;
 }
 
-// Single-segment paths that are real app routes (not CMS pages). Phase 3 adds `blog`.
-const APP_ROUTES = new Set(['robots.txt', 'sitemap.xml', 'llms.txt', 'manifest.webmanifest', 'indexnow-key.txt', 'opengraph-image']);
+// Single-segment paths that are real app routes (not CMS pages).
+const APP_ROUTES = new Set(['robots.txt', 'sitemap.xml', 'llms.txt', 'manifest.webmanifest', 'indexnow-key.txt', 'opengraph-image', 'blog', 'feed.xml']);
+// Multi-segment CMS sections: every path under these must be in the index.
+const CMS_SECTION = /^\/(blog|authors)\//;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-// Every other single-segment path must be a published page; anything else gets a real HTTP 404 here,
-// because once a dynamic page streams Next can only answer 200 + noindex.
+// Single-segment paths must be a published page and paths under /blog/ or /authors/ must be public
+// content; anything else gets a real HTTP 404 here, because once a dynamic page streams Next can
+// only answer 200 + noindex. OG image routes handle unknown slugs themselves.
 async function isUnknownPage(pathname: string): Promise<boolean> {
+  if (pathname.endsWith('/opengraph-image')) return false;
   const seg = /^\/([^/]+)$/.exec(pathname)?.[1];
-  if (!seg || APP_ROUTES.has(seg)) return false;
-  if (seg === '404' || seg === 'home' || !SLUG.test(seg) || RESERVED_SLUGS.includes(seg)) return true; // home lives at `/`
+  if (seg) {
+    if (APP_ROUTES.has(seg)) return false;
+    if (seg === '404' || seg === 'home' || !SLUG.test(seg) || RESERVED_SLUGS.includes(seg)) return true; // home lives at `/`
+  } else if (!CMS_SECTION.test(pathname)) {
+    return false; // `/`, assets and other app routes
+  }
   try {
-    return !(await isPublishedSlug(seg));
+    return !(await isKnownPath(pathname));
   } catch {
     console.error('[proxy] page index unavailable; rendering normally');
     return false; // fail open: the page itself still 404s (200 + noindex) if missing

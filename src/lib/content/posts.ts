@@ -5,6 +5,7 @@ import { Blog } from '@/lib/db/models/Blog';
 import { Category } from '@/lib/db/models/Category';
 import { Tag } from '@/lib/db/models/Tag';
 import { User } from '@/lib/db/models/User';
+import { PUBLIC_FILTER } from './visibility';
 
 export const POSTS_TAG = 'posts';
 export const TAXONOMY_TAG = 'taxonomy';
@@ -43,8 +44,7 @@ export type PostPage = { items: PostCard[]; page: number; pages: number; total: 
 export type ListOptions = { page?: number; perPage?: number; category?: string; tag?: string; authorSlug?: string; q?: string };
 type Term = { name: string; slug: string; description?: string };
 
-// A post is public only when published, already due, and not soft-deleted.
-export const PUBLIC_FILTER = (now = new Date()) => ({ status: 'published', publishedAt: { $lte: now }, isDeleted: { $ne: true } });
+export { PUBLIC_FILTER } from './visibility';
 
 const AUTHOR_FIELDS = 'name slug bio jobTitle avatar sameAs expertise';
 const iso = (d: unknown) => (d instanceof Date ? d.toISOString() : new Date(0).toISOString());

@@ -90,10 +90,17 @@ test('Open Graph images are generated per page, with a default fallback', async 
 });
 
 test('reserved, malformed and direct /404 paths return a real 404 status', async ({ request }) => {
-  for (const path of ['/blog', '/api', '/authors', '/About', '/index.php', '/404']) {
+  for (const path of ['/api', '/authors', '/About', '/index.php', '/404']) {
     expect((await request.get(path)).status(), path).toBe(404);
   }
   for (const path of ['/robots.txt', '/sitemap.xml', '/llms.txt', '/manifest.webmanifest', '/opengraph-image']) {
     expect((await request.get(path)).status(), path).toBe(200);
+  }
+});
+
+test('unknown or hidden blog URLs return a real 404', async ({ request }) => {
+  const ua = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
+  for (const path of ['/blog/does-not-exist', '/blog/secret-post', '/blog/category/nope', '/blog/tag/nope', '/authors/nope', '/blog/a/b/c']) {
+    expect((await request.get(path, { headers: { 'user-agent': ua } })).status(), path).toBe(404);
   }
 });
