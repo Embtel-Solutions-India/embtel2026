@@ -1,0 +1,312 @@
+{
+  "organization": {
+    "name": "Embtel Solutions",
+    "legalName": "",
+    "email": "info@embtelsolutions.com",
+    "phone": "+15109627900",
+    "phoneDisplay": "+1 (510) 962-7900",
+    "address": {
+      "street": "",
+      "city": "",
+      "region": "",
+      "postalCode": "",
+      "country": "US"
+    },
+    "openingHours": [],
+    "description": "Embtel Solutions Ltd. delivers tailored web design, development, and digital marketing services focused on client success. We prioritize customer satisfaction through expert support and guidance at every stage."
+  },
+  "logo": "/images/logo.png",
+  "headerNav": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Services",
+      "href": "/services",
+      "children": [
+        {
+          "label": "Web Development",
+          "subtitle": "Websites, apps & landing pages",
+          "href": "/web-development"
+        },
+        {
+          "label": "Digital Marketing",
+          "subtitle": "SEO, content & growth strategy",
+          "href": "/digital-marketing"
+        },
+        {
+          "label": "Business Automation",
+          "subtitle": "Workflows, CRM & billing automation",
+          "href": "/business-automation"
+        },
+        {
+          "label": "AI Integrations",
+          "subtitle": "Chatbots, document AI & LLM workflows",
+          "href": "/ai-integrations"
+        },
+        {
+          "label": "Analytics & Dashboards",
+          "subtitle": "Real-time data & custom dashboards",
+          "href": "/analytics-dashboards"
+        },
+        {
+          "label": "SEO & GEO",
+          "subtitle": "Paid ads, geo targeting & retargeting",
+          "href": "/seo-geo"
+        },
+        {
+          "label": "Cybersecurity",
+          "subtitle": "Security audits, compliance & protection",
+          "href": "/cybersecurity"
+        },
+        {
+          "label": "E-Commerce",
+          "subtitle": "Online stores, marketplaces & payments",
+          "href": "/e-commerce"
+        },
+        {
+          "label": "Home Services Automation",
+          "subtitle": "AI receptionist & job booking",
+          "href": "/home-services-automation"
+        },
+        {
+          "label": "Dental Automation",
+          "subtitle": "Reminders, booking & patient recall",
+          "href": "/dental-automation"
+        },
+        {
+          "label": "Restaurant Automation",
+          "subtitle": "Commission-free ordering & reviews",
+          "href": "/restaurant-automation"
+        },
+        {
+          "label": "Real Estate Automation",
+          "subtitle": "Speed-to-lead & lead nurture",
+          "href": "/real-estate-automation"
+        }
+      ]
+    },
+    {
+      "label": "Industries",
+      "href": "/industries",
+      "children": [
+        {
+          "label": "Accounting Firm",
+          "subtitle": "Financial services & bookkeeping solutions",
+          "href": "/accounting-firm-industry"
+        },
+        {
+          "label": "Cleaning Industry",
+          "subtitle": "Commercial & residential cleaning services",
+          "href": "/cleaning-industry"
+        },
+        {
+          "label": "Cyber Security",
+          "subtitle": "Protect your digital assets & data",
+          "href": "/cyber-security-industry"
+        },
+        {
+          "label": "Healthcare",
+          "subtitle": "Medical practices & health tech solutions",
+          "href": "/healthcare-industry"
+        },
+        {
+          "label": "Home Services",
+          "subtitle": "Home improvement & maintenance services",
+          "href": "/home-services-industry"
+        },
+        {
+          "label": "Immigration Firm",
+          "subtitle": "Visa & immigration legal services",
+          "href": "/immigration-firm-industry"
+        },
+        {
+          "label": "IT Industry",
+          "subtitle": "Technology & software solutions",
+          "href": "/it-industry"
+        },
+        {
+          "label": "Law Industry",
+          "subtitle": "Legal firms & attorney services",
+          "href": "/law-industry"
+        },
+        {
+          "label": "Retail Industry",
+          "subtitle": "E-commerce & retail business solutions",
+          "href": "/retail-industry"
+        }
+      ]
+    },
+    {
+      "label": "Work",
+      "href": "/work"
+    },
+    {
+      "label": "Process",
+      "href": "/process"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "headerCta": {
+    "label": "Get Started",
+    "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=organic"
+  },
+  "footer": {
+    "description": "Embtel Solutions Ltd. delivers tailored web design, development, and digital marketing services focused on client success. We prioritize customer satisfaction through expert support and guidance at every stage.",
+    "columns": [
+      {
+        "title": "Services",
+        "links": [
+          {
+            "label": "Web Development",
+            "href": "/web-development"
+          },
+          {
+            "label": "Digital Marketing",
+            "href": "/digital-marketing"
+          },
+          {
+            "label": "Business Automation",
+            "href": "/business-automation"
+          },
+          {
+            "label": "AI Integrations",
+            "href": "/ai-integrations"
+          },
+          {
+            "label": "Analytics & Dashboards",
+            "href": "/analytics-dashboards"
+          },
+          {
+            "label": "SEO & GEO",
+            "href": "/seo-geo"
+          },
+          {
+            "label": "Cybersecurity",
+            "href": "/cybersecurity"
+          },
+          {
+            "label": "E-Commerce",
+            "href": "/e-commerce"
+          }
+        ]
+      },
+      {
+        "title": "Industries",
+        "links": [
+          {
+            "label": "Accounting Firm",
+            "href": "/accounting-firm-industry"
+          },
+          {
+            "label": "Cleaning Industry",
+            "href": "/cleaning-industry"
+          },
+          {
+            "label": "Cyber Security",
+            "href": "/cyber-security-industry"
+          },
+          {
+            "label": "Healthcare",
+            "href": "/healthcare-industry"
+          },
+          {
+            "label": "Home Services",
+            "href": "/home-services-industry"
+          },
+          {
+            "label": "Immigration Firm",
+            "href": "/immigration-firm-industry"
+          },
+          {
+            "label": "IT Industry",
+            "href": "/it-industry"
+          },
+          {
+            "label": "Law Industry",
+            "href": "/law-industry"
+          },
+          {
+            "label": "Retail Industry",
+            "href": "/retail-industry"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "About Us",
+            "href": "/about"
+          },
+          {
+            "label": "Case Studies",
+            "href": "/work"
+          },
+          {
+            "label": "Our Process",
+            "href": "/process"
+          },
+          {
+            "label": "Blog",
+            "href": "/blog"
+          },
+          {
+            "label": "Contact",
+            "href": "/contact"
+          }
+        ]
+      }
+    ],
+    "copyright": "Copyright 2026 Embtel Solutions- All Rights Reserved. Designed by Embtel Solutions, Inc.",
+    "legalLinks": [
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy-policy"
+      },
+      {
+        "label": "Terms of Service",
+        "href": "/terms-of-service"
+      }
+    ]
+  },
+  "social": [
+    {
+      "network": "facebook",
+      "url": "https://www.facebook.com/embtelsolutionsinc"
+    },
+    {
+      "network": "instagram",
+      "url": "https://instagram.com/embtelsolutions"
+    },
+    {
+      "network": "linkedin",
+      "url": "https://www.linkedin.com/company/embtel-solutions-inc-2/"
+    },
+    {
+      "network": "x",
+      "url": "https://twitter.com/embtelsolutions"
+    }
+  ],
+  "whatsapp": {
+    "number": "15109627900",
+    "message": "Hi Embtel Solutions, I'd like to know more about your services."
+  },
+  "integrations": {
+    "googleAdsId": "AW-18518114785",
+    "elfsightReviewsAppId": "0804c920-a003-45d4-8ceb-8f4b7a45f7e4"
+  },
+  "defaultOgImage": ""
+}
