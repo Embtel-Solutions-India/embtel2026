@@ -50,21 +50,23 @@ organisation details and the Google Ads / Elfsight IDs live in the `settings` do
 ## Lighthouse budgets
 
 `npm run lhci` (run with `VERCEL_ENV=production`) builds the app, seeds the full content into an in-memory DB and
-runs Lighthouse (mobile preset, 3 runs, median; Google tag/Elfsight blocked) on six public templates. CI fails on
+runs Lighthouse (mobile preset, 3 runs, median; Google tag/Elfsight blocked) on eight public templates incl. `/blog` and a post. CI fails on
 SEO < 1, accessibility < 0.95, best practices < 0.95 or CLS > 0.1. Performance ≥ 0.9 and LCP ≤ 2.5 s are
 **warnings** for now: the lab gap is React start-up JavaScript under Lighthouse's 4× CPU throttling (the page HTML
 and first paint arrive early), not server rendering — see docs for the Phase 2 owner decision.
 
-Baseline (2026-10-22, local):
+Baseline (2026-10-22, local, Phase 3 — incl. blog):
 
 | Page | Perf | A11y | BP | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|
-| / | 0.69 | 1 | 1 | 1 | 3.9s | 0.000 | 630ms |
-| /web-development | 0.88 | 1 | 1 | 1 | 3.4s | 0.002 | 150ms |
-| /law-industry | 0.84 | 1 | 1 | 1 | 3.5s | 0.049 | 290ms |
-| /dental-automation | 0.89 | 1 | 1 | 1 | 3.4s | 0.001 | 139ms |
-| /about | 0.86 | 1 | 1 | 1 | 3.7s | 0.004 | 207ms |
-| /privacy-policy | 0.89 | 1 | 1 | 1 | 3.5s | 0.000 | 143ms |
+| / | 0.86 | 1 | 1 | 1 | 3.9s | 0.000 | 101ms |
+| /web-development | 0.89 | 1 | 1 | 1 | 3.5s | 0.002 | 119ms |
+| /law-industry | 0.89 | 1 | 1 | 1 | 3.5s | 0.049 | 108ms |
+| /dental-automation | 0.89 | 1 | 1 | 1 | 3.5s | 0.001 | 107ms |
+| /about | 0.91 | 1 | 1 | 1 | 3.3s | 0.004 | 79ms |
+| /privacy-policy | 0.88 | 1 | 1 | 1 | 3.5s | 0.000 | 145ms |
+| /blog | 0.87 | 1 | 1 | 1 | 4.0s | 0.002 | 53ms |
+| /blog/website-speed-costing-you-customers | 0.9 | 1 | 1 | 1 | 3.5s | 0.013 | 46ms |
 
 ## Database migrations
 

@@ -10,7 +10,9 @@
         "http://localhost:3100/law-industry",
         "http://localhost:3100/dental-automation",
         "http://localhost:3100/about",
-        "http://localhost:3100/privacy-policy"
+        "http://localhost:3100/privacy-policy",
+        "http://localhost:3100/blog",
+        "http://localhost:3100/blog/website-speed-costing-you-customers"
       ],
       "numberOfRuns": 3,
       "settings": {
