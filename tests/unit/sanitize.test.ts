@@ -35,3 +35,26 @@ describe('richText sanitises', () => {
     expect(headings.map((h) => h.id)).toEqual(['terms', 'terms-2']);
   });
 });
+
+describe('post html sanitises', () => {
+  it('keeps only https/internal images, with alt, lazy loading and async decoding', () => {
+    const { html } = sanitizeRichHtml(
+      '<img src="http://x/a.png" alt="h"><img src="data:image/png;base64,AAA" alt="d"><img src=x onerror="alert(1)"><img src="https://images.unsplash.com/p.jpg" alt="A"><img src="/images/logo.png" alt="L">',
+      { images: true },
+    );
+    expect(html).not.toMatch(/http:\/\/x|data:|onerror/);
+    expect(html).toContain('<img src="https://images.unsplash.com/p.jpg" alt="A" loading="lazy" decoding="async" />');
+    expect(html).toContain('<img src="/images/logo.png" alt="L" loading="lazy" decoding="async" />');
+    expect((html.match(/<img/g) ?? []).length).toBe(2);
+  });
+
+  it('keeps figures, captions and code blocks', () => {
+    const { html } = sanitizeRichHtml('<figure><img src="https://a.b/c.png" alt="c"><figcaption>Cap</figcaption></figure><pre><code>x &lt; 1</code></pre>', { images: true });
+    expect(html).toContain('<figcaption>Cap</figcaption>');
+    expect(html).toContain('<pre><code>x &lt; 1</code></pre>');
+  });
+
+  it('richText (no images option) still strips images', () => {
+    expect(sanitizeRichHtml('<img src="https://a.b/c.png" alt="c"><p>t</p>').html).toBe('<p>t</p>');
+  });
+});
