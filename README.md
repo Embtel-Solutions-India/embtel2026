@@ -30,4 +30,4 @@ Secrets never go in the repo. `.env.example` holds placeholders only; real value
 
 ## Operator scripts
 
-`db:migrate` and `admin:create` connect to the real database and need the full environment loaded (for example `vercel env pull .env.local`, then run with that env exported). `admin:create` prompts for name, email and password (hidden, entered twice, min 12 chars); credentials are never read from arguments, env or files.
+`npm run db:migrate` and `npm run admin:create` connect to the real database and load `.env.local` (`tsx --env-file=.env.local`). Populate it first, e.g. `vercel env pull .env.local`. To use another file, run `npx tsx --env-file=<file> scripts/migrate-db.ts` directly. `admin:create` prompts for name, email and password (hidden, entered twice, min 12 chars); credentials are never read from arguments, env or files.

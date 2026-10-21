@@ -8,5 +8,7 @@ export default defineConfig({
   test: {
     include: ["src/**/*.test.ts", "tests/**/*.test.ts"],
     passWithNoTests: true,
+    globalSetup: ["tests/helpers/global-setup.ts"],
+    hookTimeout: 300_000, // first run may download mongod
   },
 });

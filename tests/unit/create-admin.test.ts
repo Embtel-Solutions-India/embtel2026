@@ -26,6 +26,13 @@ describe('createAdmin', () => {
     expect(u?.email).toBe(email);
   });
 
+  it('sets a unique slug from the name', async () => {
+    const a = await createAdmin({ name: 'Slug Person', email: mail(), password: pw() });
+    const b = await createAdmin({ name: 'Slug Person', email: mail(), password: pw() });
+    expect((await User.findById(a.id))?.slug).toBe('slug-person');
+    expect((await User.findById(b.id))?.slug).toBe('slug-person-2');
+  });
+
   it('rejects a short password', async () => {
     await expect(
       createAdmin({ name: 'Ada', email: mail(), password: crypto.randomBytes(4).toString('hex') }),

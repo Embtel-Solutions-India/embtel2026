@@ -13,6 +13,10 @@ const out = new Writable({
   },
 });
 const rl = createInterface({ input: process.stdin, output: out, terminal: true });
+rl.on('SIGINT', () => {
+  process.stdout.write('\n');
+  process.exit(130);
+});
 const ask = (q: string, hidden = false) =>
   new Promise<string>((resolve) => {
     process.stdout.write(q);

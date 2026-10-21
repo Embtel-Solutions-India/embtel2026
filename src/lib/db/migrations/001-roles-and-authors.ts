@@ -1,5 +1,5 @@
 import type mongoose from 'mongoose';
-import { toSlug } from '@/lib/slug';
+import { uniqueSlug } from '@/lib/slug';
 
 export const MIGRATION_001 = '001-roles-and-authors';
 
@@ -22,10 +22,7 @@ export async function runMigration001(
     .toArray();
 
   for (const u of missing) {
-    const base = toSlug(typeof u.name === 'string' ? u.name : '') || 'user';
-    let slug = base;
-    for (let n = 2; taken.has(slug); n++) slug = `${base}-${n}`;
-    taken.add(slug);
+    const slug = uniqueSlug(typeof u.name === 'string' ? u.name : '', taken);
     await users.updateOne({ _id: u._id }, { $set: { slug } });
   }
 
