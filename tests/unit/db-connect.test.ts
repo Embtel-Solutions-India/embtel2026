@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { connectDB } from '@/lib/db/connect';
 import { startMemoryMongo } from '../helpers/mongo';
 
@@ -8,7 +8,6 @@ beforeAll(async () => {
   mongo = await startMemoryMongo();
 }, 300_000);
 afterAll(async () => {
-  await mongoose.disconnect();
   await mongo?.stop();
 });
 
@@ -20,9 +19,13 @@ describe('connectDB', () => {
   }, 30_000);
 
   it('returns the same connection on repeated calls', async () => {
-    const a = await connectDB(mongo.uri);
-    const b = await connectDB(mongo.uri);
+    await mongoose.disconnect();
+    (globalThis as { __mongoose?: unknown }).__mongoose = undefined;
+    const spy = vi.spyOn(mongoose, 'connect');
+    const [a, b] = await Promise.all([connectDB(mongo.uri), connectDB(mongo.uri)]);
     expect(a).toBe(b);
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(mongoose.connection.readyState).toBe(1);
+    spy.mockRestore();
   });
 });
