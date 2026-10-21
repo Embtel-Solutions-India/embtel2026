@@ -48,3 +48,15 @@ describe('buildCsp', () => {
     expect(Object.isFrozen(CSP_SOURCES['script-src'])).toBe(true);
   });
 });
+
+describe('third-party hosts (Google Ads tag, Elfsight)', () => {
+  it('allows only data hosts outside script-src', () => {
+    const csp = buildCsp({ nonce: 'abc123' });
+    expect(directive(csp, 'img-src')).toContain('https://www.googletagmanager.com');
+    expect(directive(csp, 'connect-src')).toContain('https://www.google.com');
+    expect(directive(csp, 'connect-src')).toContain('https://*.elfsight.com');
+    expect(directive(csp, 'frame-src')).toContain('https://*.elfsight.com');
+    expect(directive(csp, 'script-src')).not.toContain('googletagmanager');
+    expect(directive(csp, 'script-src')).not.toContain("'unsafe-inline'");
+  });
+});

@@ -29,7 +29,7 @@ export async function SitePage({ slug }: { slug: string }) {
   return (
     <div style={{ '--ac': page.theme.accent } as CSSProperties}>
       <JsonLd data={pageJsonLd(page, settings)} nonce={nonce} />
-      <BlockRenderer blocks={page.blocks} settings={settings} />
+      <BlockRenderer blocks={page.blocks} settings={settings} nonce={nonce} />
     </div>
   );
 }

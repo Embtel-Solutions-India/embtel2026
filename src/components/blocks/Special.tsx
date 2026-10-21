@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/site/Button';
 import { Icon } from '@/components/site/Icon';
+import { ElfsightLoader } from '@/components/site/ThirdPartyScripts';
 import type { BlockOf } from '@/lib/content/blocks';
 import { renderInline } from '@/lib/content/inline';
 import { sanitizeRichHtml } from '@/lib/content/sanitize';
@@ -276,11 +277,18 @@ export function ContactInfo({ block }: { block: BlockOf<'contactInfo'> }) {
   );
 }
 
-export function Testimonials({ block, settings }: { block: BlockOf<'testimonials'>; settings: SiteSettings }) {
+export function Testimonials({ block, settings, nonce }: { block: BlockOf<'testimonials'>; settings: SiteSettings; nonce?: string }) {
   const appId = settings.integrations.elfsightReviewsAppId;
   return (
     <Section header={block.header ? { align: 'center', ...block.header } : undefined}>
-      {appId ? <div className={`elfsight-app-${appId}`} data-elfsight-app-lazy="" /> : <p className="sr-only">Reviews are unavailable.</p>}
+      {appId ? (
+        <>
+          <div className={`elfsight-app-${appId}`} data-elfsight-app-lazy="" />
+          <ElfsightLoader nonce={nonce} />
+        </>
+      ) : (
+        <p className="sr-only">Reviews are unavailable.</p>
+      )}
     </Section>
   );
 }

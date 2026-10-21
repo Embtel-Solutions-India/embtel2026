@@ -17,6 +17,7 @@ export const PAGE_FIXTURES = [
     blocks: [
       { type: 'hero', variant: 'home', badge: 'AI-powered automation', heading: 'Technology that *grows* your business', lead: 'Websites, SEO and automation for growing US businesses.', buttons: [{ label: 'Get Started', href: '/contact' }] },
       { type: 'faq', variant: 'accordion', items: [{ q: 'How long does a website take?', a: 'Most sites launch in four to six weeks.' }] },
+      { type: 'testimonials', provider: 'elfsight', header: { title: 'What clients *say*' } },
       cta,
     ],
   },

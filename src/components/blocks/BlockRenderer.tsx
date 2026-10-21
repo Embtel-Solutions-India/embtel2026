@@ -10,7 +10,7 @@ import { Stats } from './Stats';
 import { Steps } from './Steps';
 import { BeforeAfter, ComparisonTable, ContactInfo, Phases, RichText, Roi, Split, Testimonials, Timeline, WorkGrid } from './Special';
 
-function renderBlock(block: Block, primaryHero: boolean, settings: SiteSettings) {
+function renderBlock(block: Block, primaryHero: boolean, settings: SiteSettings, nonce?: string) {
   switch (block.type) {
     case 'hero':
       return <Hero block={block} primary={primaryHero} />;
@@ -33,7 +33,7 @@ function renderBlock(block: Block, primaryHero: boolean, settings: SiteSettings)
     case 'comparisonTable':
       return <ComparisonTable block={block} />;
     case 'testimonials':
-      return <Testimonials block={block} settings={settings} />;
+      return <Testimonials block={block} settings={settings} nonce={nonce} />;
     case 'contactInfo':
       return <ContactInfo block={block} />;
     case 'workGrid':
@@ -55,7 +55,7 @@ function renderBlock(block: Block, primaryHero: boolean, settings: SiteSettings)
   }
 }
 
-export function BlockRenderer({ blocks, settings }: { blocks: Block[]; settings: SiteSettings }) {
+export function BlockRenderer({ blocks, settings, nonce }: { blocks: Block[]; settings: SiteSettings; nonce?: string }) {
   const firstHero = blocks.findIndex((b) => b.type === 'hero');
-  return <>{blocks.map((b, i) => <div key={i}>{renderBlock(b, i === firstHero, settings)}</div>)}</>;
+  return <>{blocks.map((b, i) => <div key={i}>{renderBlock(b, i === firstHero, settings, nonce)}</div>)}</>;
 }

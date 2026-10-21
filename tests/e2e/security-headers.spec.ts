@@ -29,6 +29,10 @@ for (const path of ['/', '/admin/login']) {
   });
 
   test(`${path} renders with no CSP violations in the console`, async ({ page }) => {
+    // Our own code only: third-party tags are stubbed (tests/e2e/third-party.spec.ts covers loading them).
+    await page.route(/https:\/\/(www\.googletagmanager\.com|elfsightcdn\.com)\//, (r) =>
+      r.fulfill({ status: 200, contentType: 'application/javascript', body: '' }),
+    );
     const errors: string[] = [];
     page.on('console', (m) => {
       // Resource 404s (e.g. prefetching nav targets missing from the test DB) are not CSP issues;
