@@ -161,10 +161,6 @@
           "title": "Xperts Portal — Professional Services Platform",
           "body": "Comprehensive professional services platform connecting businesses with expert consultants and service providers across various industries for streamlined project management and collaboration.",
           "url": "https://xpertsportal.com/",
-          "logo": {
-            "src": "https://www.google.com/s2/favicons?domain=xpertsportal.com&sz=128",
-            "alt": "Xperts Portal"
-          },
           "fallbackEmoji": "💼",
           "theme": "c1",
           "tags": [

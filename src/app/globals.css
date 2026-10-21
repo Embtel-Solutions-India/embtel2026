@@ -56,6 +56,11 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Accent as small text: lightened so it stays ≥ 4.5:1 on ink and card surfaces for every page accent. */
+@utility text-ac {
+  color: color-mix(in srgb, var(--ac) 65%, white);
+}
+
 @utility container-site {
   max-width: 1300px;
   margin-inline: auto;

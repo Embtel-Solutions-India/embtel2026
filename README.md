@@ -34,6 +34,18 @@ Secrets never go in the repo. `.env.example` holds placeholders only; real value
 
 `npm run db:migrate` and `npm run admin:create` connect to the real database and load `.env.local` (`tsx --env-file=.env.local`). Populate it first, e.g. `vercel env pull .env.local`. To use another file, run `npx tsx --env-file=<file> scripts/migrate-db.ts` directly. `admin:create` prompts for name, email and password (hidden, entered twice, min 12 chars); credentials are never read from arguments, env or files.
 
+## Content
+
+Public pages are stored as page documents (ordered, validated blocks) in the `pages` collection; header, footer,
+organisation details and the Google Ads / Elfsight IDs live in the `settings` document.
+
+- `npm run content:import` — one-time conversion of the legacy `embtel-final/` HTML into reviewable JSON in
+  `content/pages/` (30 pages; the blog arrives in Phase 3). Any section it does not recognise stops the import.
+- `npm run content:seed` — loads `content/settings.json` and `content/pages/*.json` into the database (env from
+  `.env.local`). Idempotent: existing pages are never overwritten (admin edits win) unless named with
+  `-- --force=home,about`; settings only receive fields that are empty. Refuses to run with `VERCEL_ENV=production`
+  unless `-- --yes` is passed. Cached pages refresh on the next deploy (from Phase 5, on publish).
+
 ## Database migrations
 
 **Warning: cutover only.** Migration 001 rewrites `editor` to `marketing`, which locks Marketing users out of the legacy blog-admin (it only knows `editor`).

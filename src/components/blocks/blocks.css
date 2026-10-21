@@ -84,7 +84,7 @@
 .v-service { padding: 40px 32px; }
 .v-service h3, .v-why h3 { font-size: 20px; }
 .v-service p, .v-why p { font-size: 14px; line-height: 1.75; }
-.card-arrow { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--color-blue); margin-top: 20px; transition: gap .2s; }
+.card-arrow { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: color-mix(in srgb, var(--ac) 65%, white); margin-top: 20px; transition: gap .2s; }
 .card:hover .card-arrow { gap: 10px; }
 .v-feature { padding: 32px 28px; }
 .v-feature h3, .v-industry h3 { font-size: 18px; }
@@ -93,7 +93,7 @@
 .v-industry { padding: 32px 28px; }
 .v-industry .ico { font-size: 36px; margin-bottom: 16px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-.tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: rgb(26 107 255 / .1); color: var(--color-blue); }
+.tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: rgb(26 107 255 / .1); color: #6a9fff; }
 .v-industryLink { padding: 32px 28px; display: block; }
 .v-industryLink h3 { font-size: 18px; }
 .v-related { border-radius: var(--radius-14); padding: 24px; display: flex; align-items: center; gap: 14px; }
@@ -106,18 +106,18 @@
 .v-trust h3 { font-size: 13.5px; margin-bottom: 6px; }
 .v-trust p { font-size: 12.5px; line-height: 1.6; }
 .v-audit { padding: 36px 30px; }
-.v-audit .an { font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--ac); letter-spacing: 1.5px; margin-bottom: 12px; }
+.v-audit .an { font-family: var(--font-display); font-size: 13px; font-weight: 800; color: color-mix(in srgb, var(--ac) 65%, white); letter-spacing: 1.5px; margin-bottom: 12px; }
 .v-audit h3 { font-size: 17px; }
 .grid-cta { text-align: center; margin-top: 48px; }
 
 /* steps */
 .proc-card { padding: 36px 32px; display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: start; }
-.proc-num { width: 52px; height: 52px; border-radius: 50%; background: var(--color-blue-dim); border: 1px solid rgb(26 107 255 / .3); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--color-blue); }
+.proc-num { width: 52px; height: 52px; border-radius: 50%; background: var(--color-blue-dim); border: 1px solid rgb(26 107 255 / .3); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 18px; font-weight: 800; color: #6a9fff; }
 .proc-week { font-size: 11px; font-weight: 600; color: var(--color-teal); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
 .proc-card h3 { font-size: 18px; margin-bottom: 6px; }
 .proc-card p { font-size: 13.5px; line-height: 1.7; }
 .pc { padding: 32px 28px; display: flex; gap: 18px; align-items: flex-start; }
-.pc-num { width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: color-mix(in srgb, var(--ac) 12%, transparent); border: 1px solid color-mix(in srgb, var(--ac) 25%, transparent); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 16px; font-weight: 800; color: var(--ac); }
+.pc-num { width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: color-mix(in srgb, var(--ac) 12%, transparent); border: 1px solid color-mix(in srgb, var(--ac) 25%, transparent); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 16px; font-weight: 800; color: color-mix(in srgb, var(--ac) 65%, white); }
 .pc h3 { font-size: 16px; margin-bottom: 6px; }
 .pc p { font-size: 13px; line-height: 1.7; }
 .flow { display: flex; align-items: stretch; max-width: 1000px; margin: 0 auto; list-style: none; }
@@ -139,7 +139,7 @@
 .faq-item summary { display: flex; justify-content: space-between; align-items: center; padding: 22px 24px; cursor: pointer; gap: 16px; list-style: none; font-family: var(--font-display); font-size: 15.5px; font-weight: 600; color: #fff; }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-ico { width: 28px; height: 28px; border-radius: 50%; background: rgb(255 255 255 / .06); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--color-m2); flex-shrink: 0; transition: all .3s; }
-.faq-item[open] .faq-ico { background: var(--color-blue-dim); color: var(--color-blue); transform: rotate(45deg); }
+.faq-item[open] .faq-ico { background: var(--color-blue-dim); color: #6a9fff; transform: rotate(45deg); }
 .faq-a { padding: 0 24px 22px; font-size: 14px; color: var(--color-m2); line-height: 1.8; }
 .faq-static { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
 .faq-static .card { padding: 24px 28px; border-radius: var(--radius-14); }

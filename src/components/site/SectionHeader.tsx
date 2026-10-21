@@ -14,7 +14,7 @@ export function SectionHeader({ eyebrow, title, subtitle, align = 'left', as: He
   return (
     <div className={`mb-15 ${center ? 'text-center' : ''}`}>
       {eyebrow && (
-        <p className="mb-3.5 text-[11.5px] font-bold uppercase tracking-[2px] text-[var(--ac)]">{eyebrow}</p>
+        <p className="mb-3.5 text-[11.5px] font-bold uppercase tracking-[2px] text-ac">{eyebrow}</p>
       )}
       {title && (
         <Heading className="mb-4 font-display text-[clamp(30px,3.5vw,46px)] font-extrabold leading-[1.1] tracking-[-1.5px] text-white">

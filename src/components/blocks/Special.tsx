@@ -7,6 +7,7 @@ import { renderInline } from '@/lib/content/inline';
 import { sanitizeRichHtml } from '@/lib/content/sanitize';
 import type { SiteSettings } from '@/lib/content/settings';
 import { Section } from './Section';
+import { WorkLogo } from './WorkLogo';
 
 export function BeforeAfter({ block }: { block: BlockOf<'beforeAfter'> }) {
   return (
@@ -114,7 +115,7 @@ export function WorkGrid({ block }: { block: BlockOf<'workGrid'> }) {
           <li key={i} className="wc">
             <div className={`wc-img ${w.theme}`}>
               {w.logo ? (
-                <Image src={w.logo.src} alt={w.logo.alt} width={96} height={96} />
+                <WorkLogo src={w.logo.src} alt={w.logo.alt} fallback={w.fallbackEmoji} />
               ) : (
                 w.fallbackEmoji && <span aria-hidden="true">{w.fallbackEmoji}</span>
               )}
@@ -178,7 +179,7 @@ export function Split({ block }: { block: BlockOf<'split'> }) {
           <Image src={block.image.src} alt={block.image.alt} width={block.image.width} height={block.image.height} />
         </div>
         <div className="story-text">
-          {block.eyebrow && <p className="mb-3.5 text-[11.5px] font-bold uppercase tracking-[2px] text-[var(--ac)]">{block.eyebrow}</p>}
+          {block.eyebrow && <p className="mb-3.5 text-[11.5px] font-bold uppercase tracking-[2px] text-ac">{block.eyebrow}</p>}
           <h2>{renderInline(block.heading)}</h2>
           {block.paragraphs.map((p, i) => (
             <p key={i}>{p}</p>

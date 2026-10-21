@@ -9,23 +9,25 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { User } from '../../src/lib/db/models/User';
 import { CREDS_FILE, E2E_PORT } from './creds';
 import { PAGE_FIXTURES } from '../helpers/page-fixtures';
+import { readContent } from '../../scripts/seed-content';
+import { seedContent } from '../../src/lib/content/seed';
+import { connectDB } from '../../src/lib/db/connect';
 
 const rnd = (n: number) => crypto.randomBytes(n).toString('hex');
 const nextBin = path.resolve('node_modules/next/dist/bin/next');
 
-async function seedSettings() {
-  const settings = JSON.parse(fs.readFileSync('content/settings.json', 'utf8'));
-  await mongoose.connection.db!.collection('settings').insertOne({ key: 'site', ...settings });
-}
 
 async function main() {
   const mongo = await MongoMemoryServer.create();
   const uri = mongo.getUri('embtel-e2e');
-  await mongoose.connect(uri);
+  await connectDB(uri); // fills the shared connection cache so seedContent() reuses it
   const password = rnd(16);
   await User.create({ name: 'E2E Admin', email: 'admin@example.com', password, role: 'admin' });
-  await seedSettings();
-  await mongoose.connection.db!.collection('pages').insertMany(PAGE_FIXTURES.map((p) => ({ ...p, updatedAt: new Date() })));
+  // Full imported content (as production will have it) plus a draft fixture for 404 checks.
+  await seedContent(readContent());
+  await mongoose.connection.db!.collection('pages').insertMany(
+    PAGE_FIXTURES.filter((p) => p.status === 'draft').map((p) => ({ ...p, updatedAt: new Date() })),
+  );
   await mongoose.disconnect();
 
   fs.mkdirSync(path.dirname(CREDS_FILE), { recursive: true });

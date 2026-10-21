@@ -18,6 +18,9 @@ export const UNIQUE_PAGES: { slug: string; file: string; type: Page['type'] }[] 
 
 const has = (sel: string): Handler['match'] => (el) => el.is(sel) || el.find(sel).length > 0;
 
+// Google's favicon service has no icon for these client sites (404); the legacy page hid them via onerror.
+const NO_FAVICON = ['xpertsportal.com'];
+
 // A section's .hdr used as the page heading (pages whose legacy markup has no <h1>).
 function heroFromHeader(el: $El, $: CheerioAPI): Block {
   const h = header(el, $)!;
@@ -265,7 +268,7 @@ const HANDLERS: Handler[] = [
             title: text($(c).find('h3')),
             body: text($(c).find('.wc-body > p')),
             url: opt($(c).find('h3 a').attr('href') ?? ''),
-            ...(img.length && { logo: { src: img.attr('src')!, alt: img.attr('alt') ?? '' } }),
+            ...(img.length && !NO_FAVICON.some((d) => img.attr('src')!.includes(d)) && { logo: { src: img.attr('src')!, alt: img.attr('alt') ?? '' } }),
             fallbackEmoji: opt(text($(c).find('.wc-img span'))),
             theme,
             tags: $(c).find('.wc-tags .tag').toArray().map((t) => ({ label: text($(t)), tone: (['b', 't', 'o'] as const).find((k) => $(t).hasClass(`tag-${k}`)) ?? 'b' })),

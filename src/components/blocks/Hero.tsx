@@ -65,7 +65,7 @@ export function Hero({ block, primary }: { block: BlockOf<'hero'>; primary: bool
             </ol>
           </nav>
         ) : null}
-        {block.badge && <p className="mb-3.5 text-[11.5px] font-bold uppercase tracking-[2px] text-[var(--ac)]">{block.badge}</p>}
+        {block.badge && <p className="mb-3.5 text-[11.5px] font-bold uppercase tracking-[2px] text-ac">{block.badge}</p>}
         {heading}
         {block.lead && <p className="svc-lead">{block.lead}</p>}
         {buttons}
