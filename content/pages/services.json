@@ -1,0 +1,220 @@
+{
+  "slug": "services",
+  "title": "Services",
+  "status": "published",
+  "type": "standard",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "simple",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services"
+        }
+      ],
+      "heading": "Comprehensive Digital *Solutions*",
+      "lead": "Embtel Solutions offers web design, SEO, digital marketing, AI & development — tailored strategies to grow and elevate your business.",
+      "buttons": [
+        {
+          "label": "Start Your Project →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Discover Our Expertise",
+        "title": "Services We *Offer*",
+        "subtitle": "Get high-quality, modern and cost-effective development solutions by dedicated developers specially assigned to understand your business needs.",
+        "align": "center"
+      },
+      "variant": "service",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Business Automation",
+          "body": "Automate your workflows, CRM, billing, and repetitive tasks to save time and increase efficiency.",
+          "href": "/business-automation",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Web Design",
+          "body": "Use our effective SEO techniques to increase your internet presence with fast, responsive, and search-optimized websites.",
+          "href": "/web-development",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Pay Per Click PPC",
+          "body": "Use our effective SEO techniques to increase your internet presence and drive high-converting traffic with targeted ad campaigns.",
+          "href": "/seo-geo",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Digital Marketing",
+          "body": "Maximize your brand visibility with our strategic marketing solutions with social media to targeted ads.",
+          "href": "/digital-marketing",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "DA & AI",
+          "body": "Leverage AI insights for smart decisions, performance and driving with data-driven strategies.",
+          "href": "/ai-integrations",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Graphic Designing",
+          "body": "Elevate your brand with eye-catching designs that captivate audiences.",
+          "href": "/web-development",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Development",
+          "body": "We create websites tailored to your company's goals, ensuring a seamless online presence.",
+          "href": "/web-development",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Cybersecurity",
+          "body": "Protect your business with comprehensive security solutions including audits, monitoring, and compliance management.",
+          "href": "/cybersecurity",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "E-Commerce",
+          "body": "Build and scale your online store with Shopify, WooCommerce, and marketplace integrations for maximum revenue.",
+          "href": "/e-commerce",
+          "linkLabel": "Explore more"
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "variant": "counters",
+      "animate": false,
+      "items": [
+        {
+          "value": "120",
+          "suffix": "+",
+          "label": "Projects Delivered"
+        },
+        {
+          "value": "50",
+          "suffix": "+",
+          "label": "Happy Clients"
+        },
+        {
+          "value": "98",
+          "suffix": "%",
+          "label": "Client Satisfaction"
+        },
+        {
+          "value": "8",
+          "suffix": "+",
+          "label": "Years Experience"
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "variant": "process",
+      "items": [
+        {
+          "num": "01",
+          "title": "Research",
+          "body": "Embtel Solutions concentrates on research projects to offer data-driven solutions that promote corporate growth and success."
+        },
+        {
+          "num": "02",
+          "title": "Strategy",
+          "body": "We assess objectives using trend research and analysis to pinpoint major problems and develop data-driven solutions that yield quantifiable outcomes."
+        },
+        {
+          "num": "03",
+          "title": "Execution",
+          "body": "We use trend research and analysis to identify key issues and provide data-driven solutions that produce measurable results."
+        },
+        {
+          "num": "04",
+          "title": "Deployment",
+          "body": "Our seamless deployment availability is dependent on both strategic planning and automation testing, as well as real-time monitoring."
+        },
+        {
+          "num": "05",
+          "title": "Expert Team",
+          "body": "With a combination of creativity and experience, our highly qualified staff helps clients succeed in global marketplaces."
+        },
+        {
+          "num": "06",
+          "title": "Innovation & Technology",
+          "body": "Our cutting-edge technology and creative methods enable us to provide organizations worldwide with sophisticated, effective, and forward-thinking solutions."
+        }
+      ],
+      "header": {
+        "eyebrow": "Our Winning Strategy",
+        "title": "How We *Deliver Results*",
+        "subtitle": "Our successful business plan concentrates on developing innovative solutions and maximizing operational efficiency to provide tailored services that enable companies to advance.",
+        "align": "center"
+      }
+    },
+    {
+      "type": "faq",
+      "header": {
+        "eyebrow": "FAQs",
+        "title": "Common *Questions*",
+        "align": "center"
+      },
+      "variant": "accordion",
+      "items": [
+        {
+          "q": "What makes Embtel Solutions different from its competitors?",
+          "a": "Our company provides tailored, technically advanced solutions alongside security measures, scalability features and innovative approaches for enduring business achievement."
+        },
+        {
+          "q": "What support options does Embtel Solutions offer?",
+          "a": "Embtel Solutions offers 24/7 support combined with professional guidance and technical assistance for business operations excellence."
+        },
+        {
+          "q": "How does Embtel Solutions enhance business security?",
+          "a": "Embtel Solutions strengthens business security with cutting-edge cybersecurity measures, protecting data, networks, and systems. We prevent cyber threats, ensuring safe and uninterrupted operations."
+        },
+        {
+          "q": "How can we help our clients boost their business?",
+          "a": "Our company assists client growth with customized digital solutions together with expert development and data-driven strategies, as well as innovative marketing strategies that increase visibility while improving business efficiency and success."
+        },
+        {
+          "q": "Why choose Embtel Solutions over others?",
+          "a": "Our team at Embtel Solutions delivers innovative solutions to businesses that grow their operations by following a client-focused method and using expert insights while achieving proven results for digital success."
+        },
+        {
+          "q": "Who can benefit from your services?",
+          "a": "Businesses of all sizes, startups, and enterprises can benefit from Embtel Solutions. Our services help boost growth, security, and digital presence."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to grow your *business?*",
+      "body": "Book a free 30-minute strategy call. We'll discuss your goals and recommend the right digital solutions for your needs.",
+      "buttons": [
+        {
+          "label": "Schedule a Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

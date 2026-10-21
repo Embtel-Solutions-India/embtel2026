@@ -15,7 +15,7 @@ export function BeforeAfter({ block }: { block: BlockOf<'beforeAfter'> }) {
         {block.rows.map((r, i) => (
           <div key={i} className="ba-row">
             <div className="ba-before">
-              <p className="ba-side-label before">Before</p>
+              <p className="ba-side-label before">{block.labels?.before ?? 'Before'}</p>
               <h3 className="ba-title">{r.before.title}</h3>
               <ul className="ba-steps">
                 {r.before.steps.map((s, j) => (
@@ -29,7 +29,7 @@ export function BeforeAfter({ block }: { block: BlockOf<'beforeAfter'> }) {
               →
             </div>
             <div className="ba-after">
-              <p className="ba-side-label after">After</p>
+              <p className="ba-side-label after">{block.labels?.after ?? 'After'}</p>
               <h3 className="ba-title">{r.after.title}</h3>
               <ul className="ba-steps">
                 {r.after.steps.map((s, j) => (

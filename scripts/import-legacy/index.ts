@@ -1,15 +1,19 @@
 // One-time conversion of the legacy embtel-final pages into reviewable JSON page documents.
-// Usage: npm run content:import [-- --templated]   (writes content/pages/<slug>.json)
+// Usage: npm run content:import   (writes content/pages/<slug>.json for all 30 non-blog pages)
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { PageSchema, type Page } from '../../src/lib/content/blocks';
 import { parseLegacyPage, TEMPLATED_SLUGS } from './templates';
+import { parseUniquePage, UNIQUE_PAGES } from './unique';
 
 const SRC = 'embtel-final';
 const OUT = join('content', 'pages');
 
 type Parser = (html: string, slug: string) => Page;
-const jobs: { slug: string; file: string; parse: Parser }[] = TEMPLATED_SLUGS.map((slug) => ({ slug, file: `${slug}.html`, parse: parseLegacyPage }));
+const jobs: { slug: string; file: string; parse: Parser }[] = [
+  ...TEMPLATED_SLUGS.map((slug) => ({ slug, file: `${slug}.html`, parse: parseLegacyPage })),
+  ...UNIQUE_PAGES.map(({ slug, file }) => ({ slug, file, parse: parseUniquePage })),
+];
 
 function main() {
   mkdirSync(OUT, { recursive: true });

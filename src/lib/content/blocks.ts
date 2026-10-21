@@ -70,6 +70,7 @@ export const BlockSchema = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('beforeAfter'),
     header: HeaderSchema,
+    labels: z.object({ before: z.string().max(60), after: z.string().max(60) }).optional(),
     rows: z
       .array(
         z.object({

@@ -88,8 +88,10 @@ describe('metadata', () => {
 describe('JSON-LD', () => {
   it('omits LocalBusiness when the address is incomplete', async () => {
     const { localBusinessLd } = await import('@/lib/seo/jsonld');
-    expect(localBusinessLd(SETTINGS)).toBeNull();
+    const noStreet = { ...SETTINGS, organization: { ...SETTINGS.organization, address: { ...SETTINGS.organization.address, street: '' } } };
+    expect(localBusinessLd(noStreet)).toBeNull();
     expect(localBusinessLd(DEFAULT_SETTINGS)).toBeNull();
+    expect(localBusinessLd(SETTINGS)).toMatchObject({ address: { addressLocality: 'Fremont', postalCode: '94538' } });
     const withAddress = {
       ...SETTINGS,
       organization: { ...SETTINGS.organization, address: { street: '1 Main St', city: 'Fremont', region: 'CA', postalCode: '94538', country: 'US' as const } },
