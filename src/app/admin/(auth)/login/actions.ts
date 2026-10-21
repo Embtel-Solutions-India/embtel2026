@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
+import { audit } from '@/lib/audit';
 import { hitRateLimit, resetRateLimit } from '@/lib/auth/rate-limit';
 import { safeRedirect } from '@/lib/auth/redirect';
 import { setSessionCookie } from '@/lib/auth/session';
@@ -55,5 +56,6 @@ export async function loginAction(_prev: LoginState, formData: FormData): Promis
   await Promise.all([resetRateLimit(ipKey), resetRateLimit(accountKey)]);
   await User.updateOne({ _id: user._id }, { $set: { lastLoginAt: new Date() } });
   await setSessionCookie(String(user._id), remember === 'on');
+  await audit({ actorId: String(user._id), action: 'auth.login', target: { type: 'user', id: String(user._id) } });
   redirect(safeRedirect(parsed.data.redirect));
 }
