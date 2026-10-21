@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { verifySessionToken } from '@/lib/auth/token';
 import { RESERVED_SLUGS } from '@/lib/content/blocks';
 import { isKnownPath } from '@/lib/content/page-index';
+import { parsePage } from '@/lib/content/pagination';
 import { buildCsp } from '@/lib/security/csp';
 
 const ADMIN = /^\/admin(\/|$)/;
@@ -31,8 +32,13 @@ const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 // Single-segment paths must be a published page and paths under /blog/ or /authors/ must be public
 // content; anything else gets a real HTTP 404 here, because once a dynamic page streams Next can
 // only answer 200 + noindex. OG image routes handle unknown slugs themselves.
-async function isUnknownPage(pathname: string): Promise<boolean> {
+async function isUnknownPage(pathname: string, search: URLSearchParams): Promise<boolean> {
   if (pathname.endsWith('/opengraph-image')) return false;
+  // Listing pages: ?page must be absent or 1–999 (a page past the end renders an empty noindex page).
+  if ((pathname === '/blog' || CMS_SECTION.test(pathname)) && search.has('page')) {
+    const pages = search.getAll('page');
+    if (parsePage(pages.length > 1 ? pages : pages[0]) === null) return true;
+  }
   const seg = /^\/([^/]+)$/.exec(pathname)?.[1];
   if (seg) {
     if (APP_ROUTES.has(seg)) return false;
@@ -50,7 +56,7 @@ async function isUnknownPage(pathname: string): Promise<boolean> {
 
 export async function proxy(req: NextRequest) {
   const { pathname, search } = req.nextUrl;
-  if (!ADMIN.test(pathname)) return withCsp(req, await isUnknownPage(pathname));
+  if (!ADMIN.test(pathname)) return withCsp(req, await isUnknownPage(pathname, req.nextUrl.searchParams));
   if (PUBLIC.test(pathname)) return withCsp(req);
   // Cheap gate: signature/expiry only. Active-user and password-change checks happen in requireUser().
   const token = req.cookies.get('session')?.value;

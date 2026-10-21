@@ -28,6 +28,22 @@ export function pageDescription(page: PublishedPage): string {
   return hero?.type === 'hero' && hero.lead ? truncate(plainText(hero.lead)) : '';
 }
 
+// Listing pages (/blog, category, tag, author). Page n > 1 is its own canonical; search results are noindex.
+export function buildListMetadata(opts: { title: string; description: string; path: string; page?: number; noindex?: boolean }): Metadata {
+  const page = opts.page ?? 1;
+  const url = canonicalUrl(page > 1 ? `${opts.path}?page=${page}` : opts.path);
+  const title = `${opts.title}${page > 1 ? ` — Page ${page}` : ''} — ${SITE_NAME}`;
+  const index = isIndexable() && !opts.noindex;
+  return {
+    title: { absolute: title },
+    description: opts.description,
+    alternates: { canonical: url },
+    openGraph: { type: 'website', siteName: SITE_NAME, url, title, description: opts.description, images: [canonicalUrl('/opengraph-image')], locale: 'en_US' },
+    twitter: { card: 'summary_large_image', title, description: opts.description },
+    robots: { index, follow: index },
+  };
+}
+
 export function buildPageMetadata(page: PublishedPage, settings: SiteSettings): Metadata {
   const url = canonicalUrl(pagePath(page.slug));
   const title = page.seo.metaTitle ?? (page.title.includes(SITE_NAME) ? page.title : `${page.title} — ${SITE_NAME}`);

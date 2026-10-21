@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "www.google.com", pathname: "/s2/favicons" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      // Legacy blog featured images.
+      { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
   partialPrefetching: true,
