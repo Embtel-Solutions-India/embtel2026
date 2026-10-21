@@ -1,9 +1,13 @@
+import '@/components/blocks/blocks.css';
 import { Footer } from '@/components/site/Footer';
 import { Header } from '@/components/site/Header';
 import { WhatsAppLink } from '@/components/site/WhatsAppLink';
+import { connection } from 'next/server';
 import { getSiteSettings } from '@/lib/content/settings';
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
+  // Read settings per request (cached across requests) — never at build time, when there is no DB.
+  await connection();
   const settings = await getSiteSettings();
   return (
     <>
