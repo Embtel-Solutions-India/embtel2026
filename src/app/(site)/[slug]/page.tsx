@@ -1,15 +1,18 @@
 import type { Metadata } from 'next';
-import { loadPageOr404, SitePage } from '../render-page';
+import { pageMetadata, SitePage } from '../render-page';
 
 type Props = { params: Promise<{ slug: string }> };
 
+// `home` is served at `/`; /home is not a second copy of it (the proxy 404s it too).
+const resolve = async (params: Props['params']) => {
+  const { slug } = await params;
+  return slug === 'home' ? '__none__' : slug;
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { page } = await loadPageOr404((await params).slug);
-  return { title: page.title };
+  return pageMetadata(await resolve(params));
 }
 
-// `home` is served at `/`; /home is not a second copy of it.
 export default async function Page({ params }: Props) {
-  const { slug } = await params;
-  return <SitePage slug={slug === 'home' ? '__none__' : slug} />;
+  return <SitePage slug={await resolve(params)} />;
 }

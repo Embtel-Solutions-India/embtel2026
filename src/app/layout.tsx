@@ -6,10 +6,9 @@ import "./globals.css";
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], weight: ["600", "700", "800"] });
 
+// Defaults only; public pages set full metadata (incl. robots) via buildPageMetadata.
 export const metadata: Metadata = {
   title: "Embtel Solutions",
-  description: "Embtel Solutions",
-  robots: "noindex",
 };
 
 // Nonce CSP (src/proxy.ts) needs every page rendered per request: a prerendered shell carries no

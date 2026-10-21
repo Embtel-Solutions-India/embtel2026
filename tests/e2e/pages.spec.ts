@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { E2E_PORT } from './creds';
 
 for (const path of ['/', '/law-industry']) {
   test(`${path} renders from the database with exactly one h1`, async ({ page }) => {
@@ -38,3 +39,19 @@ test('crawlers get a real 404 status for unknown, draft and duplicate-home slugs
   }
   expect((await request.get('/law-industry', { headers: { 'user-agent': ua } })).status()).toBe(200);
 });
+
+for (const path of ['/', '/law-industry']) {
+  test(`${path} has canonical, Open Graph, noindex (non-production) and valid JSON-LD`, async ({ page }) => {
+    await page.goto(path);
+    const canonical = page.locator('link[rel="canonical"]');
+    await expect(canonical).toHaveCount(1);
+    await expect(canonical).toHaveAttribute('href', `http://localhost:${E2E_PORT}${path}`);
+    await expect(page.locator('meta[property="og:title"]')).toHaveCount(1);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    const ld = page.locator('script[type="application/ld+json"]');
+    await expect(ld).toHaveCount(1);
+    const json = JSON.parse((await ld.textContent()) ?? '');
+    expect(json['@context']).toBe('https://schema.org');
+    expect(json['@graph'].map((n: { '@type': string }) => n['@type'])).toContain('Organization');
+  });
+}
