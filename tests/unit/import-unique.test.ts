@@ -102,3 +102,10 @@ describe('unique legacy pages', () => {
     }
   });
 });
+
+describe('home service cards', () => {
+  it('keep the legacy "View All Services" button', () => {
+    const grid = of(load('home').blocks, 'cardGrid').find((g) => g.variant === 'service')!;
+    expect(grid.button).toMatchObject({ label: 'View All Services →', href: '/services' });
+  });
+});

@@ -130,3 +130,11 @@ describe('JSON-LD', () => {
     expect(JSON.parse(scripts[0].innerHTML)['@graph'][0].name).toBe('</script><script>alert(1)</script>');
   });
 });
+
+describe('title suffix', () => {
+  it('does not repeat the brand when the title already contains it', async () => {
+    const { buildPageMetadata } = await import('@/lib/seo/metadata');
+    const home = buildPageMetadata(page({ slug: 'home', title: 'Embtel Solutions — Technology & Automation for Growing Businesses' }), SETTINGS);
+    expect(home.title).toEqual({ absolute: 'Embtel Solutions — Technology & Automation for Growing Businesses' });
+  });
+});

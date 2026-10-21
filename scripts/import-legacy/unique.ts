@@ -98,6 +98,8 @@ const HANDLERS: Handler[] = [
         const href = $(c).is('a') ? $(c).attr('href') : undefined;
         return { title: text($(c).find('h3')), body: text($(c).find('p')), ...(href && { href, linkLabel: clean(text($(c).find('.sc-arr')).replace(/→$/, '')) }) };
       }),
+      // e.g. home's "View All Services →" below the cards.
+      ...(buttons(el, $)[0] && { button: buttons(el, $)[0] }),
     }),
   },
   {

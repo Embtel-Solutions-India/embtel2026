@@ -95,3 +95,13 @@ describe('seedContent', () => {
     expect(await db().collection('pages').countDocuments()).toBe(0);
   });
 });
+
+describe('seedContent settings validation', () => {
+  it('replaces a stored field that fails the public schema (e.g. legacy external logo)', async () => {
+    const { seedContent } = await import('@/lib/content/seed');
+    await db().collection('settings').insertOne({ key: 'site', logo: 'https://legacy-bucket.s3.amazonaws.com/logo.png' });
+    const r = await seedContent({ pages: [], settings: SETTINGS });
+    expect(r.settingsFieldsFilled).toContain('logo');
+    expect((await db().collection('settings').findOne({ key: 'site' }))?.logo).toBe('/images/logo.png');
+  });
+});

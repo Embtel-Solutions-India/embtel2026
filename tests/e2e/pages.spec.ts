@@ -88,3 +88,12 @@ test('Open Graph images are generated per page, with a default fallback', async 
   await page.goto('/law-industry');
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', `http://localhost:${E2E_PORT}/law-industry/opengraph-image`);
 });
+
+test('reserved, malformed and direct /404 paths return a real 404 status', async ({ request }) => {
+  for (const path of ['/blog', '/api', '/authors', '/About', '/index.php', '/404']) {
+    expect((await request.get(path)).status(), path).toBe(404);
+  }
+  for (const path of ['/robots.txt', '/sitemap.xml', '/llms.txt', '/manifest.webmanifest', '/opengraph-image']) {
+    expect((await request.get(path)).status(), path).toBe(200);
+  }
+});

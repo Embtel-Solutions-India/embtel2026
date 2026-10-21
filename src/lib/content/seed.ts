@@ -2,13 +2,13 @@ import { connectDB } from '@/lib/db/connect';
 import { PageModel } from '@/lib/db/models/Page';
 import { Settings } from '@/lib/db/models/Settings';
 import { PageSchema, type Page } from './blocks';
-import type { SiteSettings } from './settings';
+import { isValidSettingsField, type SiteSettings } from './settings';
 
 const isEmpty = (v: unknown) =>
   v === undefined || v === null || v === '' || (Array.isArray(v) && v.length === 0) || (typeof v === 'object' && !Array.isArray(v) && Object.keys(v as object).length === 0);
 
 // Idempotent content seeding. Existing pages are never touched (admin edits win) unless their
-// slug is listed in `force`; settings only get fields that are empty in the stored document.
+// slug is listed in `force`; settings only get fields that are empty or invalid in the stored document.
 export async function seedContent(opts: { pages: Page[]; settings: SiteSettings; force?: string[] }) {
   const invalid = opts.pages.filter((p) => !PageSchema.safeParse(p).success).map((p) => p.slug);
   if (invalid.length) throw new Error(`[seed] invalid page(s): ${invalid.join(', ')}`);
@@ -33,7 +33,7 @@ export async function seedContent(opts: { pages: Page[]; settings: SiteSettings;
   }
 
   const stored = ((await Settings.collection.findOne({ key: 'site' })) ?? {}) as Record<string, unknown>;
-  const fill = Object.fromEntries(Object.entries(opts.settings).filter(([k]) => isEmpty(stored[k])));
+  const fill = Object.fromEntries(Object.entries(opts.settings).filter(([k]) => isEmpty(stored[k]) || !isValidSettingsField(k, stored[k])));
   if (Object.keys(fill).length) await Settings.collection.updateOne({ key: 'site' }, { $set: { ...fill, updatedAt: now } }, { upsert: true });
 
   return { inserted, skipped, settingsFieldsFilled: Object.keys(fill) };

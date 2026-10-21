@@ -30,7 +30,7 @@ export function pageDescription(page: PublishedPage): string {
 
 export function buildPageMetadata(page: PublishedPage, settings: SiteSettings): Metadata {
   const url = canonicalUrl(pagePath(page.slug));
-  const title = page.seo.metaTitle ?? `${page.title} — ${SITE_NAME}`;
+  const title = page.seo.metaTitle ?? (page.title.includes(SITE_NAME) ? page.title : `${page.title} — ${SITE_NAME}`);
   const description = pageDescription(page);
   const image = page.seo.ogImage ?? canonicalUrl(page.slug === 'home' ? '/opengraph-image' : `/${page.slug}/opengraph-image`);
   const index = isIndexable() && !page.seo.noindex;

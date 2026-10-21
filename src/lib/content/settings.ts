@@ -29,7 +29,8 @@ const FIELDS = {
     openingHours: z.array(z.string()).default([]),
     description: z.string().default(''),
   }),
-  logo: z.string().regex(/^(\/(?!\/)|https:\/\/)/),
+  // Internal paths only until the media host is added to images.remotePatterns (Phase 4).
+  logo: z.string().regex(/^\/(?!\/)/),
   headerNav: z.array(NavItemSchema),
   headerCta: LinkSchema.nullable(),
   footer: z.object({
@@ -48,6 +49,9 @@ const FIELDS = {
 };
 
 export const SiteSettingsSchema = z.object(FIELDS);
+
+export const isValidSettingsField = (field: string, value: unknown) =>
+  field in FIELDS && FIELDS[field as keyof typeof FIELDS].safeParse(value).success;
 export type SiteSettings = z.infer<typeof SiteSettingsSchema>;
 
 export const DEFAULT_SETTINGS: SiteSettings = SiteSettingsSchema.parse({

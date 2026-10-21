@@ -105,7 +105,12 @@
           "title": "Business Automation",
           "body": "Eliminate repetitive tasks with AI-powered automation. Streamline invoicing, customer follow-ups, scheduling, and data entry so you can focus on growth."
         }
-      ]
+      ],
+      "button": {
+        "label": "View All Services →",
+        "href": "/services",
+        "variant": "ghost"
+      }
     },
     {
       "type": "stats",

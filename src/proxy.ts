@@ -22,16 +22,18 @@ function withCsp(req: NextRequest, notFound = false) {
   return res;
 }
 
-// Single-segment CMS paths (/<slug>) that aren't app routes or files.
-const CMS_PATH = /^\/([a-z0-9]+(?:-[a-z0-9]+)*)$/;
-const APP_ROUTES = new Set([...RESERVED_SLUGS, '404', 'indexnow-key.txt', 'opengraph-image']);
+// Single-segment paths that are real app routes (not CMS pages). Phase 3 adds `blog`.
+const APP_ROUTES = new Set(['robots.txt', 'sitemap.xml', 'llms.txt', 'manifest.webmanifest', 'indexnow-key.txt', 'opengraph-image']);
+const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+// Every other single-segment path must be a published page; anything else gets a real HTTP 404 here,
+// because once a dynamic page streams Next can only answer 200 + noindex.
 async function isUnknownPage(pathname: string): Promise<boolean> {
-  const slug = CMS_PATH.exec(pathname)?.[1];
-  if (!slug || APP_ROUTES.has(slug)) return false;
-  if (slug === 'home') return true; // home lives at `/`
+  const seg = /^\/([^/]+)$/.exec(pathname)?.[1];
+  if (!seg || APP_ROUTES.has(seg)) return false;
+  if (seg === '404' || seg === 'home' || !SLUG.test(seg) || RESERVED_SLUGS.includes(seg)) return true; // home lives at `/`
   try {
-    return !(await isPublishedSlug(slug));
+    return !(await isPublishedSlug(seg));
   } catch {
     console.error('[proxy] page index unavailable; rendering normally');
     return false; // fail open: the page itself still 404s (200 + noindex) if missing
