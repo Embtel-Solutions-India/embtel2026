@@ -31,6 +31,9 @@ for (const path of ['/', '/admin/login']) {
   test(`${path} renders with no CSP violations in the console`, async ({ page }) => {
     const errors: string[] = [];
     page.on('console', (m) => {
+      // Resource 404s (e.g. prefetching nav targets missing from the test DB) are not CSP issues;
+      // tests/e2e/all-pages.spec.ts asserts zero console errors against the full content set.
+      if (/Failed to load resource/.test(m.text())) return;
       if (m.type() === 'error' || /Content Security Policy/i.test(m.text())) errors.push(m.text());
     });
     page.on('pageerror', (e) => errors.push(e.message));

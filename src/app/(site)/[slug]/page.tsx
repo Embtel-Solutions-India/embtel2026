@@ -1,9 +1,15 @@
-// Placeholder until Task 8 renders pages from the `pages` collection.
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+import type { Metadata } from 'next';
+import { loadPageOr404, SitePage } from '../render-page';
+
+type Props = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { page } = await loadPageOr404((await params).slug);
+  return { title: page.title };
+}
+
+// `home` is served at `/`; /home is not a second copy of it.
+export default async function Page({ params }: Props) {
   const { slug } = await params;
-  return (
-    <div className="container-site flex min-h-[60vh] items-center justify-center">
-      <h1 className="font-display text-2xl font-semibold text-white">{slug}</h1>
-    </div>
-  );
+  return <SitePage slug={slug === 'home' ? '__none__' : slug} />;
 }

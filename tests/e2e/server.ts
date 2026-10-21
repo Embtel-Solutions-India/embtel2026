@@ -8,6 +8,7 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { User } from '../../src/lib/db/models/User';
 import { CREDS_FILE, E2E_PORT } from './creds';
+import { PAGE_FIXTURES } from '../helpers/page-fixtures';
 
 const rnd = (n: number) => crypto.randomBytes(n).toString('hex');
 const nextBin = path.resolve('node_modules/next/dist/bin/next');
@@ -24,6 +25,7 @@ async function main() {
   const password = rnd(16);
   await User.create({ name: 'E2E Admin', email: 'admin@example.com', password, role: 'admin' });
   await seedSettings();
+  await mongoose.connection.db!.collection('pages').insertMany(PAGE_FIXTURES.map((p) => ({ ...p, updatedAt: new Date() })));
   await mongoose.disconnect();
 
   fs.mkdirSync(path.dirname(CREDS_FILE), { recursive: true });
