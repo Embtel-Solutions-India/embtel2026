@@ -1,4 +1,5 @@
 import 'server-only';
+import { cache } from 'react';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { isValidObjectId } from 'mongoose';
@@ -32,7 +33,8 @@ export async function clearSessionCookie(): Promise<void> {
   (await cookies()).delete(COOKIE);
 }
 
-export async function getCurrentUser(): Promise<UserDoc | null> {
+// Memoized per server request (React cache), so layout + page share one DB lookup.
+export const getCurrentUser = cache(async (): Promise<UserDoc | null> => {
   const token = (await cookies()).get(COOKIE)?.value;
   if (!token) return null;
   const claims = await verifySessionToken(token);
@@ -41,7 +43,7 @@ export async function getCurrentUser(): Promise<UserDoc | null> {
   const user = await User.findById(claims.sub);
   if (!user || !user.active || user.changedPasswordAfter(claims.iat)) return null;
   return user;
-}
+});
 
 export async function requireUser(): Promise<UserDoc> {
   const user = await getCurrentUser();

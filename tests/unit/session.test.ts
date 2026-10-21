@@ -61,6 +61,7 @@ const mail = () => `${rnd(6)}@example.com`;
 const mk = (role: string, extra: Record<string, unknown> = {}) =>
   User.create({ name: 'U', email: mail(), password: rnd(12), role, ...extra });
 const key = () => new TextEncoder().encode(secret);
+const AUD = 'embtel-admin-session';
 
 describe('token', () => {
   it('round-trips', async () => {
@@ -91,6 +92,20 @@ describe('token', () => {
     const now = Math.floor(Date.now() / 1000);
     const t = `${enc({ alg: 'none', typ: 'JWT' })}.${enc({ sub: 'abc', iat: now, exp: now + 99 })}.`;
     expect(await verifySessionToken(t)).toBeNull();
+  });
+
+  it('rejects token without exp, or with wrong/missing audience', async () => {
+    const now = Math.floor(Date.now() / 1000);
+    const base = () => new SignJWT({}).setProtectedHeader({ alg: 'HS256' }).setSubject('abc')
+      .setIssuedAt(now);
+    expect(await verifySessionToken(await base().setAudience(AUD).sign(key()))).toBeNull();
+    expect(await verifySessionToken(
+      await base().setAudience('other').setExpirationTime('1h').sign(key()),
+    )).toBeNull();
+    expect(await verifySessionToken(await base().setExpirationTime('1h').sign(key()))).toBeNull();
+    expect(await verifySessionToken(
+      await base().setAudience(AUD).setExpirationTime('1h').sign(key()),
+    )).toMatchObject({ sub: 'abc' });
   });
 
   it('exp is 1 day, or 30 days when remembered', async () => {
@@ -139,7 +154,7 @@ describe('getCurrentUser', () => {
     expect(await getCurrentUser()).toBeNull();
 
     const u = await mk('admin');
-    const old = await new SignJWT({}).setProtectedHeader({ alg: 'HS256' }).setSubject(String(u._id))
+    const old = await new SignJWT({}).setProtectedHeader({ alg: 'HS256' }).setSubject(String(u._id)).setAudience(AUD)
       .setIssuedAt(Math.floor(Date.now() / 1000) - 3600).setExpirationTime('1d').sign(key());
     jar.set('session', old);
     expect((await getCurrentUser())?.id).toBe(u.id);
