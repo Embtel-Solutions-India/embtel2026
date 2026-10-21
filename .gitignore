@@ -13,3 +13,4 @@ test-results/
 next-env.d.ts
 .claude/worktrees/
 .superpowers/
+.e2e/

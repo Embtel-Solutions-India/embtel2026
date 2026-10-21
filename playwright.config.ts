@@ -1,11 +1,15 @@
 import { defineConfig } from "@playwright/test";
+import { E2E_PORT } from "./tests/e2e/creds";
 
 export default defineConfig({
-  testDir: "./e2e",
-  use: { baseURL: "http://localhost:3000" },
+  testDir: "./tests/e2e",
+  use: { baseURL: `http://localhost:${E2E_PORT}` },
   webServer: {
-    command: "npm run dev",
-    url: "http://localhost:3000",
-    reuseExistingServer: true,
+    // Memory Mongo + seeded admin + production build; see tests/e2e/server.ts.
+    command: "npx tsx tests/e2e/server.ts",
+    url: `http://localhost:${E2E_PORT}/`,
+    reuseExistingServer: false,
+    timeout: 600_000,
+    stdout: "pipe",
   },
 });
