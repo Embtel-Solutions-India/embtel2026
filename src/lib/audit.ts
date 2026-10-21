@@ -3,16 +3,21 @@ import { AuditLog } from '@/lib/db/models/AuditLog';
 
 const SENSITIVE = /password|token|secret|key/i;
 
-function scrub(v: unknown): unknown {
-  if (Array.isArray(v)) return v.map(scrub);
-  if (v && typeof v === 'object' && Object.getPrototypeOf(v) === Object.prototype) {
-    return Object.fromEntries(
-      Object.entries(v)
-        .filter(([k]) => !SENSITIVE.test(k))
-        .map(([k, x]) => [k, scrub(x)]),
-    );
-  }
-  return v;
+// `path` holds the ancestors being walked, so only true cycles (not shared refs) become '[Circular]'.
+function scrub(v: unknown, path = new WeakSet<object>()): unknown {
+  const isArr = Array.isArray(v);
+  if (!isArr && !(v && typeof v === 'object' && Object.getPrototypeOf(v) === Object.prototype)) return v;
+  if (path.has(v as object)) return '[Circular]';
+  path.add(v as object);
+  const out = isArr
+    ? v.map((x) => scrub(x, path))
+    : Object.fromEntries(
+        Object.entries(v as object)
+          .filter(([k]) => !SENSITIVE.test(k))
+          .map(([k, x]) => [k, scrub(x, path)]),
+      );
+  path.delete(v as object);
+  return out;
 }
 
 export async function audit(entry: {

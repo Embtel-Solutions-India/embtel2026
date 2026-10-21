@@ -55,6 +55,14 @@ describe('audit', () => {
     expect(meta).toEqual({ a: { apiKey: 'x', ok: 1 }, list: [{ token: 'y', n: 2 }] });
   });
 
+  it('handles cyclic meta', async () => {
+    const a = actorId();
+    const meta: Record<string, unknown> = { title: 'Hi' };
+    meta.self = meta;
+    await audit({ actorId: a, action: 'x', target: { type: 't' }, meta });
+    expect((await AuditLog.findOne({ actorId: a }).lean())?.meta).toEqual({ title: 'Hi', self: '[Circular]' });
+  });
+
   it('swallows write failures and logs only the message', async () => {
     const err = vi.spyOn(console, 'error').mockImplementation(() => {});
     const create = vi.spyOn(AuditLog, 'create').mockRejectedValueOnce(new Error('boom') as never);
