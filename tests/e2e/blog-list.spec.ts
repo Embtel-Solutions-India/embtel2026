@@ -52,3 +52,14 @@ test('invalid ?page is a real 404; out-of-range page is an empty noindex page', 
   await expect(page.getByText('No articles found')).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
 });
+
+test('RSS is discoverable and served; sitemap includes the blog', async ({ page, request }) => {
+  await page.goto('/blog');
+  await expect(page.locator('head link[rel="alternate"][type="application/rss+xml"]')).toHaveAttribute('href', '/feed.xml');
+  const feed = await request.get('/feed.xml');
+  expect(feed.headers()['content-type']).toBe('application/rss+xml; charset=utf-8');
+  expect((await feed.text()).match(/<item>/g)).toHaveLength(6);
+  const sitemap = await (await request.get('/sitemap.xml')).text();
+  expect(sitemap).toContain('/blog/website-speed-costing-you-customers</loc>');
+  expect(sitemap).not.toContain('secret-post');
+});

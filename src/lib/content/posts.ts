@@ -272,3 +272,44 @@ export async function listTaxonomy() {
   cacheLife('max');
   return loadTaxonomy();
 }
+
+// ── feeds: sitemap, RSS, llms.txt ──────────────────────────────────────────
+
+export type PostIndexEntry = { slug: string; title: string; shortDescription: string; publishedAt: string; modifiedAt: string; category: string | null };
+
+export async function loadPostIndex(): Promise<PostIndexEntry[]> {
+  await connectDB();
+  const docs = (await Blog.find(PUBLIC_FILTER(), { slug: 1, title: 1, shortDescription: 1, publishedAt: 1, updatedAt: 1, lastReviewedAt: 1, category: 1 })
+    .sort({ publishedAt: -1 })
+    .populate('category', 'name')
+    .lean()) as Raw[];
+  return docs.map((d) => ({
+    slug: str(d.slug),
+    title: str(d.title),
+    shortDescription: str(d.shortDescription),
+    publishedAt: iso(d.publishedAt),
+    modifiedAt: iso(d.lastReviewedAt ?? d.updatedAt),
+    category: str((d.category as Raw | null)?.name) || null,
+  }));
+}
+
+export async function loadAuthorSlugs(): Promise<string[]> {
+  await connectDB();
+  const ids = await Blog.distinct('author', PUBLIC_FILTER());
+  const users = (await User.find({ _id: { $in: ids }, slug: { $type: 'string' } }, { slug: 1 }).lean()) as Raw[];
+  return users.map((u) => str(u.slug)).filter(Boolean);
+}
+
+export async function listPostIndex() {
+  'use cache';
+  cacheTag(POSTS_TAG);
+  cacheLife('max');
+  return loadPostIndex();
+}
+
+export async function listAuthorSlugs() {
+  'use cache';
+  cacheTag(POSTS_TAG);
+  cacheLife('max');
+  return loadAuthorSlugs();
+}

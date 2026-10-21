@@ -16,6 +16,8 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const nonce = (await headers()).get('x-nonce') ?? undefined;
   return (
     <>
+      {/* React hoists this into <head>; set here because per-page `alternates` would replace a metadata export. */}
+      <link rel="alternate" type="application/rss+xml" title="Embtel Solutions Blog" href="/feed.xml" />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[1100] focus:rounded-8 focus:bg-blue focus:px-4 focus:py-2 focus:text-white"

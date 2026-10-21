@@ -33,6 +33,21 @@ beforeAll(async () => {
     { ...base, slug: 'hidden', title: 'Hidden', type: 'standard', seo: { noindex: true }, blocks: hero('x') },
     { ...base, slug: 'draft', title: 'Draft', type: 'standard', status: 'draft', seo: { noindex: false }, blocks: hero('x') },
   ]);
+  // Blog: one public post (with category/tag/author), plus draft, future and deleted posts.
+  const db = mongoose.connection.db!;
+  const cat = new mongoose.Types.ObjectId();
+  const tag = new mongoose.Types.ObjectId();
+  const author = new mongoose.Types.ObjectId();
+  await db.collection('categories').insertOne({ _id: cat, name: 'Automation', slug: 'automation' });
+  await db.collection('tags').insertOne({ _id: tag, name: 'Workflows', slug: 'workflows' });
+  await db.collection('users').insertOne({ _id: author, name: 'Ritu', email: 'r@example.com', slug: 'ritu' });
+  const post = { category: cat, tags: [tag], isDeleted: false, publishedAt: new Date('2026-09-01T09:00:00Z'), updatedAt: new Date('2026-09-05T00:00:00Z'), shortDescription: 'Save time & money', content: '<p>x</p>' };
+  await db.collection('blogs').insertMany([
+    { ...post, slug: 'public-post', title: 'Automate <everything> & "win"', status: 'published', author },
+    { ...post, slug: 'draft-post', title: 'Draft post', status: 'draft' },
+    { ...post, slug: 'future-post', title: 'Future post', status: 'published', publishedAt: new Date(Date.now() + 86_400_000) },
+    { ...post, slug: 'deleted-post', title: 'Deleted post', status: 'published', isDeleted: true },
+  ]);
 });
 
 afterEach(() => {
@@ -118,5 +133,42 @@ describe('pingIndexNow', () => {
     vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'));
     vi.spyOn(console, 'error').mockImplementation(() => {});
     expect(await pingIndexNow(['https://www.embtelsolutions.com/'])).toEqual({ ok: false });
+  });
+});
+
+describe('feeds exclude hidden posts', () => {
+  const HIDDEN = ['draft-post', 'future-post', 'deleted-post'];
+
+  it('sitemap lists /blog, the public post, its category/tag and author', async () => {
+    const sitemap = (await import('@/app/sitemap')).default;
+    const urls = (await sitemap()).map((e) => e.url);
+    for (const u of ['/blog', '/blog/public-post', '/blog/category/automation', '/blog/tag/workflows', '/authors/ritu']) {
+      expect(urls).toContain(`https://www.embtelsolutions.com${u}`);
+    }
+    for (const h of HIDDEN) expect(urls.join(' ')).not.toContain(h);
+    const entry = (await sitemap()).find((e) => e.url.endsWith('/blog/public-post'));
+    expect(entry?.lastModified).toBe('2026-09-05T00:00:00.000Z');
+  });
+
+  it('llms.txt has a Blog section with only public posts', async () => {
+    const { GET } = await import('@/app/llms.txt/route');
+    const text = await (await GET()).text();
+    expect(text).toContain('## Blog\n- [Automate <everything> & "win"](https://www.embtelsolutions.com/blog/public-post): Save time & money');
+    for (const h of HIDDEN) expect(text).not.toContain(h);
+  });
+
+  it('RSS feed is valid XML with only public posts, escaped', async () => {
+    const { GET } = await import('@/app/feed.xml/route');
+    const res = await GET();
+    expect(res.headers.get('content-type')).toBe('application/rss+xml; charset=utf-8');
+    const xml = await res.text();
+    expect(xml).toContain('<title>Automate &lt;everything&gt; &amp; &quot;win&quot;</title>');
+    const cheerio = await import('cheerio');
+    const $ = cheerio.load(xml, { xmlMode: true });
+    expect($('rss > channel > item')).toHaveLength(1);
+    expect($('item > link').text()).toBe('https://www.embtelsolutions.com/blog/public-post');
+    expect($('item > pubDate').text()).toBe('Tue, 01 Sep 2026 09:00:00 GMT');
+    expect($('channel > atom\\:link').attr('href')).toBe('https://www.embtelsolutions.com/feed.xml');
+    for (const h of HIDDEN) expect(xml).not.toContain(h);
   });
 });
