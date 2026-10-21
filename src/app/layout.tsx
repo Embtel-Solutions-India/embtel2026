@@ -4,7 +4,8 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
-const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], weight: ["600", "700", "800"] });
+// Headings only: not preloaded, so it never competes with the body text that is usually the LCP element.
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], weight: ["600", "700", "800"], preload: false });
 
 // Defaults only; public pages set full metadata (incl. robots) via buildPageMetadata.
 export const metadata: Metadata = {

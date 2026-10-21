@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
+  // ~15 KB of CSS: inline it so first-time (mostly ad-driven) visitors skip a render-blocking request.
+  experimental: { inlineCss: true },
   images: {
     // Legacy content: client logos (Google favicon service) and the About page office photo.
     remotePatterns: [

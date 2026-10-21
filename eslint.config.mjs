@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     "embtel-final/**",
     "blog-admin/**",
     ".claude/**",
+    ".superpowers/**",
+    ".lighthouseci/**",
   ]),
 ]);
 

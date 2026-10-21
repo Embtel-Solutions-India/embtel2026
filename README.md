@@ -46,6 +46,25 @@ organisation details and the Google Ads / Elfsight IDs live in the `settings` do
   `-- --force=home,about`; settings only receive fields that are empty. Refuses to run with `VERCEL_ENV=production`
   unless `-- --yes` is passed. Cached pages refresh on the next deploy (from Phase 5, on publish).
 
+## Lighthouse budgets
+
+`npm run lhci` (run with `VERCEL_ENV=production`) builds the app, seeds the full content into an in-memory DB and
+runs Lighthouse (mobile preset, 3 runs, median; Google tag/Elfsight blocked) on six public templates. CI fails on
+SEO < 1, accessibility < 0.95, best practices < 0.95 or CLS > 0.1. Performance ≥ 0.9 and LCP ≤ 2.5 s are
+**warnings** for now: the lab gap is React start-up JavaScript under Lighthouse's 4× CPU throttling (the page HTML
+and first paint arrive early), not server rendering — see docs for the Phase 2 owner decision.
+
+Baseline (2026-10-22, local):
+
+| Page | Perf | A11y | BP | SEO | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|
+| / | 0.69 | 1 | 1 | 1 | 3.9s | 0.000 | 630ms |
+| /web-development | 0.88 | 1 | 1 | 1 | 3.4s | 0.002 | 150ms |
+| /law-industry | 0.84 | 1 | 1 | 1 | 3.5s | 0.049 | 290ms |
+| /dental-automation | 0.89 | 1 | 1 | 1 | 3.4s | 0.001 | 139ms |
+| /about | 0.86 | 1 | 1 | 1 | 3.7s | 0.004 | 207ms |
+| /privacy-policy | 0.89 | 1 | 1 | 1 | 3.5s | 0.000 | 143ms |
+
 ## Database migrations
 
 **Warning: cutover only.** Migration 001 rewrites `editor` to `marketing`, which locks Marketing users out of the legacy blog-admin (it only knows `editor`).
