@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { connection } from 'next/server';
 import { BlogHero } from '@/components/blog/BlogHero';
 import { PostList } from '@/components/blog/PostList';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { getSiteSettings } from '@/lib/content/settings';
+import { listJsonLd } from '@/lib/seo/jsonld';
 import { parsePage } from '@/lib/content/pagination';
 import { getTag, listPublishedPosts } from '@/lib/content/posts';
 import { buildListMetadata } from '@/lib/seo/metadata';
@@ -30,9 +34,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function TagPage(props: Props) {
-  const { tag, data } = await load(props);
+  const [{ tag, data }, settings, h] = await Promise.all([load(props), getSiteSettings(), headers()]);
   return (
     <>
+      <JsonLd data={listJsonLd(settings, [{ name: 'Blog', path: '/blog' }, { name: tag.name, path: `/blog/tag/${tag.slug}` }])} nonce={h.get('x-nonce') ?? undefined} />
       <BlogHero eyebrow="Tag" title={tag.name} />
       <PostList data={data} basePath={`/blog/tag/${tag.slug}`} />
     </>

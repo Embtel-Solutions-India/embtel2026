@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { connection } from 'next/server';
 import { PostList } from '@/components/blog/PostList';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { getSiteSettings } from '@/lib/content/settings';
+import { authorJsonLd } from '@/lib/seo/jsonld';
 import { NETWORK_LABELS } from '@/components/site/SocialIcon';
 import { parsePage } from '@/lib/content/pagination';
 import { getAuthor, listPublishedPosts } from '@/lib/content/posts';
@@ -37,9 +41,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function AuthorPage(props: Props) {
-  const { author, data } = await load(props);
+  const [{ author, data }, settings, h] = await Promise.all([load(props), getSiteSettings(), headers()]);
   return (
     <>
+      <JsonLd data={authorJsonLd(author, settings)} nonce={h.get('x-nonce') ?? undefined} />
       <section className="blog-hero">
         <div className="blog-hero-in">
           {author.avatar && <Image src={author.avatar} alt="" width={96} height={96} className="mx-auto mb-5 rounded-full" priority />}

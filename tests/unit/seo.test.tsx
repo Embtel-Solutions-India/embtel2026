@@ -138,3 +138,50 @@ describe('title suffix', () => {
     expect(home.title).toEqual({ absolute: 'Embtel Solutions — Technology & Automation for Growing Businesses' });
   });
 });
+
+describe('blog SEO', () => {
+  const post = {
+    id: '1', slug: 'website-speed', title: 'Is Your Website Speed Costing You Customers?', shortDescription: 'Slow pages lose buyers.',
+    featuredImage: 'https://images.unsplash.com/p.jpg', imageAltText: 'Stopwatch', category: { name: 'Web Development', slug: 'web-development' },
+    readingTime: 5, publishedAt: '2026-09-01T09:00:00.000Z', content: '<p>one two three</p>',
+    tags: [{ name: 'Performance', slug: 'performance', serviceSlug: 'web-development' }],
+    author: { name: 'Embtel Team', slug: null, jobTitle: '', bio: '', avatar: '', sameAs: [], expertise: [] },
+    faqs: [{ q: 'What is LCP?', a: 'Largest Contentful Paint.' }], keyTakeaways: [], sources: [{ title: 'web.dev', url: 'https://web.dev/articles/lcp' }],
+    focusKeyword: 'website speed', secondaryKeywords: ['page speed'], seo: { keywords: ['core web vitals'], noindex: false },
+    updatedAt: '2026-09-02T00:00:00.000Z', lastReviewedAt: null,
+  } as const;
+
+  it('post metadata: brand once, article OG, keywords, canonical override only on our host', async () => {
+    const { buildPostMetadata } = await import('@/lib/seo/metadata');
+    const m = buildPostMetadata({ ...post } as never, SETTINGS);
+    expect(m.title).toEqual({ absolute: 'Is Your Website Speed Costing You Customers? — Embtel Solutions' });
+    expect(m.alternates?.canonical).toBe('https://www.embtelsolutions.com/blog/website-speed');
+    expect(m.openGraph).toMatchObject({ type: 'article', publishedTime: post.publishedAt, modifiedTime: post.updatedAt, section: 'Web Development', tags: ['Performance'] });
+    expect(m.keywords).toEqual(['website speed', 'page speed', 'core web vitals']);
+    const foreign = buildPostMetadata({ ...post, seo: { ...post.seo, canonicalUrl: 'https://evil.example/x' } } as never, SETTINGS);
+    expect(foreign.alternates?.canonical).toBe('https://www.embtelsolutions.com/blog/website-speed');
+    const own = buildPostMetadata({ ...post, seo: { ...post.seo, canonicalUrl: 'https://www.embtelsolutions.com/blog/original' } } as never, SETTINGS);
+    expect(own.alternates?.canonical).toBe('https://www.embtelsolutions.com/blog/original');
+  });
+
+  it('BlogPosting credits the Organization when there is no author user', async () => {
+    const { blogPostingLd } = await import('@/lib/seo/jsonld');
+    const ld = blogPostingLd({ ...post } as never);
+    expect(ld).toMatchObject({
+      '@type': 'BlogPosting', headline: post.title, datePublished: post.publishedAt, dateModified: post.updatedAt,
+      author: { '@id': 'https://www.embtelsolutions.com/#organization' }, articleSection: 'Web Development',
+      keywords: 'website speed, page speed, core web vitals', citation: ['https://web.dev/articles/lcp'],
+    });
+  });
+
+  it('BlogPosting names a Person author with their page when they have one', async () => {
+    const { blogPostingLd } = await import('@/lib/seo/jsonld');
+    const ld = blogPostingLd({ ...post, author: { ...post.author, name: 'Ritu Writer', slug: 'ritu-writer', sameAs: ['https://www.linkedin.com/in/x'] } } as never);
+    expect(ld.author).toEqual({ '@type': 'Person', name: 'Ritu Writer', url: 'https://www.embtelsolutions.com/authors/ritu-writer', sameAs: ['https://www.linkedin.com/in/x'] });
+  });
+
+  it('post graph: Organization, WebSite, BlogPosting, BreadcrumbList, FAQPage', async () => {
+    const { postJsonLd } = await import('@/lib/seo/jsonld');
+    expect(postJsonLd({ ...post } as never, SETTINGS).map((n) => n['@type'])).toEqual(['Organization', 'WebSite', 'BlogPosting', 'BreadcrumbList', 'FAQPage']);
+  });
+});

@@ -27,3 +27,29 @@ test('share links, related posts and related services', async ({ page }) => {
   for (const href of await related.evaluateAll((els) => els.map((e) => e.getAttribute('href')))) expect(href).not.toBe(`/blog/${SLUG}`);
   await expect(page.getByRole('region', { name: 'Related services' }).getByRole('link', { name: 'Web Development' })).toHaveAttribute('href', '/web-development');
 });
+
+test('post SEO: one canonical, article Open Graph, BlogPosting graph', async ({ page }) => {
+  await page.goto(`/blog/${SLUG}`);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `http://localhost:${E2E_PORT}/blog/${SLUG}`);
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('meta[property="article:published_time"]')).toHaveAttribute('content', legacy.publishedAt);
+  const ld = page.locator('script[type="application/ld+json"]');
+  await expect(ld).toHaveCount(1);
+  const graph = JSON.parse((await ld.textContent()) ?? '')['@graph'] as { '@type': string; author?: { '@id'?: string } }[];
+  expect(graph.map((n) => n['@type'])).toEqual(['Organization', 'WebSite', 'BlogPosting', 'BreadcrumbList']);
+  expect(graph.find((n) => n['@type'] === 'BlogPosting')?.author?.['@id']).toMatch(/#organization$/);
+});
+
+test('post OG image renders; unknown slug redirects to the default card', async ({ request }) => {
+  const ok = await request.get(`/blog/${SLUG}/opengraph-image`);
+  expect(ok.headers()['content-type']).toBe('image/png');
+  const unknown = await request.get('/blog/nope/opengraph-image', { maxRedirects: 0 });
+  expect(unknown.status()).toBe(307);
+  expect(unknown.headers()['location']).toMatch(/\/opengraph-image$/);
+});
+
+test('author page has ProfilePage structured data', async ({ page }) => {
+  await page.goto('/authors/ritu-writer');
+  const graph = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? '')['@graph'] as { '@type': string }[];
+  expect(graph.map((n) => n['@type'])).toContain('ProfilePage');
+});

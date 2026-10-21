@@ -1,4 +1,5 @@
 import type { PublishedPage } from '@/lib/content/pages';
+import type { PostAuthor, PublicPost } from '@/lib/content/posts';
 import type { SiteSettings } from '@/lib/content/settings';
 import { canonicalUrl, pageDescription, pagePath, plainText } from './metadata';
 
@@ -80,13 +81,68 @@ export function breadcrumbLd(page: PublishedPage): LdNode {
   };
 }
 
-export function faqPageLd(page: PublishedPage): LdNode | null {
-  const items = page.blocks.flatMap((b) => (b.type === 'faq' ? b.items : []));
+export function faqLd(items: { q: string; a: string }[]): LdNode | null {
   if (!items.length) return null;
   return {
     '@type': 'FAQPage',
     mainEntity: items.map((f) => ({ '@type': 'Question', name: plainText(f.q), acceptedAnswer: { '@type': 'Answer', text: plainText(f.a) } })),
   };
+}
+
+export function faqPageLd(page: PublishedPage): LdNode | null {
+  return faqLd(page.blocks.flatMap((b) => (b.type === 'faq' ? b.items : [])));
+}
+
+export function breadcrumbOf(items: { name: string; path: string }[]): LdNode {
+  return { '@type': 'BreadcrumbList', itemListElement: items.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: canonicalUrl(c.path) })) };
+}
+
+function personOf(a: PostAuthor) {
+  return { '@type': 'Person', name: a.name, ...(a.slug && { url: canonicalUrl(`/authors/${a.slug}`) }), ...(a.sameAs.length > 0 && { sameAs: a.sameAs }) };
+}
+
+export function blogPostingLd(post: PublicPost): LdNode {
+  const url = canonicalUrl(`/blog/${post.slug}`);
+  const keywords = [...new Set([post.focusKeyword, ...post.secondaryKeywords, ...post.seo.keywords].filter(Boolean))];
+  const words = post.content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+  return {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: post.title,
+    description: post.seo.metaDescription || post.shortDescription,
+    ...(post.featuredImage && { image: absolute(post.featuredImage) }),
+    datePublished: post.publishedAt,
+    dateModified: post.lastReviewedAt ?? post.updatedAt,
+    author: post.author.slug ? personOf(post.author) : { '@id': orgId() },
+    publisher: { '@id': orgId() },
+    mainEntityOfPage: url,
+    ...(post.category && { articleSection: post.category.name }),
+    ...(keywords.length > 0 && { keywords: keywords.join(', ') }),
+    wordCount: words,
+    ...(post.sources.length > 0 && { citation: post.sources.map((x) => x.url) }),
+    inLanguage: 'en-US',
+  };
+}
+
+export function postJsonLd(post: PublicPost, s: SiteSettings): LdNode[] {
+  const crumbs = [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }];
+  if (post.category) crumbs.push({ name: post.category.name, path: `/blog/category/${post.category.slug}` });
+  crumbs.push({ name: post.title, path: `/blog/${post.slug}` });
+  const nodes: (LdNode | null)[] = [organizationLd(s), websiteLd(s), blogPostingLd(post), breadcrumbOf(crumbs), faqLd(post.faqs)];
+  return nodes.filter((n): n is LdNode => n !== null);
+}
+
+export function authorJsonLd(a: PostAuthor, s: SiteSettings): LdNode[] {
+  return [
+    organizationLd(s),
+    websiteLd(s),
+    { '@type': 'ProfilePage', url: canonicalUrl(`/authors/${a.slug}`), mainEntity: { ...personOf(a), ...(a.jobTitle && { jobTitle: a.jobTitle }), ...(a.bio && { description: a.bio }), ...(a.expertise.length > 0 && { knowsAbout: a.expertise }), worksFor: { '@id': orgId() } } },
+    breadcrumbOf([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: a.name, path: `/authors/${a.slug}` }]),
+  ];
+}
+
+export function listJsonLd(s: SiteSettings, crumbs: { name: string; path: string }[]): LdNode[] {
+  return [organizationLd(s), websiteLd(s), breadcrumbOf([{ name: 'Home', path: '/' }, ...crumbs])];
 }
 
 export function pageJsonLd(page: PublishedPage, s: SiteSettings): LdNode[] {
