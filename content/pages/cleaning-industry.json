@@ -1,0 +1,175 @@
+{
+  "slug": "cleaning-industry",
+  "title": "Cleaning Industry",
+  "status": "published",
+  "type": "industry",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Cleaning Industry"
+        }
+      ],
+      "heading": "Digital Solutions for *Cleaning Services*",
+      "lead": "Grow your cleaning business with smart booking, scheduling, and customer management tools.",
+      "buttons": [
+        {
+          "label": "Start a Project →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Our Work",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "40",
+          "suffix": "%",
+          "label": "More Bookings"
+        },
+        {
+          "value": "60",
+          "suffix": "%",
+          "label": "Time Saved"
+        },
+        {
+          "value": "95",
+          "suffix": "%",
+          "label": "Client Retention"
+        },
+        {
+          "value": "24/7",
+          "label": "Online Booking"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Build",
+        "title": "Solutions for *Cleaning Businesses*",
+        "subtitle": "Digital tools designed specifically for commercial and residential cleaning companies.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Online Booking System",
+          "body": "Easy-to-use booking platform with real-time availability, automated confirmations, and payment processing."
+        },
+        {
+          "title": "Schedule Management",
+          "body": "Smart scheduling tools with route optimization, staff assignment, and automated reminders for both clients and cleaners."
+        },
+        {
+          "title": "Customer Portal",
+          "body": "Client-facing portal for booking, payment history, service requests, and communication with your team."
+        },
+        {
+          "title": "Quote Estimator",
+          "body": "Automated quoting system based on property size, service type, and frequency with instant email delivery."
+        },
+        {
+          "title": "Staff Management App",
+          "body": "Mobile app for cleaners with job details, navigation, check-in/check-out, and photo documentation."
+        },
+        {
+          "title": "Review & Reputation",
+          "body": "Automated review collection, Google integration, and reputation management tools to build trust online."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "How we *deliver*",
+        "subtitle": "A streamlined approach focused on operational efficiency and customer experience.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Business Analysis",
+          "body": "We analyze your current booking process, scheduling challenges, and customer journey to identify improvement opportunities."
+        },
+        {
+          "num": "02",
+          "title": "System Design",
+          "body": "We design a custom solution that integrates booking, scheduling, payment, and communication in one seamless platform."
+        },
+        {
+          "num": "03",
+          "title": "Development & Testing",
+          "body": "We build your system with mobile-first design, test thoroughly with real users, and ensure smooth integration."
+        },
+        {
+          "num": "04",
+          "title": "Launch & Training",
+          "body": "We launch your platform, train your staff, and provide ongoing support to ensure maximum adoption."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Industries*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Home Services",
+          "body": "Home improvement & maintenance",
+          "href": "/home-services-industry"
+        },
+        {
+          "title": "Retail Industry",
+          "body": "E-commerce & retail solutions",
+          "href": "/retail-industry"
+        },
+        {
+          "title": "Business Automation",
+          "body": "Automate your workflows",
+          "href": "/business-automation"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to grow your *cleaning business?*",
+      "body": "Book a free 30-minute call. We'll discuss your specific needs and create a digital strategy that works for you.",
+      "buttons": [
+        {
+          "label": "Book Free Discovery Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

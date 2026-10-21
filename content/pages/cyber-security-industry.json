@@ -1,0 +1,173 @@
+{
+  "slug": "cyber-security-industry",
+  "title": "Cyber Security Industry",
+  "status": "published",
+  "type": "industry",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Cyber Security"
+        }
+      ],
+      "heading": "Digital Solutions for *Cyber Security Firms*",
+      "lead": "Build trust and demonstrate expertise with secure, professional digital platforms.",
+      "buttons": [
+        {
+          "label": "Start a Project →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Our Work",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "SOC2",
+          "label": "Compliant"
+        },
+        {
+          "value": "256-bit",
+          "label": "Encryption"
+        },
+        {
+          "value": "99.9",
+          "suffix": "%",
+          "label": "Uptime SLA"
+        },
+        {
+          "value": "24/7",
+          "label": "Monitoring"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Build",
+        "title": "Solutions for *Security Companies*",
+        "subtitle": "Digital platforms designed specifically for cyber security firms and managed security service providers.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Security Assessment Portals",
+          "body": "Client portals for vulnerability reports, penetration testing results, and security score dashboards with real-time updates."
+        },
+        {
+          "title": "Incident Response Systems",
+          "body": "Streamlined incident tracking, ticket management, and client communication platforms with secure document sharing."
+        },
+        {
+          "title": "Compliance Management",
+          "body": "Tools for tracking regulatory compliance, audit preparation, and certification management with automated reporting."
+        },
+        {
+          "title": "Threat Intelligence Dashboards",
+          "body": "Real-time threat visualization, risk scoring, and executive reporting dashboards for client presentations."
+        },
+        {
+          "title": "Training & Awareness Platforms",
+          "body": "Employee security training portals with phishing simulations, progress tracking, and certification management."
+        },
+        {
+          "title": "Secure Client Onboarding",
+          "body": "Automated onboarding workflows with secure document collection, KYC verification, and service agreement management."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "How we *deliver*",
+        "subtitle": "Security-first development approach with compliance and trust built into every solution.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Security Assessment",
+          "body": "We conduct a thorough security assessment of your requirements and design systems with defense-in-depth principles."
+        },
+        {
+          "num": "02",
+          "title": "Secure Architecture",
+          "body": "We design architecture following OWASP guidelines, with encryption, access controls, and audit trails built in."
+        },
+        {
+          "num": "03",
+          "title": "Compliant Development",
+          "body": "We develop with continuous security testing, code reviews, and compliance validation throughout the process."
+        },
+        {
+          "num": "04",
+          "title": "Penetration Testing",
+          "body": "We conduct thorough penetration testing before launch and provide ongoing security monitoring and updates."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Industries*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "IT Industry",
+          "body": "Technology & software solutions",
+          "href": "/it-industry"
+        },
+        {
+          "title": "Healthcare",
+          "body": "Medical practices & health tech",
+          "href": "/healthcare-industry"
+        },
+        {
+          "title": "Business Automation",
+          "body": "Automate your workflows",
+          "href": "/business-automation"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to secure your *digital presence?*",
+      "body": "Book a free 30-minute call. We'll discuss your security requirements and build a compliant solution.",
+      "buttons": [
+        {
+          "label": "Book Free Discovery Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

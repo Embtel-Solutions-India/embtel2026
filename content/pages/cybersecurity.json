@@ -1,0 +1,203 @@
+{
+  "slug": "cybersecurity",
+  "title": "Cybersecurity",
+  "status": "published",
+  "type": "service",
+  "theme": {
+    "accent": "#A855F7"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "Cybersecurity"
+        }
+      ],
+      "heading": "Cybersecurity that *Protects Your Business*",
+      "lead": "Comprehensive security solutions to safeguard your data, systems, and reputation. From vulnerability assessments to managed security services — we keep you protected 24/7.",
+      "buttons": [
+        {
+          "label": "Secure My Business →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "Our Approach",
+          "href": "/process",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "24",
+          "suffix": "/7",
+          "label": "Monitoring"
+        },
+        {
+          "value": "99",
+          "suffix": "%",
+          "label": "Threat Detection"
+        },
+        {
+          "value": "30",
+          "suffix": "min",
+          "label": "Response Time"
+        },
+        {
+          "value": "0",
+          "label": "Breaches"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Protect",
+        "title": "Security solutions *that work*",
+        "subtitle": "Every business is a target. We build layered security to keep threats out and your data safe.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Security Audits",
+          "body": "Comprehensive vulnerability assessments of your email, website, cloud storage, and endpoints with prioritized remediation plans."
+        },
+        {
+          "title": "Managed Security",
+          "body": "Endpoint protection, firewall management, email filtering, and dark web monitoring — all managed by our security team."
+        },
+        {
+          "title": "Employee Training",
+          "body": "Phishing simulations, password hygiene workshops, and security awareness programs tailored to your team's needs."
+        },
+        {
+          "title": "Data Backup & Recovery",
+          "body": "Automated backups, tested recovery procedures, and business continuity plans to minimize downtime if disaster strikes."
+        },
+        {
+          "title": "Compliance Management",
+          "body": "PCI-DSS, HIPAA, SOC 2, and CCPA compliance support to meet industry requirements and protect customer data."
+        },
+        {
+          "title": "Penetration Testing",
+          "body": "Simulated cyberattacks to identify weaknesses before real attackers do, with detailed remediation reports."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "Security done *strategically*",
+        "subtitle": "We assess, protect, and monitor — building defense in layers that adapt to evolving threats.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Risk Assessment",
+          "body": "We evaluate your current security posture, identify vulnerabilities, and prioritize risks based on business impact."
+        },
+        {
+          "num": "02",
+          "title": "Security Design",
+          "body": "We design a layered security architecture tailored to your specific needs, budget, and compliance requirements."
+        },
+        {
+          "num": "03",
+          "title": "Implementation",
+          "body": "We deploy security controls, configure systems, and integrate tools with minimal disruption to your operations."
+        },
+        {
+          "num": "04",
+          "title": "Monitoring & Response",
+          "body": "Continuous monitoring, threat detection, and rapid incident response to keep your business protected 24/7."
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Tools We Use",
+        "title": "Industry-leading *security platforms*",
+        "align": "center"
+      },
+      "items": [
+        {
+          "label": "Microsoft Defender"
+        },
+        {
+          "label": "Sophos"
+        },
+        {
+          "label": "CrowdStrike"
+        },
+        {
+          "label": "Darktrace"
+        },
+        {
+          "label": "AWS Security"
+        },
+        {
+          "label": "Google Cloud Security"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Services*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Business Automation",
+          "body": "Secure your automated workflows",
+          "href": "/business-automation"
+        },
+        {
+          "title": "AI Integrations",
+          "body": "Secure AI-powered solutions",
+          "href": "/ai-integrations"
+        },
+        {
+          "title": "Web Development",
+          "body": "Secure web applications",
+          "href": "/web-development"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to secure your *business?*",
+      "body": "Book a free security assessment. We'll identify your vulnerabilities and provide a roadmap to protect your business.",
+      "buttons": [
+        {
+          "label": "Get My Free Assessment →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

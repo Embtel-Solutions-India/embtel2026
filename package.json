@@ -14,7 +14,8 @@
     "test": "vitest run",
     "e2e": "playwright test",
     "db:migrate": "tsx --env-file=.env.local scripts/migrate-db.ts",
-    "admin:create": "tsx --env-file=.env.local scripts/create-admin.ts"
+    "admin:create": "tsx --env-file=.env.local scripts/create-admin.ts",
+    "content:import": "tsx scripts/import-legacy/index.ts"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -37,6 +38,7 @@
     "@types/sanitize-html": "^2.16.2",
     "@vitejs/plugin-react": "^6.1.2",
     "@vitest/coverage-v8": "^5.0.5",
+    "cheerio": "^1.2.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
     "jsdom": "^29.1.1",

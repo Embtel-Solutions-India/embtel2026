@@ -1,0 +1,175 @@
+{
+  "slug": "law-industry",
+  "title": "Law Industry",
+  "status": "published",
+  "type": "industry",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Law Industry"
+        }
+      ],
+      "heading": "Digital Solutions for *Law Firms*",
+      "lead": "Modernize your legal practice with secure, compliant digital platforms that enhance client experience.",
+      "buttons": [
+        {
+          "label": "Start a Project →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Our Work",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "35",
+          "suffix": "+",
+          "label": "Law Firm Clients"
+        },
+        {
+          "value": "100",
+          "suffix": "%",
+          "label": "Secure & Compliant"
+        },
+        {
+          "value": "50",
+          "suffix": "%",
+          "label": "Time Saved"
+        },
+        {
+          "value": "24/7",
+          "label": "Client Access"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Build",
+        "title": "Solutions for *Legal Practices*",
+        "subtitle": "Digital tools designed specifically for law firms, attorneys, and legal service providers.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Client Portals",
+          "body": "Secure client portals for document sharing, case updates, appointment scheduling, and secure messaging with attorneys."
+        },
+        {
+          "title": "Case Management",
+          "body": "Comprehensive case tracking with deadline management, document organization, task assignment, and automated reminders."
+        },
+        {
+          "title": "Document Management",
+          "body": "Secure document storage with version control, OCR scanning, automated document classification, and advanced search capabilities."
+        },
+        {
+          "title": "Appointment Scheduling",
+          "body": "Online consultation booking with calendar integration, automated confirmations, and reminder systems for clients."
+        },
+        {
+          "title": "Legal Research Tools",
+          "body": "Custom research platforms with case law databases, document templates, and AI-powered legal research assistance."
+        },
+        {
+          "title": "Billing & Invoicing",
+          "body": "Automated time tracking, invoice generation, payment processing, and financial reporting with trust account integration."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "How we *deliver*",
+        "subtitle": "A secure, compliant approach tailored to the sensitive nature of legal practice.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Compliance Assessment",
+          "body": "We analyze your current systems and ensure all solutions meet attorney-client privilege requirements and data protection regulations."
+        },
+        {
+          "num": "02",
+          "title": "Secure Architecture",
+          "body": "We design systems with bank-level encryption, access controls, and audit trails to protect sensitive client information."
+        },
+        {
+          "num": "03",
+          "title": "Integration & Development",
+          "body": "We build and integrate your custom solutions with existing case management tools and legal research platforms."
+        },
+        {
+          "num": "04",
+          "title": "Training & Support",
+          "body": "We provide comprehensive staff training on security best practices and ongoing technical support."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Industries*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Immigration Firm",
+          "body": "Visa & immigration legal services",
+          "href": "/immigration-firm-industry"
+        },
+        {
+          "title": "Accounting Firm",
+          "body": "Financial services & bookkeeping",
+          "href": "/accounting-firm-industry"
+        },
+        {
+          "title": "Business Automation",
+          "body": "Automate your workflows",
+          "href": "/business-automation"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to modernize your *legal practice?*",
+      "body": "Book a free 30-minute call. We'll discuss your specific needs and create a secure, compliant digital strategy.",
+      "buttons": [
+        {
+          "label": "Book Free Discovery Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

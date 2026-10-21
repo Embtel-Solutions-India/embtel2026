@@ -1,0 +1,220 @@
+{
+  "slug": "dental-automation",
+  "title": "Automation for Dental Clinics & Med Spas",
+  "status": "published",
+  "type": "landing",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "AI Automation"
+        },
+        {
+          "label": "Dental & Med Spas"
+        }
+      ],
+      "heading": "Fill Empty Chairs *on Autopilot*",
+      "lead": "Automated reminders, AI booking, and smart recall campaigns cut no-shows and rebook dormant patients — while your team focuses on the patients in front of them.",
+      "buttons": [
+        {
+          "label": "Get Your Free Automation Audit →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "variant": "primary"
+        },
+        {
+          "label": "Call (510) 962-7900",
+          "href": "tel:+15109627900",
+          "variant": "ghost"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "The Pain",
+        "title": "Sound *familiar?*"
+      },
+      "variant": "pain",
+      "columns": 4,
+      "items": [
+        {
+          "title": "A no-show costs me the slot and the staff time.",
+          "body": "That chair sat empty all afternoon. You never get that revenue back."
+        },
+        {
+          "title": "My front desk can't call 400 overdue patients.",
+          "body": "Recall lists sit in the software, untouched. Nobody calls, nobody rebooks."
+        },
+        {
+          "title": "Booking is a game of phone tag.",
+          "body": "New patients call during business hours only. The practice that answered first got them."
+        },
+        {
+          "title": "Happy patients never leave reviews.",
+          "body": "The quiet, satisfied ones say nothing. The unhappy ones write essays."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "How It Works",
+        "title": "Your front desk, *automated 24/7*",
+        "subtitle": "Runs alongside your practice management software. No new systems for your staff to learn.",
+        "align": "center"
+      },
+      "variant": "flow",
+      "items": [
+        {
+          "num": "1",
+          "title": "Smart Reminders",
+          "body": "SMS and email confirmations go out automatically, with easy reschedule links. Fewer no-shows, fewer gaps in the day."
+        },
+        {
+          "num": "2",
+          "title": "AI Booking, Day or Night",
+          "body": "New and existing patients book online or by phone around the clock. Open slots fill themselves while you're closed."
+        },
+        {
+          "num": "3",
+          "title": "Recall + Review Engine",
+          "body": "Overdue patients get friendly automated recall sequences. Happy patients are asked for a review at just the right moment."
+        }
+      ]
+    },
+    {
+      "type": "roi",
+      "header": {
+        "eyebrow": "The Math",
+        "title": "What no-shows *really cost*",
+        "align": "center"
+      },
+      "math": "8 fewer no-shows/month × $200 avg visit value = *~$1,600/month recovered*",
+      "assumptions": "Assumptions: automated reminders cut your no-shows by 8 appointments per month; average visit value $200. Recall campaigns and new review-driven bookings are extra on top. Your numbers will differ — the free audit maps your actual schedule.",
+      "disclaimer": "Illustrative estimate for example purposes only. Actual results vary by specialty, schedule, and patient base."
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Why Embtel",
+        "title": "Built for *practices*, not enterprises",
+        "align": "center"
+      },
+      "variant": "trust",
+      "columns": 3,
+      "items": [
+        {
+          "title": "HIPAA-Aware Workflows",
+          "body": "Patient data handled with healthcare-grade care."
+        },
+        {
+          "title": "USA-Based Support",
+          "body": "Real humans, your timezone, fast answers."
+        },
+        {
+          "title": "SMB-Friendly Pricing",
+          "body": "Built for single and multi-location practices."
+        },
+        {
+          "title": "Live in 1–2 Weeks",
+          "body": "Connected to your existing scheduling software."
+        },
+        {
+          "title": "No Long-Term Contracts",
+          "body": "Month-to-month. If chairs stay empty, walk away."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Free Automation Audit",
+        "title": "See exactly where *patients are leaking*",
+        "subtitle": "A 30-minute working session — not a sales pitch. You leave with a fixed-quote plan whether or not you hire us.",
+        "align": "center"
+      },
+      "variant": "audit",
+      "columns": 3,
+      "items": [
+        {
+          "num": "01",
+          "title": "Schedule Leak Map",
+          "body": "We trace your no-shows, unfilled slots, and dormant recall list — and put a dollar figure on what they're costing you."
+        },
+        {
+          "num": "02",
+          "title": "Fixed-Quote Plan",
+          "body": "You get an exact scope, timeline, and price for the reminder, booking, and recall system that fills your chairs. No hourly billing."
+        },
+        {
+          "num": "03",
+          "title": "Zero Commitment",
+          "body": "Keep the plan and implement it yourself, or hand it to us. The audit is free either way."
+        }
+      ],
+      "button": {
+        "label": "Get Your Free Automation Audit →",
+        "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+        "variant": "primary"
+      }
+    },
+    {
+      "type": "faq",
+      "header": {
+        "eyebrow": "FAQ",
+        "title": "Honest *answers*",
+        "align": "center"
+      },
+      "variant": "static",
+      "items": [
+        {
+          "q": "What does it cost?",
+          "a": "It depends on scope — reminders only versus full booking, recall, and review automation. The free audit gives you a fixed quote before you spend anything."
+        },
+        {
+          "q": "Do I need new software?",
+          "a": "No. We connect to your existing practice management and scheduling software. Your staff keeps the tools they know."
+        },
+        {
+          "q": "How fast can this be live?",
+          "a": "Most systems are up and running in 1–2 weeks, including testing against your actual appointment flow."
+        },
+        {
+          "q": "What if I'm not technical?",
+          "a": "You never touch code. Once it's live, reminders, booking, and recalls run themselves — your team just sees fuller schedules."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Empty chairs are *expensive.*",
+      "body": "Your front desk can't call everyone — automation can. Get your free audit and see what a fuller schedule looks like.",
+      "buttons": [
+        {
+          "label": "Get Your Free Automation Audit →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "variant": "primary"
+        },
+        {
+          "label": "Call (510) 962-7900",
+          "href": "tel:+15109627900",
+          "variant": "ghost"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "metaDescription": "Automated reminders, AI booking, and smart recall campaigns fill chairs while your team treats patients. Free automation audit for dental clinics and med spas.",
+    "noindex": false
+  },
+  "locked": true
+}

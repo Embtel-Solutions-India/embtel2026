@@ -1,0 +1,210 @@
+{
+  "slug": "digital-marketing",
+  "title": "Digital Marketing",
+  "status": "published",
+  "type": "service",
+  "theme": {
+    "accent": "#00C896"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "Digital Marketing"
+        }
+      ],
+      "heading": "Full-Service Digital Marketing *Solutions That Drive Growth*",
+      "lead": "Boost Your Online Presence, Traffic & Sales with Proven Digital Strategies",
+      "buttons": [
+        {
+          "label": "Grow My Traffic →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "See Case Studies",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "3",
+          "suffix": "x",
+          "label": "Avg Traffic Growth"
+        },
+        {
+          "value": "200",
+          "suffix": "+",
+          "label": "Keywords Ranked"
+        },
+        {
+          "value": "92",
+          "suffix": "%",
+          "label": "Client Retention"
+        },
+        {
+          "value": "6",
+          "suffix": "mo",
+          "label": "Avg to First-Page Rank"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Do",
+        "title": "Full-funnel *growth marketing*",
+        "subtitle": "From technical foundations to content that ranks — every tactic connected to revenue.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Technical SEO",
+          "body": "Full site audits, Core Web Vitals optimisation, structured data, crawlability fixes, and schema markup that search engines love."
+        },
+        {
+          "title": "Content Strategy",
+          "body": "Keyword-mapped content calendars, topic clusters, and long-form articles written by experts and optimised to rank and convert."
+        },
+        {
+          "title": "Link Building",
+          "body": "White-hat authority backlinks through digital PR, outreach, and strategic partnerships that build domain trust over time."
+        },
+        {
+          "title": "Local SEO",
+          "body": "Google Business optimisation, local citation building, and maps ranking strategies to dominate your city or region."
+        },
+        {
+          "title": "Email Marketing",
+          "body": "Automated nurture sequences, newsletters, and re-engagement campaigns that keep your audience warm and buying."
+        },
+        {
+          "title": "Conversion Optimisation",
+          "body": "A/B testing, heatmap analysis, and UX improvements that turn more of your existing traffic into paying customers."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "How we *build growth*",
+        "subtitle": "Methodical, transparent, and always tied to measurable results.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Audit & Research",
+          "body": "Full site audit, competitor analysis, and keyword opportunity mapping to identify exactly where to focus effort for the fastest wins."
+        },
+        {
+          "num": "02",
+          "title": "Strategy & Roadmap",
+          "body": "A prioritised 90-day roadmap with content calendar, target keywords, and link-building goals aligned to your revenue objectives."
+        },
+        {
+          "num": "03",
+          "title": "Execution",
+          "body": "Publishing, outreach, technical fixes, and on-page optimisation delivered consistently every month — no gaps, no excuses."
+        },
+        {
+          "num": "04",
+          "title": "Reporting & Iteration",
+          "body": "Monthly performance reports with ranking movements, traffic data, and clear ROI. Strategy adjusted based on what the data shows."
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Tools We Use",
+        "title": "Industry-leading *marketing tools*",
+        "align": "center"
+      },
+      "items": [
+        {
+          "label": "Ahrefs"
+        },
+        {
+          "label": "SEMrush"
+        },
+        {
+          "label": "Google Search Console"
+        },
+        {
+          "label": "Screaming Frog"
+        },
+        {
+          "label": "Mailchimp"
+        },
+        {
+          "label": "HubSpot"
+        },
+        {
+          "label": "Google Analytics 4"
+        },
+        {
+          "label": "Hotjar"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Services*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Web Development",
+          "body": "A fast site is the foundation of good SEO",
+          "href": "/web-development"
+        },
+        {
+          "title": "SEO & GEO",
+          "body": "Paid ads to amplify organic efforts",
+          "href": "/seo-geo"
+        },
+        {
+          "title": "Analytics & Dashboards",
+          "body": "Track every ranking and conversion",
+          "href": "/analytics-dashboards"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to *outrank your competition?*",
+      "body": "Book a free SEO audit call. We'll show you exactly where you're losing traffic and how to get it back.",
+      "buttons": [
+        {
+          "label": "Get My Free Audit →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

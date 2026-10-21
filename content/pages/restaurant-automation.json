@@ -1,0 +1,220 @@
+{
+  "slug": "restaurant-automation",
+  "title": "Commission-Free Ordering & Review Automation for Restaurants",
+  "status": "published",
+  "type": "landing",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "AI Automation"
+        },
+        {
+          "label": "Restaurants"
+        }
+      ],
+      "heading": "Ditch 30% Delivery *Commissions*",
+      "lead": "Your own commission-free online ordering system, an automated review engine, and reservation automation. Your orders, your data, your rules.",
+      "buttons": [
+        {
+          "label": "Get Your Free Automation Audit →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "variant": "primary"
+        },
+        {
+          "label": "Call (510) 962-7900",
+          "href": "tel:+15109627900",
+          "variant": "ghost"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "The Pain",
+        "title": "Sound *familiar?*"
+      },
+      "variant": "pain",
+      "columns": 4,
+      "items": [
+        {
+          "title": "The apps take up to 30% of every order.",
+          "body": "Your customers. Your kitchen. Their margin — on every single ticket."
+        },
+        {
+          "title": "My best customers live on their app, not mine.",
+          "body": "You don't get the customer data. You can't market to them. The app owns the relationship."
+        },
+        {
+          "title": "Five-star guests never leave reviews.",
+          "body": "The quiet, happy tables say nothing. One bad night writes a paragraph."
+        },
+        {
+          "title": "Friday night is chaos.",
+          "body": "Phone reservations, walk-ins, no-shows, and double-bookings all fighting for the same tables."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "How It Works",
+        "title": "Your orders, *your data, your rules*",
+        "subtitle": "One system that pays for itself — no app-store commissions, no per-order fees to a middleman.",
+        "align": "center"
+      },
+      "variant": "flow",
+      "items": [
+        {
+          "num": "1",
+          "title": "Commission-Free Ordering",
+          "body": "Your own online ordering on your website — branded, mobile-first, paid straight to your account. You keep every dollar."
+        },
+        {
+          "num": "2",
+          "title": "Automated Review Engine",
+          "body": "Happy diners get a perfectly timed text asking for a Google review. More 5-star reviews, more foot traffic, zero manual work."
+        },
+        {
+          "num": "3",
+          "title": "Reservations on Autopilot",
+          "body": "Online reservations with confirmation and reminder texts. Fewer no-shows, fuller tables, and automatic win-back offers for lapsed regulars."
+        }
+      ]
+    },
+    {
+      "type": "roi",
+      "header": {
+        "eyebrow": "The Math",
+        "title": "What commissions *really cost*",
+        "align": "center"
+      },
+      "math": "$20,000/month in app orders × 28% commission × 50% shifted to your own ordering = *~$2,800/month saved*",
+      "assumptions": "Assumptions: $20,000 in monthly third-party delivery orders; 28% average commission; half of that volume moves to your own commission-free ordering. Review and reservation revenue lift is extra on top. Your numbers will differ — the free audit maps your actual order mix.",
+      "disclaimer": "Illustrative estimate for example purposes only. Actual results vary by concept, volume, and delivery mix."
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Why Embtel",
+        "title": "Built for independent *restaurants & cafes*",
+        "align": "center"
+      },
+      "variant": "trust",
+      "columns": 3,
+      "items": [
+        {
+          "title": "USA-Based Team",
+          "body": "Real humans, real support, your timezone."
+        },
+        {
+          "title": "SMB-Friendly Pricing",
+          "body": "Built for independents, not chains."
+        },
+        {
+          "title": "Live in Weeks",
+          "body": "Most systems up and running in 2–4 weeks."
+        },
+        {
+          "title": "Works With Your POS",
+          "body": "Connects to your existing point-of-sale and payment setup."
+        },
+        {
+          "title": "No Long-Term Contracts",
+          "body": "Month-to-month. If it doesn't pay for itself, walk away."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Free Automation Audit",
+        "title": "See exactly where *margin is leaking*",
+        "subtitle": "A 30-minute working session — not a sales pitch. You leave with a fixed-quote plan whether or not you hire us.",
+        "align": "center"
+      },
+      "variant": "audit",
+      "columns": 3,
+      "items": [
+        {
+          "num": "01",
+          "title": "Commission Leak Map",
+          "body": "We map your order mix, review profile, and reservation chaos — and put a dollar figure on what the apps and no-shows are costing you."
+        },
+        {
+          "num": "02",
+          "title": "Fixed-Quote Plan",
+          "body": "You get an exact scope, timeline, and price for the ordering, review, and reservation system that fits your operation. No hourly billing."
+        },
+        {
+          "num": "03",
+          "title": "Zero Commitment",
+          "body": "Keep the plan and implement it yourself, or hand it to us. The audit is free either way."
+        }
+      ],
+      "button": {
+        "label": "Get Your Free Automation Audit →",
+        "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+        "variant": "primary"
+      }
+    },
+    {
+      "type": "faq",
+      "header": {
+        "eyebrow": "FAQ",
+        "title": "Honest *answers*",
+        "align": "center"
+      },
+      "variant": "static",
+      "items": [
+        {
+          "q": "What does it cost?",
+          "a": "It depends on scope — a single-location ordering site versus full ordering, reviews, and reservations. The free audit gives you a fixed quote before you spend anything."
+        },
+        {
+          "q": "Do I need a new POS?",
+          "a": "No. We connect to the POS and payment setup you already have. If you don't have online ordering today, we'll build it on top of what you run now."
+        },
+        {
+          "q": "How fast can this be live?",
+          "a": "Most systems are up and running in 2–4 weeks, including testing with your real menu and order flow."
+        },
+        {
+          "q": "What if I'm not technical?",
+          "a": "You never touch code. Once it's live, ordering, review requests, and reservation reminders run themselves — you just watch the orders come in."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Your customers. *Your margin.*",
+      "body": "Get your free audit and see what your orders are really costing you — and what keeping them would look like.",
+      "buttons": [
+        {
+          "label": "Get Your Free Automation Audit →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "variant": "primary"
+        },
+        {
+          "label": "Call (510) 962-7900",
+          "href": "tel:+15109627900",
+          "variant": "ghost"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "metaDescription": "Your own commission-free online ordering system, automated review engine, and reservation automation. Free tech audit for restaurants and cafes.",
+    "noindex": false
+  },
+  "locked": true
+}
