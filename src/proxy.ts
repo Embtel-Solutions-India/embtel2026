@@ -29,9 +29,11 @@ export async function proxy(req: NextRequest) {
   return NextResponse.redirect(login);
 }
 
-// Everything except build assets, the image optimizer, favicon and image files.
+// Everything except build assets, the image optimizer, favicon and image files — but every
+// /admin path, image-like or not, always runs the auth gate.
 export const config = {
   matcher: [
     '/((?!_next/static|_next/image|favicon\\.ico|.*\\.(?:png|jpe?g|gif|webp|avif|svg|ico)$).*)',
+    '/admin/:path*',
   ],
 };

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { buildCsp } from '@/lib/security/csp';
+import { buildCsp, CSP_SOURCES } from '@/lib/security/csp';
 
 const directive = (csp: string, name: string) =>
   csp.split(';').map((d) => d.trim()).find((d) => d.split(' ')[0] === name);
@@ -34,5 +34,17 @@ describe('buildCsp', () => {
     expect(buildCsp({})).not.toContain("'unsafe-eval'");
     vi.stubEnv('NODE_ENV', 'development');
     expect(directive(buildCsp({}), 'script-src')).toContain("'unsafe-eval'");
+  });
+
+  it('sends upgrade-insecure-requests only in production', () => {
+    vi.stubEnv('NODE_ENV', 'production');
+    expect(buildCsp({})).toMatch(/; upgrade-insecure-requests$/);
+    vi.stubEnv('NODE_ENV', 'development');
+    expect(buildCsp({})).not.toContain('upgrade-insecure-requests');
+  });
+
+  it('exposes a frozen allow-list', () => {
+    expect(Object.isFrozen(CSP_SOURCES)).toBe(true);
+    expect(Object.isFrozen(CSP_SOURCES['script-src'])).toBe(true);
   });
 });

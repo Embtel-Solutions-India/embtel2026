@@ -52,6 +52,11 @@ test('/admin is noindex and unframeable', async ({ page }) => {
   expect(h['content-security-policy']).toContain("frame-ancestors 'none'");
 });
 
+test('image-like /admin paths still hit the auth gate', async ({ page }) => {
+  await page.goto('/admin/foo.png');
+  await expect(page).toHaveURL(/\/admin\/login\?redirect=%2Fadmin%2Ffoo\.png$/);
+});
+
 test('login form hydrates under the CSP', async ({ page }) => {
   await page.goto('/admin/login');
   // React attaches __react* keys to DOM nodes it hydrated; blocked scripts leave none.
