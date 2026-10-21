@@ -12,12 +12,18 @@ import { CREDS_FILE, E2E_PORT } from './creds';
 const rnd = (n: number) => crypto.randomBytes(n).toString('hex');
 const nextBin = path.resolve('node_modules/next/dist/bin/next');
 
+async function seedSettings() {
+  const settings = JSON.parse(fs.readFileSync('content/settings.json', 'utf8'));
+  await mongoose.connection.db!.collection('settings').insertOne({ key: 'site', ...settings });
+}
+
 async function main() {
   const mongo = await MongoMemoryServer.create();
   const uri = mongo.getUri('embtel-e2e');
   await mongoose.connect(uri);
   const password = rnd(16);
   await User.create({ name: 'E2E Admin', email: 'admin@example.com', password, role: 'admin' });
+  await seedSettings();
   await mongoose.disconnect();
 
   fs.mkdirSync(path.dirname(CREDS_FILE), { recursive: true });

@@ -1,4 +1,10 @@
-export default function SiteLayout({ children }: { children: React.ReactNode }) {
+import { Footer } from '@/components/site/Footer';
+import { Header } from '@/components/site/Header';
+import { WhatsAppLink } from '@/components/site/WhatsAppLink';
+import { getSiteSettings } from '@/lib/content/settings';
+
+export default async function SiteLayout({ children }: { children: React.ReactNode }) {
+  const settings = await getSiteSettings();
   return (
     <>
       <a
@@ -7,7 +13,12 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       >
         Skip to content
       </a>
-      <main id="main">{children}</main>
+      <Header settings={settings} />
+      <main id="main" className="pt-[68px]">
+        {children}
+      </main>
+      <Footer settings={settings} />
+      <WhatsAppLink whatsapp={settings.whatsapp} />
     </>
   );
 }
