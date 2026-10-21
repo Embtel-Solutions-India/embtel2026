@@ -12,6 +12,7 @@
     "e2e": "playwright test"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "mongoose": "^8.24.6",
     "next": "16.4.2",
     "react": "19.3.0",
