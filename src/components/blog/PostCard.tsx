@@ -9,7 +9,7 @@ export function PostCard({ post, priority = false, headingLevel = 'h2' }: { post
   return (
     <article className="bc">
       {post.featuredImage ? (
-        <Image className="bc-img" src={post.featuredImage} alt={post.imageAltText || post.title} width={600} height={380} sizes="(max-width: 960px) 100vw, 33vw" priority={priority} />
+        <Image className="bc-img" src={post.featuredImage} alt={post.imageAltText || post.title} width={600} height={380} sizes="(max-width: 960px) 100vw, 33vw" quality={60} priority={priority} />
       ) : (
         <div className="bc-img" aria-hidden="true" />
       )}

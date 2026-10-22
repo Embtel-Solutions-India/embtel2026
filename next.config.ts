@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
     serverActions: { bodySizeLimit: "6mb" },
   },
   images: {
+    // AVIF first (usually 30–50% smaller than WebP); browsers without it get WebP.
+    formats: ["image/avif", "image/webp"],
+    // 60: blog card thumbnails (small, many per page); 75: everything else (Next's default).
+    qualities: [60, 75],
     // Legacy content: client logos (Google favicon service) and the About page office photo.
     remotePatterns: [
       { protocol: "https", hostname: "www.google.com", pathname: "/s2/favicons" },

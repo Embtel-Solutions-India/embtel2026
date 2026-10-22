@@ -14,7 +14,7 @@
         "http://localhost:3100/blog",
         "http://localhost:3100/blog/website-speed-costing-you-customers"
       ],
-      "numberOfRuns": 3,
+      "numberOfRuns": 5,
       "settings": {
         "blockedUrlPatterns": [
           "*googletagmanager.com*",
@@ -48,16 +48,9 @@
           }
         ],
         "categories:performance": [
-          "warn",
+          "error",
           {
             "minScore": 0.9,
-            "aggregationMethod": "median-run"
-          }
-        ],
-        "largest-contentful-paint": [
-          "warn",
-          {
-            "maxNumericValue": 2500,
             "aggregationMethod": "median-run"
           }
         ],
@@ -65,6 +58,13 @@
           "error",
           {
             "maxNumericValue": 0.1,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "total-blocking-time": [
+          "error",
+          {
+            "maxNumericValue": 200,
             "aggregationMethod": "median-run"
           }
         ]

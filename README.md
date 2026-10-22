@@ -50,23 +50,27 @@ organisation details and the Google Ads / Elfsight IDs live in the `settings` do
 ## Lighthouse budgets
 
 `npm run lhci` (run with `VERCEL_ENV=production`) builds the app, seeds the full content into an in-memory DB and
-runs Lighthouse (mobile preset, 3 runs, median; Google tag/Elfsight blocked) on eight public templates incl. `/blog` and a post. CI fails on
-SEO < 1, accessibility < 0.95, best practices < 0.95 or CLS > 0.1. Performance ≥ 0.9 and LCP ≤ 2.5 s are
-**warnings** for now: the lab gap is React start-up JavaScript under Lighthouse's 4× CPU throttling (the page HTML
-and first paint arrive early), not server rendering — see docs for the Phase 2 owner decision.
+runs Lighthouse (mobile preset, 5 runs, median; Google tag/Elfsight blocked) on eight public templates incl. `/blog` and a post.
+Every budget is a hard failure (owner decision, 2026-10-22): performance < 0.90, SEO < 1, accessibility < 0.95,
+best practices < 0.95, CLS > 0.1 or TBT > 200 ms. Lab LCP has no separate check (it is part of the performance score):
+Lighthouse's simulation counts every script, font and stylesheet that downloads before the first paint, which puts lab LCP
+near 3 s for any Next.js page on a simulated slow 4G phone. Real-visitor Core Web Vitals (Search Console) are what Google ranks on.
 
-Baseline (2026-10-22, local, Phase 3 — incl. blog):
+Results (2026-10-22, local, Phase 4 — median of 5):
 
-| Page | Perf | A11y | BP | SEO | LCP | CLS | TBT |
-|---|---|---|---|---|---|---|---|
-| / | 0.86 | 1 | 1 | 1 | 3.9s | 0.000 | 101ms |
-| /web-development | 0.89 | 1 | 1 | 1 | 3.5s | 0.002 | 119ms |
-| /law-industry | 0.89 | 1 | 1 | 1 | 3.5s | 0.049 | 108ms |
-| /dental-automation | 0.89 | 1 | 1 | 1 | 3.5s | 0.001 | 107ms |
-| /about | 0.91 | 1 | 1 | 1 | 3.3s | 0.004 | 79ms |
-| /privacy-policy | 0.88 | 1 | 1 | 1 | 3.5s | 0.000 | 145ms |
-| /blog | 0.87 | 1 | 1 | 1 | 4.0s | 0.002 | 53ms |
-| /blog/website-speed-costing-you-customers | 0.9 | 1 | 1 | 1 | 3.5s | 0.013 | 46ms |
+| Page | Perf | LCP | TBT |
+|---|---|---|---|
+| / | 0.89–0.90 | 3.7s | 70ms |
+| /web-development | 0.91 | 3.3s | 67ms |
+| /law-industry | 0.91 | 3.3s | 80ms |
+| /dental-automation | 0.91 | 3.4s | 100ms |
+| /about | 0.94 | 3.1s | 59ms |
+| /privacy-policy | 0.91 | 3.4s | 82ms |
+| /blog | 0.90 | 3.6s | 38ms |
+| /blog/website-speed-costing-you-customers | 0.92 | 3.2s | 49ms |
+
+SEO, accessibility and best practices are 1 on every page. `/` and `/blog` sit at the 0.90 line; a slow CI machine can
+tip `/` under it (its single runs range 0.89–0.94).
 
 ## Database migrations
 
