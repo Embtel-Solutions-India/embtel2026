@@ -3,6 +3,7 @@ import { audit } from '@/lib/audit';
 import { connectDB } from '@/lib/db/connect';
 import { Blog } from '@/lib/db/models/Blog';
 import { Category } from '@/lib/db/models/Category';
+import { PageModel } from '@/lib/db/models/Page';
 import { Tag } from '@/lib/db/models/Tag';
 import { User } from '@/lib/db/models/User';
 import type { UserDoc } from '@/lib/db/models/User';
@@ -295,17 +296,33 @@ export async function getAdminPost(id: string): Promise<AdminPost | null> {
 }
 
 export type Option = { id: string; name: string };
+export type AuthorOption = Option & { hasBio: boolean };
 
 // Select options for the editor. Marketing users can only credit themselves.
-export async function loadPostOptions(user: UserDoc): Promise<{ categories: Option[]; tags: Option[]; authors: Option[] }> {
+export async function loadPostOptions(user: UserDoc): Promise<{ categories: Option[]; tags: Option[]; authors: AuthorOption[] }> {
   await connectDB();
   const opts = (docs: Raw[]) => docs.map((d) => ({ id: String(d._id), name: String(d.name) }));
   const [categories, tags, authors] = await Promise.all([
     Category.find({}, { name: 1 }).sort({ name: 1 }).lean<Raw[]>(),
     Tag.find({}, { name: 1 }).sort({ name: 1 }).lean<Raw[]>(),
-    isAdmin(user) ? User.find({ active: { $ne: false } }, { name: 1 }).sort({ name: 1 }).lean<Raw[]>() : Promise.resolve([{ _id: user._id, name: user.name }]),
+    isAdmin(user) ? User.find({ active: { $ne: false } }, { name: 1, bio: 1 }).sort({ name: 1 }).lean<Raw[]>() : Promise.resolve([{ _id: user._id, name: user.name, bio: user.bio }]),
   ]);
-  return { categories: opts(categories), tags: opts(tags), authors: opts(authors) };
+  return { categories: opts(categories), tags: opts(tags), authors: authors.map((a) => ({ id: String(a._id), name: String(a.name), hasBio: Boolean(String(a.bio ?? '').trim()) })) };
+}
+
+// Titles/descriptions of every other post and page, for the SEO panel's uniqueness checks.
+export async function loadScoreContext(excludePostId: string | null): Promise<{ otherTitles: string[]; otherDescriptions: string[] }> {
+  await connectDB();
+  const [posts, pages] = await Promise.all([
+    Blog.find(excludePostId && isValidObjectId(excludePostId) ? { _id: { $ne: excludePostId } } : {}, { title: 1, shortDescription: 1, 'seo.metaTitle': 1, 'seo.metaDescription': 1 }).lean<Raw[]>(),
+    PageModel.find({}, { title: 1, 'seo.metaTitle': 1, 'seo.metaDescription': 1 }).lean<Raw[]>(),
+  ]);
+  const seo = (d: Raw) => (d.seo ?? {}) as Raw;
+  const nonEmpty = (xs: unknown[]) => xs.filter((x): x is string => typeof x === 'string' && x.trim() !== '');
+  return {
+    otherTitles: nonEmpty([...posts, ...pages].flatMap((d) => [d.title, seo(d).metaTitle])),
+    otherDescriptions: nonEmpty([...posts.flatMap((d) => [seo(d).metaDescription, d.shortDescription]), ...pages.map((d) => seo(d).metaDescription)]),
+  };
 }
 
 // Called by the cron route: scheduled posts whose time has come go live (publishedAt = scheduledAt).

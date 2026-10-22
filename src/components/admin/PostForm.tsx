@@ -3,15 +3,17 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { savePostAction } from '@/app/admin/(panel)/posts/actions';
-import type { Option } from '@/lib/admin/posts';
+import type { AuthorOption, Option } from '@/lib/admin/posts';
+import type { ScoreContext } from '@/lib/seo/score';
 import { type PostFormValue } from '@/lib/admin/post-defaults';
 import { toLocalInput, withOffset } from '@/lib/admin/time';
 import { Field } from './Field';
 import { MediaPicker } from './MediaPicker';
 import { RepeatableField } from './RepeatableField';
 import { RichTextEditor } from './RichTextEditor';
+import { SeoPanel } from './SeoPanel';
 
-type Options = { categories: Option[]; tags: Option[]; authors: Option[] };
+type Options = { categories: Option[]; tags: Option[]; authors: AuthorOption[] };
 const list = (s: string) => s.split(',').map((x) => x.trim()).filter(Boolean);
 
 export function PostForm({
@@ -21,6 +23,7 @@ export function PostForm({
   publishedAt: initialPublishedAt,
   options,
   saved,
+  scoreContext,
 }: {
   id: string | null;
   initial: PostFormValue;
@@ -28,6 +31,7 @@ export function PostForm({
   publishedAt: string | null;
   options: Options;
   saved?: boolean;
+  scoreContext: ScoreContext;
 }) {
   const router = useRouter();
   const [v, setV] = useState(initial);
@@ -296,6 +300,25 @@ export function PostForm({
           Hide from search engines (noindex)
         </label>
       </section>
+
+      <SeoPanel
+        ctx={scoreContext}
+        input={{
+          title: v.title,
+          slug: v.slug,
+          focusKeyword: v.focusKeyword,
+          metaTitle: v.seo.metaTitle,
+          metaDescription: v.seo.metaDescription,
+          shortDescription: v.shortDescription,
+          content: v.content,
+          featuredImage: v.featuredImage,
+          imageAltText: v.imageAltText,
+          faqs: v.faqs,
+          keyTakeaways: v.keyTakeaways,
+          sources: v.sources,
+          authorHasBio: options.authors.find((a) => a.id === v.authorId)?.hasBio ?? false,
+        }}
+      />
 
       <div className="adm-row" style={{ position: 'sticky', bottom: 0, background: 'var(--color-ink)', padding: '12px 0' }}>
         <button type="submit" className="adm-btn adm-btn-primary" disabled={busy}>
