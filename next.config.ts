@@ -4,9 +4,9 @@ import { imageHosts } from "./src/lib/content/image-hosts";
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
-  // ~15 KB of CSS: inline it so first-time (mostly ad-driven) visitors skip a render-blocking request.
+  // No inlineCss: it also copied the stylesheet into every page's RSC payload (~155 KB of a 436 KB
+  // document), which cost far more main-thread time than the one cacheable CSS request it saved.
   experimental: {
-    inlineCss: true,
     // forbidden() → 403 page for admin screens a role can't open.
     authInterrupts: true,
     // Media uploads go through a server action: 5 MB file limit plus form overhead.
