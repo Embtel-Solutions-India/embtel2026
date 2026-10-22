@@ -27,7 +27,17 @@ export function organizationLd(s: SiteSettings): LdNode {
     ...(o.email && { email: o.email }),
     ...(o.phone && { telephone: o.phone }),
     ...(postalAddress(s) && { address: postalAddress(s) }),
+    ...(o.offices.length > 0 && { location: o.offices.map(officeLd) }),
     sameAs: s.social.map((x) => x.url),
+  };
+}
+
+function officeLd(f: SiteSettings['organization']['offices'][number]) {
+  return {
+    '@type': 'Place',
+    name: f.label,
+    address: { '@type': 'PostalAddress', streetAddress: f.street, addressLocality: f.city, addressRegion: f.region, postalCode: f.postalCode, addressCountry: f.country },
+    ...(f.phone && { telephone: f.phone }),
   };
 }
 

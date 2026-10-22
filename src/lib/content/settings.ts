@@ -2,6 +2,7 @@ import { cacheLife, cacheTag } from 'next/cache';
 import { z } from 'zod';
 import { connectDB } from '@/lib/db/connect';
 import { Settings } from '@/lib/db/models/Settings';
+import { isAllowedImageUrl } from './image-hosts';
 import { HrefSchema, HttpsUrlSchema, LinkSchema } from './links';
 
 export const SETTINGS_TAG = 'settings';
@@ -27,10 +28,25 @@ const FIELDS = {
       })
       .default({}),
     openingHours: z.array(z.string()).default([]),
+    // Further offices (e.g. India) besides the primary US address; shown in the footer and JSON-LD.
+    offices: z
+      .array(
+        z.object({
+          label: z.string().trim().min(1).max(60),
+          street: z.string().max(200).default(''),
+          city: z.string().max(100).default(''),
+          region: z.string().max(100).default(''),
+          postalCode: z.string().max(20).default(''),
+          country: z.enum(['US', 'IN']),
+          phone: z.string().max(30).default(''),
+        }),
+      )
+      .max(5)
+      .default([]),
     description: z.string().default(''),
   }),
-  // Internal paths only until the media host is added to images.remotePatterns (Phase 4).
-  logo: z.string().regex(/^\/(?!\/)/),
+  // Internal path or an allowed media host (same list as images.remotePatterns).
+  logo: z.string().refine(isAllowedImageUrl),
   headerNav: z.array(NavItemSchema),
   headerCta: LinkSchema.nullable(),
   footer: z.object({
@@ -52,6 +68,8 @@ export const SiteSettingsSchema = z.object(FIELDS);
 
 export const isValidSettingsField = (field: string, value: unknown) =>
   field in FIELDS && FIELDS[field as keyof typeof FIELDS].safeParse(value).success;
+export type SettingsField = keyof typeof FIELDS;
+export const settingsFieldSchema = (field: SettingsField) => FIELDS[field];
 export type SiteSettings = z.infer<typeof SiteSettingsSchema>;
 
 export const DEFAULT_SETTINGS: SiteSettings = SiteSettingsSchema.parse({

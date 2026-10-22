@@ -185,3 +185,32 @@ describe('blog SEO', () => {
     expect(postJsonLd({ ...post } as never, SETTINGS).map((n) => n['@type'])).toEqual(['Organization', 'WebSite', 'BlogPosting', 'BreadcrumbList', 'FAQPage']);
   });
 });
+
+describe('offices (US + India)', () => {
+  const INDIA = { label: 'India office', street: '12 MG Road', city: 'Bengaluru', region: 'KA', postalCode: '560001', country: 'IN' as const, phone: '+918000000000' };
+  const withIndia = () => SiteSettingsSchema.parse({ ...SETTINGS, organization: { ...SETTINGS.organization, offices: [INDIA] } });
+
+  it('the settings schema accepts US/IN offices and rejects other countries', () => {
+    expect(withIndia().organization.offices).toHaveLength(1);
+    expect(SETTINGS.organization.offices).toEqual([]);
+    expect(SiteSettingsSchema.safeParse({ ...SETTINGS, organization: { ...SETTINGS.organization, offices: [{ ...INDIA, country: 'FR' }] } }).success).toBe(false);
+  });
+
+  it('Organization keeps the US address and lists each office as a location', async () => {
+    const { organizationLd } = await import('@/lib/seo/jsonld');
+    const ld = organizationLd(withIndia()) as unknown as { address: { addressCountry: string }; location: { name: string; address: { addressCountry: string; addressLocality: string } }[] };
+    expect(ld.address.addressCountry).toBe('US');
+    expect(ld.location).toEqual([expect.objectContaining({ '@type': 'Place', name: 'India office', telephone: '+918000000000', address: expect.objectContaining({ addressCountry: 'IN', addressLocality: 'Bengaluru' }) })]);
+    expect('location' in organizationLd(SETTINGS)).toBe(false);
+  });
+
+  it('the footer shows the US address and every office', async () => {
+    const { Footer } = await import('@/components/site/Footer');
+    const { container } = render(<Footer settings={withIndia()} />);
+    const text = [...container.querySelectorAll('address')].map((a) => a.textContent);
+    expect(text).toHaveLength(2);
+    expect(text[0]).toContain('Fremont');
+    expect(text[1]).toContain('India office');
+    expect(text[1]).toContain('Bengaluru');
+  });
+});

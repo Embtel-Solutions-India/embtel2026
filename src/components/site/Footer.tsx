@@ -43,6 +43,30 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               {org.phoneDisplay || org.phone}
             </a>
           )}
+          {org.address.street && (
+            <address className="mt-3 text-sm not-italic leading-[1.6] text-m2">
+              {org.address.street}
+              <br />
+              {org.address.city}, {org.address.region} {org.address.postalCode}
+            </address>
+          )}
+          {org.offices.map((f) => (
+            <address key={f.label} className="mt-3 text-sm not-italic leading-[1.6] text-m2">
+              <span className="font-semibold text-m3">{f.label}</span>
+              <br />
+              {f.street}
+              <br />
+              {[f.city, f.region, f.postalCode].filter(Boolean).join(', ')}
+              {f.phone && (
+                <>
+                  <br />
+                  <a href={`tel:${f.phone}`} className="hover:text-white">
+                    {f.phone}
+                  </a>
+                </>
+              )}
+            </address>
+          ))}
           {social.length > 0 && (
             <div className="mt-4 flex flex-wrap items-center gap-[18px]">
               {social.map((s) => (
