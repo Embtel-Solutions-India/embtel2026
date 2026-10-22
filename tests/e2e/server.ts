@@ -60,6 +60,15 @@ async function main() {
     AWS_ACCESS_KEY_ID: rnd(10),
     AWS_SECRET_ACCESS_KEY: rnd(20),
     CRON_SECRET: cronSecret,
+    // Blank every optional variable so a developer's .env/.env.local can never leak into the test server.
+    AWS_S3_PUBLIC_URL_BASE: '',
+    SMTP_HOST: '',
+    SMTP_USER: '',
+    SMTP_PASS: '',
+    SMTP_FROM: '',
+    INDEXNOW_KEY: '',
+    GSC_SERVICE_ACCOUNT_JSON: '',
+    GSC_SITE_URL: '',
   };
   const run = (args: string[]) =>
     new Promise<number>((resolve) => {

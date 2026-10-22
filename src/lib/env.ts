@@ -33,8 +33,9 @@ const schema = z.object({
 export type Env = z.infer<typeof schema>;
 
 // Throws with variable names only; values never appear in the message.
+// Empty values count as unset (a blank `KEY=` line must not break a build); placeholders still fail loudly.
 export function parseEnv(source: Record<string, string | undefined>): Env {
-  const r = schema.safeParse(source);
+  const r = schema.safeParse(Object.fromEntries(Object.entries(source).filter(([, v]) => v !== '')));
   if (!r.success) {
     throw new Error(
       'Invalid environment: ' + r.error.issues.map((i) => i.path.join('.')).join(', '),

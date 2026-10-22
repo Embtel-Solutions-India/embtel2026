@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { imageHosts } from "./src/lib/content/image-hosts";
+import { legacyRedirects } from "./redirects";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -33,6 +34,10 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  // Legacy URLs (/about.html, /blog-details?slug=…, /da-ai/*) → 301 to their new address.
+  async redirects() {
+    return legacyRedirects;
   },
   // Static headers on every response; the nonce CSP is set per request in src/proxy.ts.
   async headers() {

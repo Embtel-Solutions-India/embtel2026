@@ -44,6 +44,16 @@ describe('parseEnv', () => {
     expect(msg).not.toContain(k);
   });
 
+  it('treats an empty optional variable as unset (so a blank line never breaks a build)', () => {
+    const e = parseEnv({ ...valid(), INDEXNOW_KEY: '', CRON_SECRET: '', GSC_SERVICE_ACCOUNT_JSON: '', GSC_SITE_URL: '', AWS_S3_PUBLIC_URL_BASE: '', SMTP_HOST: '' });
+    expect(e.INDEXNOW_KEY).toBeUndefined();
+    expect(e.CRON_SECRET).toBeUndefined();
+  });
+
+  it('still rejects a placeholder left in an optional variable', () => {
+    expect(() => parseEnv({ ...valid(), INDEXNOW_KEY: '<set-in-vercel>' })).toThrowError(/INDEXNOW_KEY/);
+  });
+
   it('defaults SMTP_PORT to 587 and strips SITE_URL trailing slash', () => {
     const e = parseEnv(valid());
     expect(e.SMTP_PORT).toBe(587);
