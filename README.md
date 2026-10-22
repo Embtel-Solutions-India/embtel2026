@@ -37,7 +37,7 @@ Secrets never go in the repo. `.env.example` holds placeholders only; real value
 ## Content
 
 Public pages are stored as page documents (ordered, validated blocks) in the `pages` collection; header, footer,
-organisation details and the Google Ads / Elfsight IDs live in the `settings` document.
+organisation details, offices and the integration IDs (Google Ads, GA4, GTM, Formspree, Tawk.to, Elfsight, Search Console verification) live in the `settings` document. Admins edit them in `/admin/settings` and `/admin/integrations`; page titles, search snippets, top sections and FAQs are edited in `/admin/pages` (no block editor).
 
 - `npm run content:import` — one-time conversion of the legacy `embtel-final/` HTML into reviewable JSON in
   `content/pages/` (30 pages) and the legacy blog into `content/blog/` (6 posts, categories, tags with their
@@ -45,7 +45,17 @@ organisation details and the Google Ads / Elfsight IDs live in the `settings` do
 - `npm run content:seed` — loads `content/settings.json`, `content/pages/*.json` and `content/blog/` into the database (env from
   `.env.local`). Idempotent: existing pages are never overwritten (admin edits win) unless named with
   `-- --force=home,about`; settings only receive fields that are empty. Refuses to run with `VERCEL_ENV=production`
-  unless `-- --yes` is passed. Cached pages refresh on the next deploy (from Phase 5, on publish).
+  unless `-- --yes` is passed. Admin saves refresh the affected cached pages immediately.
+
+## Leads and integrations
+
+The contact form saves every lead in the `leads` collection and forwards it to Formspree (form ID in
+`/admin/integrations`), which emails the team. If Formspree fails, the lead is kept as `failed` and can be re-sent
+from `/admin/leads`; Admins can export CSV. e2e tests blank the Formspree ID so test leads are never sent.
+
+Search Console insights (`/admin/seo`): create a Google Cloud service account, enable the Search Console API, add
+the account to the property with Restricted access, then set `GSC_SERVICE_ACCOUNT_JSON` (the key file contents) and
+`GSC_SITE_URL` in Vercel. A daily cron (`vercel.json`) refreshes the data; "Update now" refreshes it on demand.
 
 ## Lighthouse budgets
 
@@ -91,7 +101,7 @@ tip `/` under it (its single runs range 0.89–0.94).
 ## Vercel (owner steps)
 
 1. In Vercel, import the GitHub repo as a new project (framework: Next.js, root directory: repo root).
-2. Under Settings > Environment Variables, add every variable listed in `.env.example` separately for Production, Preview and Development, with real values for each environment. Every required variable must be set, including the `AWS_*` ones and `ENCRYPTION_KEY` (unused until later phases), or the preview will not boot. Generate secrets with `openssl rand -base64 32` (`ENCRYPTION_KEY`) and `openssl rand -base64 48` (`SESSION_SECRET`).
+2. Under Settings > Environment Variables, add every variable listed in `.env.example` separately for Production, Preview and Development, with real values for each environment. Every required variable must be set, including the `AWS_*` ones and `ENCRYPTION_KEY`, or the preview will not boot. Optional: `CRON_SECRET` (32+ chars; enables scheduled publishing every 5 min — needs Vercel Pro — and the daily Search Console sync), `GSC_SERVICE_ACCOUNT_JSON` + `GSC_SITE_URL` (SEO insights), `INDEXNOW_KEY`. Generate secrets with `openssl rand -base64 32` (`ENCRYPTION_KEY`) and `openssl rand -base64 48` (`SESSION_SECRET`).
 3. Pull requests get a Preview deployment automatically once the repo is linked. Check the preview serves with `noindex`.
 
 ## Known legacy secrets

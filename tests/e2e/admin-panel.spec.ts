@@ -3,8 +3,8 @@ import { expect, test, type Page } from '@playwright/test';
 import { readCreds, signIn } from './login';
 
 const SCREENS = {
-  admin: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/users', '/admin/settings', '/admin/integrations', '/admin/profile'],
-  marketing: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/profile'],
+  admin: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/pages', '/admin/leads', '/admin/seo', '/admin/users', '/admin/settings', '/admin/integrations', '/admin/audit', '/admin/profile'],
+  marketing: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/pages', '/admin/leads', '/admin/seo', '/admin/profile'],
 } as const;
 
 const serious = async (page: Page) =>

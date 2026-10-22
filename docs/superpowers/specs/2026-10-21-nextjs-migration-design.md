@@ -1,6 +1,6 @@
 # Embtel Solutions — Next.js Migration Design
 
-Date: 2026-10-21 · Status: draft for approval
+Date: 2026-10-21 · Status: approved; updated 2026-10-22 with owner decisions (Formspree leads, no page block editor, India office, hard performance gate)
 
 ## 1. Intent
 
@@ -17,20 +17,21 @@ Embtel Solutions is a US company selling web, automation and AI services to US s
 
 1. One shared, well-structured Next.js (TypeScript) repository containing the public site **and** the admin panel, one deploy.
 2. Every public page is server-rendered/statically generated HTML with complete metadata and structured data.
-3. Lighthouse (mobile) on every public template: SEO 100, Accessibility ≥ 95, Best Practices ≥ 95, Performance ≥ 90; Core Web Vitals "good" (LCP < 2.5 s, CLS < 0.1, INP < 200 ms).
+3. Lighthouse (mobile) on every public template: SEO 100, Accessibility ≥ 95, Best Practices ≥ 95, Performance ≥ 90 — all **hard CI failures**, no warnings (owner, 2026-10-22); Core Web Vitals "good" in real-visitor data (LCP < 2.5 s, CLS < 0.1, INP < 200 ms), tracked in Search Console. Lab LCP is not gated separately: Lighthouse's simulation puts any Next.js page near 3 s.
 4. Zero ranking/ads loss at cutover: every existing URL keeps working (same path, or a 301).
 5. Admin panel kept and extended:
    - Role-based access: **Admin** (everything) and **Marketing** (blog + SEO content).
    - SEO/AEO/GEO tooling for every post and page.
    - Keyword/trend suggestions from **Google Search Console** data.
-   - **Integrations** screen (GA4, GTM, Search Console, Google Ads tag, GoHighLevel, Tawk.to, WhatsApp Business).
-   - Admin can edit page content via **sections/blocks** and create new landing pages from ready-made blocks.
-6. Leads from the contact form are stored in our own database and forwarded to GoHighLevel.
+   - **Integrations** screen (Google Ads, GA4, GTM, Search Console, Formspree, Tawk.to, Elfsight; WhatsApp button in Settings).
+   - Pages are edited through **plain fields** (title, search snippet, top-section texts and buttons, FAQs) — no block editor (owner, 2026-10-22). Ads landing pages are locked to Admins.
+6. Leads from the contact form are stored in our own database and forwarded to **Formspree** (owner, 2026-10-22: the live form already uses it), which emails the team.
 
 ## 3. Non-goals (v1)
 
 - Visual redesign. The current dark brand look is kept; it is rebuilt as components, not reinvented.
-- Drag-and-drop page builder. Admin composes pages from predefined blocks via a form-based editor.
+- Any page builder or block editor (owner, 2026-10-22). Page structure stays as imported; admins edit the fields listed in goal 5. New landing pages are built by a developer.
+- GoHighLevel and the WhatsApp Cloud API (owner, 2026-10-22: leads go to Formspree; WhatsApp stays a wa.me link).
 - AI writing assistant in the admin (owner said no).
 - Paid keyword tools (Semrush, Google Ads Keyword Planner API). Search Console only; design leaves a seam to add them later.
 - Content rewriting. The Embtel team writes the unique copy; engineering provides the structure and the slots.
@@ -41,7 +42,7 @@ Embtel Solutions is a US company selling web, automation and AI services to US s
 
 - Any existing indexed URL returning 404 after launch, or Google Ads landing pages changing URL or content without the owner's sign-off.
 - Marketing scripts (GTM, chat, pixels) degrading Core Web Vitals below goal 3.
-- Secrets (GHL token, WhatsApp token) reaching the browser or the repo.
+- Secrets (Search Console service-account key, S3 keys, session/cron secrets) reaching the browser or the repo.
 - Existing admin users being locked out (password hashes must keep working).
 - A Marketing user being able to change users, integrations, site settings or delete permanently.
 
@@ -127,18 +128,18 @@ embtel2026/
 
 **Page** (new collection) — every public non-blog page, including the existing 33:
 - `slug` (unique, equals current path, e.g. `dental-automation`; `home` for `/`), `title`, `status` (draft/published), `type` (`standard` | `service` | `industry` | `landing` | `legal`)
-- `blocks[]`: ordered `{ type, data }`. v1 block types: `hero`, `stats`, `featureGrid`, `cardGrid`, `beforeAfter`, `processSteps`, `pricing`, `testimonials`, `logoStrip`, `faq`, `cta`, `richText`, `contactForm`, `caseStudyGrid`. Block list is derived from what the current pages actually contain; each has a Zod schema and an admin form.
+- `blocks[]`: ordered, each validated by a Zod schema (block types derived from what the current pages contain: hero, stats, cardGrid, steps, faq, cta, contactInfo with the lead form, richText, …). Admins edit only the title, SEO, the first hero's texts/buttons and FAQ items; the rest keeps the imported content.
 - `seo` (shared shape, see 6.4), `locked` (boolean; Ads landing pages are locked so only Admin can edit), `updatedBy`, timestamps.
 
 **Blog** (existing, extended): adds `author` profile linkage, `faqs[]`, `keyTakeaways[]`, `focusKeyword`, `secondaryKeywords[]`, `noindex`, `lastReviewedAt`, `sources[]` (title + URL, for GEO citations). Existing `seo.*` fields kept.
 
 **AuthorProfile** (fields on User): `slug`, `bio`, `jobTitle`, `avatar`, `sameAs[]` (LinkedIn etc.), `expertise[]` — powers author pages and `Person` schema (E-E-A-T).
 
-**Lead** (new): name, email, phone, business, service, message, `smsConsent`, source page, UTM params, gclid, `ghlStatus` (pending/sent/failed + error), timestamps.
+**Lead** (new): first/last name, email, phone, business, service, message, `smsConsent`, source page, UTM params, gclid, `forwardStatus` (pending/sent/failed/skipped + error) for the Formspree forward, timestamps. No IP address is stored.
 
-**Settings** (existing singleton, extended): organisation name, legal name, US address, phone, email, logo, social profiles, opening hours, default OG image, nav menus (header/footer link lists), plus an `integrations` sub-document (6.6).
+**Settings** (existing singleton, extended): organisation name, legal name, US address plus further offices (India; owner 2026-10-22), phone, email, logo, social profiles, opening hours, default OG image, nav menus (header/footer link lists), WhatsApp button, plus an `integrations` sub-document of public IDs (6.6).
 
-**GscCache** (new): daily snapshots of Search Console query/page data.
+**GscCache** (new): the latest Search Console snapshot (query × page, last 28 days and the 28 before), refreshed daily.
 
 ### 6.4 SEO / AEO / GEO system
 
@@ -186,26 +187,25 @@ All create/update/publish/delete actions write an **audit log** entry (who, what
 
 ### 6.6 Integrations
 
-Admin-only screen matching the owner's reference layout: each integration has an enable toggle, its IDs/tokens, and a "last status".
+Admin-only screen (`/admin/integrations`): each integration shows On/Off and its IDs. Everything stored there is a **public ID** (it appears in the page source anyway); real secrets live only in Vercel env.
 
 | Integration | Config | Behaviour |
 |---|---|---|
-| Google Ads tag | Conversion ID (`AW-18518114785`), conversion labels | Loads gtag; fires conversion on lead submit |
-| GA4 | Measurement ID | Page views + `generate_lead` event |
-| Google Tag Manager | Container ID | Loads GTM container |
-| Search Console | Verification token + service-account JSON | Verification meta tag; data for 6.4 |
-| GoHighLevel | API token (encrypted), Location ID, optional Pipeline ID + Stage ID | Each Lead is upserted as a GHL **contact** (tagged with service + source page). If pipeline + stage are set, an **opportunity** is also created there. Failures retried and shown in Leads. *(Architect's call.)* |
-| Tawk.to | Property ID, Widget ID | Chat widget, loaded only after user interaction or idle |
-| WhatsApp Business (Cloud API) | Phone number ID, permanent token (encrypted), approved template name | v1: config screen + floating "chat on WhatsApp" link (wa.me, no API). Business-initiated confirmation messages are **phase 2**: they need a Meta-approved template and a separate WhatsApp consent checkbox (existing SMS consent text is kept verbatim and not reused). *(Architect's call.)* |
+| Google Ads tag | Conversion ID (`AW-18518114785`), lead conversion label | Loads gtag; fires a conversion after a lead is saved |
+| GA4 | Measurement ID | Page views + `generate_lead` event (shares one gtag.js with Ads) |
+| Google Tag Manager | Container ID | Loads the GTM container; the screen warns about double counting when GA4/Ads IDs are also set |
+| Search Console | Verification code (settings) + service account (env `GSC_SERVICE_ACCOUNT_JSON`, `GSC_SITE_URL`) | Verification meta tag; data for 6.4 |
+| Formspree | Form ID | Every saved lead is forwarded; failures are shown and retried from Leads |
+| Tawk.to | Property ID, Widget ID | Chat widget, loaded when the page is idle |
+| Elfsight | Reviews app ID | Reviews widget on pages with a testimonials section |
+| WhatsApp | Number + message (Settings) | Floating wa.me "chat on WhatsApp" link (no API) |
 
-- Secrets encrypted at rest with AES-256-GCM (key from env `ENCRYPTION_KEY`), write-only in the UI (shows `••••1234`), decrypted only server-side.
-- All third-party scripts load via `next/script` with `afterInteractive` (tags) or `lazyOnload` (chat), so they don't affect LCP.
-- When GTM is enabled, the UI warns that GA4/Ads should be configured inside GTM to avoid double counting.
-- "Test connection" button per integration updates "last status".
+- All third-party scripts load via `next/script` with the request nonce: tags `afterInteractive`, chat `lazyOnload`, so they don't affect LCP. CSP lists each integration's hosts.
+- IDs are format-validated on save and again before they are written into inline scripts.
 
 ### 6.7 Leads (contact form)
 
-Server action → Zod validation → honeypot + rate limit (per IP) → save `Lead` → push to GoHighLevel (if enabled; non-blocking, retried) → email notification to the settings contact email → GA4/Ads conversion event client-side. Formspree is removed. UTM params and `gclid` captured from the landing URL and stored on the lead.
+Contact page form (legacy fields and SMS-consent text verbatim) → server action → Zod validation → honeypot + rate limit (5 per 10 min per IP) → save `Lead` → forward to Formspree (which emails the team; a failure keeps the lead with `forwardStatus: failed`) → Ads conversion + GA4 `generate_lead` client-side. UTM params and `gclid` are captured from the landing URL. Leads screen: everyone with `leads.view` sees and retries; Admin exports CSV (formula cells neutralised) and deletes.
 
 ### 6.8 Performance and accessibility rules
 
@@ -218,7 +218,7 @@ Server action → Zod validation → honeypot + rate limit (per IP) → save `Le
 
 - **No secret, password, token, key, connection string or default credential in the repo — ever.** That includes env-loader fallbacks, seed scripts, tests, fixtures, docs and `.env.example` (placeholders only, e.g. `<set-in-vercel>`). The legacy `blog-admin/server/config/env.js` default admin password and default Mongo URI are not carried over.
 - Config loader validates all required env vars with Zod at boot and **fails loudly** if any is missing — no defaults for secrets.
-- Secrets live only in Vercel environment variables (per environment) and, for integrations, encrypted in Mongo (6.6). Production secrets are rotated at cutover (JWT/session secrets, S3 keys) since the old ones lived on another host.
+- Secrets live only in Vercel environment variables (per environment). Integration settings in Mongo hold public IDs only (6.6). Production secrets are rotated at cutover (JWT/session secrets, S3 keys) since the old ones lived on another host.
 - First admin is created by a one-time CLI (`scripts/create-admin.ts`) that prompts for email/password interactively — no seeded credentials.
 - CI runs secret scanning (gitleaks) on every push/PR and blocks the merge on a hit; also `npm audit` (high+ blocks) and Dependabot.
 - Auth: bcrypt (cost ≥ 12), httpOnly + Secure + SameSite=Lax cookies, short-lived sessions, login rate limit + lockout, password-reset tokens hashed and single-use, CSRF protection on all mutations (server actions' origin check + token for route handlers).
@@ -246,8 +246,8 @@ Server action → Zod validation → honeypot + rate limit (per IP) → save `Le
 1. Foundation — repo restructure, Next app, tokens/components, DB layer, auth + permissions, CI.
 2. Public site — blocks, page rendering from Page documents, header/footer/nav from settings, SEO system (metadata, JSON-LD, sitemap, robots, feeds, OG).
 3. Blog — listing/category/tag/author pages, post page, related content.
-4. Admin core — port existing screens (dashboard, blogs, categories, tags, media, users, settings, profile, comments) to the new app with the permission map.
-5. Admin new — page/block editor, SEO panel, Search Console insights, integrations, leads, audit log.
+4. Admin core — dashboard, blogs (editor, scheduling with automatic go-live), categories, tags, media (S3), users (invites, set-password links), settings (menus, offices), profile, comments (read-only), hard performance budget. **Done.**
+5. Admin growth — contact form + Formspree leads, page editing through fields, SEO score panel, Search Console insights, integrations, leads screen, audit-log viewer, docs.
 6. Migration & cutover — import, DB migration, redirects, parity check, launch, monitoring.
 
 ## 9. Left to the builder
@@ -256,13 +256,13 @@ Server action → Zod validation → honeypot + rate limit (per IP) → save `Le
 - Choice of rate-limit store (e.g. Upstash/Vercel KV vs Mongo TTL collection), cron mechanism (Vercel Cron).
 - Exact SEO-score weights and thresholds (follow common Yoast/RankMath conventions).
 - Block field shapes, as long as every current page can be represented without losing content.
-- Test granularity beyond: permission matrix, redirects, encryption, SEO score, lead pipeline, e2e smoke of every public template + admin login/publish flow.
+- Test granularity beyond: permission matrix, redirects, SEO score, lead pipeline, e2e smoke of every public template + admin login/publish flow.
 
 ## 10. Owner-provided items needed before launch (not blocking build)
 
-- US address, phone, opening hours, legal name (entered in Settings).
+- US address, India office, phone, opening hours, legal name (entered in Settings).
 - Search Console: add the service account as a user on the property.
-- GoHighLevel token + location ID; WhatsApp Cloud API credentials (when they enable them).
+- Vercel env: `CRON_SECRET`, S3 variables, `GSC_SERVICE_ACCOUNT_JSON` + `GSC_SITE_URL`, optional `INDEXNOW_KEY`.
 - Ads conversion labels for lead submissions.
 - Author bios/photos for each Marketing user.
 - Confirmation of current host/DNS provider and the list of Google Ads landing pages (section 7 step 0).
