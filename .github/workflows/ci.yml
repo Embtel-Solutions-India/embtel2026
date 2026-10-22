@@ -51,8 +51,8 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Build + e2e
         run: npm run e2e # tests/e2e/server.ts runs `next build` then `next start`
-      # Lighthouse (mobile, 3 runs, median) on the public templates. VERCEL_ENV=production so pages are
-      # indexable and the SEO category measures the real output. Perf/LCP are warnings — see README.
+      # Lighthouse (mobile, 5 runs, median) on the public templates. VERCEL_ENV=production so pages are
+      # indexable and the SEO category measures the real output. Every budget is a hard failure — see README.
       - name: Lighthouse budgets
         run: npm run lhci
         env:

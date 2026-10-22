@@ -82,9 +82,16 @@ Results (2026-10-22, local, Phase 4 — median of 5):
 SEO, accessibility and best practices are 1 on every page. `/` and `/blog` sit at the 0.90 line; a slow CI machine can
 tip `/` under it (its single runs range 0.89–0.94).
 
+## Cutover
+
+Follow [`docs/cutover-runbook.md`](docs/cutover-runbook.md). Nothing in it touches production without the owner's go
+for that step. Tools: `npm run cutover:parity -- <baseUrl> [--inventory pages.csv] [--expect-indexable]` (URL parity,
+read-only), `npm run cutover:accounts -- --cutover` and `npm run cutover:authors -- --cutover` (interactive, ask for the
+database name). Legacy URLs (`/x.html`, `/blog-details?slug=`, `/da-ai/*`) 301 to their new address (`redirects.ts`).
+
 ## Database migrations
 
-**Warning: cutover only.** Migration 001 rewrites `editor` to `marketing`, which locks Marketing users out of the legacy blog-admin (it only knows `editor`).
+**Warning: cutover only.** Migration 001 rewrites `editor` to `marketing`, which locks Marketing users out of the legacy blog-admin (it only knows `editor`). Migration 002 copies the legacy GA4 ID and Search Console code into the new integrations (only where empty).
 
 - Never run against the live database while blog-admin serves production. Run on a production copy first.
 - `npm run db:migrate -- --cutover` refuses to run without `--cutover`, without an interactive terminal, or unless you type the database name it prints. It prints user counts by role first (counts only).
