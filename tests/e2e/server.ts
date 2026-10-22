@@ -39,11 +39,12 @@ async function main() {
   });
   // Marketing user for admin-panel specs (no author slug, so public author pages are unaffected).
   const marketingPassword = rnd(16);
+  const cronSecret = rnd(32);
   await User.create({ name: 'Mia Marketer', email: 'mia@example.com', password: marketingPassword, role: 'marketing' });
   await mongoose.disconnect();
 
   fs.mkdirSync(path.dirname(CREDS_FILE), { recursive: true });
-  fs.writeFileSync(CREDS_FILE, JSON.stringify({ email: 'admin@example.com', password, marketing: { email: 'mia@example.com', password: marketingPassword } }));
+  fs.writeFileSync(CREDS_FILE, JSON.stringify({ email: 'admin@example.com', password, marketing: { email: 'mia@example.com', password: marketingPassword }, cronSecret }));
 
   const env: NodeJS.ProcessEnv = {
     ...process.env,
@@ -56,6 +57,7 @@ async function main() {
     AWS_REGION: 'us-east-1',
     AWS_ACCESS_KEY_ID: rnd(10),
     AWS_SECRET_ACCESS_KEY: rnd(20),
+    CRON_SECRET: cronSecret,
   };
   const run = (args: string[]) =>
     new Promise<number>((resolve) => {

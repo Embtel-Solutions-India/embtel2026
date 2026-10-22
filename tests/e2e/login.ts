@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import { expect, type Page } from '@playwright/test';
 import { CREDS_FILE } from './creds';
 
-type Creds = { email: string; password: string; marketing: { email: string; password: string } };
+type Creds = { email: string; password: string; marketing: { email: string; password: string }; cronSecret: string };
 export const readCreds = (): Creds => JSON.parse(fs.readFileSync(CREDS_FILE, 'utf8'));
 
 // Signs in through the real login form (runtime-random credentials written by server.ts).

@@ -5,7 +5,7 @@ import { startMemoryMongo } from '../helpers/mongo';
 const refreshed: unknown[] = [];
 const pinged: string[][] = [];
 vi.mock('next/cache', () => ({ cacheTag: () => {}, cacheLife: () => {}, updateTag: () => {} }));
-vi.mock('@/lib/admin/revalidate', () => ({ refreshContent: (c: unknown) => refreshed.push(c) }));
+vi.mock('@/lib/admin/revalidate', () => ({ refreshContent: (c: unknown, mode?: string) => refreshed.push({ ...(c as object), mode }) }));
 vi.mock('next/server', async (orig) => ({ ...(await orig<typeof import('next/server')>()), connection: async () => {} }));
 vi.mock('@/lib/seo/indexnow', () => ({ pingIndexNowPaths: async (p: string[]) => void pinged.push(p) }));
 
@@ -36,7 +36,7 @@ describe('publishDuePosts', () => {
     expect(d?.status).toBe('published');
     expect(d?.publishedAt?.toISOString()).toBe(due.toISOString());
     expect((await blogs().findOne({ slug: 'later' }))?.status).toBe('scheduled');
-    expect(refreshed).toEqual([{ posts: ['due-one'], taxonomy: true }]);
+    expect(refreshed).toEqual([{ posts: ['due-one'], taxonomy: true, mode: 'background' }]);
     expect(pinged).toEqual([['/blog/due-one']]);
 
     refreshed.length = 0;

@@ -1,13 +1,14 @@
 import 'server-only';
-import { updateTag } from 'next/cache';
+import { revalidateTag, updateTag } from 'next/cache';
 import { PAGES_TAG, pageTag } from '@/lib/content/pages';
 import { POSTS_TAG, TAXONOMY_TAG, postTag } from '@/lib/content/posts';
 import { SETTINGS_TAG } from '@/lib/content/settings';
 
 // Expire the public caches an admin write affects, so the next public request shows it.
-// updateTag (not revalidateTag): the editor should see their own change immediately.
+// 'action' (server actions): updateTag, so the editor sees their own change immediately.
+// 'background' (route handlers such as the cron): updateTag is not allowed there; revalidateTag is.
 // allPosts: every post page and listing (all post caches carry POSTS_TAG), e.g. after a category rename.
-export function refreshContent(change: { posts?: string[]; allPosts?: boolean; taxonomy?: boolean; pages?: string[]; settings?: boolean }): void {
+export function refreshContent(change: { posts?: string[]; allPosts?: boolean; taxonomy?: boolean; pages?: string[]; settings?: boolean }, mode: 'action' | 'background' = 'action'): void {
   const tags = new Set<string>();
   if (change.allPosts) tags.add(POSTS_TAG);
   if (change.posts?.length) {
@@ -20,5 +21,8 @@ export function refreshContent(change: { posts?: string[]; allPosts?: boolean; t
     for (const s of change.pages) tags.add(pageTag(s));
   }
   if (change.settings) tags.add(SETTINGS_TAG);
-  for (const t of tags) updateTag(t);
+  for (const t of tags) {
+    if (mode === 'action') updateTag(t);
+    else revalidateTag(t, 'max');
+  }
 }

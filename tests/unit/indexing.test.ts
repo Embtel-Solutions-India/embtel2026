@@ -170,5 +170,6 @@ describe('feeds exclude hidden posts', () => {
     expect($('item > pubDate').text()).toBe('Tue, 01 Sep 2026 09:00:00 GMT');
     expect($('channel > atom\\:link').attr('href')).toBe('https://www.embtelsolutions.com/feed.xml');
     for (const h of HIDDEN) expect(xml).not.toContain(h);
-  });
+    // Cold dynamic imports of the route + cheerio take several seconds when the full suite runs in parallel.
+  }, 20_000);
 });

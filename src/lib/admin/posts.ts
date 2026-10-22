@@ -315,7 +315,7 @@ export async function publishDuePosts(now = new Date()): Promise<string[]> {
     if (d.author) await audit({ actorId: String(d.author), action: 'post.autopublish', target: { type: 'post', id: String(d._id) }, meta: { slug: d.slug } });
   }
   if (published.length) {
-    refreshContent({ posts: published, taxonomy: true });
+    refreshContent({ posts: published, taxonomy: true }, 'background');
     await pingIndexNowPaths(published.map((s) => `/blog/${s}`));
   }
   return published;
