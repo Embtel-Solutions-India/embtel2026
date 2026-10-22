@@ -68,7 +68,7 @@ describe('reset tokens', () => {
     const expired = await resetPasswordWithToken({ token: tokenOf(path), password: good, confirm: good }, '2.2.2.2');
     const unknown = await resetPasswordWithToken({ token: 'f'.repeat(64), password: good, confirm: good }, '2.2.2.2');
     expect(expired).toEqual(unknown);
-    expect(expired).toMatchObject({ ok: false, error: 'This link is invalid or has expired. Ask an Admin for a new one.' });
+    expect(expired).toMatchObject({ ok: false, error: 'This link is invalid or has expired. Request a new one from “Forgot password?” on the sign-in page, or ask an Admin.' });
     expect(await resetPasswordWithToken({ token: 'f'.repeat(64), password: 'short', confirm: 'short' }, '2.2.2.2')).toMatchObject({ ok: false, error: expect.stringMatching(/12/) });
     expect(await resetPasswordWithToken({ token: 'f'.repeat(64), password: good, confirm: `${good}x` }, '2.2.2.2')).toMatchObject({ ok: false, error: expect.stringMatching(/match/) });
   });

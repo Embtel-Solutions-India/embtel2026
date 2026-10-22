@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useActionState } from 'react';
 import { loginAction } from './actions';
 
@@ -40,6 +41,9 @@ export function LoginForm({ redirectTo }: { redirectTo?: string }) {
       >
         Sign in
       </button>
+      <Link href="/admin/forgot-password" className="text-center underline">
+        Forgot password?
+      </Link>
     </form>
   );
 }

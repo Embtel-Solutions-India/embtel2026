@@ -10,7 +10,7 @@ const InputSchema = z
   .object({ token: z.string().regex(/^[0-9a-f]{64}$/), password: PasswordSchema, confirm: z.string() })
   .refine((v) => v.password === v.confirm, { message: 'The passwords don’t match.', path: ['confirm'] });
 
-const INVALID = 'This link is invalid or has expired. Ask an Admin for a new one.';
+const INVALID = 'This link is invalid or has expired. Request a new one from “Forgot password?” on the sign-in page, or ask an Admin.';
 
 // Set-password links (invites and resets). Token is single-use; unknown and expired tokens get the
 // same answer; setting the password also ends every existing session (passwordChangedAt).

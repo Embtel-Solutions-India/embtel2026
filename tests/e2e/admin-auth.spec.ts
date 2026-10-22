@@ -52,3 +52,21 @@ test('/admin redirects: unauthenticated to login, authenticated to dashboard', a
   await page.goto('/admin');
   await expect(page).toHaveURL(/\/admin\/dashboard$/);
 });
+
+test('forgot password: reachable from sign-in, same answer for any email, accessible', async ({ page }) => {
+  const AxeBuilder = (await import('@axe-core/playwright')).default;
+  await page.goto('/admin/login');
+  await page.getByRole('link', { name: 'Forgot password?' }).click();
+  await expect(page).toHaveURL(/\/admin\/forgot-password$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Reset your password');
+  const serious = (await new AxeBuilder({ page }).analyze()).violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
+  expect(serious.map((v) => v.id)).toEqual([]);
+  await page.getByRole('textbox', { name: 'Email' }).fill(creds().email);
+  await page.getByRole('button', { name: 'Email me a reset link' }).click();
+  const known = await page.getByRole('status').textContent();
+  await page.goto('/admin/forgot-password');
+  await page.getByRole('textbox', { name: 'Email' }).fill('nobody-here@example.com');
+  await page.getByRole('button', { name: 'Email me a reset link' }).click();
+  await expect(page.getByRole('status')).toHaveText(known ?? '');
+  expect(known).toContain('If that email belongs to an account');
+});
