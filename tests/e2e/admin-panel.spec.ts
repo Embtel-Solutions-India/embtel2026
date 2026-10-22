@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { readCreds, signIn } from './login';
 
 const SCREENS = {
-  admin: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/users', '/admin/settings', '/admin/profile'],
+  admin: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/users', '/admin/settings', '/admin/integrations', '/admin/profile'],
   marketing: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/profile'],
 } as const;
 

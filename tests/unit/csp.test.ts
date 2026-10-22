@@ -70,3 +70,15 @@ describe('image hosts', () => {
     expect(directive(csp, 'img-src')).toContain('https://embtel-media.s3.us-east-1.amazonaws.com');
   });
 });
+
+describe('marketing integrations hosts', () => {
+  it('allows GA4 collection and Tawk.to chat', async () => {
+    const { buildCsp } = await import('@/lib/security/csp');
+    const csp = buildCsp({ nonce: 'n' });
+    const dir = (name: string) => csp.split('; ').find((d) => d.startsWith(name + ' ')) ?? '';
+    expect(dir('connect-src')).toContain('https://*.google-analytics.com');
+    expect(dir('connect-src')).toContain('wss://*.tawk.to');
+    expect(dir('frame-src')).toContain('https://*.tawk.to');
+    expect(dir('font-src')).toContain('https://*.tawk.to');
+  });
+});

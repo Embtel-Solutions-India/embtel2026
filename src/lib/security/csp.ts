@@ -13,10 +13,11 @@ export const CSP_SOURCES: Readonly<Record<string, readonly string[]>> = freeze({
   // Next/React emit inline style attributes; a nonce here would disable 'unsafe-inline'.
   'style-src': ["'self'", "'unsafe-inline'"],
   // Google Ads tag + Elfsight reviews (scripts themselves load via nonce; these are their data/frame hosts).
-  'img-src': ["'self'", 'blob:', 'data:', 'https://www.googletagmanager.com', 'https://www.google.com', 'https://*.google.com', 'https://*.doubleclick.net', 'https://*.elfsightcdn.com', 'https://lh3.googleusercontent.com', 'https://*.gstatic.com'],
-  'font-src': ["'self'"],
-  'connect-src': ["'self'", 'https://www.google.com', 'https://*.google.com', 'https://www.googletagmanager.com', 'https://*.doubleclick.net', 'https://*.elfsight.com', 'https://*.elfsightcdn.com'],
-  'frame-src': ['https://*.elfsight.com', 'https://www.googletagmanager.com'],
+  'img-src': ["'self'", 'blob:', 'data:', 'https://www.googletagmanager.com', 'https://www.google.com', 'https://*.google.com', 'https://*.doubleclick.net', 'https://*.elfsightcdn.com', 'https://lh3.googleusercontent.com', 'https://*.gstatic.com', 'https://*.google-analytics.com', 'https://*.tawk.to'],
+  'font-src': ["'self'", 'https://*.tawk.to'],
+  // GA4 collection endpoints; Tawk.to chat (HTTPS + websocket).
+  'connect-src': ["'self'", 'https://www.google.com', 'https://*.google.com', 'https://www.googletagmanager.com', 'https://*.doubleclick.net', 'https://*.elfsight.com', 'https://*.elfsightcdn.com', 'https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.tawk.to', 'wss://*.tawk.to'],
+  'frame-src': ['https://*.elfsight.com', 'https://www.googletagmanager.com', 'https://*.tawk.to'],
   'object-src': ["'none'"],
   'base-uri': ["'self'"],
   'form-action': ["'self'"],

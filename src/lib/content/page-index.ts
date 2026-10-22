@@ -41,8 +41,20 @@ async function refresh() {
   return cache;
 }
 
+// A page or post published since the index was loaded: one indexed lookup, so it never 404s
+// right after publishing (when IndexNow has just told Bing about it).
+async function justPublished(pathname: string): Promise<boolean> {
+  const post = /^\/blog\/([a-z0-9-]+)$/.exec(pathname)?.[1];
+  if (post) return Boolean(await Blog.exists({ slug: post, ...PUBLIC_FILTER() }));
+  const page = /^\/([a-z0-9-]+)$/.exec(pathname)?.[1];
+  if (page && page !== 'home') return Boolean(await PageModel.exists({ slug: page, status: 'published' }));
+  return false;
+}
+
 export async function isKnownPath(pathname: string): Promise<boolean> {
   let c = cache && Date.now() - cache.at <= TTL_MS ? cache : await refresh();
-  if (!c.paths.has(pathname) && Date.now() - c.at > MISS_REFRESH_MS) c = await refresh();
+  if (c.paths.has(pathname)) return true;
+  if (Date.now() - c.at > MISS_REFRESH_MS) c = await refresh();
+  else if (await justPublished(pathname)) return true;
   return c.paths.has(pathname);
 }

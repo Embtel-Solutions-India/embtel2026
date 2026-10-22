@@ -42,13 +42,14 @@ describe('isKnownPath', () => {
     }
   });
 
-  it('sees a newly published page within seconds, not after the full TTL', async () => {
-    vi.useFakeTimers({ toFake: ['Date'] });
+  it('knows a page or post published a moment ago, even while the cached index is fresh', async () => {
     const { isKnownPath } = await import('@/lib/content/page-index');
-    expect(await isKnownPath('/about')).toBe(true);
+    expect(await isKnownPath('/about')).toBe(true); // index just loaded
     await pages().insertOne({ slug: 'new-page', status: 'published' });
-    expect(await isKnownPath('/new-page')).toBe(false); // cache is fresh: no DB hit
-    vi.setSystemTime(Date.now() + 6_000); // > negative-refresh window, < 30 s TTL
+    await db().collection('blogs').insertOne({ slug: 'new-post', status: 'published', isDeleted: false, publishedAt: new Date(Date.now() - 1000), tags: [] });
     expect(await isKnownPath('/new-page')).toBe(true);
+    expect(await isKnownPath('/blog/new-post')).toBe(true);
+    expect(await isKnownPath('/still-unknown')).toBe(false);
+    expect(await isKnownPath('/blog/draft-post')).toBe(false);
   });
 });
