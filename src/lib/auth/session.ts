@@ -3,7 +3,7 @@
 import 'server-only';
 import { cache } from 'react';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { forbidden, redirect } from 'next/navigation';
 import { isValidObjectId } from 'mongoose';
 import { env } from '@/lib/env';
 import { connectDB } from '@/lib/db/connect';
@@ -53,14 +53,23 @@ export async function requireUser(): Promise<UserDoc> {
   return user;
 }
 
+function hasPermission(user: UserDoc, p: Permission): boolean {
+  try {
+    return can(normalizeRole(user.role), p);
+  } catch {
+    return false; // unknown role: deny
+  }
+}
+
 export async function requirePermission(p: Permission): Promise<UserDoc> {
   const user = await requireUser();
-  let allowed = false;
-  try {
-    allowed = can(normalizeRole(user.role), p);
-  } catch {
-    // unknown role: deny
-  }
-  if (!allowed) throw new ForbiddenError();
+  if (!hasPermission(user, p)) throw new ForbiddenError();
+  return user;
+}
+
+// For pages: renders the 403 page (forbidden.tsx) instead of throwing an error.
+export async function requirePagePermission(p: Permission): Promise<UserDoc> {
+  const user = await requireUser();
+  if (!hasPermission(user, p)) forbidden();
   return user;
 }

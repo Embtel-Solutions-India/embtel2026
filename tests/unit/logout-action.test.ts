@@ -14,7 +14,7 @@ vi.mock('next/navigation', () => ({
   },
 }));
 
-import { logoutAction } from '@/app/admin/dashboard/actions';
+import { logoutAction } from '@/app/admin/(panel)/dashboard/actions';
 
 describe('logoutAction', () => {
   it('still clears the cookie and redirects when the user lookup fails', async () => {

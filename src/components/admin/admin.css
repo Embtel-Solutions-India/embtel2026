@@ -1,0 +1,80 @@
+/* Admin panel. Dark like the site, denser. Plain CSS for the form/table primitives every screen shares. */
+.adm {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+  color: var(--color-m3);
+}
+.adm-side {
+  background: var(--color-ink2);
+  border-right: 1px solid var(--color-s2);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.adm-brand { font-family: var(--font-display); font-weight: 800; color: var(--color-off); font-size: 18px; }
+.adm-nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.adm-nav a { display: block; padding: 8px 12px; border-radius: var(--radius-8); color: var(--color-m3); text-decoration: none; }
+.adm-nav a:hover { background: var(--color-s1); color: var(--color-off); }
+.adm-nav a[aria-current='page'] { background: var(--color-blue-dim); color: var(--color-off); }
+.adm-user { margin-top: auto; font-size: 13px; color: var(--color-m2); display: flex; flex-direction: column; gap: 8px; }
+.adm-main { padding: 28px clamp(16px, 3vw, 40px); min-width: 0; }
+.adm-main h1 { font-family: var(--font-display); color: var(--color-off); font-size: 26px; font-weight: 800; margin: 0 0 20px; }
+.adm-main h2 { color: var(--color-off); font-size: 17px; font-weight: 700; margin: 0 0 12px; }
+.adm-menu-btn { display: none; }
+
+.adm-card { background: var(--color-ink2); border: 1px solid var(--color-s2); border-radius: var(--radius-14); padding: 18px; }
+.adm-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.adm-stack { display: flex; flex-direction: column; gap: 16px; }
+.adm-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+.adm-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius-8); border: 1px solid var(--color-s3); background: var(--color-s1); color: var(--color-off); font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; }
+.adm-btn:hover { background: var(--color-s2); }
+.adm-btn[disabled] { opacity: 0.6; cursor: default; }
+.adm-btn-primary { background: var(--color-blue); border-color: var(--color-blue); color: #fff; }
+.adm-btn-primary:hover { background: #3d82ff; }
+.adm-btn-danger { border-color: #b4321b; color: #ffb4a3; }
+
+.adm-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--color-m3); }
+.adm-field > span:first-child { font-weight: 600; color: var(--color-off); }
+.adm-input,
+.adm-field input:not([type='checkbox']):not([type='radio']),
+.adm-field select,
+.adm-field textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: var(--radius-8);
+  border: 1px solid var(--color-s3);
+  background: var(--color-ink);
+  color: var(--color-off);
+  font: inherit;
+}
+.adm-field textarea { min-height: 90px; resize: vertical; }
+.adm-check { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.adm-hint { font-size: 12.5px; color: var(--color-m2); }
+.adm-error { color: #ff9d87; font-size: 13px; }
+.adm-ok { color: var(--color-teal); font-size: 13px; }
+
+.adm-table-wrap { overflow-x: auto; }
+.adm-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.adm-table th, .adm-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-s2); vertical-align: top; }
+.adm-table th { color: var(--color-m2); font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+.adm-table a { color: var(--color-off); }
+.adm-badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: 600; background: var(--color-s2); color: var(--color-m3); }
+.adm-badge[data-status='published'] { background: var(--color-teal-dim); color: var(--color-teal); }
+.adm-badge[data-status='scheduled'] { background: var(--color-blue-dim); color: #8fb5ff; }
+.adm-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.adm-tabs a { padding: 6px 12px; border-radius: 99px; color: var(--color-m3); text-decoration: none; border: 1px solid var(--color-s2); font-size: 14px; }
+.adm-tabs a[aria-current='page'] { background: var(--color-s2); color: var(--color-off); }
+.adm-stat { font-size: 30px; font-weight: 800; color: var(--color-off); font-family: var(--font-display); }
+.adm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+
+@media (max-width: 767px) {
+  .adm { grid-template-columns: 1fr; }
+  .adm-side { border-right: 0; border-bottom: 1px solid var(--color-s2); padding: 12px 16px; gap: 10px; }
+  .adm-menu-btn { display: inline-flex; }
+  .adm-side[data-open='false'] nav,
+  .adm-side[data-open='false'] .adm-user { display: none; }
+  .adm-main { padding: 20px 16px; }
+}

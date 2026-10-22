@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   // ~15 KB of CSS: inline it so first-time (mostly ad-driven) visitors skip a render-blocking request.
-  experimental: { inlineCss: true },
+  experimental: {
+    inlineCss: true,
+    // forbidden() → 403 page for admin screens a role can't open.
+    authInterrupts: true,
+    // Media uploads go through a server action: 5 MB file limit plus form overhead.
+    serverActions: { bodySizeLimit: "6mb" },
+  },
   images: {
     // Legacy content: client logos (Google favicon service) and the About page office photo.
     remotePatterns: [
