@@ -24,6 +24,16 @@ describe('LeadForm', () => {
     expect((screen.getByRole('button', { name: /Send Message/ }) as HTMLButtonElement).disabled).toBe(false);
   });
 
+  it('falls back to the Ads click ID stored when the visitor arrived', async () => {
+    window.localStorage.setItem('embtel_attr', JSON.stringify({ gclid: 'stored-gclid', utm_source: 'google', utm_campaign: 'dental', at: Date.now() }));
+    submit.mockResolvedValue({ ok: true });
+    render(<LeadForm adsId="" adsLabel="" ga4Id="" gtmId="" email="" />);
+    send();
+    await waitFor(() => expect(submit).toHaveBeenCalled());
+    expect(submit.mock.calls[0][1]).toMatchObject({ gclid: 'stored-gclid', utm: { source: 'google', campaign: 'dental' } });
+    window.localStorage.clear();
+  });
+
   it('tells Google Tag Manager about the lead when GTM is the only tag', async () => {
     submit.mockResolvedValue({ ok: true });
     render(<LeadForm adsId="" adsLabel="" ga4Id="" gtmId="GTM-ABCD12" email="" />);

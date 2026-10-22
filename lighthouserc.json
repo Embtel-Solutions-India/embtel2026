@@ -17,10 +17,7 @@
       "numberOfRuns": 5,
       "settings": {
         "blockedUrlPatterns": [
-          "*googletagmanager.com*",
-          "*elfsight*",
-          "*doubleclick.net*",
-          "*gstatic.com*"
+          "*elfsight*"
         ]
       }
     },

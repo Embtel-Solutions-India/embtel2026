@@ -7,6 +7,24 @@ import { submitLeadAction } from './actions';
 
 type Gtag = (...args: unknown[]) => void;
 const UTM_KEYS = ['source', 'medium', 'campaign', 'term', 'content'] as const;
+const ATTR_MAX_AGE = 90 * 86_400_000;
+
+// Ads click ID and UTM from the current URL, else as stored on arrival (see MarketingTags), up to 90 days old.
+function attribution(): { utm: Record<string, string>; gclid: string } {
+  const q = new URLSearchParams(window.location.search);
+  let stored: Record<string, string | number> = {};
+  try {
+    const s = JSON.parse(window.localStorage.getItem('embtel_attr') ?? '{}');
+    if (typeof s.at === 'number' && Date.now() - s.at < ATTR_MAX_AGE) stored = s;
+  } catch {
+    // storage blocked: URL only
+  }
+  const pick = (k: string) => q.get(k) ?? (typeof stored[k] === 'string' ? (stored[k] as string) : null);
+  return {
+    utm: Object.fromEntries(UTM_KEYS.flatMap((k) => (pick(`utm_${k}`) ? [[k, pick(`utm_${k}`)!]] : []))),
+    gclid: pick('gclid') ?? '',
+  };
+}
 
 // Contact form (fields, copy and SMS consent text carried over verbatim from the legacy contact page).
 // Leads are saved by the server and forwarded to Formspree; conversions fire only after a confirmed save.
@@ -19,7 +37,6 @@ export function LeadForm({ adsId, adsLabel, ga4Id, gtmId, email }: { adsId: stri
     e.preventDefault();
     const form = e.currentTarget;
     const f = new FormData(form);
-    const q = new URLSearchParams(window.location.search);
     setState('busy');
     setError('');
     setFieldErrors({});
@@ -39,8 +56,7 @@ export function LeadForm({ adsId, adsLabel, ga4Id, gtmId, email }: { adsId: stri
       },
       {
         sourcePage: window.location.pathname,
-        utm: Object.fromEntries(UTM_KEYS.flatMap((k) => (q.get(`utm_${k}`) ? [[k, q.get(`utm_${k}`)]] : []))),
-        gclid: q.get('gclid') ?? '',
+        ...attribution(),
       },
     );
     } catch {

@@ -13,18 +13,20 @@ async function stubThirdParties(page: Page) {
 }
 
 for (const path of ['/', '/law-industry']) {
-  test(`${path} loads the Google Ads tag with the page nonce`, async ({ page }) => {
+  test(`${path} waits for the first interaction, then loads the Google Ads tag with the page nonce`, async ({ page }) => {
     const { hits, violations } = await stubThirdParties(page);
-    await page.goto(path);
+    await page.goto(`${path}?gclid=e2e-click&utm_source=google`);
     await page.waitForLoadState('networkidle');
-    expect(hits.some((u) => u.startsWith('https://www.googletagmanager.com/gtag/js?id=AW-18518114785'))).toBe(true);
-    const nonces = await page.$$eval('script[src*="gtag/js"], script#gtag-init', (els) => els.map((e) => (e as HTMLScriptElement).nonce));
-    expect(nonces.length).toBe(2);
-    expect(nonces.every((n) => (n ?? '').length > 0)).toBe(true);
-    const configured = await page.evaluate(() =>
-      ((window as unknown as { dataLayer?: unknown[][] }).dataLayer ?? []).some((a) => a[0] === 'config' && a[1] === 'AW-18518114785'),
-    );
-    expect(configured).toBe(true);
+    // Nothing from Google before the visitor does anything (no third-party cookies for Lighthouse)…
+    expect(hits.filter((u) => u.includes('googletagmanager.com'))).toEqual([]);
+    // …but the config is already queued and the click ID is kept for the contact form.
+    const queued = await page.evaluate(() => ((window as unknown as { dataLayer?: unknown[][] }).dataLayer ?? []).some((a) => a[0] === 'config' && a[1] === 'AW-18518114785'));
+    expect(queued).toBe(true);
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('embtel_attr') ?? '{}').gclid)).toBe('e2e-click');
+    await page.mouse.wheel(0, 300);
+    await expect.poll(() => hits.some((u) => u.startsWith('https://www.googletagmanager.com/gtag/js?id=AW-18518114785'))).toBe(true);
+    const nonce = await page.$eval('script[src*="gtag/js"]', (e) => (e as HTMLScriptElement).nonce);
+    expect((nonce ?? '').length).toBeGreaterThan(0);
     expect(violations).toEqual([]);
   });
 }
