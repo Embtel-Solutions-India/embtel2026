@@ -35,7 +35,7 @@ test('login with messy-case email, then logout blocks dashboard again', async ({
   await expect(page).toHaveURL(/\/admin\/login\?redirect=/);
   await login(page, '  Admin@Example.com ', password);
   await expect(page).toHaveURL(/\/admin\/dashboard$/);
-  await expect(page.getByText('E2E Admin · Admin')).toBeVisible();
+  await expect(page.locator('.adm-me').getByText('E2E Admin', { exact: true })).toBeVisible();
 
   await page.getByRole('button', { name: 'Log out' }).click();
   await expect(page).toHaveURL(/\/admin\/login$/);

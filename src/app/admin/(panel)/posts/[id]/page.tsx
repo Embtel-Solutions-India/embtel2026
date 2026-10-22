@@ -26,7 +26,7 @@ export default async function EditPostPage({
   const live = post.status === 'published' && !isDeleted && publishedAt && new Date(publishedAt) <= new Date();
   return (
     <>
-      <div className="adm-row" style={{ justifyContent: 'space-between' }}>
+      <div className="adm-page-head">
         <h1>Edit post</h1>
         {live && (
           <Link href={`/blog/${post.slug}`} className="adm-btn" target="_blank">

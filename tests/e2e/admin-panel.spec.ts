@@ -45,6 +45,7 @@ test('admin invites a person who sets a password and signs in', async ({ page, b
   await signIn(page, 'admin');
   await page.goto('/admin/users');
   const email = `invitee-${Date.now()}@example.com`;
+  await page.getByRole('button', { name: 'Invite a person' }).click();
   const form = page.getByRole('form', { name: 'Invite a person' });
   await form.getByRole('textbox', { name: 'Name' }).fill('Ivy Invitee');
   await form.getByRole('textbox', { name: 'Email' }).fill(email);

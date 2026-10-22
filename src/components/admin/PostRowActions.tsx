@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { deletePostAction, duplicatePostAction, restorePostAction, trashPostAction } from '@/app/admin/(panel)/posts/actions';
+import { ConfirmButton } from './Dialog';
 
 type Act = (input: unknown) => Promise<{ ok: boolean; error?: string; data?: unknown }>;
 
@@ -10,7 +11,6 @@ export function PostRowActions({ id, trashed, canDelete }: { id: string; trashed
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
-  const [confirming, setConfirming] = useState(false);
 
   const run = async (act: Act, after?: (data: unknown) => void) => {
     setBusy(true);
@@ -29,16 +29,19 @@ export function PostRowActions({ id, trashed, canDelete }: { id: string; trashed
           <button type="button" className="adm-btn" disabled={busy} onClick={() => run(restorePostAction)}>
             Restore
           </button>
-          {canDelete &&
-            (confirming ? (
-              <button type="button" className="adm-btn adm-btn-danger" disabled={busy} onClick={() => run(deletePostAction)}>
-                Confirm delete
-              </button>
-            ) : (
-              <button type="button" className="adm-btn adm-btn-danger" onClick={() => setConfirming(true)}>
-                Delete permanently
-              </button>
-            ))}
+          {canDelete && (
+            <ConfirmButton
+              label="Delete permanently"
+              title="Delete this post permanently?"
+              message="It is removed from the trash and can't be restored. Its address will show “page not found”."
+              confirmLabel="Delete permanently"
+              onConfirm={async () => {
+                const r = await deletePostAction({ id });
+                if (!r.ok) return r.error;
+                router.refresh();
+              }}
+            />
+          )}
         </>
       ) : (
         <>

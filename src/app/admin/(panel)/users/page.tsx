@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { InviteUserForm } from '@/components/admin/InviteUserForm';
+import { InviteDialog } from '@/components/admin/InviteDialog';
 import { listUsers } from '@/lib/admin/users';
 import { requirePagePermission } from '@/lib/auth/session';
 
@@ -10,10 +10,12 @@ export default async function UsersPage() {
   const users = await listUsers();
   return (
     <>
-      <h1>Users</h1>
+      <div className="adm-page-head">
+        <h1>Users</h1>
+        <InviteDialog />
+      </div>
       <div className="adm-stack">
-        <InviteUserForm />
-        <div className="adm-table-wrap">
+        <div className="adm-panel adm-table-wrap">
           <table className="adm-table">
             <thead>
               <tr>

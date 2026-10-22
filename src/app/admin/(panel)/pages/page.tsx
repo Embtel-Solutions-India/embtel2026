@@ -13,7 +13,7 @@ export default async function PagesPage() {
       <p className="adm-hint" style={{ marginBottom: 16 }}>
         Edit each page&apos;s title, search snippet, top section and FAQs. Locked pages (used by ads) can only be changed by an Admin.
       </p>
-      <div className="adm-table-wrap">
+      <div className="adm-panel adm-table-wrap">
         <table className="adm-table">
           <thead>
             <tr>

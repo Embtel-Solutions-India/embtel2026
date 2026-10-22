@@ -12,7 +12,7 @@ export default async function EditPage({ params }: { params: Promise<{ id: strin
   const path = page.slug === 'home' ? '/' : `/${page.slug}`;
   return (
     <>
-      <div className="adm-row" style={{ justifyContent: 'space-between' }}>
+      <div className="adm-page-head">
         <h1>{page.title}</h1>
         {page.status === 'published' && (
           <Link href={path} className="adm-btn" target="_blank">

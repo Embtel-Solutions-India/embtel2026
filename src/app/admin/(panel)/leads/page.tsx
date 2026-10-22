@@ -19,7 +19,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
   };
   return (
     <>
-      <div className="adm-row" style={{ justifyContent: 'space-between' }}>
+      <div className="adm-page-head">
         <h1>Leads</h1>
         {userCan(user, 'leads.export') && (
           <a className="adm-btn" href={`/admin/leads/export${qs({ page: undefined })}`}>
@@ -50,7 +50,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
       {list.items.length === 0 ? (
         <p className="adm-hint">No leads yet.</p>
       ) : (
-        <div className="adm-table-wrap">
+        <div className="adm-panel adm-table-wrap">
           <table className="adm-table">
             <thead>
               <tr>

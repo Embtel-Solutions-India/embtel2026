@@ -33,8 +33,7 @@ export function InviteUserForm() {
   }
 
   return (
-    <form onSubmit={submit} className="adm-card adm-stack" aria-label="Invite a person">
-      <h2>Invite a person</h2>
+    <form onSubmit={submit} className="adm-stack" aria-label="Invite a person">
       <div className="adm-grid">
         <Field label="Name" error={fieldErrors.name}>
           <input name="name" required maxLength={100} />

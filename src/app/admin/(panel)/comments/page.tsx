@@ -36,7 +36,7 @@ export default async function CommentsPage({ searchParams }: { searchParams: Pro
       {list.items.length === 0 ? (
         <p className="adm-hint">No comments.</p>
       ) : (
-        <div className="adm-table-wrap">
+        <div className="adm-panel adm-table-wrap">
           <table className="adm-table">
             <thead>
               <tr>

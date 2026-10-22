@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { deleteMediaAction, updateMediaAction } from '@/app/admin/(panel)/media/actions';
 import type { MediaRow } from '@/lib/media/upload';
+import { ConfirmButton } from './Dialog';
 import { MediaUpload } from './MediaUpload';
 
 const kb = (n: number) => `${Math.round(n / 1024)} KB`;
@@ -72,9 +73,19 @@ export function MediaLibrary({ items, userId, isAdmin }: { items: MediaRow[]; us
                       <button type="button" className="adm-btn" onClick={() => navigator.clipboard?.writeText(m.url).then(() => setMsg('URL copied'))}>
                         Copy URL<span className="sr-only"> of {m.name}</span>
                       </button>
-                      <button type="button" className="adm-btn adm-btn-danger" onClick={() => run(deleteMediaAction({ id: m.id }), `Deleted “${m.name}”`)}>
-                        Delete<span className="sr-only"> {m.name}</span>
-                      </button>
+                      <ConfirmButton
+                        label="Delete"
+                        srLabel={m.name}
+                        title="Delete this image?"
+                        message="It is removed from your storage. Any post or page still using it will show a broken image."
+                        confirmLabel="Delete image"
+                        onConfirm={async () => {
+                          const r = await deleteMediaAction({ id: m.id });
+                          if (!r.ok) return r.error;
+                          setMsg(`Deleted “${m.name}”`);
+                          router.refresh();
+                        }}
+                      />
                     </div>
                   </form>
                 ) : (

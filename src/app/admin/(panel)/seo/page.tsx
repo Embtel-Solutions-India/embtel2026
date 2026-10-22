@@ -13,7 +13,7 @@ function QueryTable({ title, hint, rows, showChange }: { title: string; hint: st
       {rows.length === 0 ? (
         <p className="adm-hint">Nothing here yet.</p>
       ) : (
-        <div className="adm-table-wrap">
+        <div className="adm-panel adm-table-wrap">
           <table className="adm-table">
             <thead>
               <tr>
@@ -64,7 +64,7 @@ export default async function SeoPage() {
   const i = await gscSource.insights();
   return (
     <>
-      <div className="adm-row" style={{ justifyContent: 'space-between' }}>
+      <div className="adm-page-head">
         <h1>SEO insights</h1>
         <GscSyncButton />
       </div>
@@ -83,7 +83,7 @@ export default async function SeoPage() {
             {i.losingPages.length === 0 ? (
               <p className="adm-hint">No page lost clicks.</p>
             ) : (
-              <div className="adm-table-wrap">
+              <div className="adm-panel adm-table-wrap">
                 <table className="adm-table">
                   <thead>
                     <tr>

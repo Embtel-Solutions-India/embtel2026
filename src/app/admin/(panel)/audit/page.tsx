@@ -30,7 +30,7 @@ export default async function AuditPage({ searchParams }: { searchParams: Promis
       {list.items.length === 0 ? (
         <p className="adm-hint">Nothing recorded yet.</p>
       ) : (
-        <div className="adm-table-wrap">
+        <div className="adm-panel adm-table-wrap">
           <table className="adm-table">
             <thead>
               <tr>

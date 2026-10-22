@@ -32,7 +32,7 @@ export default async function PostsPage({ searchParams }: { searchParams: Promis
 
   return (
     <>
-      <div className="adm-row" style={{ justifyContent: 'space-between' }}>
+      <div className="adm-page-head">
         <h1>Posts</h1>
         <Link href="/admin/posts/new" className="adm-btn adm-btn-primary">
           New post
@@ -58,7 +58,7 @@ export default async function PostsPage({ searchParams }: { searchParams: Promis
       {list.items.length === 0 ? (
         <p className="adm-hint">No posts here.</p>
       ) : (
-        <div className="adm-table-wrap">
+        <div className="adm-panel adm-table-wrap">
           <table className="adm-table">
             <thead>
               <tr>

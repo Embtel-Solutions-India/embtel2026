@@ -9,7 +9,7 @@ export default async function ProfilePage() {
   const hasPage = Boolean(slug) && (await loadAuthorSlugs()).includes(slug);
   return (
     <>
-      <div className="adm-row" style={{ justifyContent: 'space-between' }}>
+      <div className="adm-page-head">
         <h1>Your profile</h1>
         {hasPage && (
           <Link href={`/authors/${slug}`} className="adm-btn" target="_blank">

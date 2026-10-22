@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { deleteLeadAction, retryLeadAction } from '@/app/admin/(panel)/leads/actions';
+import { ConfirmButton } from './Dialog';
 
 export function LeadActions({ id, canRetry, canDelete }: { id: string; canRetry: boolean; canDelete: boolean }) {
   const router = useRouter();
   const [msg, setMsg] = useState('');
   const [error, setError] = useState('');
-  const [confirming, setConfirming] = useState(false);
 
   async function retry() {
     setError('');
@@ -17,12 +17,6 @@ export function LeadActions({ id, canRetry, canDelete }: { id: string; canRetry:
     setMsg(r.data === 'sent' ? 'Sent to Formspree' : `Not sent (${r.data})`);
     router.refresh();
   }
-  async function remove() {
-    const r = await deleteLeadAction({ id });
-    if (!r.ok) return setError(r.error);
-    router.push('/admin/leads');
-  }
-
   return (
     <div className="adm-row">
       {canRetry && (
@@ -30,16 +24,19 @@ export function LeadActions({ id, canRetry, canDelete }: { id: string; canRetry:
           Send to Formspree again
         </button>
       )}
-      {canDelete &&
-        (confirming ? (
-          <button type="button" className="adm-btn adm-btn-danger" onClick={remove}>
-            Confirm delete
-          </button>
-        ) : (
-          <button type="button" className="adm-btn adm-btn-danger" onClick={() => setConfirming(true)}>
-            Delete lead
-          </button>
-        ))}
+      {canDelete && (
+        <ConfirmButton
+          label="Delete lead"
+          title="Delete this lead?"
+          message="The lead and its message are removed from the admin for good. Formspree keeps its own copy."
+          confirmLabel="Delete lead"
+          onConfirm={async () => {
+            const r = await deleteLeadAction({ id });
+            if (!r.ok) return r.error;
+            router.push('/admin/leads');
+          }}
+        />
+      )}
       <span role="status" className="adm-ok">
         {msg}
       </span>
