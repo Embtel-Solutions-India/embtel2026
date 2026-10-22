@@ -8,6 +8,7 @@ import { SeedCategorySchema, SeedPostSchema, SeedTagSchema, type SeedBlog } from
 import { PageSchema, type Page } from './blocks';
 import { isValidSettingsField, type SiteSettings } from './settings';
 
+const isPlainObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 const isEmpty = (v: unknown) =>
   v === undefined || v === null || v === '' || (Array.isArray(v) && v.length === 0) || (typeof v === 'object' && !Array.isArray(v) && Object.keys(v as object).length === 0);
 
@@ -42,7 +43,14 @@ export async function seedContent(opts: { pages: Page[]; settings: SiteSettings;
   }
 
   const stored = ((await Settings.collection.findOne({ key: 'site' })) ?? {}) as Record<string, unknown>;
-  const fill = Object.fromEntries(Object.entries(opts.settings).filter(([k]) => isEmpty(stored[k]) || !isValidSettingsField(k, stored[k])));
+  const fill: Record<string, unknown> = Object.fromEntries(Object.entries(opts.settings).filter(([k]) => isEmpty(stored[k]) || !isValidSettingsField(k, stored[k])));
+  // Sections that already exist (e.g. integrations holding only migrated GA4/Search Console IDs) still get their
+  // empty sub-fields filled — otherwise the live Google Ads tag ID would be lost at cutover.
+  for (const [k, v] of Object.entries(opts.settings)) {
+    const s = stored[k];
+    if (k in fill || !isPlainObject(v) || !isPlainObject(s)) continue;
+    for (const [sk, sv] of Object.entries(v)) if (isEmpty(s[sk]) && !isEmpty(sv)) fill[`${k}.${sk}`] = sv;
+  }
   if (Object.keys(fill).length) await Settings.collection.updateOne({ key: 'site' }, { $set: { ...fill, updatedAt: now } }, { upsert: true });
 
   const blog = opts.blog ? await seedBlog(opts.blog, now) : { postsInserted: [], postsSkipped: [] };

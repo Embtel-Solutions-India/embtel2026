@@ -3,9 +3,11 @@ import mongoose from 'mongoose';
 import { connectDB } from '@/lib/db/connect';
 import { assertCutoverConfirmed } from '@/lib/db/migrations/cutover-guard';
 import { MIGRATION_001, runMigration001 } from '@/lib/db/migrations/001-roles-and-authors';
+import { MIGRATION_002, runMigration002 } from '@/lib/db/migrations/002-legacy-integrations';
 
 const migrations: { name: string; run: (db: mongoose.Connection) => Promise<Record<string, number>> }[] = [
   { name: MIGRATION_001, run: runMigration001 },
+  { name: MIGRATION_002, run: runMigration002 },
 ];
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
