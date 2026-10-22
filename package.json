@@ -18,7 +18,9 @@
     "content:import": "tsx scripts/import-legacy/index.ts",
     "content:seed": "tsx --env-file=.env.local scripts/seed-content.ts",
     "lhci": "lhci autorun",
-    "cutover:parity": "tsx scripts/cutover/parity.ts"
+    "cutover:parity": "tsx scripts/cutover/parity.ts",
+    "cutover:accounts": "tsx --env-file=.env.local scripts/cutover/accounts.ts",
+    "cutover:authors": "tsx --env-file=.env.local scripts/cutover/assign-authors.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1155.0",
