@@ -23,6 +23,9 @@ const schema = z.object({
   SMTP_FROM: z.string().optional(),
   // Vercel Cron bearer secret for /api/cron/*. Optional; scheduled publishing is off without it.
   CRON_SECRET: z.string().min(32).optional(),
+  // Search Console service account (secret JSON) + property; optional, read at call time by lib/integrations/gsc.
+  GSC_SERVICE_ACCOUNT_JSON: z.string().optional(),
+  GSC_SITE_URL: z.string().optional(),
   // IndexNow key (public by design: served at /indexnow-key.txt). Optional; pings are skipped without it.
   INDEXNOW_KEY: z.string().regex(/^[A-Za-z0-9-]{8,128}$/).optional(),
 });

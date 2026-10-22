@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { PostForm } from '@/components/admin/PostForm';
 import { getAdminPost, loadPostOptions, loadScoreContext } from '@/lib/admin/posts';
 import { requirePagePermission } from '@/lib/auth/session';
+import { gscSource } from '@/lib/integrations/gsc';
 
 export default async function EditPostPage({
   params,
@@ -18,6 +19,8 @@ export default async function EditPostPage({
   const [options, scoreContext] = await Promise.all([loadPostOptions(user), loadScoreContext(id)]);
   // Keep the current author selectable even when a marketing user edits someone else's post.
   if (post.authorId && !options.authors.some((a) => a.id === post.authorId)) options.authors.push({ id: post.authorId, name: 'Current author', hasBio: false });
+  const [ranksFor, insights] = await Promise.all([gscSource.queriesForPage(`/blog/${post.slug}`), gscSource.insights()]);
+  const queries = { ranksFor, rising: (insights?.rising ?? []).slice(0, 8) };
   const { updatedAt, publishedAt, isDeleted, ...rest } = post;
   const initial = { ...rest, id: undefined };
   const live = post.status === 'published' && !isDeleted && publishedAt && new Date(publishedAt) <= new Date();
@@ -33,7 +36,7 @@ export default async function EditPostPage({
       </div>
       {isDeleted && <p className="adm-card adm-error">This post is in the trash. Restore it from the post list to publish it again.</p>}
       {/* key: remount with fresh server data after a save that changes the version */}
-      <PostForm key={updatedAt} id={id} initial={initial} updatedAt={updatedAt} publishedAt={publishedAt} options={options} saved={sp.saved === '1'} scoreContext={scoreContext} />
+      <PostForm key={updatedAt} id={id} initial={initial} updatedAt={updatedAt} publishedAt={publishedAt} options={options} saved={sp.saved === '1'} scoreContext={scoreContext} queries={queries} />
     </>
   );
 }

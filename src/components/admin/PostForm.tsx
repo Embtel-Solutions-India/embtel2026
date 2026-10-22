@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation';
 import { savePostAction } from '@/app/admin/(panel)/posts/actions';
 import type { AuthorOption, Option } from '@/lib/admin/posts';
 import type { ScoreContext } from '@/lib/seo/score';
+import type { QueryStat } from '@/lib/integrations/gsc';
 import { type PostFormValue } from '@/lib/admin/post-defaults';
 import { toLocalInput, withOffset } from '@/lib/admin/time';
 import { Field } from './Field';
 import { MediaPicker } from './MediaPicker';
 import { RepeatableField } from './RepeatableField';
 import { RichTextEditor } from './RichTextEditor';
+import { QuerySuggestions } from './QuerySuggestions';
 import { SeoPanel } from './SeoPanel';
 
 type Options = { categories: Option[]; tags: Option[]; authors: AuthorOption[] };
@@ -24,6 +26,7 @@ export function PostForm({
   options,
   saved,
   scoreContext,
+  queries,
 }: {
   id: string | null;
   initial: PostFormValue;
@@ -32,6 +35,7 @@ export function PostForm({
   options: Options;
   saved?: boolean;
   scoreContext: ScoreContext;
+  queries?: { ranksFor: QueryStat[]; rising: QueryStat[] };
 }) {
   const router = useRouter();
   const [v, setV] = useState(initial);
@@ -301,6 +305,14 @@ export function PostForm({
         </label>
       </section>
 
+      {queries && (
+        <QuerySuggestions
+          ranksFor={queries.ranksFor}
+          rising={queries.rising}
+          onKeyword={(q) => !v.secondaryKeywords.includes(q) && set('secondaryKeywords', [...v.secondaryKeywords, q].slice(0, 20))}
+          onFaq={(q) => set('faqs', [...v.faqs, { q: q.endsWith('?') ? q : `${q[0].toUpperCase()}${q.slice(1)}?`, a: '' }].slice(0, 20))}
+        />
+      )}
       <SeoPanel
         ctx={scoreContext}
         input={{
