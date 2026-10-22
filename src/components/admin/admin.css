@@ -99,3 +99,9 @@
 .adm-editor blockquote { border-left: 3px solid var(--color-s3); padding-left: 12px; color: var(--color-m3); }
 .adm-editor pre { background: var(--color-s1); padding: 10px; border-radius: 6px; overflow-x: auto; }
 .adm-editor img { max-width: 100%; height: auto; }
+
+/* Media */
+.adm-media-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.adm-media-thumb { width: 100%; height: 140px; object-fit: cover; border-radius: 6px; background: var(--color-s1); }
+.adm-media-pick { display: flex; flex-direction: column; gap: 6px; width: 100%; padding: 8px; border: 1px solid var(--color-s2); border-radius: var(--radius-8); background: var(--color-ink2); color: var(--color-m3); cursor: pointer; text-align: left; font-size: 13px; }
+.adm-media-pick:hover { border-color: var(--color-blue); }

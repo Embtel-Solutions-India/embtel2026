@@ -20,6 +20,7 @@
     "lhci": "lhci autorun"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1155.0",
     "@tiptap/extension-image": "^3.32.0",
     "@tiptap/pm": "^3.32.0",
     "@tiptap/react": "^3.32.0",
@@ -32,6 +33,7 @@
     "react-dom": "19.3.0",
     "sanitize-html": "^2.18.1",
     "server-only": "^0.0.1",
+    "sharp": "^0.35.5",
     "zod": "^3.25.76"
   },
   "devDependencies": {
