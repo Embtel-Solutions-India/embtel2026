@@ -26,7 +26,7 @@ export interface IUser {
 interface IUserMethods {
   comparePassword(candidate: string): Promise<boolean>;
   changedPasswordAfter(jwtIatSeconds: number): boolean;
-  createPasswordResetToken(): string;
+  createPasswordResetToken(minutes?: number): string;
   toSafeJSON(): Record<string, unknown>;
 }
 
@@ -76,11 +76,11 @@ userSchema.methods.changedPasswordAfter = function changedPasswordAfter(jwtIatSe
   return jwtIatSeconds < Math.floor(this.passwordChangedAt.getTime() / 1000);
 };
 
-// Returns the plain token (to be emailed); only its sha256 is stored.
-userSchema.methods.createPasswordResetToken = function createPasswordResetToken() {
+// Returns the plain token (shown once as a link); only its sha256 is stored. Invites use a longer expiry.
+userSchema.methods.createPasswordResetToken = function createPasswordResetToken(minutes = RESET_TOKEN_EXPIRES_MINUTES) {
   const token = crypto.randomBytes(32).toString('hex');
   this.passwordResetToken = crypto.createHash('sha256').update(token).digest('hex');
-  this.passwordResetExpires = new Date(Date.now() + RESET_TOKEN_EXPIRES_MINUTES * 60 * 1000);
+  this.passwordResetExpires = new Date(Date.now() + minutes * 60 * 1000);
   return token;
 };
 
