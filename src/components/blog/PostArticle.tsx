@@ -54,8 +54,8 @@ export function PostArticle({ post, canonical, related, relatedServices }: Props
       )}
 
       {post.keyTakeaways.length > 0 && (
-        <aside className="bd-takeaways" aria-labelledby="takeaways">
-          <h2 id="takeaways">Key takeaways</h2>
+        <aside className="bd-takeaways" aria-labelledby="post-takeaways">
+          <h2 id="post-takeaways">Key takeaways</h2>
           <ul>
             {post.keyTakeaways.map((t, i) => (
               <li key={i}>{t}</li>
@@ -81,8 +81,8 @@ export function PostArticle({ post, canonical, related, relatedServices }: Props
       <div className="bd-content" dangerouslySetInnerHTML={{ __html: html }} />
 
       {post.faqs.length > 0 && (
-        <section className="bd-faq" aria-labelledby="faq">
-          <h2 id="faq">Frequently asked questions</h2>
+        <section className="bd-faq" aria-labelledby="post-faq">
+          <h2 id="post-faq">Frequently asked questions</h2>
           <div className="faq-wrap">
             {post.faqs.map((f, i) => (
               <details key={i} className="faq-item">
@@ -95,8 +95,8 @@ export function PostArticle({ post, canonical, related, relatedServices }: Props
       )}
 
       {post.sources.length > 0 && (
-        <section className="bd-sources" aria-labelledby="sources">
-          <h2 id="sources">Sources</h2>
+        <section className="bd-sources" aria-labelledby="post-sources">
+          <h2 id="post-sources">Sources</h2>
           <ol>
             {post.sources.map((s, i) => (
               <li key={i}>
@@ -125,8 +125,8 @@ export function PostArticle({ post, canonical, related, relatedServices }: Props
       {post.author.slug && <AuthorBox author={post.author} />}
 
       {relatedServices.length > 0 && (
-        <section className="bd-related" aria-labelledby="related-services">
-          <h2 id="related-services">Related services</h2>
+        <section className="bd-related" aria-labelledby="post-related-services">
+          <h2 id="post-related-services">Related services</h2>
           <ul className="bd-services">
             {relatedServices.map((s) => (
               <li key={s.href}>
@@ -140,8 +140,8 @@ export function PostArticle({ post, canonical, related, relatedServices }: Props
       )}
 
       {related.length > 0 && (
-        <section className="bd-related" aria-labelledby="related-articles">
-          <h2 id="related-articles">Related articles</h2>
+        <section className="bd-related" aria-labelledby="post-related-articles">
+          <h2 id="post-related-articles">Related articles</h2>
           <ul className="bd-related-grid">
             {related.map((r) => (
               <li key={r.slug} className="bd-rc">

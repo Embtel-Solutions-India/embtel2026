@@ -159,3 +159,25 @@ describe('post detail', () => {
     expect(await loadAuthor('nobody')).toBeNull();
   });
 });
+
+describe('review fixes: noindex and inactive authors', () => {
+  it('noindex posts stay reachable but are left out of feeds and related posts', async () => {
+    await db().collection('blogs').insertOne(post('quiet', { publishedAt: day(5), seo: { metaTitle: '', metaDescription: '', keywords: [], canonicalUrl: '', ogImage: '', noindex: true } }));
+    const { loadPost, loadPostIndex, loadRelated } = await import('@/lib/content/posts');
+    expect(await loadPost('quiet')).not.toBeNull();
+    expect((await loadPostIndex()).map((p) => p.slug)).not.toContain('quiet');
+    expect((await loadRelated((await loadPost('one'))!, 10)).map((p) => p.slug)).not.toContain('quiet');
+  });
+
+  it('a deactivated author is not linked, listed or given a page', async () => {
+    const ghost = new mongoose.Types.ObjectId();
+    await db().collection('users').insertOne({ _id: ghost, name: 'Gone Writer', email: 'gone@example.com', slug: 'gone-writer', active: false });
+    await db().collection('blogs').insertOne(post('by-ghost', { author: ghost, authorName: '' }));
+    const { loadPost, loadAuthorSlugs, loadAuthor } = await import('@/lib/content/posts');
+    expect((await loadPost('by-ghost'))?.author).toMatchObject({ name: 'Embtel Solutions', slug: null });
+    expect(await loadAuthorSlugs()).not.toContain('gone-writer');
+    expect(await loadAuthor('gone-writer')).toBeNull();
+    const { isKnownPath } = await import('@/lib/content/page-index');
+    expect(await isKnownPath('/authors/gone-writer')).toBe(false);
+  });
+});

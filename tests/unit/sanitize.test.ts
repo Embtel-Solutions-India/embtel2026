@@ -49,12 +49,26 @@ describe('post html sanitises', () => {
   });
 
   it('keeps figures, captions and code blocks', () => {
-    const { html } = sanitizeRichHtml('<figure><img src="https://a.b/c.png" alt="c"><figcaption>Cap</figcaption></figure><pre><code>x &lt; 1</code></pre>', { images: true });
+    const { html } = sanitizeRichHtml('<figure><img src="https://images.unsplash.com/c.png" alt="c"><figcaption>Cap</figcaption></figure><pre><code>x &lt; 1</code></pre>', { images: true });
     expect(html).toContain('<figcaption>Cap</figcaption>');
     expect(html).toContain('<pre><code>x &lt; 1</code></pre>');
   });
 
   it('richText (no images option) still strips images', () => {
     expect(sanitizeRichHtml('<img src="https://a.b/c.png" alt="c"><p>t</p>').html).toBe('<p>t</p>');
+  });
+});
+
+describe('post images follow the shared image-host allow-list', () => {
+  it('drops https images from hosts the CSP would block; keeps unsplash and the configured S3 host', async () => {
+    process.env.AWS_S3_BUCKET = 'embtel-media';
+    process.env.AWS_REGION = 'us-east-1';
+    const { html } = sanitizeRichHtml(
+      '<img src="https://evil.example/x.png" alt="e"><img src="https://images.unsplash.com/p.jpg" alt="u"><img src="https://embtel-media.s3.us-east-1.amazonaws.com/a.png" alt="s">',
+      { images: true },
+    );
+    expect(html).not.toContain('evil.example');
+    expect(html).toContain('images.unsplash.com');
+    expect(html).toContain('embtel-media.s3.us-east-1.amazonaws.com');
   });
 });

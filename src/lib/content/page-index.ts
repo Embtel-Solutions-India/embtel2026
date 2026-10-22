@@ -15,8 +15,8 @@ const TTL_MS = 30_000;
 const MISS_REFRESH_MS = 5_000;
 let cache: { paths: Set<string>; at: number } | null = null;
 
-async function slugsOf(model: typeof Category | typeof Tag | typeof User, ids: unknown[]) {
-  const docs = (await (model as typeof Category).find({ _id: { $in: ids }, slug: { $type: 'string' } }, { slug: 1 }).lean()) as { slug: string }[];
+async function slugsOf(model: typeof Category | typeof Tag | typeof User, ids: unknown[], extra: Record<string, unknown> = {}) {
+  const docs = (await (model as typeof Category).find({ _id: { $in: ids }, slug: { $type: 'string' }, ...extra }, { slug: 1 }).lean()) as { slug: string }[];
   return docs.map((d) => d.slug);
 }
 
@@ -35,7 +35,7 @@ async function refresh() {
     ...posts.map((s) => `/blog/${s}`),
     ...(await slugsOf(Category, cats)).map((s) => `/blog/category/${s}`),
     ...(await slugsOf(Tag, tags)).map((s) => `/blog/tag/${s}`),
-    ...(await slugsOf(User, authors)).map((s) => `/authors/${s}`),
+    ...(await slugsOf(User, authors, { active: { $ne: false } })).map((s) => `/authors/${s}`),
   ]);
   cache = { paths, at: Date.now() };
   return cache;

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { imageHosts } from "./src/lib/content/image-hosts";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -10,8 +11,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "www.google.com", pathname: "/s2/favicons" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
-      // Legacy blog featured images.
-      { protocol: "https", hostname: "images.unsplash.com" },
+      // Blog/author images: the shared allow-list (Unsplash + the env-configured S3/CDN host).
+      ...imageHosts().map((hostname) => ({ protocol: "https" as const, hostname })),
     ],
   },
   partialPrefetching: true,

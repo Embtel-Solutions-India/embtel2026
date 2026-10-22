@@ -1,5 +1,6 @@
 import sanitizeHtml from 'sanitize-html';
 import { toSlug } from '@/lib/slug';
+import { isAllowedImageUrl } from './image-hosts';
 
 const ALLOWED_CLASSES = ['legal-callout', 'legal-gov', 'bullets', 'contact-table', 'inline'];
 
@@ -20,9 +21,10 @@ export function sanitizeRichHtml(input: string, opts: { images?: boolean } = {})
     allowProtocolRelative: false,
     transformTags: {
       img: (tag, attribs) => {
-        // Only https:// or root-relative sources; anything else loses src and is filtered out below.
+        // Only root-relative or allowed-host https sources (the CSP blocks others); anything else loses
+        // src and is filtered out below.
         const { src, ...rest } = attribs;
-        const ok = /^(https:\/\/|\/(?!\/))/.test(src ?? '');
+        const ok = isAllowedImageUrl(src ?? '');
         return { tagName: tag, attribs: { ...(ok && { src }), ...rest, loading: 'lazy', decoding: 'async' } };
       },
       a: (tag, attribs) => {

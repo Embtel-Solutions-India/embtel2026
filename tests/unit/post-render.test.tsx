@@ -94,3 +94,21 @@ describe('PostArticle', () => {
     expect(container.querySelector('.bd-img')).toBeNull();
   });
 });
+
+describe('ids', () => {
+  it('stay unique when the body has its own FAQ/Sources headings', () => {
+    const post: PublicPost = {
+      ...base,
+      content: '<h2>FAQ</h2><p>a</p><h2>Sources</h2><p>b</p><h2>Takeaways</h2><p>c</p>',
+      faqs: [{ q: 'Q?', a: 'A.' }],
+      sources: [{ title: 'S', url: 'https://web.dev/x' }],
+      keyTakeaways: ['T'],
+    };
+    const { container } = render(<PostArticle post={post} canonical={URL} related={[]} relatedServices={[]} />);
+    const ids = [...container.querySelectorAll('[id]')].map((e) => e.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const el of container.querySelectorAll('[aria-labelledby]')) {
+      expect(container.querySelector(`#${el.getAttribute('aria-labelledby')}`)).not.toBeNull();
+    }
+  });
+});

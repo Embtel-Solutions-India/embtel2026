@@ -5,6 +5,7 @@ import { Blog } from '@/lib/db/models/Blog';
 import { Category } from '@/lib/db/models/Category';
 import { Tag } from '@/lib/db/models/Tag';
 import { User } from '@/lib/db/models/User';
+import { isAllowedImageUrl } from './image-hosts';
 import { PUBLIC_FILTER } from './visibility';
 
 export const POSTS_TAG = 'posts';
@@ -13,7 +14,6 @@ export const postTag = (slug: string) => `post:${slug}`;
 
 const ORG_NAME = 'Embtel Solutions';
 const PER_PAGE = 9;
-const SAFE_IMAGE = /^(\/(?!\/)|https:\/\/)/;
 
 export type PostCard = {
   slug: string;
@@ -47,6 +47,8 @@ type Term = { name: string; slug: string; description?: string };
 export { PUBLIC_FILTER } from './visibility';
 
 const AUTHOR_FIELDS = 'name slug bio jobTitle avatar sameAs expertise';
+// noindex posts stay reachable by URL but are not syndicated (sitemap, RSS, llms.txt) or recommended.
+const INDEXABLE = { 'seo.noindex': { $ne: true } };
 const iso = (d: unknown) => (d instanceof Date ? d.toISOString() : new Date(0).toISOString());
 const str = (v: unknown) => (typeof v === 'string' ? v : '');
 const opt = (v: unknown) => (typeof v === 'string' && v ? v : undefined);
@@ -59,7 +61,7 @@ function toCard(d: Raw): PostCard {
     slug: str(d.slug),
     title: str(d.title),
     shortDescription: str(d.shortDescription),
-    featuredImage: SAFE_IMAGE.test(img) ? img : null,
+    featuredImage: isAllowedImageUrl(img) ? img : null,
     imageAltText: str(d.imageAltText),
     category: c && c.slug ? { name: str(c.name), slug: str(c.slug) } : null,
     readingTime: typeof d.readingTime === 'number' ? d.readingTime : 1,
@@ -75,7 +77,7 @@ function toAuthor(d: Raw): PostAuthor {
       slug: opt(u.slug) ?? null,
       jobTitle: str(u.jobTitle),
       bio: str(u.bio),
-      avatar: SAFE_IMAGE.test(str(u.avatar)) ? str(u.avatar) : '',
+      avatar: isAllowedImageUrl(str(u.avatar)) ? str(u.avatar) : '',
       sameAs: Array.isArray(u.sameAs) ? (u.sameAs as string[]).filter((x) => /^https:\/\//.test(x)) : [],
       expertise: Array.isArray(u.expertise) ? (u.expertise as string[]) : [],
     };
@@ -100,7 +102,7 @@ function toPost(d: Raw): PublicPost {
       metaTitle: opt(seo.metaTitle),
       metaDescription: opt(seo.metaDescription),
       canonicalUrl: opt(seo.canonicalUrl),
-      ogImage: SAFE_IMAGE.test(str(seo.ogImage)) ? str(seo.ogImage) : undefined,
+      ogImage: isAllowedImageUrl(str(seo.ogImage)) ? str(seo.ogImage) : undefined,
       keywords: (seo.keywords as string[] | undefined) ?? [],
       noindex: Boolean(seo.noindex),
     },
@@ -121,7 +123,8 @@ export async function loadPost(slug: string): Promise<PublicPost | null> {
   const d = (await Blog.findOne({ slug, ...PUBLIC_FILTER() })
     .populate('category', 'name slug')
     .populate('tags', 'name slug serviceSlug')
-    .populate('author', AUTHOR_FIELDS)
+    // Deactivated users are not credited: the byline falls back to authorName, then the organization.
+    .populate({ path: 'author', select: AUTHOR_FIELDS, match: { active: { $ne: false } } })
     .lean()) as Raw | null;
   return d ? toPost(d) : null;
 }
@@ -162,7 +165,7 @@ export async function loadRelated(post: PublicPost, n = 3): Promise<PostCard[]> 
   const self = await Blog.findOne({ slug: post.slug }, { category: 1, tags: 1 }).lean();
   if (!self) return [];
   const tagIds = ((self.tags ?? []) as Types.ObjectId[]).map(String);
-  const candidates = (await Blog.find({ ...PUBLIC_FILTER(), slug: { $ne: post.slug } })
+  const candidates = (await Blog.find({ ...PUBLIC_FILTER(), ...INDEXABLE, slug: { $ne: post.slug } })
     .sort({ publishedAt: -1 })
     .limit(200)
     .populate('category', 'name slug')
@@ -279,7 +282,7 @@ export type PostIndexEntry = { slug: string; title: string; shortDescription: st
 
 export async function loadPostIndex(): Promise<PostIndexEntry[]> {
   await connectDB();
-  const docs = (await Blog.find(PUBLIC_FILTER(), { slug: 1, title: 1, shortDescription: 1, publishedAt: 1, updatedAt: 1, lastReviewedAt: 1, category: 1 })
+  const docs = (await Blog.find({ ...PUBLIC_FILTER(), ...INDEXABLE }, { slug: 1, title: 1, shortDescription: 1, publishedAt: 1, updatedAt: 1, lastReviewedAt: 1, category: 1 })
     .sort({ publishedAt: -1 })
     .populate('category', 'name')
     .lean()) as Raw[];
@@ -296,7 +299,7 @@ export async function loadPostIndex(): Promise<PostIndexEntry[]> {
 export async function loadAuthorSlugs(): Promise<string[]> {
   await connectDB();
   const ids = await Blog.distinct('author', PUBLIC_FILTER());
-  const users = (await User.find({ _id: { $in: ids }, slug: { $type: 'string' } }, { slug: 1 }).lean()) as Raw[];
+  const users = (await User.find({ _id: { $in: ids }, slug: { $type: 'string' }, active: { $ne: false } }, { slug: 1 }).lean()) as Raw[];
   return users.map((u) => str(u.slug)).filter(Boolean);
 }
 

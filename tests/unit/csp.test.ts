@@ -60,3 +60,13 @@ describe('third-party hosts (Google Ads tag, Elfsight)', () => {
     expect(directive(csp, 'script-src')).not.toContain("'unsafe-inline'");
   });
 });
+
+describe('image hosts', () => {
+  it('img-src allows the shared image hosts (unsplash + configured S3)', async () => {
+    vi.stubEnv('AWS_S3_BUCKET', 'embtel-media');
+    vi.stubEnv('AWS_REGION', 'us-east-1');
+    const csp = buildCsp({ nonce: 'n' });
+    expect(directive(csp, 'img-src')).toContain('https://images.unsplash.com');
+    expect(directive(csp, 'img-src')).toContain('https://embtel-media.s3.us-east-1.amazonaws.com');
+  });
+});

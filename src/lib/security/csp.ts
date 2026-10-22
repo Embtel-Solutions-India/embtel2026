@@ -1,4 +1,6 @@
-const freeze = (o: Record<string, readonly string[]>) =>
+import { imageHosts } from '@/lib/content/image-hosts';
+
+const freeze =(o: Record<string, readonly string[]>) =>
   Object.freeze(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Object.freeze([...v])])));
 
 // Single CSP allow-list. Frozen: no runtime mutation.
@@ -27,7 +29,9 @@ export function buildCsp({ nonce }: { nonce?: string } = {}): string {
   if (nonce) script.push(`'nonce-${nonce}'`, "'strict-dynamic'");
   // React dev tooling needs eval; never in production.
   if (!prod) script.push("'unsafe-eval'");
-  const directives = Object.entries({ ...CSP_SOURCES, 'script-src': script }).map(
+  // Blog/author image hosts come from the shared allow-list (includes the env-configured S3 host).
+  const img = [...CSP_SOURCES['img-src'], ...imageHosts().map((h) => `https://${h}`)];
+  const directives = Object.entries({ ...CSP_SOURCES, 'script-src': script, 'img-src': img }).map(
     ([k, v]) => `${k} ${v.join(' ')}`,
   );
   if (prod) directives.push('upgrade-insecure-requests');
