@@ -44,6 +44,7 @@ describe('inventory', () => {
     const inv = inventoryFrom({ legacyPages: ['index', 'about', 'blog', 'blog-details'], postSlugs: ['speed'] });
     expect(inv).toEqual(expect.arrayContaining(['/', '/index.html', '/about', '/about.html', '/blog', '/blog.html', '/blog/speed', '/blog-details?slug=speed', '/blog-details.html?slug=speed', '/da-ai/example-page']));
     expect(inv).not.toContain('/blog-details');
+    expect(inventoryFrom({ legacyPages: [], postSlugs: [], legacyImages: ['L.png', 'embtel-logo.svg'] })).toEqual(expect.arrayContaining(['/images/L.png', '/images/embtel-logo.svg']));
     expect(new Set(inv).size).toBe(inv.length);
   });
 

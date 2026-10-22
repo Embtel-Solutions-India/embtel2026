@@ -51,7 +51,7 @@ export async function checkUrl(base: string, path: string, fetchImpl: Fetch = fe
 }
 
 // Every URL form the legacy site answered: pages (clean and .html), the blog, posts, and legacy post links.
-export function inventoryFrom({ legacyPages, postSlugs }: { legacyPages: string[]; postSlugs: string[] }): string[] {
+export function inventoryFrom({ legacyPages, postSlugs, legacyImages = [] }: { legacyPages: string[]; postSlugs: string[]; legacyImages?: string[] }): string[] {
   // /da-ai pages (retired section). Bare /da-ai/ takes 2 permanent hops (trailing slash, then 301) — fine for crawlers.
   const out = new Set<string>(['/', '/da-ai/example-page']);
   for (const p of legacyPages) {
@@ -64,6 +64,7 @@ export function inventoryFrom({ legacyPages, postSlugs }: { legacyPages: string[
     out.add(`/blog-details?slug=${s}`);
     out.add(`/blog-details.html?slug=${s}`);
   }
+  for (const f of legacyImages) out.add(`/images/${f}`); // image search / external links
   return [...out];
 }
 

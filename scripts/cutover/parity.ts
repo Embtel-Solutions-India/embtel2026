@@ -9,7 +9,8 @@ async function main() {
   if (!base) throw new Error('Usage: cutover:parity <baseUrl> [--inventory pages.csv] [--expect-indexable]');
   const legacyPages = readdirSync('embtel-final').filter((f) => f.endsWith('.html')).map((f) => f.replace(/\.html$/, ''));
   const postSlugs = readdirSync('content/blog/posts').map((f) => f.replace(/\.json$/, ''));
-  const paths = new Set(inventoryFrom({ legacyPages, postSlugs }));
+  const legacyImages = readdirSync('embtel-final/images');
+  const paths = new Set(inventoryFrom({ legacyPages, postSlugs, legacyImages }));
   const inv = args[args.indexOf('--inventory') + 1];
   if (args.includes('--inventory') && inv) for (const p of pathsFromSearchConsoleCsv(readFileSync(inv, 'utf8'), 'www.embtelsolutions.com')) paths.add(p);
 

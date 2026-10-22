@@ -64,12 +64,13 @@ describe('cutover rehearsal on a legacy-shaped database', () => {
     expect((await listMedia({})).items.map((m) => m.name)).toContain('old.jpg');
   });
 
-  it('settings keep legacy fields, gain the new ones, and carry over the GA4 / Search Console IDs', async () => {
+  it('settings keep legacy fields, gain the new ones, carry over Search Console verification, and leave GA4 off for the owner', async () => {
     const raw = await db().collection('settings').findOne({ key: 'site' });
     expect(raw).toMatchObject({ siteName: 'Embtel', footerText: 'old footer' });
     const { loadSiteSettings } = await import('@/lib/content/settings');
     const s = await loadSiteSettings();
-    expect(s.integrations).toMatchObject({ ga4Id: 'G-LEGACY1234', gscVerification: 'legacyVerification_123', googleAdsId: 'AW-18518114785' });
+    // GA4 was stored in the legacy admin but never loaded by the live site: turning it on is the owner's call.
+    expect(s.integrations).toMatchObject({ ga4Id: '', gscVerification: 'legacyVerification_123', googleAdsId: 'AW-18518114785' });
     expect(s.headerNav.length).toBeGreaterThan(0);
   });
 
@@ -88,6 +89,6 @@ describe('cutover rehearsal on a legacy-shaped database', () => {
     const { runMigration001 } = await import('@/lib/db/migrations/001-roles-and-authors');
     const { runMigration002 } = await import('@/lib/db/migrations/002-legacy-integrations');
     expect(await runMigration001(mongoose.connection)).toEqual({ rolesUpdated: 0, slugsAdded: 0 });
-    expect(await runMigration002(mongoose.connection)).toEqual({ copied: 0 });
+    expect(await runMigration002(mongoose.connection)).toEqual({ copied: 0, legacyGa4Id: 'G-LEGACY1234' });
   });
 });
