@@ -37,10 +37,13 @@ async function main() {
     slug: 'secret-post', title: 'Secret Post', shortDescription: 'Hidden', content: '<p>Hidden</p>', status: 'draft',
     publishedAt: new Date('2026-09-01T09:00:00Z'), isDeleted: false, tags: [], updatedAt: new Date(),
   });
+  // Marketing user for admin-panel specs (no author slug, so public author pages are unaffected).
+  const marketingPassword = rnd(16);
+  await User.create({ name: 'Mia Marketer', email: 'mia@example.com', password: marketingPassword, role: 'marketing' });
   await mongoose.disconnect();
 
   fs.mkdirSync(path.dirname(CREDS_FILE), { recursive: true });
-  fs.writeFileSync(CREDS_FILE, JSON.stringify({ email: 'admin@example.com', password }));
+  fs.writeFileSync(CREDS_FILE, JSON.stringify({ email: 'admin@example.com', password, marketing: { email: 'mia@example.com', password: marketingPassword } }));
 
   const env: NodeJS.ProcessEnv = {
     ...process.env,

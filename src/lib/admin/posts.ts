@@ -2,6 +2,9 @@ import { isValidObjectId, type Types } from 'mongoose';
 import { audit } from '@/lib/audit';
 import { connectDB } from '@/lib/db/connect';
 import { Blog } from '@/lib/db/models/Blog';
+import { Category } from '@/lib/db/models/Category';
+import { Tag } from '@/lib/db/models/Tag';
+import { User } from '@/lib/db/models/User';
 import type { UserDoc } from '@/lib/db/models/User';
 import { sanitizeRichHtml } from '@/lib/content/sanitize';
 import { pingIndexNowPaths } from '@/lib/seo/indexnow';
@@ -51,7 +54,7 @@ async function load(id: string) {
   return doc;
 }
 
-export async function savePost(input: PostInput, user: UserDoc): Promise<{ id: string; slug: string }> {
+export async function savePost(input: PostInput, user: UserDoc): Promise<{ id: string; slug: string; updatedAt: string; status: string; publishedAt: string | null }> {
   await connectDB();
   const now = new Date();
   const existing = input.id ? await load(input.id) : null;
@@ -124,7 +127,7 @@ export async function savePost(input: PostInput, user: UserDoc): Promise<{ id: s
     meta: { slug, status },
   });
   publicChanged(slug, before, isPublic(doc, now));
-  return { id: String(doc._id), slug };
+  return { id: String(doc._id), slug, updatedAt: iso(doc.updatedAt)!, status, publishedAt: iso(doc.publishedAt) };
 }
 
 export async function trashPost(id: string, user: UserDoc): Promise<void> {
@@ -282,4 +285,18 @@ export async function getAdminPost(id: string): Promise<AdminPost | null> {
     updatedAt: iso(d.updatedAt) ?? new Date(0).toISOString(),
     isDeleted: Boolean(d.isDeleted),
   };
+}
+
+export type Option = { id: string; name: string };
+
+// Select options for the editor. Marketing users can only credit themselves.
+export async function loadPostOptions(user: UserDoc): Promise<{ categories: Option[]; tags: Option[]; authors: Option[] }> {
+  await connectDB();
+  const opts = (docs: Raw[]) => docs.map((d) => ({ id: String(d._id), name: String(d.name) }));
+  const [categories, tags, authors] = await Promise.all([
+    Category.find({}, { name: 1 }).sort({ name: 1 }).lean<Raw[]>(),
+    Tag.find({}, { name: 1 }).sort({ name: 1 }).lean<Raw[]>(),
+    isAdmin(user) ? User.find({ active: { $ne: false } }, { name: 1 }).sort({ name: 1 }).lean<Raw[]>() : Promise.resolve([{ _id: user._id, name: user.name }]),
+  ]);
+  return { categories: opts(categories), tags: opts(tags), authors: opts(authors) };
 }

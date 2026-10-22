@@ -32,12 +32,14 @@
 .adm-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius-8); border: 1px solid var(--color-s3); background: var(--color-s1); color: var(--color-off); font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; }
 .adm-btn:hover { background: var(--color-s2); }
 .adm-btn[disabled] { opacity: 0.6; cursor: default; }
-.adm-btn-primary { background: var(--color-blue); border-color: var(--color-blue); color: #fff; }
-.adm-btn-primary:hover { background: #3d82ff; }
+/* Darker than the brand blue so white text meets 4.5:1. */
+.adm-btn-primary { background: #1559d6; border-color: #1559d6; color: #fff; }
+.adm-btn-primary:hover { background: #104bb8; }
 .adm-btn-danger { border-color: #b4321b; color: #ffb4a3; }
 
 .adm-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--color-m3); }
-.adm-field > span:first-child { font-weight: 600; color: var(--color-off); }
+.adm-field > span:first-child,
+.adm-field > label { font-weight: 600; color: var(--color-off); }
 .adm-input,
 .adm-field input:not([type='checkbox']):not([type='radio']),
 .adm-field select,
@@ -78,3 +80,22 @@
   .adm-side[data-open='false'] .adm-user { display: none; }
   .adm-main { padding: 20px 16px; }
 }
+
+/* Rich-text editor */
+.adm-editor-wrap { border: 1px solid var(--color-s3); border-radius: var(--radius-8); background: var(--color-ink); }
+.adm-toolbar { padding: 8px; border-bottom: 1px solid var(--color-s2); }
+.adm-tool { min-width: 34px; height: 32px; padding: 0 8px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: var(--color-m3); font-weight: 700; cursor: pointer; }
+.adm-tool:hover { background: var(--color-s1); }
+.adm-tool[aria-pressed='true'] { background: var(--color-blue-dim); color: var(--color-off); border-color: var(--color-blue); }
+.adm-editor { min-height: 320px; padding: 14px 16px; color: var(--color-off); line-height: 1.65; outline: none; }
+.adm-editor:focus-visible { outline: 2px solid var(--color-teal); outline-offset: -2px; }
+.adm-editor h2 { font-size: 22px; font-weight: 800; margin: 18px 0 8px; }
+.adm-editor h3 { font-size: 18px; font-weight: 700; margin: 16px 0 6px; }
+.adm-editor h4 { font-size: 16px; font-weight: 700; margin: 14px 0 6px; }
+.adm-editor p { margin: 0 0 10px; }
+.adm-editor ul { list-style: disc; padding-left: 22px; }
+.adm-editor ol { list-style: decimal; padding-left: 22px; }
+.adm-editor a { color: #8fb5ff; text-decoration: underline; }
+.adm-editor blockquote { border-left: 3px solid var(--color-s3); padding-left: 12px; color: var(--color-m3); }
+.adm-editor pre { background: var(--color-s1); padding: 10px; border-radius: 6px; overflow-x: auto; }
+.adm-editor img { max-width: 100%; height: auto; }
