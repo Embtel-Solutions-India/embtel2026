@@ -122,6 +122,20 @@ describe('savePost', () => {
     expect((await doc(d.id))?.title).toBe('Shared v2');
   });
 
+  it('concurrent saves from the same version: exactly one wins, the other is told to reload', async () => {
+    const d = await save({ title: 'Raced' });
+    const loaded = (await doc(d.id))!.updatedAt!.toISOString();
+    const results = await Promise.allSettled([
+      save({ id: d.id, title: 'Raced by A', expectedUpdatedAt: loaded }),
+      save({ id: d.id, title: 'Raced by B', expectedUpdatedAt: loaded }),
+    ]);
+    expect(results.filter((r) => r.status === 'fulfilled')).toHaveLength(1);
+    const rejected = results.find((r) => r.status === 'rejected') as PromiseRejectedResult;
+    expect(String(rejected.reason)).toMatch(/changed by someone else/);
+    const winner = results.findIndex((r) => r.status === 'fulfilled') === 0 ? 'Raced by A' : 'Raced by B';
+    expect((await doc(d.id))?.title).toBe(winner);
+  });
+
   it('marketing can only credit themselves; admins can credit anyone', async () => {
     await expect(save({ title: 'Ghost', authorId: String(other._id) }, writer)).rejects.toThrow(/yourself/i);
     const own = await save({ title: 'Mine', authorId: String(writer._id) }, writer);

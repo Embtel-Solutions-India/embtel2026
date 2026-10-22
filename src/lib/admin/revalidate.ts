@@ -6,7 +6,8 @@ import { SETTINGS_TAG } from '@/lib/content/settings';
 
 // Expire the public caches an admin write affects, so the next public request shows it.
 // 'action' (server actions): updateTag, so the editor sees their own change immediately.
-// 'background' (route handlers such as the cron): updateTag is not allowed there; revalidateTag is.
+// 'background' (route handlers such as the cron): updateTag is not allowed there, so revalidateTag with
+// expire 0 — never serve the stale copy (e.g. a just-scheduled post's cached "not found" to Bing).
 // allPosts: every post page and listing (all post caches carry POSTS_TAG), e.g. after a category rename.
 export function refreshContent(change: { posts?: string[]; allPosts?: boolean; taxonomy?: boolean; pages?: string[]; settings?: boolean }, mode: 'action' | 'background' = 'action'): void {
   const tags = new Set<string>();
@@ -23,6 +24,6 @@ export function refreshContent(change: { posts?: string[]; allPosts?: boolean; t
   if (change.settings) tags.add(SETTINGS_TAG);
   for (const t of tags) {
     if (mode === 'action') updateTag(t);
-    else revalidateTag(t, 'max');
+    else revalidateTag(t, { expire: 0 });
   }
 }

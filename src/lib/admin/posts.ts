@@ -16,6 +16,7 @@ import { refreshContent } from './revalidate';
 export { PostInputSchema, type PostInput } from './post-schema';
 
 const PER_PAGE = 20;
+const STALE = 'This post was changed by someone else. Reload to see the latest version.';
 const WITH_TRASH = { includeDeleted: true };
 type Raw = Record<string, unknown>;
 type BlogLike = { status?: string | null; isDeleted?: boolean | null; publishedAt?: Date | null };
@@ -58,10 +59,8 @@ export async function savePost(input: PostInput, user: UserDoc): Promise<{ id: s
   await connectDB();
   const now = new Date();
   const existing = input.id ? await load(input.id) : null;
-  // ponytail: millisecond updatedAt as the version; two saves in the same ms would not conflict.
-  if (existing && iso(existing.updatedAt) !== input.expectedUpdatedAt) {
-    throw new UserFacingError('This post was changed by someone else. Reload to see the latest version.');
-  }
+  // updatedAt is the version (also enforced atomically on the write below).
+  if (existing && iso(existing.updatedAt) !== input.expectedUpdatedAt) throw new UserFacingError(STALE);
 
   const keepsAuthor = existing && String(existing.author ?? '') === (input.authorId ?? '');
   if (!isAdmin(user) && input.authorId && input.authorId !== String(user._id) && !keepsAuthor) {
@@ -118,7 +117,15 @@ export async function savePost(input: PostInput, user: UserDoc): Promise<{ id: s
     lastReviewedAt: input.lastReviewedAt ? new Date(`${input.lastReviewedAt}T00:00:00Z`) : undefined,
   });
   if (status === 'published' && !doc.publishedAt) doc.publishedAt = now;
-  await doc.save();
+  // The version check above is only a fast path: the write itself only matches the version the editor
+  // loaded, so a save that landed in between (another editor, the legacy admin) is never overwritten.
+  if (existing) doc.$where = { updatedAt: existing.updatedAt };
+  try {
+    await doc.save();
+  } catch (e) {
+    if (e instanceof Error && e.name === 'DocumentNotFoundError') throw new UserFacingError(STALE);
+    throw e;
+  }
 
   await audit({
     actorId: String(user._id),
