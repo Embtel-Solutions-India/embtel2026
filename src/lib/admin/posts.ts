@@ -300,3 +300,23 @@ export async function loadPostOptions(user: UserDoc): Promise<{ categories: Opti
   ]);
   return { categories: opts(categories), tags: opts(tags), authors: opts(authors) };
 }
+
+// Called by the cron route: scheduled posts whose time has come go live (publishedAt = scheduledAt).
+export async function publishDuePosts(now = new Date()): Promise<string[]> {
+  await connectDB();
+  const due = await Blog.find({ status: 'scheduled', scheduledAt: { $lte: now }, isDeleted: { $ne: true } }, { slug: 1, scheduledAt: 1, author: 1 }).lean<Raw[]>();
+  const published: string[] = [];
+  for (const d of due) {
+    // Conditional update: a concurrent run or an edit in between can't publish twice.
+    const r = await Blog.updateOne({ _id: d._id, status: 'scheduled' }, { $set: { status: 'published', publishedAt: d.scheduledAt }, $unset: { scheduledAt: 1 } });
+    if (!r.modifiedCount) continue;
+    published.push(String(d.slug));
+    // The save that scheduled the post is already audited; this records who it went live for.
+    if (d.author) await audit({ actorId: String(d.author), action: 'post.autopublish', target: { type: 'post', id: String(d._id) }, meta: { slug: d.slug } });
+  }
+  if (published.length) {
+    refreshContent({ posts: published, taxonomy: true });
+    await pingIndexNowPaths(published.map((s) => `/blog/${s}`));
+  }
+  return published;
+}
