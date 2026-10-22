@@ -63,13 +63,13 @@ afterAll(async () => {
 describe('robots disallows non-production', () => {
   it('blocks everything when not production', async () => {
     const robots = (await import('@/app/robots')).default;
-    expect(robots().rules).toEqual([{ userAgent: '*', disallow: '/' }]);
+    expect((await robots()).rules).toEqual([{ userAgent: '*', disallow: '/' }]);
   });
 
   it('allows search and AI crawlers in production, never /admin or /api', async () => {
     process.env.VERCEL_ENV = 'production';
     const robots = (await import('@/app/robots')).default;
-    const r = robots();
+    const r = await robots();
     const rules = r.rules as { userAgent: string | string[]; allow?: string; disallow?: string[] }[];
     const agents = rules.flatMap((x) => x.userAgent);
     for (const bot of ['*', 'GPTBot', 'OAI-SearchBot', 'PerplexityBot', 'ClaudeBot', 'Google-Extended', 'Bingbot']) expect(agents).toContain(bot);
