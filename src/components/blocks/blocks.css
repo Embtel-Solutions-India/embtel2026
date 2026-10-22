@@ -2,6 +2,9 @@
    Accent-aware: --ac is set per page from theme.accent. */
 
 .section { padding: 100px 40px; }
+/* Below-the-fold sections: the browser skips their layout/paint until they near the viewport (big first-load
+   saving on long pages); `auto` remembers the real height once rendered, so scrolling doesn't jump. */
+.section { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 .section-alt { background: var(--color-ink2); border-block: 1px solid rgb(255 255 255 / .05); }
 .section-in { max-width: 1300px; margin: 0 auto; }
 .narrow { max-width: 1000px; margin: 0 auto; }
