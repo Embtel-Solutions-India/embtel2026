@@ -12,6 +12,12 @@ describe('refreshContent', () => {
     expect(tags).toEqual(expect.arrayContaining(['posts', 'post:a', 'taxonomy', 'pages', 'page:about', 'settings']));
   });
 
+  it('allPosts expires every post cache', () => {
+    updateTag.mockClear();
+    refreshContent({ allPosts: true });
+    expect(updateTag.mock.calls.map((c) => c[0])).toEqual(['posts']);
+  });
+
   it('does nothing for an empty change', () => {
     updateTag.mockClear();
     refreshContent({});

@@ -6,8 +6,10 @@ import { SETTINGS_TAG } from '@/lib/content/settings';
 
 // Expire the public caches an admin write affects, so the next public request shows it.
 // updateTag (not revalidateTag): the editor should see their own change immediately.
-export function refreshContent(change: { posts?: string[]; taxonomy?: boolean; pages?: string[]; settings?: boolean }): void {
+// allPosts: every post page and listing (all post caches carry POSTS_TAG), e.g. after a category rename.
+export function refreshContent(change: { posts?: string[]; allPosts?: boolean; taxonomy?: boolean; pages?: string[]; settings?: boolean }): void {
   const tags = new Set<string>();
+  if (change.allPosts) tags.add(POSTS_TAG);
   if (change.posts?.length) {
     tags.add(POSTS_TAG);
     for (const s of change.posts) tags.add(postTag(s));
