@@ -9,6 +9,12 @@ export function indexNowKey(): string | null {
   return key && KEY.test(key) ? key : null;
 }
 
+// Site paths (`/blog/x`) → absolute URLs, then pingIndexNow.
+export function pingIndexNowPaths(paths: string[]): Promise<{ ok: boolean }> {
+  if (!indexNowKey()) return Promise.resolve({ ok: false });
+  return pingIndexNow(paths.map((p) => `${env.SITE_URL}${p}`));
+}
+
 // Tells Bing/Yandex (and through Bing, Copilot) that URLs changed. Best effort: never throws.
 export async function pingIndexNow(urls: string[]): Promise<{ ok: boolean }> {
   const key = indexNowKey();
