@@ -82,3 +82,20 @@ describe('marketing integrations hosts', () => {
     expect(dir('font-src')).toContain('https://*.tawk.to');
   });
 });
+
+describe('ads conversions and Tawk.to are not blocked', () => {
+  it('includes Google Ads conversion hosts (incl. country domains) and Tawk.to assets', async () => {
+    const { buildCsp } = await import('@/lib/security/csp');
+    const csp = buildCsp({ nonce: 'n' });
+    const dir = (name: string) => csp.split('; ').find((d) => d.startsWith(name + ' ')) ?? '';
+    for (const d of ['img-src', 'connect-src']) {
+      expect(dir(d)).toContain('https://www.googleadservices.com');
+      expect(dir(d)).toContain('https://www.google.co.in');
+    }
+    expect(dir('style-src')).toContain('https://*.tawk.to');
+    expect(dir('style-src')).toContain('https://fonts.googleapis.com');
+    expect(dir('font-src')).toContain('https://fonts.gstatic.com');
+    expect(dir('img-src')).toContain('https://cdn.jsdelivr.net');
+    expect(dir('media-src')).toContain('https://*.tawk.to');
+  });
+});

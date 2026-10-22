@@ -61,6 +61,12 @@ describe('submitLead', () => {
     expect(await leads().findOne({ email: 'kept@example.com' })).toMatchObject({ forwardStatus: 'failed', forwardError: 'Formspree HTTP 500' });
   });
 
+  it('validation errors do not use up the rate limit', async () => {
+    const { submitLead } = await import('@/lib/leads/submit');
+    for (let i = 0; i < 6; i++) expect((await submitLead(valid({ email: 'typo' }), meta('203.0.113.20'))).ok).toBe(false);
+    expect(await submitLead(valid({ email: 'fixed@example.com' }), meta('203.0.113.20'))).toEqual({ ok: true });
+  });
+
   it('rate-limits per IP', async () => {
     const { submitLead } = await import('@/lib/leads/submit');
     let last: unknown;

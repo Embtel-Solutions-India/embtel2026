@@ -10,7 +10,7 @@ const UTM_KEYS = ['source', 'medium', 'campaign', 'term', 'content'] as const;
 
 // Contact form (fields, copy and SMS consent text carried over verbatim from the legacy contact page).
 // Leads are saved by the server and forwarded to Formspree; conversions fire only after a confirmed save.
-export function LeadForm({ adsId, adsLabel, ga4Id, email }: { adsId: string; adsLabel: string; ga4Id: string; email: string }) {
+export function LeadForm({ adsId, adsLabel, ga4Id, gtmId, email }: { adsId: string; adsLabel: string; ga4Id: string; gtmId: string; email: string }) {
   const [state, setState] = useState<'idle' | 'busy' | 'sent'>('idle');
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
@@ -23,7 +23,9 @@ export function LeadForm({ adsId, adsLabel, ga4Id, email }: { adsId: string; ads
     setState('busy');
     setError('');
     setFieldErrors({});
-    const r = await submitLeadAction(
+    let r: Awaited<ReturnType<typeof submitLeadAction>>;
+    try {
+      r = await submitLeadAction(
       {
         firstName: f.get('firstName'),
         lastName: f.get('lastName'),
@@ -41,6 +43,12 @@ export function LeadForm({ adsId, adsLabel, ga4Id, email }: { adsId: string; ads
         gclid: q.get('gclid') ?? '',
       },
     );
+    } catch {
+      // Server down, network drop or a redeploy: never leave the visitor stuck on "Sending…".
+      setState('idle');
+      setError(`Something went wrong and your message may not have been sent. Please try again${email ? ` or email ${email}` : ''}.`);
+      return;
+    }
     if (!r.ok) {
       setState('idle');
       setError(r.error);
@@ -50,6 +58,11 @@ export function LeadForm({ adsId, adsLabel, ga4Id, email }: { adsId: string; ads
     const gtag = (window as unknown as { gtag?: Gtag }).gtag;
     if (gtag && adsId && adsLabel) gtag('event', 'conversion', { send_to: `${adsId}/${adsLabel}` });
     if (gtag && ga4Id) gtag('event', 'generate_lead', { form: 'contact' });
+    // With Tag Manager the GA4/Ads IDs are left empty (Integrations screen advice), so tell GTM directly.
+    if (gtmId) {
+      const w = window as unknown as { dataLayer?: unknown[] };
+      (w.dataLayer ??= []).push({ event: 'generate_lead', form: 'contact' });
+    }
     form.reset();
     setState('sent');
   }

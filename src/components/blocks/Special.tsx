@@ -273,7 +273,7 @@ export function ContactInfo({ block, settings }: { block: BlockOf<'contactInfo'>
           </ul>
         </div>
         {block.formSlot && (
-          <LeadForm adsId={settings.integrations.googleAdsId} adsLabel={settings.integrations.googleAdsConversionLabel} ga4Id={settings.integrations.ga4Id} email={settings.organization.email} />
+          <LeadForm adsId={settings.integrations.googleAdsId} adsLabel={settings.integrations.googleAdsConversionLabel} ga4Id={settings.integrations.ga4Id} gtmId={settings.integrations.gtmId} email={settings.organization.email} />
         )}
       </div>
     </Section>

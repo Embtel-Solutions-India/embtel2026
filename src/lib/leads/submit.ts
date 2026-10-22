@@ -63,14 +63,15 @@ export async function forwardLead(lead: { _id: unknown } & Record<string, unknow
 }
 
 export async function submitLead(input: unknown, meta: LeadMeta): Promise<LeadResult> {
-  await connectDB();
-  if (!(await hitRateLimit(`lead:${meta.ip}`, 5, 600)).allowed) return { ok: false, error: 'Too many messages from your connection. Please try again in a few minutes.' };
+  // Validate first: a person fixing typos must not use up the rate limit (validation costs no DB work).
   const parsed = LeadInputSchema.safeParse(input);
   if (!parsed.success) {
     const fieldErrors: Record<string, string> = {};
     for (const i of parsed.error.issues) fieldErrors[String(i.path[0])] ??= i.message;
     return { ok: false, error: 'Please check the highlighted fields.', fieldErrors };
   }
+  await connectDB();
+  if (!(await hitRateLimit(`lead:${meta.ip}`, 5, 600)).allowed) return { ok: false, error: 'Too many messages from your connection. Please try again in a few minutes.' };
   const { website, ...v } = parsed.data;
   if (website) return { ok: true }; // bot: pretend success, keep nothing
   const utm = UtmSchema.safeParse(meta.utm).success ? Object.fromEntries(Object.entries(meta.utm).map(([k, x]) => [k, clip(x, 200)])) : {};
