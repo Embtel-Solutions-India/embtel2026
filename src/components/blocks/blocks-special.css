@@ -117,13 +117,39 @@
 .ci-ico { width: 44px; height: 44px; background: var(--color-s1); border: 1px solid rgb(255 255 255 / .08); border-radius: var(--radius-14); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
 .ci-item strong { display: block; font-size: 14px; color: #fff; margin-bottom: 2px; }
 .ci-item span, .ci-item a { font-size: 13px; color: var(--color-m2); }
-.contact-form-slot { background: var(--color-s1); border: 1px solid rgb(255 255 255 / .07); border-radius: var(--radius-20); padding: 40px; min-height: 200px; }
+.contact-form, .thankyou-card { background: var(--color-s1); border: 1px solid rgb(255 255 255 / .07); border-radius: var(--radius-20); padding: 40px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fg { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.fg label { font-size: 13px; font-weight: 600; color: var(--color-m3); }
+.fg input, .fg select, .fg textarea { background: var(--color-s2); border: 1px solid rgb(255 255 255 / .08); border-radius: var(--radius-8); padding: 12px 16px; font-size: 14px; color: #fff; font-family: var(--font-sans); transition: border-color .2s; }
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: rgb(26 107 255 / .5); }
+.fg input::placeholder, .fg textarea::placeholder { color: var(--color-m2); }
+.fg select option { background: var(--color-s2); }
+.fg textarea { resize: vertical; min-height: 110px; }
+.fg-error { font-size: 13px; color: #ff9d87; }
+.fg-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.form-submit { width: 100%; padding: 14px; background: #1559d6; color: #fff; border-radius: var(--radius-14); font-size: 15px; font-weight: 700; font-family: var(--font-display); transition: all .25s; margin-top: 4px; cursor: pointer; }
+.form-submit:hover { background: #104bb8; transform: translateY(-1px); box-shadow: 0 12px 36px rgb(26 107 255 / .3); }
+.form-submit[disabled] { opacity: .7; cursor: default; transform: none; }
+.consent-box { display: flex; align-items: flex-start; gap: 12px; background: rgb(26 107 255 / .06); border: 1px solid rgb(26 107 255 / .18); border-radius: var(--radius-8); padding: 14px 16px; margin-bottom: 16px; }
+.consent-box input[type='checkbox'] { width: 18px; height: 18px; min-width: 18px; accent-color: var(--color-blue); margin-top: 2px; cursor: pointer; }
+.consent-box label { font-size: 13px; color: var(--color-m3); line-height: 1.6; cursor: pointer; }
+.consent-box label a { color: #8fb5ff; font-weight: 500; text-decoration: underline; }
+.thankyou-card { display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 420px; justify-content: center; }
+.ty-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--color-teal), var(--color-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+.ty-icon svg { width: 36px; height: 36px; stroke: #fff; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.thankyou-card h3 { font-family: var(--font-display); font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+.thankyou-card p { font-size: 15px; color: var(--color-m2); line-height: 1.8; max-width: 360px; margin-bottom: 32px; }
+.ty-back { background: #1559d6; color: #fff; padding: 12px 28px; border-radius: var(--radius-14); font-size: 14px; font-weight: 600; cursor: pointer; }
+.ty-meta { font-size: 13px; margin-top: 16px; }
+.ty-meta a { color: #8fb5ff; }
 
 @media (max-width: 960px) {
   .ba-row { grid-template-columns: 1fr; }
   .ba-before { border-right: 0; border-bottom: 1px solid rgb(255 255 255 / .06); }
   .ba-arrow { padding: 8px; transform: rotate(90deg); }
-  .wg, .story-wrap, .contact-wrap { grid-template-columns: 1fr; }
+  .wg, .story-wrap, .contact-wrap, .form-row { grid-template-columns: 1fr; }
+  .contact-form, .thankyou-card { padding: 24px; }
   .legal-body { padding: 40px 20px 80px; }
   .legal-toc ol { columns: 1; }
   .roi-card { padding: 32px 24px; }

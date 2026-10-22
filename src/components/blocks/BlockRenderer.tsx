@@ -35,7 +35,7 @@ function renderBlock(block: Block, primaryHero: boolean, settings: SiteSettings,
     case 'testimonials':
       return <Testimonials block={block} settings={settings} nonce={nonce} />;
     case 'contactInfo':
-      return <ContactInfo block={block} />;
+      return <ContactInfo block={block} settings={settings} />;
     case 'workGrid':
       return <WorkGrid block={block} />;
     case 'timeline':

@@ -59,7 +59,17 @@ const FIELDS = {
   whatsapp: z.object({ number: z.string().regex(/^\d{7,15}$/), message: z.string().max(500) }).nullable(),
   integrations: z.object({
     googleAdsId: z.string().regex(/^(AW-\d+)?$/).default(''),
+    // Ads conversion label for lead submissions (the part after the slash in send_to).
+    googleAdsConversionLabel: z.string().regex(/^([A-Za-z0-9_-]{4,40})?$/).default(''),
+    ga4Id: z.string().regex(/^(G-[A-Z0-9]{4,20})?$/).default(''),
+    gtmId: z.string().regex(/^(GTM-[A-Z0-9]{4,12})?$/).default(''),
+    // Search Console HTML-tag verification token (content of the google-site-verification meta tag).
+    gscVerification: z.string().regex(/^([A-Za-z0-9_-]{10,100})?$/).default(''),
+    tawkPropertyId: z.string().regex(/^([a-f0-9]{24})?$/).default(''),
+    tawkWidgetId: z.string().regex(/^([a-z0-9]{6,20})?$/).default(''),
     elfsightReviewsAppId: z.string().regex(/^([0-9a-f-]{36})?$/).default(''),
+    // Public form ID (it appears in the form's URL); leads are forwarded here so Formspree emails the team.
+    formspreeFormId: z.string().regex(/^([A-Za-z0-9]{6,20})?$/).default(''),
   }),
   defaultOgImage: z.string().default(''),
 };

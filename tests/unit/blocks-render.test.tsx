@@ -108,14 +108,16 @@ describe('specialised blocks', () => {
     const block = byType('testimonials');
     expect(renderBlocks([block]).container.querySelector('[class^="elfsight-app-"]')).toBeNull();
     cleanup();
-    const settings = { ...DEFAULT_SETTINGS, integrations: { googleAdsId: '', elfsightReviewsAppId: '0804c920-a003-45d4-8ceb-8f4b7a45f7e4' } };
+    const settings = { ...DEFAULT_SETTINGS, integrations: { ...DEFAULT_SETTINGS.integrations, elfsightReviewsAppId: '0804c920-a003-45d4-8ceb-8f4b7a45f7e4' } };
     const { container } = render(<BlockRenderer blocks={[block]} settings={settings} />);
     expect(container.querySelector('.elfsight-app-0804c920-a003-45d4-8ceb-8f4b7a45f7e4')).not.toBeNull();
   });
 
-  it('contact info exposes the form slot', () => {
+  it('contact info renders the lead form with the SMS consent', () => {
     const { container } = renderBlocks([byType('contactInfo')]);
-    expect(container.querySelector('[data-slot="contact-form"]')).not.toBeNull();
+    expect(container.querySelector('form[aria-label="Contact form"]')).not.toBeNull();
+    expect(container.querySelector('#smsConsent[required]')).not.toBeNull();
+    expect(container.querySelector('label[for="smsConsent"]')?.textContent).toContain('Reply STOP to opt out at any time');
     expect(container.querySelector('a[href="mailto:info@embtelsolutions.com"]')).not.toBeNull();
   });
 

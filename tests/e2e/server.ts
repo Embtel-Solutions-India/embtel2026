@@ -37,6 +37,8 @@ async function main() {
     slug: 'secret-post', title: 'Secret Post', shortDescription: 'Hidden', content: '<p>Hidden</p>', status: 'draft',
     publishedAt: new Date('2026-09-01T09:00:00Z'), isDeleted: false, tags: [], updatedAt: new Date(),
   });
+  // Never send test leads to the real Formspree form seeded from content/settings.json.
+  await mongoose.connection.db!.collection('settings').updateOne({ key: 'site' }, { $set: { 'integrations.formspreeFormId': '' } });
   // Marketing user for admin-panel specs (no author slug, so public author pages are unaffected).
   const marketingPassword = rnd(16);
   const cronSecret = rnd(32);

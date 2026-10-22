@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/site/Button';
 import { Icon } from '@/components/site/Icon';
+import { LeadForm } from '@/components/leads/LeadForm';
 import { ElfsightLoader } from '@/components/site/ThirdPartyScripts';
 import type { BlockOf } from '@/lib/content/blocks';
 import { renderInline } from '@/lib/content/inline';
@@ -246,7 +247,7 @@ export function RichText({ block }: { block: BlockOf<'richText'> }) {
   );
 }
 
-export function ContactInfo({ block }: { block: BlockOf<'contactInfo'> }) {
+export function ContactInfo({ block, settings }: { block: BlockOf<'contactInfo'>; settings: SiteSettings }) {
   return (
     <Section>
       <div className="contact-wrap">
@@ -271,8 +272,9 @@ export function ContactInfo({ block }: { block: BlockOf<'contactInfo'> }) {
             ))}
           </ul>
         </div>
-        {/* Phase 5 mounts the lead form here. */}
-        {block.formSlot && <div className="contact-form-slot" data-slot="contact-form" />}
+        {block.formSlot && (
+          <LeadForm adsId={settings.integrations.googleAdsId} adsLabel={settings.integrations.googleAdsConversionLabel} ga4Id={settings.integrations.ga4Id} email={settings.organization.email} />
+        )}
       </div>
     </Section>
   );
