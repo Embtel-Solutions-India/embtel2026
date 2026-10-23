@@ -14,6 +14,7 @@ export default defineConfig({
     include: ["src/**/*.test.{ts,tsx}", "tests/**/*.test.{ts,tsx}"],
     passWithNoTests: true,
     globalSetup: ["tests/helpers/global-setup.ts"],
+    testTimeout: 30_000, // bcrypt cost 12 + in-memory mongo are slow when every file runs in parallel
     hookTimeout: 300_000, // first run may download mongod
   },
 });

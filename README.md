@@ -61,8 +61,8 @@ the account to the property with Restricted access, then set `GSC_SERVICE_ACCOUN
 
 `npm run lhci` (run with `VERCEL_ENV=production`) builds the app, seeds the full content into an in-memory DB and
 runs Lighthouse (mobile preset, 5 runs, median; Google tag/Elfsight blocked) on eight public templates incl. `/blog` and a post.
-Every budget is a hard failure (owner decision, 2026-10-22): performance < 0.90, SEO < 1, accessibility < 0.95,
-best practices < 0.95, CLS > 0.1 or TBT > 200 ms. Lab LCP has no separate check (it is part of the performance score):
+Every budget is a hard failure (owner decisions, 2026-10-22 and 2026-10-23): performance < 0.90, SEO < 1, accessibility < 1,
+best practices < 1, CLS > 0.1 or TBT > 200 ms. Lab LCP has no separate check (it is part of the performance score):
 Lighthouse's simulation counts every script, font and stylesheet that downloads before the first paint, which puts lab LCP
 near 3 s for any Next.js page on a simulated slow 4G phone. Real-visitor Core Web Vitals (Search Console) are what Google ranks on.
 
