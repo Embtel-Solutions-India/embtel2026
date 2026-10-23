@@ -1,0 +1,571 @@
+{
+  "slug": "home",
+  "title": "Embtel Solutions — Technology & Automation for Growing Businesses",
+  "status": "published",
+  "type": "standard",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "home",
+      "badge": "USA Based",
+      "heading": "SMB Technology & *Automation Partner*",
+      "lead": "AI-powered automation solutions for growing businesses — from websites and SEO to smart workflows, automation, and ongoing support.",
+      "buttons": [
+        {
+          "label": "Schedule Free Consultation →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=organic",
+          "variant": "primary"
+        },
+        {
+          "label": "Explore Services",
+          "href": "/services",
+          "variant": "ghost"
+        }
+      ],
+      "floatingCards": [
+        {
+          "label": "Web Development",
+          "sub": "Modern, fast, SEO-ready",
+          "stat": "+180% Traffic"
+        },
+        {
+          "label": "Automation",
+          "sub": "AI-powered workflows",
+          "stat": "20+ hrs/week saved"
+        },
+        {
+          "label": "SEO & Marketing",
+          "sub": "Data-driven growth",
+          "stat": "3× avg ROI"
+        }
+      ]
+    },
+    {
+      "type": "marquee",
+      "items": [
+        "Web Development",
+        "Business Automation",
+        "AI Integrations",
+        "SEO & Marketing",
+        "Workflow Automation",
+        "Custom Dashboards",
+        "Lead Generation",
+        "CRM Integration"
+      ]
+    },
+    {
+      "type": "stats",
+      "variant": "bar",
+      "animate": false,
+      "items": [
+        {
+          "value": "8",
+          "suffix": "+",
+          "label": "Years Empowering"
+        },
+        {
+          "value": "120",
+          "suffix": "+",
+          "label": "Businesses Transformed"
+        },
+        {
+          "value": "3",
+          "suffix": "×",
+          "label": "Average Efficiency Gain"
+        },
+        {
+          "value": "24",
+          "suffix": "/7",
+          "label": "Automation Uptime"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Do",
+        "title": "Technology services that *grow with you.*",
+        "subtitle": "From your first website to fully automated workflows — we're the technology partner you've been looking for."
+      },
+      "variant": "service",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Web Development",
+          "body": "Custom websites and web applications built to convert visitors into customers. Modern, responsive, and optimized for search engines from day one."
+        },
+        {
+          "title": "SEO & Digital Marketing",
+          "body": "Data-driven marketing strategies that put your business in front of the right audience. From local SEO to full-funnel campaigns that deliver ROI."
+        },
+        {
+          "title": "Business Automation",
+          "body": "Eliminate repetitive tasks with AI-powered automation. Streamline invoicing, customer follow-ups, scheduling, and data entry so you can focus on growth."
+        }
+      ],
+      "button": {
+        "label": "View All Services →",
+        "href": "/services",
+        "variant": "ghost"
+      }
+    },
+    {
+      "type": "stats",
+      "header": {
+        "eyebrow": "Real Impact",
+        "title": "Numbers that *speak for themselves.*",
+        "align": "center"
+      },
+      "variant": "counters",
+      "animate": true,
+      "items": [
+        {
+          "value": "12,400",
+          "suffix": "+",
+          "label": "Hours Saved for Clients"
+        },
+        {
+          "value": "120",
+          "suffix": "+",
+          "label": "Businesses Transformed"
+        },
+        {
+          "value": "850",
+          "suffix": "+",
+          "label": "Automations Deployed"
+        },
+        {
+          "value": "100",
+          "suffix": "+",
+          "label": "Happy Clients"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Who We Help",
+        "title": "Do you see your business *here?*",
+        "subtitle": "We work with SMBs across every industry. If you handle customers, data, or repetitive processes — we can help.",
+        "align": "center"
+      },
+      "variant": "industry",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Retail & E-Commerce",
+          "body": "Online stores, inventory sync, abandoned cart automation, SEO-driven traffic, and digital ads that convert browsers into buyers.",
+          "tags": [
+            "Shopify",
+            "WooCommerce",
+            "Google Shopping"
+          ]
+        },
+        {
+          "title": "Healthcare & Clinics",
+          "body": "Appointment booking automation, patient follow-up reminders, multi-location dashboards, and HIPAA-aware data workflows.",
+          "tags": [
+            "Booking Systems",
+            "Reporting",
+            "WhatsApp Alerts"
+          ]
+        },
+        {
+          "title": "Logistics & Transport",
+          "body": "Auto-generated invoices, driver dispatch alerts, fleet status dashboards, and customer tracking notifications — all automated.",
+          "tags": [
+            "Invoice Automation",
+            "Tracking",
+            "Fleet Ops"
+          ]
+        },
+        {
+          "title": "Education & Coaching",
+          "body": "Lead capture chatbots, automated course enrolment, fee reminders, student communication workflows, and online presence building.",
+          "tags": [
+            "AI Chatbot",
+            "CRM",
+            "LMS Integration"
+          ]
+        },
+        {
+          "title": "Real Estate",
+          "body": "Lead qualification bots, automated property listing updates, buyer follow-up sequences, and local SEO that gets you found first.",
+          "tags": [
+            "Lead Gen",
+            "Local SEO",
+            "Follow-up Flows"
+          ]
+        },
+        {
+          "title": "Restaurants & F&B",
+          "body": "Online ordering sites, reservation automation, review management, loyalty programme integration, and local search domination.",
+          "tags": [
+            "Online Orders",
+            "Google Maps",
+            "Reviews"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "beforeAfter",
+      "header": {
+        "eyebrow": "Before & After",
+        "title": "What automation *actually looks like.*",
+        "subtitle": "Real workflows we've transformed. See the before — then see what we built.",
+        "align": "center"
+      },
+      "labels": {
+        "before": "Before Embtel",
+        "after": "After Embtel"
+      },
+      "rows": [
+        {
+          "before": {
+            "title": "Invoice & Payment Collection",
+            "steps": [
+              "Staff manually creates invoice in Excel after every job",
+              "Emails PDF to client, waits days for a reply",
+              "Chases overdue payments with manual calls",
+              "Updates spreadsheet by hand, errors creep in"
+            ]
+          },
+          "after": {
+            "title": "Fully Automated Billing System",
+            "steps": [
+              "Invoice auto-generated when job is marked complete",
+              "Sent instantly via email + WhatsApp with pay link",
+              "Overdue reminders fire automatically on day 3, 7, 14",
+              "Dashboard updates in real time — zero manual entry"
+            ],
+            "saving": "Saves 8–12 hrs/week"
+          }
+        },
+        {
+          "before": {
+            "title": "Lead Follow-Up Process",
+            "steps": [
+              "Enquiry comes in via website or phone",
+              "Staff tries to call back — sometimes hours later",
+              "If no answer, lead is often forgotten",
+              "No system to track which leads converted"
+            ]
+          },
+          "after": {
+            "title": "AI-Powered Lead Engine",
+            "steps": [
+              "AI chatbot responds within seconds, 24/7",
+              "Qualifies lead, books a slot, notifies your team",
+              "Automated WhatsApp + email sequence nurtures cold leads",
+              "CRM logs every interaction, conversion tracked automatically"
+            ],
+            "saving": "3× more leads converted"
+          }
+        },
+        {
+          "before": {
+            "title": "Monthly Reporting",
+            "steps": [
+              "Manager spends 4–6 hrs pulling data from multiple tools",
+              "Copies numbers into a PowerPoint manually",
+              "Report is always a week late, data already stale",
+              "Different team members use different formats"
+            ]
+          },
+          "after": {
+            "title": "Automated Smart Dashboard",
+            "steps": [
+              "Live dashboard pulls all data automatically every hour",
+              "PDF report auto-generated and emailed every Monday 8am",
+              "Always fresh, always consistent, zero manual work",
+              "Stakeholders have access anytime from any device"
+            ],
+            "saving": "Saves 20+ hrs/month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "comparisonTable",
+      "header": {
+        "eyebrow": "Why Choose Us",
+        "title": "Embtel vs. Big Agencies *vs. Freelancers.*",
+        "subtitle": "We're built specifically for SMBs. See how we stack up on the things that matter most.",
+        "align": "center"
+      },
+      "columns": [
+        "Embtel Solutions",
+        "Big Agency",
+        "Freelancer"
+      ],
+      "highlight": 0,
+      "rows": [
+        {
+          "label": "Price for SMBs",
+          "cells": [
+            {
+              "status": "check",
+              "text": "SMB-friendly"
+            },
+            {
+              "status": "cross",
+              "text": "Enterprise rates"
+            },
+            {
+              "status": "check",
+              "text": "Low cost"
+            }
+          ]
+        },
+        {
+          "label": "Delivery Speed",
+          "cells": [
+            {
+              "status": "check",
+              "text": "2–6 weeks"
+            },
+            {
+              "status": "cross",
+              "text": "3–6 months"
+            },
+            {
+              "status": "partial",
+              "text": "Varies widely"
+            }
+          ]
+        },
+        {
+          "label": "Web + Marketing + Automation",
+          "cells": [
+            {
+              "status": "check",
+              "text": "All under one roof"
+            },
+            {
+              "status": "partial",
+              "text": "Siloed teams"
+            },
+            {
+              "status": "cross",
+              "text": "One skill only"
+            }
+          ]
+        },
+        {
+          "label": "Dedicated Account Manager",
+          "cells": [
+            {
+              "status": "check",
+              "text": "Always"
+            },
+            {
+              "status": "partial",
+              "text": "Junior PM"
+            },
+            {
+              "status": "cross",
+              "text": "Direct but unreliable"
+            }
+          ]
+        },
+        {
+          "label": "Post-Launch Support",
+          "cells": [
+            {
+              "status": "check",
+              "text": "Included"
+            },
+            {
+              "status": "cross",
+              "text": "Charged separately"
+            },
+            {
+              "status": "cross",
+              "text": "Usually disappears"
+            }
+          ]
+        },
+        {
+          "label": "AI & Automation Expertise",
+          "cells": [
+            {
+              "status": "check",
+              "text": "Core offering"
+            },
+            {
+              "status": "partial",
+              "text": "Limited"
+            },
+            {
+              "status": "cross",
+              "text": "Rarely available"
+            }
+          ]
+        },
+        {
+          "label": "Scalability",
+          "cells": [
+            {
+              "status": "check",
+              "text": "Built to scale"
+            },
+            {
+              "status": "check",
+              "text": "Enterprise-grade"
+            },
+            {
+              "status": "cross",
+              "text": "Often outgrown fast"
+            }
+          ]
+        },
+        {
+          "label": "Understands SMB Challenges",
+          "cells": [
+            {
+              "status": "check",
+              "text": "Our whole focus"
+            },
+            {
+              "status": "cross",
+              "text": "SMBs not priority"
+            },
+            {
+              "status": "partial",
+              "text": "Depends on person"
+            }
+          ]
+        }
+      ],
+      "button": {
+        "label": "Work with Embtel →",
+        "href": "/contact",
+        "variant": "primary"
+      }
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Tech Stack",
+        "title": "Tools we work with *every day.*",
+        "subtitle": "We're tool-agnostic — we use whatever is best for your situation. Here's our core arsenal.",
+        "align": "center"
+      },
+      "items": [
+        {
+          "label": "Zapier"
+        },
+        {
+          "label": "Make (Integromat)"
+        },
+        {
+          "label": "WordPress"
+        },
+        {
+          "label": "Shopify"
+        },
+        {
+          "label": "Google Ads"
+        },
+        {
+          "label": "Meta Ads"
+        },
+        {
+          "label": "HubSpot"
+        },
+        {
+          "label": "Airtable"
+        },
+        {
+          "label": "WhatsApp API"
+        },
+        {
+          "label": "OpenAI / GPT-4"
+        },
+        {
+          "label": "Mailchimp"
+        },
+        {
+          "label": "Notion"
+        },
+        {
+          "label": "Google Analytics 4"
+        },
+        {
+          "label": "Firebase"
+        },
+        {
+          "label": "Next.js"
+        },
+        {
+          "label": "WooCommerce"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Why Embtel Solutions?",
+        "title": "The partner you *actually need.*",
+        "align": "center"
+      },
+      "variant": "why",
+      "columns": 3,
+      "items": [
+        {
+          "title": "One Partner, Complete Coverage",
+          "body": "Instead of juggling multiple vendors for web, marketing, IT, security, and AI, you get one trusted partner who understands your entire technology landscape."
+        },
+        {
+          "title": "Built for SMBs",
+          "body": "We do not sell enterprise-scale solutions at enterprise prices. Every service is designed, scoped, and priced for small and medium-sized businesses."
+        },
+        {
+          "title": "From Digitization to Automation to AI",
+          "body": "We have walked this journey ourselves and guided thousands of clients through it. We know what works and what is premature for your stage."
+        },
+        {
+          "title": "Technology Independence",
+          "body": "We build on open platforms you own. If you ever outgrow us, your websites, data, and systems come with you."
+        },
+        {
+          "title": "Human-Centered Approach",
+          "body": "Technology should empower, not overwhelm. We explain in plain language, train your team, and ensure you understand every tool we deploy."
+        },
+        {
+          "title": "Proven Track Record",
+          "body": "Since 2018, we have served thousands of clients across industries, building a reputation for reliability, clarity, and results."
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "header": {
+        "eyebrow": "Client Stories",
+        "title": "Words from those *who know best.*",
+        "align": "center"
+      },
+      "provider": "elfsight"
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to put your business on *autopilot?*",
+      "body": "Our automation solutions save SMBs an average of 20+ hours per week on repetitive tasks. Imagine what you could do with that time back.",
+      "buttons": [
+        {
+          "label": "Get Your Free Audit →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

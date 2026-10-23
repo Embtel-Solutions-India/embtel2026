@@ -1,0 +1,25 @@
+{
+  "slug": "cybersecurity-basics-every-small-business-needs",
+  "title": "5 Cybersecurity Basics Every Small Business Should Have in Place",
+  "shortDescription": "Most breaches at small businesses aren’t sophisticated attacks — they’re basic gaps that a few hours of setup would have closed.",
+  "content": "<p>Small businesses often assume they’re not a target — that attackers only go after large companies. In practice, small businesses are targeted precisely because they tend to have weaker defenses, and most incidents trace back to a handful of basics that were never put in place.</p><h2>1. Multi-factor authentication, everywhere it matters</h2><p>Email, banking, and any admin panel should require a second factor beyond a password. This single step blocks the majority of account takeovers, even when a password has already been leaked elsewhere.</p><h2>2. A real password manager, not reused passwords</h2><p>Reused passwords mean one leaked credential from an unrelated breach can unlock several of your accounts at once. A password manager makes unique, strong passwords the default instead of something employees have to remember to do.</p><h2>3. Automatic, tested backups</h2><p>Ransomware is far less threatening to a business that can restore from a recent backup within the hour. The backup has to be automatic and periodically tested — a backup nobody has ever restored from is not a plan, it’s a hope.</p><h2>4. Least-privilege access</h2><p>Not everyone needs admin access to everything. Limiting who can access sensitive systems and data shrinks the damage a single compromised account can do, and makes it far easier to spot unusual activity.</p><h2>5. Basic staff awareness</h2><p>Most successful attacks start with a convincing email, not a technical exploit. A short, recurring reminder of what a phishing attempt looks like prevents more incidents than most security software ever will.</p><blockquote>Security doesn’t have to be complicated to be effective — it has to actually be turned on.</blockquote><p>None of the five above require a large budget or a dedicated security team. They’re the foundation everything else builds on, and the first thing worth auditing before spending on anything more advanced.</p>",
+  "featuredImage": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+  "imageAltText": "Streams of code on a dark screen",
+  "authorName": "Embtel Team",
+  "publishedAt": "2026-09-08T09:00:00.000Z",
+  "readingTime": 5,
+  "status": "published",
+  "category": "cybersecurity",
+  "tags": [
+    "cybersecurity",
+    "security",
+    "smb"
+  ],
+  "seo": {
+    "metaTitle": "5 Cybersecurity Basics Every Small Business Should Have in Place",
+    "metaDescription": "The small, high-impact security steps most small businesses are missing, before worrying about anything more advanced."
+  },
+  "faqs": [],
+  "keyTakeaways": [],
+  "sources": []
+}

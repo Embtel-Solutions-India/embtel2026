@@ -1,0 +1,257 @@
+{
+  "slug": "web-development",
+  "title": "Web Development",
+  "status": "published",
+  "type": "service",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "Web Development"
+        }
+      ],
+      "heading": "Custom Development Services *to Power Your Business Growth*",
+      "lead": "Build Scalable, High-Performance Digital Solutions.",
+      "buttons": [
+        {
+          "label": "Start a Project →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Our Work",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "50",
+          "suffix": "+",
+          "label": "Projects Delivered"
+        },
+        {
+          "value": "98",
+          "suffix": "%",
+          "label": "Client Satisfaction"
+        },
+        {
+          "value": "95",
+          "suffix": "+",
+          "label": "PageSpeed Score"
+        },
+        {
+          "value": "14",
+          "suffix": "d",
+          "label": "Avg Launch Time"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Build",
+        "title": "Everything from *simple to complex*",
+        "subtitle": "Whatever your digital presence needs — we build it right, the first time.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Custom Website Design",
+          "body": "Pixel-perfect, brand-aligned designs that make a lasting first impression. Every page is crafted to guide visitors toward a clear action."
+        },
+        {
+          "title": "Web App Development",
+          "body": "Complex, feature-rich applications built with modern frameworks like React and Next.js. Scalable architecture, clean APIs, and real-time capabilities."
+        },
+        {
+          "title": "Landing Pages",
+          "body": "High-converting landing pages engineered to capture leads and drive sales. A/B tested layouts, fast load times, and clear conversion paths."
+        },
+        {
+          "title": "E-commerce Stores",
+          "body": "Full-stack online stores with Shopify, WooCommerce, or custom solutions. Seamless checkout, inventory management, and payment gateway integration."
+        },
+        {
+          "title": "CMS Integration",
+          "body": "Headless WordPress, Contentful, or Sanity setups so your team can update content independently — no developer needed for day-to-day changes."
+        },
+        {
+          "title": "Performance Optimisation",
+          "body": "Core Web Vitals tuning, image optimisation, CDN configuration, and caching strategies to keep your site blazing fast on any device."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "How we *deliver*",
+        "subtitle": "A clear, collaborative process that keeps you informed at every stage.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Discovery & Strategy",
+          "body": "We dive deep into your goals, audience, and competition. You leave the discovery call with a clear roadmap and realistic timeline."
+        },
+        {
+          "num": "02",
+          "title": "Design & Prototyping",
+          "body": "Wireframes, UI mockups, and interactive prototypes — reviewed and approved by you before a single line of code is written."
+        },
+        {
+          "num": "03",
+          "title": "Development & QA",
+          "body": "Clean, semantic code built to modern standards. Rigorous cross-browser and device testing before anything goes near production."
+        },
+        {
+          "num": "04",
+          "title": "Launch & Support",
+          "body": "Smooth deployment with zero downtime. Ongoing support plans available so your site stays updated, secure, and fast post-launch."
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Tech Stack",
+        "title": "Tools we *master*",
+        "subtitle": "We choose the right technology for your project — not the trendiest one.",
+        "align": "center"
+      },
+      "items": [
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "⚛️"
+          },
+          "label": "React"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "▲"
+          },
+          "label": "Next.js"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "🟢"
+          },
+          "label": "Node.js"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "🔷"
+          },
+          "label": "TypeScript"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "🎨"
+          },
+          "label": "Tailwind CSS"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "🟦"
+          },
+          "label": "WordPress"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "🟠"
+          },
+          "label": "Shopify"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "🐘"
+          },
+          "label": "PostgreSQL"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "🔥"
+          },
+          "label": "Firebase"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "☁️"
+          },
+          "label": "AWS / Vercel"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Services*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "SEO & GEO",
+          "body": "Drive traffic to the site we build for you",
+          "href": "/seo-geo"
+        },
+        {
+          "title": "Analytics & Dashboards",
+          "body": "Measure every visitor and conversion",
+          "href": "/analytics-dashboards"
+        },
+        {
+          "title": "Business Automation",
+          "body": "Automate the workflows behind your site",
+          "href": "/business-automation"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to build something *great?*",
+      "body": "Book a free 30-minute call. We'll scope your project and give you a clear plan — no sales pitch, no obligation.",
+      "buttons": [
+        {
+          "label": "Book Free Discovery Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

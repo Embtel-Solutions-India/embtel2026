@@ -1,0 +1,220 @@
+{
+  "slug": "home-services-automation",
+  "title": "AI Receptionist for Home Service Pros",
+  "status": "published",
+  "type": "landing",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "AI Automation"
+        },
+        {
+          "label": "Home Services"
+        }
+      ],
+      "heading": "Never Miss Another *Job Call*",
+      "lead": "AI answers every call 24/7, texts missed callers back instantly, and books the job straight into your calendar. While you're on the tools, nothing slips through.",
+      "buttons": [
+        {
+          "label": "Get Your Free Automation Audit →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "variant": "primary"
+        },
+        {
+          "label": "Call (510) 962-7900",
+          "href": "tel:+15109627900",
+          "variant": "ghost"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "The Pain",
+        "title": "Sound *familiar?*"
+      },
+      "variant": "pain",
+      "columns": 4,
+      "items": [
+        {
+          "title": "My phone rang while I was under a sink.",
+          "body": "By the time you called back, the customer had already hired the guy who picked up."
+        },
+        {
+          "title": "Weekend jobs go to whoever answers first.",
+          "body": "After-hours calls hit voicemail. Most callers hang up and call your competitor instead."
+        },
+        {
+          "title": "I pay for ads, then miss the calls.",
+          "body": "Every click costs money. Every missed call is that money thrown straight in the trash."
+        },
+        {
+          "title": "Nobody follows up with quotes.",
+          "body": "Quotes sit unsent because you're on a job. The customer moves on while you're still working."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "How It Works",
+        "title": "One system that *answers, qualifies, books*",
+        "subtitle": "No receptionist to hire. No hardware. It runs on your existing phone number, around the clock.",
+        "align": "center"
+      },
+      "variant": "flow",
+      "items": [
+        {
+          "num": "1",
+          "title": "AI Answers Instantly",
+          "body": "Every call picked up on the first ring, 24/7. The AI greets your caller, understands the job — leak, outage, install — and collects name, number, and address."
+        },
+        {
+          "num": "2",
+          "title": "Books Into Your Calendar",
+          "body": "The job is scheduled in real time based on your availability and synced to your calendar or job software. No double-booking, no phone tag."
+        },
+        {
+          "num": "3",
+          "title": "Texts Back & Follows Up",
+          "body": "Missed call? They get a text in seconds. Estimates sent automatically. Review requests and repeat-visit reminders run on autopilot."
+        }
+      ]
+    },
+    {
+      "type": "roi",
+      "header": {
+        "eyebrow": "The Math",
+        "title": "What missed calls *really cost*",
+        "align": "center"
+      },
+      "math": "10 missed calls/week × 20% would-have-booked × $450 avg job = *~$3,900/month recovered*",
+      "assumptions": "Assumptions: 10 missed or voicemail calls per week; 1 in 5 would have booked a job; average job value $450. Your numbers will differ — the free audit maps your actual call volume.",
+      "disclaimer": "Illustrative estimate for example purposes only. Actual results vary by trade, market, and call volume."
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Why Embtel",
+        "title": "Built for the way *you work*",
+        "align": "center"
+      },
+      "variant": "trust",
+      "columns": 3,
+      "items": [
+        {
+          "title": "USA-Based Team",
+          "body": "Real humans, real support, your timezone."
+        },
+        {
+          "title": "SMB-Friendly Pricing",
+          "body": "Built for shops of 1–20 people, not enterprises."
+        },
+        {
+          "title": "Live in Days",
+          "body": "Most systems up and running within 1–2 weeks."
+        },
+        {
+          "title": "Works With Your Tools",
+          "body": "Connects to your existing calendar, CRM, and job software."
+        },
+        {
+          "title": "No Long-Term Contracts",
+          "body": "Month-to-month. If it doesn't pay for itself, walk away."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Free Automation Audit",
+        "title": "See exactly where *jobs are leaking*",
+        "subtitle": "A 30-minute working session — not a sales pitch. You leave with a fixed-quote plan whether or not you hire us.",
+        "align": "center"
+      },
+      "variant": "audit",
+      "columns": 3,
+      "items": [
+        {
+          "num": "01",
+          "title": "Call Flow Map",
+          "body": "We trace every missed call, unsent quote, and dead follow-up in your current setup — and put a dollar figure on it."
+        },
+        {
+          "num": "02",
+          "title": "Fixed-Quote Plan",
+          "body": "You get an exact scope, timeline, and price for the system that plugs the leaks. No hourly billing, no surprises."
+        },
+        {
+          "num": "03",
+          "title": "Zero Commitment",
+          "body": "Keep the plan and implement it yourself, or hand it to us. The audit is free either way."
+        }
+      ],
+      "button": {
+        "label": "Get Your Free Automation Audit →",
+        "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+        "variant": "primary"
+      }
+    },
+    {
+      "type": "faq",
+      "header": {
+        "eyebrow": "FAQ",
+        "title": "Honest *answers*",
+        "align": "center"
+      },
+      "variant": "static",
+      "items": [
+        {
+          "q": "What does it cost?",
+          "a": "It depends on scope — a solo plumber's setup looks very different from a 15-truck HVAC company. The free audit gives you a fixed quote before you spend anything."
+        },
+        {
+          "q": "Do I need new software?",
+          "a": "No. We connect to your existing calendar, CRM, and job-management tools. If you don't have any, we'll set up simple ones for you."
+        },
+        {
+          "q": "How fast can this be live?",
+          "a": "Most systems are up and running in 1–2 weeks, including testing against your actual call flow."
+        },
+        {
+          "q": "What if I'm not technical?",
+          "a": "You never touch code. Once it's live, the system runs itself — you just answer the booked jobs that show up in your calendar."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Stop leaving *money on the table.*",
+      "body": "One saved job can pay for a month of automation. Get your free audit and see exactly where your calls are going.",
+      "buttons": [
+        {
+          "label": "Get Your Free Automation Audit →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "variant": "primary"
+        },
+        {
+          "label": "Call (510) 962-7900",
+          "href": "tel:+15109627900",
+          "variant": "ghost"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "metaDescription": "AI answers every call 24/7, texts missed callers back instantly, and books jobs into your calendar. Free automation audit for plumbers, HVAC & electricians.",
+    "noindex": false
+  },
+  "locked": true
+}

@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* Brand tokens — keep in sync with src/lib/design/tokens.ts. Dark theme only (legacy site). */
+@theme {
+  --color-blue: #1a6bff;
+  --color-blue-dim: rgb(26 107 255 / 0.12);
+  --color-teal: #00c896;
+  --color-teal-dim: rgb(0 200 150 / 0.1);
+  --color-orange: #ff5c35;
+  --color-ink: #09090b;
+  --color-ink2: #111115;
+  --color-s1: #18181c;
+  --color-s2: #26262c;
+  --color-s3: #38383f;
+  --color-m1: #80808d;
+  --color-m2: #9898a6;
+  --color-m3: #c4c4d1;
+  --color-off: #f4f4f8;
+
+  --radius-8: 8px;
+  --radius-14: 14px;
+  --radius-20: 20px;
+
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --breakpoint-lg: 960px;
+}
+
+:root {
+  /* Per-page accent; pages override it with their theme.accent. */
+  --ac: var(--color-blue);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-m3);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+@utility text-gradient {
+  background: linear-gradient(90deg, var(--color-teal), var(--ac));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Accent as small text: lightened so it stays ≥ 4.5:1 on ink and card surfaces for every page accent. */
+@utility text-ac {
+  color: color-mix(in srgb, var(--ac) 65%, white);
+}
+
+@utility container-site {
+  max-width: 1300px;
+  margin-inline: auto;
+  padding-inline: 40px;
+  @media (max-width: 960px) {
+    padding-inline: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "slug": "ai-integrations",
+  "title": "AI Integrations",
+  "status": "published",
+  "type": "service",
+  "theme": {
+    "accent": "#9664FF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "AI Integrations"
+        }
+      ],
+      "heading": "AI Integrations that *Work for Your Business*",
+      "lead": "We embed intelligent AI directly into your products and workflows — from GPT-powered chatbots that qualify leads 24/7 to document analysis, smart reporting, and custom LLM workflows.",
+      "buttons": [
+        {
+          "label": "Explore AI for My Business →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Case Studies",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "24",
+          "suffix": "/7",
+          "label": "AI Availability"
+        },
+        {
+          "value": "3",
+          "suffix": "x",
+          "label": "Faster Lead Response"
+        },
+        {
+          "value": "60",
+          "suffix": "%",
+          "label": "Support Cost Reduction"
+        },
+        {
+          "value": "21",
+          "suffix": "d",
+          "label": "Avg Time to Go Live"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Build",
+        "title": "Real AI, *not gimmicks*",
+        "subtitle": "Production-grade AI that solves real business problems — deployed, monitored, and maintained by us.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "AI Chatbots",
+          "body": "GPT-powered assistants that qualify leads, answer product questions, book appointments, and escalate to humans — all without manual effort."
+        },
+        {
+          "title": "Document AI",
+          "body": "Extract, classify, and summarise invoices, contracts, reports, and forms automatically — cutting document processing time by 80%+."
+        },
+        {
+          "title": "Intelligent Search",
+          "body": "Semantic search across your knowledge base, product catalogue, or documentation so users find exactly what they need, instantly."
+        },
+        {
+          "title": "Smart Reporting",
+          "body": "AI-generated insights, anomaly detection, and plain-English summaries of complex data delivered to your team automatically."
+        },
+        {
+          "title": "Lead Scoring",
+          "body": "AI models that rank, prioritise, and route leads based on behaviour, profile, and historical conversion data — so sales focuses on winners."
+        },
+        {
+          "title": "Custom LLM Workflows",
+          "body": "Fine-tuned models and retrieval-augmented generation (RAG) pipelines for use cases unique to your industry and data."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "AI built for *production*",
+        "subtitle": "We don't just prompt ChatGPT — we build AI systems that hold up in the real world.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Use Case Discovery",
+          "body": "We identify the highest-ROI AI opportunities in your business — where AI will save the most time or generate the most revenue."
+        },
+        {
+          "num": "02",
+          "title": "Model Selection",
+          "body": "We select the right models and architectures — GPT-4, Claude, Gemini, or open-source — based on your cost, latency, and quality requirements."
+        },
+        {
+          "num": "03",
+          "title": "Integration & Build",
+          "body": "We connect AI to your existing systems — CRM, website, support tools — through APIs, webhooks, and custom middleware."
+        },
+        {
+          "num": "04",
+          "title": "Evaluate & Refine",
+          "body": "Ongoing quality monitoring, prompt tuning, and model updates to ensure the AI keeps performing as your data and needs evolve."
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Technologies",
+        "title": "AI tools we *specialise in*",
+        "align": "center"
+      },
+      "items": [
+        {
+          "label": "OpenAI GPT-4o"
+        },
+        {
+          "label": "Anthropic Claude"
+        },
+        {
+          "label": "Google Gemini"
+        },
+        {
+          "label": "LangChain"
+        },
+        {
+          "label": "Pinecone"
+        },
+        {
+          "label": "Python / FastAPI"
+        },
+        {
+          "label": "Vector Databases"
+        },
+        {
+          "label": "AWS / Azure AI"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Services*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Business Automation",
+          "body": "Combine AI with workflow automation",
+          "href": "/business-automation"
+        },
+        {
+          "title": "Analytics & Dashboards",
+          "body": "Visualise AI-generated insights",
+          "href": "/analytics-dashboards"
+        },
+        {
+          "title": "Web Development",
+          "body": "Embed AI directly into your product",
+          "href": "/web-development"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to make your business *intelligently automated?*",
+      "body": "Book a free AI strategy session. We'll identify your best AI use cases and show you a realistic implementation plan.",
+      "buttons": [
+        {
+          "label": "Book AI Strategy Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

@@ -1,0 +1,174 @@
+{
+  "slug": "healthcare-industry",
+  "title": "Healthcare Industry",
+  "status": "published",
+  "type": "industry",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Healthcare"
+        }
+      ],
+      "heading": "Digital Solutions for *Healthcare Providers*",
+      "lead": "HIPAA-compliant digital platforms that improve patient care and streamline operations.",
+      "buttons": [
+        {
+          "label": "Start a Project →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Our Work",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "HIPAA",
+          "label": "Compliant"
+        },
+        {
+          "value": "100",
+          "suffix": "%",
+          "label": "Secure"
+        },
+        {
+          "value": "40",
+          "suffix": "%",
+          "label": "Efficiency Gain"
+        },
+        {
+          "value": "24/7",
+          "label": "Patient Access"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Build",
+        "title": "Solutions for *Modern Healthcare*",
+        "subtitle": "Digital tools designed specifically for medical practices, clinics, and healthcare organizations.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Patient Portals",
+          "body": "Secure patient portals for appointment booking, medical records access, lab results, and secure messaging with providers."
+        },
+        {
+          "title": "Telemedicine Platforms",
+          "body": "Video consultation platforms with integrated scheduling, secure video calls, prescription management, and billing integration."
+        },
+        {
+          "title": "EHR Integration",
+          "body": "Seamless integration with Electronic Health Records systems like Epic, Cerner, and Allscripts for unified patient data."
+        },
+        {
+          "title": "Appointment Management",
+          "body": "Smart scheduling systems with automated reminders, waitlist management, and provider availability optimization."
+        },
+        {
+          "title": "Practice Websites",
+          "body": "Professional, accessible medical practice websites with online booking, provider profiles, and patient education resources."
+        },
+        {
+          "title": "Compliance Tools",
+          "body": "HIPAA-compliant document management, audit trails, and security monitoring to ensure regulatory compliance."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "How we *deliver*",
+        "subtitle": "A healthcare-focused approach with compliance and patient experience at the core.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Compliance Review",
+          "body": "We conduct a thorough HIPAA compliance assessment and design systems with security and privacy built in from day one."
+        },
+        {
+          "num": "02",
+          "title": "Secure Architecture",
+          "body": "We design HIPAA-compliant architecture with encryption, access controls, audit logging, and Business Associate Agreements."
+        },
+        {
+          "num": "03",
+          "title": "Integration Development",
+          "body": "We build and integrate your solutions with existing EHR systems, billing platforms, and healthcare workflows."
+        },
+        {
+          "num": "04",
+          "title": "Training & Support",
+          "body": "We provide comprehensive staff training on compliance, security best practices, and ongoing technical support."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Industries*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Cyber Security",
+          "body": "Protect your digital assets",
+          "href": "/cyber-security-industry"
+        },
+        {
+          "title": "IT Industry",
+          "body": "Technology & software solutions",
+          "href": "/it-industry"
+        },
+        {
+          "title": "Business Automation",
+          "body": "Automate your workflows",
+          "href": "/business-automation"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to transform your *healthcare practice?*",
+      "body": "Book a free 30-minute call. We'll discuss your specific needs and create a compliant digital strategy.",
+      "buttons": [
+        {
+          "label": "Book Free Discovery Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

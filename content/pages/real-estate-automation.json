@@ -1,0 +1,220 @@
+{
+  "slug": "real-estate-automation",
+  "title": "AI Lead Automation for Real Estate Agents & Teams",
+  "status": "published",
+  "type": "landing",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "AI Automation"
+        },
+        {
+          "label": "Real Estate"
+        }
+      ],
+      "heading": "Speed-to-Lead in *60 Seconds*",
+      "lead": "Every portal lead answered in under a minute, qualified by AI, and booked to a showing — even at midnight. Your old database gets nurtured on autopilot while you close.",
+      "buttons": [
+        {
+          "label": "Get Your Free Automation Audit →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "variant": "primary"
+        },
+        {
+          "label": "Call (510) 962-7900",
+          "href": "tel:+15109627900",
+          "variant": "ghost"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "The Pain",
+        "title": "Sound *familiar?*"
+      },
+      "variant": "pain",
+      "columns": 4,
+      "items": [
+        {
+          "title": "The lead came in at 11pm.",
+          "body": "By the time you saw it in the morning, they'd already booked a showing with someone else."
+        },
+        {
+          "title": "My CRM has 2,000 dead leads.",
+          "body": "They're not dead — just neglected. Nobody's followed up since the first call that never happened."
+        },
+        {
+          "title": "Follow-up dies after one attempt.",
+          "body": "You meant to call back. You were at a showing. The trail went cold."
+        },
+        {
+          "title": "I chase new leads while old ones cool.",
+          "body": "You keep paying for fresh portals while the database you already own sits there, gathering dust."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "How It Works",
+        "title": "Your 24/7 *inside sales agent*",
+        "subtitle": "Connects to your existing CRM — Follow Up Boss, kvCORE, Sierra, or whatever you run. No platform switch.",
+        "align": "center"
+      },
+      "variant": "flow",
+      "items": [
+        {
+          "num": "1",
+          "title": "Instant Response",
+          "body": "Every new lead gets a personal-feeling text or call within 60 seconds — from the portals, your site, and your sign riders. Day, night, weekends."
+        },
+        {
+          "num": "2",
+          "title": "AI Qualification",
+          "body": "The AI works the conversation: budget, timeline, pre-approval, motivation. Hot leads land on your calendar; cold ones get nurtured, not dropped."
+        },
+        {
+          "num": "3",
+          "title": "Booking + Nurture",
+          "body": "Showings booked straight to your calendar. Your old database gets revived with long-term nurture sequences that turn \"not now\" into \"ready.\""
+        }
+      ]
+    },
+    {
+      "type": "roi",
+      "header": {
+        "eyebrow": "The Math",
+        "title": "What slow follow-up *really costs*",
+        "align": "center"
+      },
+      "math": "4 extra showings/month × 15% close rate × $9,000 avg commission = *~$5,400/month in additional GCI*",
+      "assumptions": "Assumptions: fast, persistent follow-up converts 4 more leads per month into showings; 15% of showings close; $9,000 average commission per closing. Your numbers will differ — the free audit maps your actual lead flow.",
+      "disclaimer": "Illustrative estimate for example purposes only. Actual results vary by market, price point, and lead volume."
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Why Embtel",
+        "title": "Built for agents *and teams*",
+        "align": "center"
+      },
+      "variant": "trust",
+      "columns": 3,
+      "items": [
+        {
+          "title": "USA-Based Team",
+          "body": "Real humans, real support, your timezone."
+        },
+        {
+          "title": "Works With Your CRM",
+          "body": "Follow Up Boss, kvCORE, Sierra, and more."
+        },
+        {
+          "title": "Live in 1–2 Weeks",
+          "body": "Connected to your lead sources and calendar."
+        },
+        {
+          "title": "SMB-Friendly Pricing",
+          "body": "Built for solo agents and teams, not brokerages-with-a-vendor-department."
+        },
+        {
+          "title": "No Long-Term Contracts",
+          "body": "Month-to-month. If the leads don't convert, walk away."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Free Automation Audit",
+        "title": "See exactly where *leads are leaking*",
+        "subtitle": "A 30-minute working session — not a sales pitch. You leave with a fixed-quote plan whether or not you hire us.",
+        "align": "center"
+      },
+      "variant": "audit",
+      "columns": 3,
+      "items": [
+        {
+          "num": "01",
+          "title": "Lead Flow Map",
+          "body": "We trace every lead source, your actual response time, and where follow-up dies — and put a dollar figure on it."
+        },
+        {
+          "num": "02",
+          "title": "Fixed-Quote Plan",
+          "body": "You get an exact scope, timeline, and price for the speed-to-lead and nurture system that fits your pipeline. No hourly billing."
+        },
+        {
+          "num": "03",
+          "title": "Zero Commitment",
+          "body": "Keep the plan and implement it yourself, or hand it to us. The audit is free either way."
+        }
+      ],
+      "button": {
+        "label": "Get Your Free Automation Audit →",
+        "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+        "variant": "primary"
+      }
+    },
+    {
+      "type": "faq",
+      "header": {
+        "eyebrow": "FAQ",
+        "title": "Honest *answers*",
+        "align": "center"
+      },
+      "variant": "static",
+      "items": [
+        {
+          "q": "What does it cost?",
+          "a": "It depends on scope — a solo agent's setup versus a full team with ISA replacement and database revival. The free audit gives you a fixed quote before you spend anything."
+        },
+        {
+          "q": "Do I need a new CRM?",
+          "a": "No. We connect to the CRM you already use. If you're running on spreadsheets, we'll help you graduate to a proper one as part of the build."
+        },
+        {
+          "q": "How fast can this be live?",
+          "a": "Most systems are up and running in 1–2 weeks, including testing against your actual lead sources."
+        },
+        {
+          "q": "What if I'm not technical?",
+          "a": "You never touch code. Once it's live, responses, qualification, and nurture run themselves — you just take the appointments that show up on your calendar."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Never lose a lead *to voicemail again.*",
+      "body": "The first agent to respond usually wins. Get your free audit and make sure that's you.",
+      "buttons": [
+        {
+          "label": "Get Your Free Automation Audit →",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "variant": "primary"
+        },
+        {
+          "label": "Call (510) 962-7900",
+          "href": "tel:+15109627900",
+          "variant": "ghost"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "metaDescription": "Every portal lead answered in under 60 seconds, qualified by AI, booked to a showing. Free automation audit for realtors and real estate teams.",
+    "noindex": false
+  },
+  "locked": true
+}

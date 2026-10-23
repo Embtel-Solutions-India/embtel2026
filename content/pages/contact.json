@@ -1,0 +1,70 @@
+{
+  "slug": "contact",
+  "title": "Contact",
+  "status": "published",
+  "type": "standard",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "simple",
+      "badge": "Get in Touch",
+      "heading": "Let's build something *great together.*",
+      "lead": "Embtel Solutions is your one-stop destination for comprehensive solutions that drive business growth. We empower you with innovative technology, security, and digital expertise to ensure success in today’s competitive landscape."
+    },
+    {
+      "type": "contactInfo",
+      "items": [
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "✉️"
+          },
+          "label": "Email",
+          "value": "info@embtelsolutions.com",
+          "href": "mailto:info@embtelsolutions.com"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "💬"
+          },
+          "label": "WhatsApp",
+          "value": "+1 (510) 962-7900",
+          "href": "https://wa.me/15109627900"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "📍"
+          },
+          "label": "US Office",
+          "value": "39159, Paseo Padre Pkwy, Suite #119, Fremont, CA 94538"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "📍"
+          },
+          "label": "India Office",
+          "value": "2nd Floor, Chandigarh Citi Center Office, SCO-12, A-Block, VIP Rd, Zirakpur, Punjab 140603"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
+            "value": "🕐"
+          },
+          "label": "Response time",
+          "value": "Within 24 hours, always"
+        }
+      ],
+      "formSlot": true
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

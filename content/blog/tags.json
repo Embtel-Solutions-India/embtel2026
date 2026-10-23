@@ -1,0 +1,82 @@
+[
+  {
+    "name": "automation",
+    "slug": "automation",
+    "serviceSlug": "business-automation"
+  },
+  {
+    "name": "productivity",
+    "slug": "productivity",
+    "serviceSlug": "business-automation"
+  },
+  {
+    "name": "workflows",
+    "slug": "workflows",
+    "serviceSlug": "business-automation"
+  },
+  {
+    "name": "seo",
+    "slug": "seo",
+    "serviceSlug": "seo-geo"
+  },
+  {
+    "name": "web-development",
+    "slug": "web-development",
+    "serviceSlug": "web-development"
+  },
+  {
+    "name": "smb",
+    "slug": "smb",
+    "serviceSlug": ""
+  },
+  {
+    "name": "ai",
+    "slug": "ai",
+    "serviceSlug": "ai-integrations"
+  },
+  {
+    "name": "integrations",
+    "slug": "integrations",
+    "serviceSlug": "ai-integrations"
+  },
+  {
+    "name": "customer-support",
+    "slug": "customer-support",
+    "serviceSlug": "ai-integrations"
+  },
+  {
+    "name": "performance",
+    "slug": "performance",
+    "serviceSlug": "web-development"
+  },
+  {
+    "name": "ux",
+    "slug": "ux",
+    "serviceSlug": "web-development"
+  },
+  {
+    "name": "analytics",
+    "slug": "analytics",
+    "serviceSlug": "analytics-dashboards"
+  },
+  {
+    "name": "dashboards",
+    "slug": "dashboards",
+    "serviceSlug": "analytics-dashboards"
+  },
+  {
+    "name": "reporting",
+    "slug": "reporting",
+    "serviceSlug": "analytics-dashboards"
+  },
+  {
+    "name": "cybersecurity",
+    "slug": "cybersecurity",
+    "serviceSlug": "cybersecurity"
+  },
+  {
+    "name": "security",
+    "slug": "security",
+    "serviceSlug": "cybersecurity"
+  }
+]

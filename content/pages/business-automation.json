@@ -1,0 +1,189 @@
+{
+  "slug": "business-automation",
+  "title": "Business Automation",
+  "status": "published",
+  "type": "service",
+  "theme": {
+    "accent": "#FF5C35"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "Business Automation"
+        }
+      ],
+      "heading": "Business Automation that *Saves You Hours*",
+      "lead": "We map your workflows, find the bottlenecks, and build automated systems so your team spends time on what actually matters — growing the business, not feeding spreadsheets.",
+      "buttons": [
+        {
+          "label": "Automate My Business →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "Our Approach",
+          "href": "/process",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "20",
+          "suffix": "+",
+          "label": "Hours Saved / Week"
+        },
+        {
+          "value": "95",
+          "suffix": "%",
+          "label": "Error Reduction"
+        },
+        {
+          "value": "3",
+          "suffix": "x",
+          "label": "Faster Turnaround"
+        },
+        {
+          "value": "30",
+          "suffix": "d",
+          "label": "Avg Time to Deploy"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Automate",
+        "title": "Stop doing tasks *machines can do*",
+        "subtitle": "Every hour your team spends on repetitive work is an hour not spent on growth.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "CRM Automation",
+          "body": "Automated lead routing, follow-up sequences, deal stage updates, and pipeline management — your CRM runs itself."
+        },
+        {
+          "title": "Invoice & Billing",
+          "body": "Auto-generate invoices on trigger, send payment reminders, reconcile payments, and update accounting tools without lifting a finger."
+        },
+        {
+          "title": "Email Workflows",
+          "body": "Drip campaigns, onboarding sequences, win-back flows, and internal alert systems that run 24/7 based on user behaviour."
+        },
+        {
+          "title": "Reporting & Alerts",
+          "body": "Auto-generated weekly reports sent to your inbox. Exception alerts when KPIs go off track — so you act before it's a problem."
+        },
+        {
+          "title": "Scheduling & Booking",
+          "body": "Automated calendar management, appointment reminders, and rescheduling flows that eliminate back-and-forth entirely."
+        },
+        {
+          "title": "Data Sync",
+          "body": "Keep all your tools talking to each other in real time — CRM, accounting, e-commerce, support, and more, perfectly in sync."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "Automation done *properly*",
+        "subtitle": "We don't bolt on tools — we redesign workflows from the ground up for efficiency.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Workflow Mapping",
+          "body": "We document every current process, identify waste, and calculate the time cost of manual tasks to prioritise highest-ROI automations first."
+        },
+        {
+          "num": "02",
+          "title": "Tool Selection",
+          "body": "We pick the right automation stack for your specific needs, budget, and tech environment — not a one-size-fits-all solution."
+        },
+        {
+          "num": "03",
+          "title": "Build & Test",
+          "body": "Automations are built with thorough testing, error handling, and failsafes so nothing breaks when edge cases occur in real use."
+        },
+        {
+          "num": "04",
+          "title": "Train & Hand Off",
+          "body": "Team training, documentation, and a handoff session so your team fully owns the new workflows — not dependent on us forever."
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Tools We Use",
+        "title": "Best-in-class *automation platforms*",
+        "align": "center"
+      },
+      "items": [
+        {
+          "label": "Zapier"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Services*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "AI Integrations",
+          "body": "Add intelligence to your automations",
+          "href": "/ai-integrations"
+        },
+        {
+          "title": "Analytics & Dashboards",
+          "body": "Monitor your automated workflows",
+          "href": "/analytics-dashboards"
+        },
+        {
+          "title": "Web Development",
+          "body": "Automate the tech behind your site",
+          "href": "/web-development"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to stop doing *busy work?*",
+      "body": "Book a free workflow audit. We'll identify your top 3 automation opportunities and estimate exactly how much time you'll get back.",
+      "buttons": [
+        {
+          "label": "Get My Free Audit →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

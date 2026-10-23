@@ -1,0 +1,112 @@
+{
+  "slug": "process",
+  "title": "Process",
+  "status": "published",
+  "type": "standard",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "simple",
+      "badge": "How We Work",
+      "heading": "Simple. Transparent. *Results.*",
+      "lead": "We make technology adoption painless for busy business owners. Here's exactly what working with us looks like — no surprises."
+    },
+    {
+      "type": "steps",
+      "variant": "process",
+      "items": [
+        {
+          "num": "01",
+          "week": "Week 1",
+          "title": "Discovery Call",
+          "body": "We learn your business, pain points, and goals. No jargon, no upselling — just honest conversation about what technology can realistically do for you and where to start."
+        },
+        {
+          "num": "02",
+          "week": "Week 1–2",
+          "title": "Custom Roadmap",
+          "body": "You get a clear, prioritised plan with timelines and costs — designed around your budget and business stage, not a one-size-fits-all package. No fluff, just a plan you can act on."
+        },
+        {
+          "num": "03",
+          "week": "Week 2–3",
+          "title": "Design & Architecture",
+          "body": "Before any code is written, we map out the system: user flows, technical architecture, design direction. You approve everything before we build — nothing is a surprise."
+        },
+        {
+          "num": "04",
+          "week": "Week 3–8",
+          "title": "Build & Launch",
+          "body": "We execute with weekly check-ins and full transparency. You see real progress, not just status reports. We launch only when you're confident — and we're with you on launch day."
+        },
+        {
+          "num": "05",
+          "week": "Week 8–10",
+          "title": "QA & Testing",
+          "body": "Thorough testing across devices, browsers, and edge cases. Performance audits, security checks, and user acceptance testing before anything goes live."
+        },
+        {
+          "num": "06",
+          "week": "Ongoing",
+          "title": "Optimise & Scale",
+          "body": "Post-launch, we monitor performance, refine what's working, and layer on automation as your business grows. We're a long-term partner, not a one-and-done agency."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Why Embtel",
+        "title": "Built *different.* Priced fairly.",
+        "align": "center"
+      },
+      "variant": "why",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Fast Delivery",
+          "body": "We move 3× faster than traditional agencies. Most projects from kickoff to launch in 2–6 weeks. No endless back-and-forth."
+        },
+        {
+          "title": "Scalable Architecture",
+          "body": "We build for where you're going, not just where you are. Every system handles 10× growth without a rebuild."
+        },
+        {
+          "title": "AI-Native Thinking",
+          "body": "Every project gets evaluated for AI enhancement. We don't bolt on AI — we design around intelligence from the start."
+        },
+        {
+          "title": "Always Available",
+          "body": "Dedicated support across time zones. Weekly check-ins, transparent Slack updates, and a team that picks up the phone."
+        },
+        {
+          "title": "Data-Driven",
+          "body": "Every decision is backed by data — not gut feel, not trends. We measure what matters and optimise relentlessly."
+        },
+        {
+          "title": "True Partnership",
+          "body": "We push back when needed, advocate for your users, and treat your money like our own. No yes-men here."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to start the *conversation?*",
+      "body": "A free 30-minute discovery call is all it takes. We'll tell you exactly what we'd recommend — and what we wouldn't.",
+      "buttons": [
+        {
+          "label": "Book Discovery Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

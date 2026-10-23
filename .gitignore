@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+coverage/
+playwright-report/
+test-results/
+*.log
+.DS_Store
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
+.claude/worktrees/
+.superpowers/
+.e2e/
+.lighthouseci/

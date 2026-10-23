@@ -1,0 +1,195 @@
+{
+  "slug": "analytics-dashboards",
+  "title": "Analytics & Dashboards",
+  "status": "published",
+  "type": "service",
+  "theme": {
+    "accent": "#FFB800"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "Analytics & Dashboards"
+        }
+      ],
+      "heading": "Analytics & Dashboards for *Real Business Clarity*",
+      "lead": "Custom dashboards that pull data from all your tools into one clear, real-time view — so you always know exactly how every part of your business is performing, without hunting through reports.",
+      "buttons": [
+        {
+          "label": "Get My Dashboard →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Examples",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "Real",
+          "suffix": "-Time",
+          "label": "Live Data Updates"
+        },
+        {
+          "value": "50",
+          "suffix": "+",
+          "label": "Data Integrations"
+        },
+        {
+          "value": "100",
+          "suffix": "%",
+          "label": "Custom Built"
+        },
+        {
+          "value": "10",
+          "suffix": "d",
+          "label": "Avg Time to First Dashboard"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Build",
+        "title": "Dashboards for *every part of your business*",
+        "subtitle": "From sales to marketing to operations — one source of truth for every decision.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Sales Dashboards",
+          "body": "Pipeline health, revenue vs target, deal velocity, rep performance, and forecasting — all updated in real time from your CRM."
+        },
+        {
+          "title": "Marketing Analytics",
+          "body": "Ad spend, CAC, ROAS, traffic attribution, and channel performance across Google, Meta, LinkedIn, and organic — in one view."
+        },
+        {
+          "title": "Operations Dashboards",
+          "body": "Inventory levels, fulfillment rates, team productivity, SLA adherence, and operational KPIs tracked and visualised automatically."
+        },
+        {
+          "title": "Executive Reports",
+          "body": "Auto-generated PDF or email summaries sent to leadership weekly — the right numbers, no noise, zero manual effort."
+        },
+        {
+          "title": "Customer Analytics",
+          "body": "Cohort analysis, lifetime value modelling, churn prediction, and NPS tracking to understand what keeps customers and what loses them."
+        },
+        {
+          "title": "Custom Visualisations",
+          "body": "Bespoke charts, interactive drill-downs, and tailored KPI layouts designed to match how your specific team thinks and works."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "From messy data to *clear insights*",
+        "subtitle": "We handle everything — data auditing, pipeline building, dashboard design, and team training.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Data Audit",
+          "body": "We inventory all your data sources, assess quality, and identify which KPIs actually matter — cutting through the noise before building anything."
+        },
+        {
+          "num": "02",
+          "title": "Dashboard Design",
+          "body": "UX-first layout design focused on how your team will actually use the data — not just technically correct, but genuinely useful."
+        },
+        {
+          "num": "03",
+          "title": "Data Pipeline Build",
+          "body": "We build ETL processes to pull, clean, and consolidate data from all your sources into a single, reliable warehouse or reporting layer."
+        },
+        {
+          "num": "04",
+          "title": "Deploy & Train",
+          "body": "Dashboards launched and connected. Full team walkthrough so everyone knows how to read, filter, and act on the data immediately."
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Data Sources & Tools",
+        "title": "We connect *everything you use*",
+        "align": "center"
+      },
+      "items": [
+        {
+          "label": "Google Looker Studio"
+        },
+        {
+          "label": "Power BI"
+        },
+        {
+          "label": "Tableau"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Services*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "AI Integrations",
+          "body": "Add AI-generated insights to dashboards",
+          "href": "/ai-integrations"
+        },
+        {
+          "title": "Business Automation",
+          "body": "Auto-populate your dashboards with fresh data",
+          "href": "/business-automation"
+        },
+        {
+          "title": "Digital Marketing",
+          "body": "Track every marketing metric in one place",
+          "href": "/digital-marketing"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Stop guessing. Start *knowing.*",
+      "body": "Book a free data strategy call. We'll map out your ideal dashboard setup and show you what's possible in 10 days.",
+      "buttons": [
+        {
+          "label": "Book Data Strategy Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

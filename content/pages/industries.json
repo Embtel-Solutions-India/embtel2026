@@ -1,0 +1,116 @@
+{
+  "slug": "industries",
+  "title": "Industries",
+  "status": "published",
+  "type": "standard",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Industries"
+        }
+      ],
+      "heading": "Industry-Specific *Digital Solutions*",
+      "lead": "We understand your industry's unique challenges and deliver tailored digital solutions that drive real results.",
+      "buttons": [
+        {
+          "label": "Start Your Project →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Industries We Serve",
+        "title": "Industries *We Serve*",
+        "subtitle": "Our local SEO expertise spans across diverse industries, with tailored strategies that understand the unique challenges and opportunities in each sector.",
+        "align": "center"
+      },
+      "variant": "industryLink",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Accounting Firm Industry Digital Marketing Services",
+          "body": "Streamline client acquisition and build trust with tailored digital strategies for accounting firms—SEO, PPC, content marketing, and conversion-optimized websites designed for the financial services space.",
+          "href": "/accounting-firm-industry",
+          "linkLabel": "Learn more"
+        },
+        {
+          "title": "Cleaning Industry Digital Marketing Services",
+          "body": "Get more leads and bookings with localized SEO, PPC ads, and optimized websites that help your cleaning business stand out in your service area.",
+          "href": "/cleaning-industry",
+          "linkLabel": "Learn more"
+        },
+        {
+          "title": "Cyber Security Industry Digital Marketing Services",
+          "body": "Establish authority and drive qualified leads with targeted digital strategies for cybersecurity firms, including content marketing, B2B SEO, and LinkedIn advertising.",
+          "href": "/cyber-security-industry",
+          "linkLabel": "Learn more"
+        },
+        {
+          "title": "Healthcare Industry Digital Marketing Services",
+          "body": "Grow your practice with HIPAA-compliant digital marketing that builds trust, ranks high in search, and drives appointment bookings.",
+          "href": "/healthcare-industry",
+          "linkLabel": "Learn more"
+        },
+        {
+          "title": "Home Services Industry Digital Marketing Services",
+          "body": "Maximize calls and service appointments through localized SEO, PPC, and website design for plumbers, electricians, HVAC, and other home service pros.",
+          "href": "/home-services-industry",
+          "linkLabel": "Learn more"
+        },
+        {
+          "title": "Immigration Firm Industry Digital Marketing Services",
+          "body": "Attract high-value clients through proven legal marketing tactics—SEO, paid ads, and conversion-optimized websites built for immigration firms and attorneys.",
+          "href": "/immigration-firm-industry",
+          "linkLabel": "Learn more"
+        },
+        {
+          "title": "Technology Industry Digital Marketing Services",
+          "body": "Scale your tech brand with performance-driven strategies—B2B SEO, paid acquisition, and content marketing tailored for SaaS, IT services, and enterprise solutions.",
+          "href": "/it-industry",
+          "linkLabel": "Learn more"
+        },
+        {
+          "title": "Law Industry Digital Marketing Services",
+          "body": "Attract high-value clients through proven legal marketing tactics—SEO, paid ads, and conversion-optimized websites built for law firms and attorneys.",
+          "href": "/law-industry",
+          "linkLabel": "Learn more"
+        },
+        {
+          "title": "Retail Industry Digital Marketing Services",
+          "body": "Boost both foot traffic and eCommerce sales with strategic digital marketing—SEO, social media, and conversion-focused campaigns that connect with shoppers online and offline.",
+          "href": "/retail-industry",
+          "linkLabel": "Learn more"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to transform your *industry?*",
+      "body": "Book a free 30-minute call. We'll discuss your industry-specific needs and create a tailored digital strategy.",
+      "buttons": [
+        {
+          "label": "Book Free Discovery Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

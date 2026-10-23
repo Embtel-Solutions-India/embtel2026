@@ -1,0 +1,6 @@
+{
+  "crons": [
+    { "path": "/api/cron/publish-scheduled", "schedule": "*/5 * * * *" },
+    { "path": "/api/cron/gsc-sync", "schedule": "0 7 * * *" }
+  ]
+}

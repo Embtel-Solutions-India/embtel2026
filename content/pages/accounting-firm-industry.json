@@ -1,0 +1,175 @@
+{
+  "slug": "accounting-firm-industry",
+  "title": "Accounting Firm Industry",
+  "status": "published",
+  "type": "industry",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Accounting Firm"
+        }
+      ],
+      "heading": "Digital Solutions for *Accounting Firms*",
+      "lead": "Streamline your financial services with secure, compliant digital platforms that build client trust.",
+      "buttons": [
+        {
+          "label": "Start a Project →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Our Work",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "30",
+          "suffix": "+",
+          "label": "Accounting Clients"
+        },
+        {
+          "value": "100",
+          "suffix": "%",
+          "label": "Compliance Rate"
+        },
+        {
+          "value": "50",
+          "suffix": "%",
+          "label": "Time Saved"
+        },
+        {
+          "value": "24/7",
+          "label": "Secure Access"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Build",
+        "title": "Solutions for *Modern Accounting*",
+        "subtitle": "Digital tools designed specifically for accounting firms and financial service providers.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Client Portals",
+          "body": "Secure, branded client portals for document sharing, tax filing, and real-time financial reporting with bank-level encryption."
+        },
+        {
+          "title": "Automated Bookkeeping",
+          "body": "Integration with accounting software like QuickBooks and Xero for automated data entry, reconciliation, and reporting."
+        },
+        {
+          "title": "Tax Preparation Systems",
+          "body": "Streamlined tax filing workflows with document management, deadline tracking, and client communication tools."
+        },
+        {
+          "title": "Invoice & Payment Processing",
+          "body": "Custom invoicing systems with integrated payment gateways, automated reminders, and financial tracking dashboards."
+        },
+        {
+          "title": "Compliance Management",
+          "body": "Tools to ensure regulatory compliance with automated checks, audit trails, and secure document retention."
+        },
+        {
+          "title": "Financial Dashboards",
+          "body": "Real-time analytics and reporting dashboards for both your team and clients with customizable KPIs and visualizations."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "How we *deliver*",
+        "subtitle": "A tailored approach for accounting firms with strict security and compliance requirements.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Compliance Assessment",
+          "body": "We analyze your current systems and identify gaps in security, compliance, and efficiency specific to financial regulations."
+        },
+        {
+          "num": "02",
+          "title": "Secure Architecture Design",
+          "body": "We design systems with bank-level security, encryption, and compliance frameworks built in from the ground up."
+        },
+        {
+          "num": "03",
+          "title": "Integration & Development",
+          "body": "We build and integrate your custom solutions with existing accounting software and banking systems."
+        },
+        {
+          "num": "04",
+          "title": "Training & Support",
+          "body": "Comprehensive team training and ongoing support to ensure smooth adoption and continued compliance."
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Industries*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Law Industry",
+          "body": "Legal firms & attorney services",
+          "href": "/law-industry"
+        },
+        {
+          "title": "IT Industry",
+          "body": "Technology & software solutions",
+          "href": "/it-industry"
+        },
+        {
+          "title": "Business Automation",
+          "body": "Automate your workflows",
+          "href": "/business-automation"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to modernize your *accounting practice?*",
+      "body": "Book a free 30-minute call. We'll discuss your specific needs and create a secure, compliant digital strategy.",
+      "buttons": [
+        {
+          "label": "Book Free Discovery Call →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

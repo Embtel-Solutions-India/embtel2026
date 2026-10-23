@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  MONGOMS_DOWNLOAD_DIR: /home/runner/.cache/mongodb-binaries
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Secret scan first so it is never hidden behind other failures. The gitleaks CLI (MIT) scans the
+      # full history; gitleaks-action is not used because it needs a paid license on org-owned repos.
+      - name: Secret scan (gitleaks)
+        run: |
+          curl -sSL -o gitleaks.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz
+          echo "a65b5253807a68ac0cafa4414031fd740aeb55f54fb7e55f386acb52e6a840eb  gitleaks.tgz" | sha256sum -c -
+          tar -xzf gitleaks.tgz -C "$RUNNER_TEMP" gitleaks
+          "$RUNNER_TEMP/gitleaks" git . --redact --no-banner -c .gitleaks.toml
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - id: mms
+        name: Resolve mongodb-memory-server version
+        run: echo "version=$(node -p "require('./package-lock.json').packages['node_modules/mongodb-memory-server'].version")" >> "$GITHUB_OUTPUT"
+      - name: Cache mongodb-memory-server binary
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.MONGOMS_DOWNLOAD_DIR }}
+          key: mongodb-binaries-${{ runner.os }}-${{ steps.mms.outputs.version }}
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - name: Build + e2e
+        run: npm run e2e # tests/e2e/server.ts runs `next build` then `next start`
+      # Lighthouse (mobile, 5 runs, median) on the public templates. VERCEL_ENV=production so pages are
+      # indexable and the SEO category measures the real output. Every budget is a hard failure — see README.
+      - name: Lighthouse budgets
+        run: npm run lhci
+        env:
+          VERCEL_ENV: production
+      # Gate on shipped (production) dependencies. See README "Known audit exceptions".
+      - run: npm audit --omit=dev --audit-level=high
+      # Full audit incl. dev deps: visible but non-blocking (braces GHSA-vfj7-8cjw-p6xm has no patched release).
+      - run: npm audit --audit-level=high
+        continue-on-error: true

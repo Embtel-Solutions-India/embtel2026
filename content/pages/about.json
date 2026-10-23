@@ -1,0 +1,397 @@
+{
+  "slug": "about",
+  "title": "About",
+  "status": "published",
+  "type": "standard",
+  "theme": {
+    "accent": "#1A6BFF"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "simple",
+      "badge": "About Embtel Solutions",
+      "heading": "We're a small team building *big results* for growing businesses.",
+      "lead": "We take pride in delivering customised solutions that reflect your business targets and transform business challenges into success opportunities through our dedicated effort toward results-driven customer satisfaction."
+    },
+    {
+      "type": "split",
+      "image": {
+        "src": "https://lh3.googleusercontent.com/p/AF1QipM81q_hRq8dgNsnqmPQNYHaawq6899qUK34ENiW=w800-h600-k-no",
+        "alt": "Embtel Solutions Office Location",
+        "width": 800,
+        "height": 600
+      },
+      "heading": "Our Mission *and Vision.*",
+      "paragraphs": [
+        "Embtel Solutions is dedicated to enabling businesses to use advanced digital solutions that advance their virtual exposure while stimulating business expansion. They provide innovative websites with excellent user experiences that enable successful brand-audience connections, making customer satisfaction the central focus of all operations.",
+        "The company strives to become an industry-leading digital solutions company known for superior quality, innovative creativity, and dependable performance. Their operation aims to develop enduring client relationships while supporting the lasting expansion of customers of all sizes, using modern technologies and proven industry practices."
+      ]
+    },
+    {
+      "type": "timeline",
+      "header": {
+        "eyebrow": "Our Journey",
+        "title": "Our *Evolution*",
+        "subtitle": "From digitization to AI intelligence — our journey of continuous growth and innovation.",
+        "align": "center"
+      },
+      "rows": [
+        {
+          "period": "2018–2020",
+          "era": "Digitization Era",
+          "focus": "WordPress websites, social media setup, Google Business profiles. Helping businesses get online and be found."
+        },
+        {
+          "period": "2020–2023",
+          "era": "Digital Marketing Era",
+          "focus": "Facebook & LinkedIn marketing, SEO, Google Ads, e-commerce, content strategy. Helping businesses grow online."
+        },
+        {
+          "period": "2023–2025",
+          "era": "Automation Era",
+          "focus": "Workflow automation, CRM integration, RPA, cloud migration. Helping businesses operate efficiently."
+        },
+        {
+          "period": "2025–Present",
+          "era": "AI & Intelligence Era",
+          "focus": "Custom AI chatbots, predictive analytics, machine learning, cybersecurity. Helping businesses compete with intelligence."
+        }
+      ]
+    },
+    {
+      "type": "phases",
+      "header": {
+        "eyebrow": "Our Services",
+        "title": "Comprehensive Solutions *for Every Stage*",
+        "subtitle": "From digital foundation to advanced AI — we provide end-to-end services to transform your business.",
+        "align": "center"
+      },
+      "items": [
+        {
+          "number": "Phase 1",
+          "title": "Digital Foundation",
+          "desc": "Your entry point into the digital world. We build your online presence so you can be found, trusted, and chosen by customers.",
+          "cards": [
+            {
+              "name": "WordPress Website Design & Development",
+              "desc": "Custom-built, mobile-responsive websites with SEO-ready architecture, contact forms, and analytics integration."
+            },
+            {
+              "name": "Social Media Portfolio Setup",
+              "desc": "Professional Facebook, LinkedIn, Instagram, and Google Business profiles with branded visuals and optimized bios."
+            },
+            {
+              "name": "Search Engine Optimization (SEO)",
+              "desc": "On-page and technical SEO including keyword research, meta optimization, schema markup, and local SEO for Google Maps."
+            },
+            {
+              "name": "Content Marketing",
+              "desc": "Blog posts, articles, and social media content calendars with AI-assisted writing and scheduling."
+            },
+            {
+              "name": "Google & Meta Ads Management",
+              "desc": "Pay-per-click campaign setup, audience targeting, A/B testing, and monthly performance reporting."
+            },
+            {
+              "name": "E-Commerce Storefront",
+              "desc": "WooCommerce or Shopify setup with payment gateways, product catalogs, inventory management, and shipping integration."
+            },
+            {
+              "name": "Brand Identity & Design",
+              "desc": "Logo design, brand guidelines, business card and collateral design, and consistent visual identity across all platforms."
+            }
+          ]
+        },
+        {
+          "number": "Phase 2",
+          "title": "Business Automation",
+          "desc": "Eliminate repetitive work. We connect your tools and automate your workflows so your team focuses on growth, not busywork.",
+          "cards": [
+            {
+              "name": "Workflow Automation",
+              "desc": "Connect CRM, email, invoicing, and scheduling tools using Zapier, Make, or n8n to create seamless automated pipelines."
+            },
+            {
+              "name": "CRM Implementation & Optimization",
+              "desc": "Setup and customization of HubSpot, Zoho, Salesforce, or other CRM platforms to manage leads, deals, and customer relationships."
+            },
+            {
+              "name": "Automated Client Intake & Onboarding",
+              "desc": "Smart forms, document collection workflows, and automated welcome sequences for new clients or employees."
+            },
+            {
+              "name": "Invoice & Payment Automation",
+              "desc": "Automated invoice generation, payment reminders, and reconciliation with accounting software like QuickBooks or Xero."
+            },
+            {
+              "name": "Robotic Process Automation (RPA)",
+              "desc": "Bot-driven automation for data entry, report generation, email processing, and cross-system data synchronization."
+            },
+            {
+              "name": "Appointment & Scheduling Systems",
+              "desc": "Calendly, Acuity, or custom booking solutions integrated with your calendar, CRM, and payment systems."
+            }
+          ]
+        },
+        {
+          "number": "Phase 3",
+          "title": "AI & Intelligent Tools",
+          "desc": "Bring the power of artificial intelligence into your daily operations. From smart chatbots to predictive analytics, AI becomes your competitive advantage.",
+          "cards": [
+            {
+              "name": "Custom AI Chatbots & Virtual Assistants",
+              "desc": "AI chatbots trained on your business data that handle customer inquiries, bookings, FAQs, and lead qualification 24/7."
+            },
+            {
+              "name": "AI-Powered Analytics & Insights",
+              "desc": "Dashboards that translate your sales, traffic, and social data into plain-English recommendations and alerts."
+            },
+            {
+              "name": "Document Intelligence & Processing",
+              "desc": "AI extraction, summarization, and organization of contracts, invoices, and client communications."
+            },
+            {
+              "name": "Predictive Business Tools",
+              "desc": "Demand forecasting for retail, lead scoring for service businesses, churn prediction for subscription models."
+            },
+            {
+              "name": "AI Content Generation Pipelines",
+              "desc": "Automated content calendars with AI-generated posts, blogs, and newsletters, reviewed and published on schedule."
+            },
+            {
+              "name": "Machine Learning Model Development",
+              "desc": "Custom ML models for recommendation engines, pricing optimization, fraud detection, and customer segmentation."
+            }
+          ]
+        },
+        {
+          "number": "Phase 4",
+          "title": "Data & Analytics",
+          "desc": "Turn your raw data into strategic decisions. We build dashboards, mine insights, and help you understand your numbers like never before.",
+          "cards": [
+            {
+              "name": "Business Intelligence Dashboards",
+              "desc": "Unified dashboards connecting POS, website, CRM, and social media using Google Looker Studio, Power BI, or Metabase."
+            },
+            {
+              "name": "Customer Segmentation & Analysis",
+              "desc": "Identify your most profitable customer segments, their behaviors, and how to attract more of them."
+            },
+            {
+              "name": "Financial Analytics & Forecasting",
+              "desc": "Margin analysis by product line, customer lifetime value calculations, and cash flow projections beyond basic bookkeeping."
+            },
+            {
+              "name": "Competitive Intelligence Monitoring",
+              "desc": "Track competitor pricing, online presence, customer reviews, and market positioning in real time."
+            },
+            {
+              "name": "Data Warehousing & Integration",
+              "desc": "Centralize data from multiple sources into a single, clean, queryable data warehouse for advanced analysis."
+            }
+          ]
+        },
+        {
+          "number": "Phase 5",
+          "title": "Cybersecurity & Compliance",
+          "desc": "Protect what you have built. We secure your systems, train your team, and ensure you meet industry compliance requirements.",
+          "cards": [
+            {
+              "name": "Security Audits & Vulnerability Assessment",
+              "desc": "Comprehensive assessment of your email, website, cloud storage, and endpoint vulnerabilities with prioritized remediation."
+            },
+            {
+              "name": "Managed Security Services",
+              "desc": "Endpoint protection, firewall management, email filtering, and dark web monitoring for leaked credentials."
+            },
+            {
+              "name": "Employee Security Training",
+              "desc": "Phishing simulations, password hygiene workshops, and security awareness programs tailored to your team."
+            },
+            {
+              "name": "Data Backup & Disaster Recovery",
+              "desc": "Automated backups, tested recovery procedures, and business continuity plans to minimize downtime."
+            },
+            {
+              "name": "Compliance Management",
+              "desc": "PCI-DSS for payment processing, HIPAA for healthcare, SOC 2 for B2B services, and CCPA privacy compliance."
+            },
+            {
+              "name": "Penetration Testing",
+              "desc": "Simulated cyberattacks to identify weaknesses before real attackers do, with detailed remediation reports."
+            }
+          ]
+        },
+        {
+          "number": "Phase 6",
+          "title": "Cloud & Infrastructure",
+          "desc": "Scale with confidence. We migrate, manage, and optimize your cloud and IT infrastructure so technology never holds you back.",
+          "cards": [
+            {
+              "name": "Cloud Migration & Management",
+              "desc": "Migrate to AWS, Google Cloud, or Azure with proper architecture, cost optimization, and ongoing management."
+            },
+            {
+              "name": "Managed Hosting & Performance",
+              "desc": "Enterprise-grade hosting with monitoring, uptime guarantees, CDN integration, and performance optimization."
+            },
+            {
+              "name": "Email & Collaboration Platforms",
+              "desc": "Microsoft 365 or Google Workspace setup, migration, user management, and ongoing administration."
+            },
+            {
+              "name": "VoIP & Unified Communications",
+              "desc": "Cloud-based phone systems integrated with CRM and collaboration tools, replacing legacy telephony."
+            },
+            {
+              "name": "Network Design & Management",
+              "desc": "Office network setup, Wi-Fi optimization, VPN configuration, and remote access solutions."
+            }
+          ]
+        },
+        {
+          "number": "Phase 7",
+          "title": "E-Commerce & Digital Revenue",
+          "desc": "Expand your revenue channels. We build online stores, marketplace integrations, and digital product platforms to grow your top line.",
+          "cards": [
+            {
+              "name": "Full E-Commerce Platform Builds",
+              "desc": "Shopify or WooCommerce stores with payment processing, shipping, inventory management, and customer portals."
+            },
+            {
+              "name": "Marketplace Integration",
+              "desc": "List and manage products on Amazon, Etsy, eBay, or industry-specific marketplaces with centralized inventory."
+            },
+            {
+              "name": "Subscription & Membership Models",
+              "desc": "Recurring revenue platforms for service businesses, communities, and content creators."
+            },
+            {
+              "name": "Digital Product Creation",
+              "desc": "Online courses, downloadable guides, paid webinars, and community platforms to monetize expertise."
+            },
+            {
+              "name": "Conversion Rate Optimization",
+              "desc": "A/B testing, funnel analysis, checkout optimization, and user experience improvements to maximize revenue."
+            }
+          ]
+        },
+        {
+          "number": "Phase 8",
+          "title": "Managed IT — Your IT Department",
+          "desc": "The complete IT partnership. We become your permanent technology team on a monthly retainer, so you never need to hire an IT department.",
+          "cards": [
+            {
+              "name": "Dedicated Help Desk & Support",
+              "desc": "Responsive technical support for day-to-day issues with guaranteed response times and escalation procedures."
+            },
+            {
+              "name": "Technology Reviews & Roadmapping",
+              "desc": "Quarterly technology assessments, upgrade recommendations, and multi-year IT investment roadmaps."
+            },
+            {
+              "name": "Vendor & License Management",
+              "desc": "Negotiate with software providers, manage subscriptions, track renewals, and eliminate redundant tools."
+            },
+            {
+              "name": "Employee Tech Lifecycle",
+              "desc": "New hire setup, device provisioning, access management, and secure offboarding when employees leave."
+            },
+            {
+              "name": "IT Budgeting & Cost Optimization",
+              "desc": "Annual IT budget planning, cost-benefit analysis of technology investments, and ongoing spend optimization."
+            },
+            {
+              "name": "Virtual CTO / IT Strategy Advisory",
+              "desc": "Executive-level technology guidance for business owners who need strategic IT leadership without a full-time hire."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "variant": "counters",
+      "animate": false,
+      "items": [
+        {
+          "value": "50",
+          "suffix": "+",
+          "label": "Happy Clients"
+        },
+        {
+          "value": "120",
+          "suffix": "+",
+          "label": "Projects Shipped"
+        },
+        {
+          "value": "8",
+          "suffix": "yr",
+          "label": "In Business"
+        },
+        {
+          "value": "4.9",
+          "suffix": "/5",
+          "label": "Avg. Client Rating"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "header": {
+        "eyebrow": "FAQs",
+        "title": "Common *Questions*",
+        "align": "center"
+      },
+      "variant": "accordion",
+      "items": [
+        {
+          "q": "How long has Embtel Solutions been in business?",
+          "a": "Embtel Solutions has been in business for 8 years, serving clients across India, UK, and North America with digital solutions."
+        },
+        {
+          "q": "What makes Embtel Solutions different from other agencies?",
+          "a": "We focus on outcome over output, radical transparency, speed with quality, and building long-term partnerships. Our senior practitioners handle projects end-to-end without handoffs to juniors."
+        },
+        {
+          "q": "What industries does Embtel Solutions serve?",
+          "a": "We serve diverse industries including accounting, cleaning, cybersecurity, healthcare, home services, immigration, IT, legal, retail, and more."
+        },
+        {
+          "q": "How does Embtel Solutions ensure project quality?",
+          "a": "We deliver clean, documented code with knowledge transfer. Our team follows proven industry practices and conducts thorough code reviews on every project."
+        },
+        {
+          "q": "What is the typical project timeline?",
+          "a": "Most projects are completed in 2–6 weeks, depending on scope and complexity. We provide clear timelines and keep you updated throughout the process."
+        },
+        {
+          "q": "How do I get started with Embtel Solutions?",
+          "a": "Simply contact us through our website or book a free consultation. We'll discuss your project, goals, and determine if we're a good fit to work together."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Want to *work with us?*",
+      "body": "We take on a limited number of new partnerships each quarter. Tell us about your project and we'll let you know if we're a good fit.",
+      "buttons": [
+        {
+          "label": "Start a Conversation →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "See Our Work",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

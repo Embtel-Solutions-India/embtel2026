@@ -1,0 +1,204 @@
+{
+  "slug": "e-commerce",
+  "title": "E-Commerce",
+  "status": "published",
+  "type": "service",
+  "theme": {
+    "accent": "#10B981"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "E-Commerce"
+        }
+      ],
+      "heading": "E-Commerce that *Drives Revenue*",
+      "lead": "Build, optimize, and scale your online store with our comprehensive e-commerce solutions. From Shopify and WooCommerce to marketplace integrations and conversion optimization.",
+      "buttons": [
+        {
+          "label": "Build My Store →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "Our Approach",
+          "href": "/process",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "3",
+          "suffix": "x",
+          "label": "Avg Revenue Increase"
+        },
+        {
+          "value": "40",
+          "suffix": "%",
+          "label": "Conversion Lift"
+        },
+        {
+          "value": "24",
+          "suffix": "/7",
+          "label": "Store Uptime"
+        },
+        {
+          "value": "30",
+          "suffix": "d",
+          "label": "Avg Launch Time"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Offer",
+        "title": "E-Commerce solutions *that sell*",
+        "subtitle": "Turn visitors into customers with optimized stores, seamless checkout, and smart integrations.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Shopify & WooCommerce",
+          "body": "Full e-commerce platform builds with payment processing, shipping, inventory management, and customer portals."
+        },
+        {
+          "title": "Marketplace Integration",
+          "body": "List and manage products on Amazon, Etsy, eBay, or industry-specific marketplaces with centralized inventory."
+        },
+        {
+          "title": "Subscription Models",
+          "body": "Recurring revenue platforms for service businesses, communities, and content creators with automated billing."
+        },
+        {
+          "title": "Digital Products",
+          "body": "Online courses, downloadable guides, paid webinars, and community platforms to monetize your expertise."
+        },
+        {
+          "title": "Conversion Optimization",
+          "body": "A/B testing, funnel analysis, checkout optimization, and UX improvements to maximize revenue."
+        },
+        {
+          "title": "Payment Gateways",
+          "body": "Integration with Stripe, PayPal, Square, and local payment methods for seamless transactions worldwide."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "E-Commerce done *right*",
+        "subtitle": "We build stores that convert visitors into buyers and keep them coming back.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Strategy & Planning",
+          "body": "We analyze your market, competitors, and target audience to design a store strategy that maximizes conversions and revenue."
+        },
+        {
+          "num": "02",
+          "title": "Platform Selection",
+          "body": "We recommend the right platform (Shopify, WooCommerce, or custom) based on your needs, budget, and scalability requirements."
+        },
+        {
+          "num": "03",
+          "title": "Design & Development",
+          "body": "We build a beautiful, responsive store with optimized checkout, fast loading, and seamless user experience across all devices."
+        },
+        {
+          "num": "04",
+          "title": "Integration & Launch",
+          "body": "We connect payment gateways, shipping providers, inventory systems, and launch your store with full testing and training."
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Platforms We Use",
+        "title": "Industry-leading *e-commerce tools*",
+        "align": "center"
+      },
+      "items": [
+        {
+          "label": "Shopify"
+        },
+        {
+          "label": "WooCommerce"
+        },
+        {
+          "label": "Stripe"
+        },
+        {
+          "label": "PayPal"
+        },
+        {
+          "label": "BigCommerce"
+        },
+        {
+          "label": "Magento"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Services*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Web Development",
+          "body": "Custom e-commerce solutions",
+          "href": "/web-development"
+        },
+        {
+          "title": "Digital Marketing",
+          "body": "Drive traffic to your store",
+          "href": "/digital-marketing"
+        },
+        {
+          "title": "Business Automation",
+          "body": "Automate order processing",
+          "href": "/business-automation"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to sell *online?*",
+      "body": "Book a free e-commerce consultation. We'll help you choose the right platform and design a store that converts visitors into customers.",
+      "buttons": [
+        {
+          "label": "Get My Free Consultation →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false
+  },
+  "locked": false
+}

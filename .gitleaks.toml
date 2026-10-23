@@ -1,0 +1,11 @@
+title = "embtel"
+
+[extend]
+useDefault = true
+
+# Only the .env.example placeholder is allowlisted; nothing broader.
+[[allowlists]]
+description = "Placeholder values in .env.example"
+paths = ['''^\.env\.example$''']
+regexes = ['''<set-in-vercel>''']
+condition = "AND"
