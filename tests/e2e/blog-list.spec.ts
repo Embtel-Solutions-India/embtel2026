@@ -10,7 +10,8 @@ test('/blog lists the 6 legacy posts newest first, with one h1 and image alts', 
   expect(res?.status()).toBe(200);
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.locator('h1')).toHaveText('Ideas on growth, automation & tech.');
-  const titles = await page.locator('article h2').allTextContents();
+  // Admin specs running in parallel publish their own "E2E" posts; ignore those.
+  const titles = (await page.locator('article h2').allTextContents()).filter((t) => !t.includes('E2E'));
   expect(titles).toEqual(POSTS.map((p) => p.title));
   await expect(page.getByText('Secret Post')).toHaveCount(0);
   for (const img of await page.locator('article img').all()) expect(await img.getAttribute('alt')).toBeTruthy();
