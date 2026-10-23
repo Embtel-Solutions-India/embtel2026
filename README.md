@@ -102,7 +102,7 @@ database name). Legacy URLs (`/x.html`, `/blog-details?slug=`, `/da-ai/*`) 301 t
 
 `.github/workflows/ci.yml` runs on every push and pull request (Node 22): typecheck, lint, unit tests, build, Playwright e2e (in-memory MongoDB), gitleaks, `npm audit`. Dependabot (`.github/dependabot.yml`) opens weekly npm (root only) and GitHub Actions updates.
 
-- **gitleaks**: `.gitleaks.toml` extends the default rules and allowlists only the `<set-in-vercel>` placeholder in `.env.example`. `gitleaks/gitleaks-action@v2` is free for personal repos; org-owned repos need a `GITLEAKS_LICENSE` repository secret.
+- **gitleaks**: `.gitleaks.toml` extends the default rules and allowlists only the `<set-in-vercel>` placeholder in `.env.example`. CI runs the gitleaks CLI (v8.28.0, checksum-pinned) over the full history; no license or secret needed.
 - **Known audit exceptions**: the blocking gate is `npm audit --omit=dev --audit-level=high` (shipped dependencies; clean). The full audit runs non-blocking because `braces` (GHSA-vfj7-8cjw-p6xm, high, dev-only via `eslint-config-next` > `fast-glob` > `micromatch`) has no patched release yet. Remove `continue-on-error` and `--omit=dev` once a fix ships.
 
 ## Vercel (owner steps)
