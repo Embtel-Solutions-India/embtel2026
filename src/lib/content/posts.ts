@@ -1,4 +1,5 @@
 import { cacheLife, cacheTag } from 'next/cache';
+import { requestTime } from '@/lib/content/request-time';
 import { Types, type PipelineStage } from 'mongoose';
 import { connectDB } from '@/lib/db/connect';
 import { Blog } from '@/lib/db/models/Blog';
@@ -227,49 +228,49 @@ export async function loadTaxonomy(): Promise<{ categories: (Term & { count: num
 
 // ── cached wrappers (decision A: per-request render, cached reads) ─────────
 
-export async function getPublishedPost(slug: string) {
+async function getPublishedPostCached(slug: string) {
   'use cache';
   cacheTag(postTag(slug), POSTS_TAG);
   cacheLife('max');
   return loadPost(slug);
 }
 
-export async function listPublishedPosts(opts: ListOptions = {}) {
+async function listPublishedPostsCached(opts: ListOptions = {}) {
   'use cache';
   cacheTag(POSTS_TAG);
   cacheLife('max');
   return loadPosts(opts);
 }
 
-export async function getRelatedPosts(post: PublicPost, n = 3) {
+async function getRelatedPostsCached(post: PublicPost, n = 3) {
   'use cache';
   cacheTag(POSTS_TAG);
   cacheLife('max');
   return loadRelated(post, n);
 }
 
-export async function getCategory(slug: string) {
+async function getCategoryCached(slug: string) {
   'use cache';
   cacheTag(TAXONOMY_TAG, POSTS_TAG);
   cacheLife('max');
   return loadCategory(slug);
 }
 
-export async function getTag(slug: string) {
+async function getTagCached(slug: string) {
   'use cache';
   cacheTag(TAXONOMY_TAG, POSTS_TAG);
   cacheLife('max');
   return loadTag(slug);
 }
 
-export async function getAuthor(slug: string) {
+async function getAuthorCached(slug: string) {
   'use cache';
   cacheTag(POSTS_TAG);
   cacheLife('max');
   return loadAuthor(slug);
 }
 
-export async function listTaxonomy() {
+async function listTaxonomyCached() {
   'use cache';
   cacheTag(TAXONOMY_TAG, POSTS_TAG);
   cacheLife('max');
@@ -303,16 +304,27 @@ export async function loadAuthorSlugs(): Promise<string[]> {
   return users.map((u) => str(u.slug)).filter(Boolean);
 }
 
-export async function listPostIndex() {
+async function listPostIndexCached() {
   'use cache';
   cacheTag(POSTS_TAG);
   cacheLife('max');
   return loadPostIndex();
 }
 
-export async function listAuthorSlugs() {
+async function listAuthorSlugsCached() {
   'use cache';
   cacheTag(POSTS_TAG);
   cacheLife('max');
   return loadAuthorSlugs();
 }
+
+// Public readers wait for a request (connection()) so nothing reads the DB during `next build`.
+export const getPublishedPost = requestTime(getPublishedPostCached);
+export const listPublishedPosts = requestTime(listPublishedPostsCached);
+export const getRelatedPosts = requestTime(getRelatedPostsCached);
+export const getCategory = requestTime(getCategoryCached);
+export const getTag = requestTime(getTagCached);
+export const getAuthor = requestTime(getAuthorCached);
+export const listTaxonomy = requestTime(listTaxonomyCached);
+export const listPostIndex = requestTime(listPostIndexCached);
+export const listAuthorSlugs = requestTime(listAuthorSlugsCached);

@@ -63,6 +63,7 @@ async function main() {
     // Blank every optional variable so a developer's .env/.env.local can never leak into the test server.
     AWS_S3_PUBLIC_URL_BASE: '',
     SMTP_HOST: '',
+    SMTP_PORT: '',
     SMTP_USER: '',
     SMTP_PASS: '',
     SMTP_FROM: '',

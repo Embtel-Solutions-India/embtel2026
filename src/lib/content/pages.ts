@@ -1,4 +1,5 @@
 import { cacheLife, cacheTag } from 'next/cache';
+import { requestTime } from '@/lib/content/request-time';
 import { connectDB } from '@/lib/db/connect';
 import { PageModel } from '@/lib/db/models/Page';
 import { BlockSchema, PageSchema, SlugSchema, type Block, type Page } from './blocks';
@@ -55,16 +56,20 @@ export async function loadPublishedPages(): Promise<PageSummary[]> {
     }));
 }
 
-export async function getPublishedPage(slug: string): Promise<PublishedPage | null> {
+async function getPublishedPageCached(slug: string): Promise<PublishedPage | null> {
   'use cache';
   cacheTag(pageTag(slug), PAGES_TAG);
   cacheLife('max');
   return loadPublishedPage(slug);
 }
 
-export async function listPublishedPages(): Promise<PageSummary[]> {
+async function listPublishedPagesCached(): Promise<PageSummary[]> {
   'use cache';
   cacheTag(PAGES_TAG);
   cacheLife('max');
   return loadPublishedPages();
 }
+
+// Public readers wait for a request (connection()) so nothing reads the DB during `next build`.
+export const getPublishedPage = requestTime(getPublishedPageCached);
+export const listPublishedPages = requestTime(listPublishedPagesCached);

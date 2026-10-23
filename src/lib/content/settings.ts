@@ -1,4 +1,5 @@
 import { cacheLife, cacheTag } from 'next/cache';
+import { requestTime } from '@/lib/content/request-time';
 import { z } from 'zod';
 import { connectDB } from '@/lib/db/connect';
 import { Settings } from '@/lib/db/models/Settings';
@@ -109,9 +110,12 @@ export async function loadSiteSettings(): Promise<SiteSettings> {
   return out as SiteSettings;
 }
 
-export async function getSiteSettings(): Promise<SiteSettings> {
+async function getSiteSettingsCached(): Promise<SiteSettings> {
   'use cache';
   cacheTag(SETTINGS_TAG);
   cacheLife('max');
   return loadSiteSettings();
 }
+
+// Public readers wait for a request (connection()) so nothing reads the DB during `next build`.
+export const getSiteSettings = requestTime(getSiteSettingsCached);
