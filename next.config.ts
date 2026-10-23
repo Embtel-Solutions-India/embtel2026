@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
     authInterrupts: true,
     // Media uploads go through a server action: 5 MB file limit plus form overhead.
     serverActions: { bodySizeLimit: "6mb" },
+    // Every page renders per request (nonce CSP), so dev-only instant-navigation checks on each page are
+    // noise; only segments that set `instant` explicitly are validated.
+    instantInsights: { validationLevel: "manual-warning" },
   },
   images: {
     // AVIF first (usually 30–50% smaller than WebP); browsers without it get WebP.

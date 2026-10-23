@@ -19,8 +19,10 @@ export const instant = false;
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   await connection();
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
-      <body>{children}</body>
+    // data-scroll-behavior: keeps globals.css smooth scrolling off during route changes.
+    // suppressHydrationWarning (this element only): browser extensions add attributes to <body>.
+    <html lang="en" className={`${inter.variable} ${manrope.variable}`} data-scroll-behavior="smooth">
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
