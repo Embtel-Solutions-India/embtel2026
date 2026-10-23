@@ -51,6 +51,8 @@ async function main() {
   const env: NodeJS.ProcessEnv = {
     ...process.env,
     NODE_ENV: 'production',
+    // Only an explicit VERCEL_ENV (npm run lhci) counts; a pulled .env.local must not make e2e look like production.
+    VERCEL_ENV: process.env.VERCEL_ENV ?? '',
     SITE_URL: `http://localhost:${E2E_PORT}`,
     MONGODB_URI: uri,
     SESSION_SECRET: rnd(32),
