@@ -26,7 +26,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         Skip to content
       </a>
       <Header settings={settings} />
-      <main id="main" className="pt-[68px]">
+      <main id="main">
         {children}
       </main>
       <Footer settings={settings} />

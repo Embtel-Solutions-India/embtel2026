@@ -34,6 +34,7 @@
 ### Task 1: Repo hygiene and Next.js scaffold
 
 **Files:**
+
 - Create: `.gitignore`, `.editorconfig`, `package.json`, `tsconfig.json`, `next.config.ts`, `src/app/layout.tsx`, `src/app/page.tsx` (temporary placeholder: "Embtel — coming soon", `robots: noindex`), `vitest.config.ts`, `playwright.config.ts`, `.env.example`, `README.md`
 - Remove from git index: root `node_modules/` (`git rm -r --cached node_modules`)
 
@@ -48,25 +49,36 @@
 ### Task 2: Validated environment config
 
 **Files:**
+
 - Create: `src/lib/env.ts`
 - Test: `tests/unit/env.test.ts`
 
 **Interfaces:**
+
 - Produces: `parseEnv(source: Record<string, string | undefined>): Env` and `env: Env` (lazy, parses `process.env` on first access). `Env = { NODE_ENV: 'development'|'test'|'production'; SITE_URL: string; MONGODB_URI: string; SESSION_SECRET: string; ENCRYPTION_KEY: string; AWS_S3_BUCKET: string; AWS_REGION: string; AWS_ACCESS_KEY_ID: string; AWS_SECRET_ACCESS_KEY: string; AWS_S3_PUBLIC_URL_BASE?: string; SMTP_HOST?: string; SMTP_PORT: number; SMTP_USER?: string; SMTP_PASS?: string; SMTP_FROM?: string }`.
 
 - [ ] **Step 1: Write failing tests**
 
 ```ts
-it('throws naming every missing required var, without values', () => {
-  expect(() => parseEnv({ MONGODB_URI: 'mongodb://secret-host/x' }))
-    .toThrowError(/SESSION_SECRET[\s\S]*ENCRYPTION_KEY/);
-  try { parseEnv({ MONGODB_URI: 'mongodb://secret-host/x' }); } catch (e) {
-    expect(String(e)).not.toContain('secret-host');
+it("throws naming every missing required var, without values", () => {
+  expect(() =>
+    parseEnv({ MONGODB_URI: "mongodb://secret-host/x" }),
+  ).toThrowError(/SESSION_SECRET[\s\S]*ENCRYPTION_KEY/);
+  try {
+    parseEnv({ MONGODB_URI: "mongodb://secret-host/x" });
+  } catch (e) {
+    expect(String(e)).not.toContain("secret-host");
   }
 });
-it('rejects SESSION_SECRET shorter than 32 chars', () => { /* expect throw /SESSION_SECRET/ */ });
-it('rejects ENCRYPTION_KEY that is not 32 bytes base64', () => { /* expect throw /ENCRYPTION_KEY/ */ });
-it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* valid input → env.SMTP_PORT === 587 */ });
+it("rejects SESSION_SECRET shorter than 32 chars", () => {
+  /* expect throw /SESSION_SECRET/ */
+});
+it("rejects ENCRYPTION_KEY that is not 32 bytes base64", () => {
+  /* expect throw /ENCRYPTION_KEY/ */
+});
+it("defaults SMTP_PORT to 587 and SITE_URL has no trailing slash", () => {
+  /* valid input → env.SMTP_PORT === 587 */
+});
 ```
 
 - [ ] **Step 2:** Run `npx vitest run tests/unit/env.test.ts` → FAIL (module missing).
@@ -77,10 +89,12 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 3: Database connection
 
 **Files:**
+
 - Create: `src/lib/db/connect.ts`
 - Test: `tests/unit/db-connect.test.ts`, `tests/helpers/mongo.ts`
 
 **Interfaces:**
+
 - Produces: `connectDB(): Promise<typeof mongoose>` — caches the connection promise on `globalThis.__mongoose` so serverless invocations and hot reload reuse it; `strictQuery: true`. Test helper `startMemoryMongo(): Promise<{ uri: string; stop(): Promise<void> }>`.
 
 - [ ] **Step 1:** Test `returns the same connection on repeated calls` (call twice against memory server → same object, `mongoose.connection.readyState === 1`).
@@ -90,10 +104,12 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 4: Permissions map
 
 **Files:**
+
 - Create: `src/lib/auth/permissions.ts`
 - Test: `tests/unit/permissions.test.ts`
 
 **Interfaces:**
+
 - Produces: `type Role = 'admin' | 'marketing'`; `type Permission = 'blog.write' | 'blog.publish' | 'blog.deletePermanent' | 'taxonomy.write' | 'taxonomy.delete' | 'media.write' | 'seo.write' | 'seo.insights' | 'page.editContent' | 'page.publish' | 'page.editLocked' | 'page.create' | 'page.delete' | 'nav.write' | 'settings.write' | 'integrations.write' | 'users.manage' | 'leads.view' | 'leads.export' | 'leads.delete' | 'audit.view' | 'profile.self'`; `can(role: Role, permission: Permission): boolean`; `normalizeRole(raw: string): Role` (`'editor'` → `'marketing'`, unknown → throws).
 
 - [ ] **Step 1:** Table-driven test of the full matrix from spec 6.5. Marketing **true** for: `blog.write, blog.publish, taxonomy.write, media.write, seo.write, seo.insights, page.editContent, leads.view, profile.self`. Marketing **false** for all others. Admin **true** for every permission. Plus `normalizeRole('editor') === 'marketing'` and `normalizeRole('root')` throws.
@@ -103,10 +119,12 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 5: User model
 
 **Files:**
+
 - Create: `src/lib/db/models/User.ts`
 - Test: `tests/unit/user-model.test.ts`
 
 **Interfaces:**
+
 - Consumes: `connectDB` (Task 3), `Role` (Task 4).
 - Produces: Mongoose model `User` on the existing `users` collection with legacy fields (`name, email (unique, lowercase, trimmed), password (select:false), role, avatar, active, lastLoginAt, passwordChangedAt, passwordResetToken, passwordResetExpires`) plus author fields (`slug` unique sparse, `bio`, `jobTitle`, `sameAs: string[]`, `expertise: string[]`). `role` enum `['admin','marketing']`. Methods: `comparePassword(candidate: string): Promise<boolean>`, `changedPasswordAfter(jwtIatSeconds: number): boolean`, `createPasswordResetToken(): string` (stores sha256, 30-min expiry), `toSafeJSON()`. Pre-save hashes with bcryptjs cost 12 and sets `passwordChangedAt` on change.
 
@@ -117,10 +135,12 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 6: Sessions
 
 **Files:**
+
 - Create: `src/lib/auth/session.ts` (server-only), `src/lib/auth/token.ts` (Edge-safe)
 - Test: `tests/unit/session.test.ts`
 
 **Interfaces:**
+
 - Consumes: `env.SESSION_SECRET`, `User`, `can`.
 - Produces:
   - `token.ts`: `signSessionToken(userId: string, remember: boolean): Promise<string>` (HS256, `exp` 1 d or 30 d, `iat`); `verifySessionToken(token: string): Promise<{ sub: string; iat: number } | null>`.
@@ -133,15 +153,17 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 7: Login, logout, admin guard
 
 **Files:**
+
 - Create: `src/app/admin/(auth)/login/page.tsx`, `src/app/admin/(auth)/login/actions.ts`, `src/app/admin/dashboard/page.tsx` (placeholder showing name + role), `src/app/admin/logout/route.ts` (POST), `src/middleware.ts`, `src/lib/auth/redirect.ts`, `src/lib/auth/rate-limit.ts`, `src/lib/db/models/RateLimit.ts`
 - Test: `tests/unit/redirect.test.ts`, `tests/unit/rate-limit.test.ts`, `tests/e2e/admin-auth.spec.ts`
 
 **Interfaces:**
+
 - Consumes: Task 6.
 - Produces: `safeRedirect(target: string | null, fallback = '/admin/dashboard'): string` (allows only paths starting with `/admin/` and not `//` or `/\`); `hitRateLimit(key: string, max: number, windowSec: number): Promise<{ allowed: boolean }>` backed by a Mongo collection with a TTL index (no extra service); `loginAction(prev, formData)` server action returning `{ error?: string }`.
 
 - [ ] **Step 1: Failing unit tests:** `safeRedirect` cases — `/admin/blogs` kept; `https://evil.com`, `//evil.com`, `/\\evil.com`, `/blog` → fallback. `rate limits login` — 10 hits allowed, 11th `allowed:false`, new window allowed.
-- [ ] **Step 2: Failing e2e** (Playwright, memory Mongo, test user created in `globalSetup` with a runtime-random password): wrong password → generic "Incorrect email or password."; `  Admin@Example.com ` with right password → lands on `/admin/dashboard` showing role; unauthenticated `/admin/dashboard` → redirected to `/admin/login?redirect=%2Fadmin%2Fdashboard`; logout → back to login, dashboard blocked again.
+- [ ] **Step 2: Failing e2e** (Playwright, memory Mongo, test user created in `globalSetup` with a runtime-random password): wrong password → generic "Incorrect email or password."; ` Admin@Example.com` with right password → lands on `/admin/dashboard` showing role; unauthenticated `/admin/dashboard` → redirected to `/admin/login?redirect=%2Fadmin%2Fdashboard`; logout → back to login, dashboard blocked again.
 - [ ] **Step 3:** Run both → FAIL.
 - [ ] **Step 4:** Implement. Middleware: for `/admin/*` except `/admin/login|forgot-password|reset-password/*`, `verifySessionToken` from cookie or redirect; it only checks signature/expiry (Edge), DB checks happen in `requireUser`. Login action: Zod-validate, lowercase/trim email, rate-limit key `login:${email}:${ip}`, generic error on any failure, update `lastLoginAt`, set cookie, `redirect(safeRedirect(...))`. Login page labelled fields, `autocomplete` attributes, `noindex`.
 - [ ] **Step 5:** Run unit + e2e → PASS.
@@ -150,10 +172,12 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 8: Admin CLI and DB migration
 
 **Files:**
+
 - Create: `scripts/create-admin.ts`, `scripts/migrate-db.ts`, `src/lib/db/migrations/001-roles-and-authors.ts`
 - Test: `tests/unit/migration-001.test.ts`
 
 **Interfaces:**
+
 - Produces: `runMigration001(db: mongoose.Connection): Promise<{ rolesUpdated: number; slugsAdded: number }>` — sets `role:'marketing'` where `'editor'`; adds unique `slug` (slugified name, numeric suffix on collision) where missing; idempotent. `create-admin.ts` prompts (stdin, hidden password, min 12 chars) for name/email/password and creates an `admin` — never reads credentials from args or files.
 
 - [ ] **Step 1: Failing tests:** editor→marketing; two users named "Alex Kim" → `alex-kim`, `alex-kim-2`; running twice → second run returns `{0,0}`.
@@ -164,10 +188,12 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 9: Audit log
 
 **Files:**
+
 - Create: `src/lib/db/models/AuditLog.ts`, `src/lib/audit.ts`
 - Test: `tests/unit/audit.test.ts`
 
 **Interfaces:**
+
 - Produces: `audit(entry: { actorId: string; action: string; target: { type: string; id?: string }; meta?: Record<string, unknown> }): Promise<void>` — `action` like `'blog.publish'`; strips keys matching `/password|token|secret|key/i` from `meta` before saving. Model indexed on `createdAt` desc and `actorId`.
 
 - [ ] **Step 1:** Failing tests: entry saved with timestamp; `meta: { apiToken: 'x', title: 'Hi' }` saved as `{ title: 'Hi' }`.
@@ -177,10 +203,12 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 10: Security headers
 
 **Files:**
+
 - Modify: `src/middleware.ts`, `next.config.ts`
 - Test: `tests/e2e/security-headers.spec.ts`
 
 **Interfaces:**
+
 - Produces: per-request CSP nonce available via `headers().get('x-nonce')` for later phases' `next/script` tags.
 
 - [ ] **Step 1: Failing e2e:** `/` and `/admin/login` responses include `Content-Security-Policy` with `script-src 'self' 'nonce-…'` and **no** `'unsafe-inline'` in `script-src`; `Strict-Transport-Security` (`max-age=63072000; includeSubDomains; preload`), `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy` (camera/mic/geolocation off); `/admin/*` also has `X-Robots-Tag: noindex, nofollow` and `frame-ancestors 'none'`.
@@ -190,6 +218,7 @@ it('defaults SMTP_PORT to 587 and SITE_URL has no trailing slash', () => { /* va
 ### Task 11: CI
 
 **Files:**
+
 - Create: `.github/workflows/ci.yml`, `.gitleaks.toml` (default rules + allowlist only for `.env.example` placeholders)
 
 - [ ] **Step 1:** Workflow on push/PR: Node 20, `npm ci`, `typecheck`, `lint`, `test`, `build`, Playwright e2e (installs browsers, uses memory Mongo), `gitleaks/gitleaks-action`, `npm audit --audit-level=high`. Add `.github/dependabot.yml` (npm + actions, weekly).
