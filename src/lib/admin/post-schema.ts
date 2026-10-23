@@ -41,7 +41,7 @@ export const PostInputSchema = z
         ogImage: ImageUrlSchema.default(''),
         noindex: z.boolean().default(false),
       })
-      .default({}),
+      .prefault({}),
     lastReviewedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable().default(null),
     // The updatedAt the editor loaded (ISO); null when creating. Guards against overwriting someone else's save.
     expectedUpdatedAt: z.string().nullable(),

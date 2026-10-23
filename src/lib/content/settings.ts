@@ -27,7 +27,7 @@ const FIELDS = {
         postalCode: z.string().default(''),
         country: z.literal('US').default('US'),
       })
-      .default({}),
+      .prefault({}),
     openingHours: z.array(z.string()).default([]),
     // Further offices (e.g. India) besides the primary US address; shown in the footer and JSON-LD.
     offices: z

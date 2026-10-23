@@ -16,7 +16,7 @@ export const LeadInputSchema = z.object({
   businessName: z.string().trim().max(120).default(''),
   service: z.union([z.enum(SERVICES), z.literal('')]).default(''),
   message: z.string().trim().min(1, 'Tell us a little about your project').max(5000),
-  smsConsent: z.literal(true, { errorMap: () => ({ message: 'Please agree to receive SMS messages so we can follow up' }) }),
+  smsConsent: z.literal(true, { error: 'Please agree to receive SMS messages so we can follow up' }),
   website: z.string().max(200).default(''), // honeypot: humans never see or fill it
 });
 
