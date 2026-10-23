@@ -39,7 +39,7 @@ jobs:
         name: Resolve mongodb-memory-server version
         run: echo "version=$(node -p "require('./package-lock.json').packages['node_modules/mongodb-memory-server'].version")" >> "$GITHUB_OUTPUT"
       - name: Cache mongodb-memory-server binary
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ env.MONGOMS_DOWNLOAD_DIR }}
           key: mongodb-binaries-${{ runner.os }}-${{ steps.mms.outputs.version }}
