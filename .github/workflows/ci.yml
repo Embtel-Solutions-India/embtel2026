@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       # Secret scan first so it is never hidden behind other failures. The gitleaks CLI (MIT) scans the
@@ -31,7 +31,7 @@ jobs:
           echo "a65b5253807a68ac0cafa4414031fd740aeb55f54fb7e55f386acb52e6a840eb  gitleaks.tgz" | sha256sum -c -
           tar -xzf gitleaks.tgz -C "$RUNNER_TEMP" gitleaks
           "$RUNNER_TEMP/gitleaks" git . --redact --no-banner -c .gitleaks.toml
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -39,7 +39,7 @@ jobs:
         name: Resolve mongodb-memory-server version
         run: echo "version=$(node -p "require('./package-lock.json').packages['node_modules/mongodb-memory-server'].version")" >> "$GITHUB_OUTPUT"
       - name: Cache mongodb-memory-server binary
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ env.MONGOMS_DOWNLOAD_DIR }}
           key: mongodb-binaries-${{ runner.os }}-${{ steps.mms.outputs.version }}
