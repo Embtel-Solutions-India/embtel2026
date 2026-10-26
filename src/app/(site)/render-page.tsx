@@ -10,7 +10,7 @@ import { getSiteSettings } from '@/lib/content/settings';
 import { pageJsonLd } from '@/lib/seo/jsonld';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
-// Shared by `/` (slug "home") and `/[slug]`. Rendered per request (decision A); reads are cached.
+// Shared by `/` (slug "home") and `/[slug]`. Rendered per request (decision A, nonce CSP); the page comes from the build, settings from the cached DB read.
 export async function loadPageOr404(slug: string) {
   await connection();
   const [page, settings] = await Promise.all([getPublishedPage(slug), getSiteSettings()]);
