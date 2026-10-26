@@ -4,7 +4,6 @@ import { startMemoryMongo } from '../helpers/mongo';
 
 let mongo: Awaited<ReturnType<typeof startMemoryMongo>>;
 const db = () => mongoose.connection.db!;
-const pages = () => db().collection('pages');
 const id = () => new mongoose.Types.ObjectId();
 
 beforeAll(async () => {
@@ -24,7 +23,6 @@ beforeAll(async () => {
     { ...base, slug: 'draft-post', status: 'draft' },
     { ...base, slug: 'future-post', status: 'published', publishedAt: new Date(Date.now() + 86_400_000) },
   ]);
-  await pages().insertMany([{ slug: 'about', status: 'published' }, { slug: 'home', status: 'published' }]);
 });
 afterAll(async () => {
   vi.useRealTimers();
@@ -42,12 +40,23 @@ describe('isKnownPath', () => {
     }
   });
 
-  it('knows a page or post published a moment ago, even while the cached index is fresh', async () => {
+  it('answers site page URLs (and bot probes) from the build, never the database', async () => {
     const { isKnownPath } = await import('@/lib/content/page-index');
-    expect(await isKnownPath('/about')).toBe(true); // index just loaded
-    await pages().insertOne({ slug: 'new-page', status: 'published' });
+    const { Blog } = await import('@/lib/db/models/Blog');
+    const distinct = vi.spyOn(Blog, 'distinct');
+    const exists = vi.spyOn(Blog, 'exists');
+    expect(await isKnownPath('/about')).toBe(true);
+    expect(await isKnownPath('/wp-login')).toBe(false);
+    expect(await isKnownPath('/home')).toBe(false);
+    expect(distinct).not.toHaveBeenCalled();
+    expect(exists).not.toHaveBeenCalled();
+    vi.restoreAllMocks();
+  });
+
+  it('knows a post published a moment ago, even while the cached index is fresh', async () => {
+    const { isKnownPath } = await import('@/lib/content/page-index');
+    expect(await isKnownPath('/blog/public-post')).toBe(true); // index just loaded
     await db().collection('blogs').insertOne({ slug: 'new-post', status: 'published', isDeleted: false, publishedAt: new Date(Date.now() - 1000), tags: [] });
-    expect(await isKnownPath('/new-page')).toBe(true);
     expect(await isKnownPath('/blog/new-post')).toBe(true);
     expect(await isKnownPath('/still-unknown')).toBe(false);
     expect(await isKnownPath('/blog/draft-post')).toBe(false);

@@ -3,7 +3,7 @@ import { audit } from '@/lib/audit';
 import { connectDB } from '@/lib/db/connect';
 import { Blog } from '@/lib/db/models/Blog';
 import { Category } from '@/lib/db/models/Category';
-import { PageModel } from '@/lib/db/models/Page';
+import { PUBLISHED_PAGES } from '@/lib/content/pages';
 import { Tag } from '@/lib/db/models/Tag';
 import { User } from '@/lib/db/models/User';
 import type { UserDoc } from '@/lib/db/models/User';
@@ -313,10 +313,8 @@ export async function loadPostOptions(user: UserDoc): Promise<{ categories: Opti
 // Titles/descriptions of every other post and page, for the SEO panel's uniqueness checks.
 export async function loadScoreContext(excludePostId: string | null): Promise<{ otherTitles: string[]; otherDescriptions: string[] }> {
   await connectDB();
-  const [posts, pages] = await Promise.all([
-    Blog.find(excludePostId && isValidObjectId(excludePostId) ? { _id: { $ne: excludePostId } } : {}, { title: 1, shortDescription: 1, 'seo.metaTitle': 1, 'seo.metaDescription': 1 }).lean<Raw[]>(),
-    PageModel.find({}, { title: 1, 'seo.metaTitle': 1, 'seo.metaDescription': 1 }).lean<Raw[]>(),
-  ]);
+  const posts = await Blog.find(excludePostId && isValidObjectId(excludePostId) ? { _id: { $ne: excludePostId } } : {}, { title: 1, shortDescription: 1, 'seo.metaTitle': 1, 'seo.metaDescription': 1 }).lean<Raw[]>();
+  const pages: Raw[] = PUBLISHED_PAGES.map((p) => ({ title: p.title, seo: p.seo }));
   const seo = (d: Raw) => (d.seo ?? {}) as Raw;
   const nonEmpty = (xs: unknown[]) => xs.filter((x): x is string => typeof x === 'string' && x.trim() !== '');
   return {

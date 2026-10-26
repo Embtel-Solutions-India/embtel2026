@@ -8,9 +8,9 @@ import { refreshContent } from '@/lib/admin/revalidate';
 
 describe('refreshContent', () => {
   it('expires the public cache tags for what changed', () => {
-    refreshContent({ posts: ['a'], taxonomy: true, pages: ['about'], settings: true });
+    refreshContent({ posts: ['a'], taxonomy: true, settings: true });
     const tags = updateTag.mock.calls.map((c) => c[0]);
-    expect(tags).toEqual(expect.arrayContaining(['posts', 'post:a', 'taxonomy', 'pages', 'page:about', 'settings']));
+    expect(tags).toEqual(expect.arrayContaining(['posts', 'post:a', 'taxonomy', 'settings']));
   });
 
   it('allPosts expires every post cache', () => {

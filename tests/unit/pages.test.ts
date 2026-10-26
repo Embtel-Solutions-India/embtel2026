@@ -1,99 +1,46 @@
-import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
-import { randomBytes } from 'node:crypto';
-import mongoose from 'mongoose';
-import { startMemoryMongo } from '../helpers/mongo';
+import { describe, expect, it } from 'vitest';
+import { readdirSync, readFileSync } from 'node:fs';
+import { PageSchema } from '@/lib/content/blocks';
+import { PAGE_FILES } from '../../content/pages';
+import { getPublishedPage, indexPages, listPublishedPages, PAGE_SLUGS } from '@/lib/content/pages';
 
-let mongo: Awaited<ReturnType<typeof startMemoryMongo>>;
-const pages = () => mongoose.connection.db!.collection('pages');
+const files = readdirSync('content/pages').filter((f) => f.endsWith('.json'));
 
-const doc = (over: Record<string, unknown> = {}) => ({
-  slug: 'law-industry',
-  title: 'Law Industry',
-  status: 'published',
-  type: 'industry',
-  theme: { accent: '#1A6BFF' },
-  blocks: [{ type: 'cta', heading: 'Ready?', buttons: [{ label: 'Go', href: '/contact' }] }],
-  seo: { noindex: false },
-  locked: false,
-  updatedAt: new Date('2026-10-01T00:00:00Z'),
-  ...over,
-});
-
-beforeAll(async () => {
-  mongo = await startMemoryMongo();
-  Object.assign(process.env, {
-    NODE_ENV: 'test',
-    SITE_URL: 'https://www.embtelsolutions.com',
-    MONGODB_URI: mongo.uri,
-    SESSION_SECRET: randomBytes(32).toString('hex'),
-    ENCRYPTION_KEY: randomBytes(32).toString('base64'),
-    AWS_S3_BUCKET: 'test-bucket',
-    AWS_REGION: 'us-east-1',
-    AWS_ACCESS_KEY_ID: randomBytes(8).toString('hex'),
-    AWS_SECRET_ACCESS_KEY: randomBytes(16).toString('hex'),
-  });
-  const { connectDB } = await import('@/lib/db/connect');
-  await connectDB();
-});
-
-afterEach(async () => {
-  await pages().deleteMany({});
-  vi.restoreAllMocks();
-});
-
-afterAll(async () => {
-  await mongo?.stop();
-});
-
-describe('loadPublishedPage', () => {
-  it('returns a published page as a plain object', async () => {
-    const { loadPublishedPage } = await import('@/lib/content/pages');
-    await pages().insertOne(doc());
-    const p = await loadPublishedPage('law-industry');
-    expect(p?.title).toBe('Law Industry');
-    expect(p?.blocks).toHaveLength(1);
-    expect(typeof p?.id).toBe('string');
-    expect(p?.updatedAt).toBe('2026-10-01T00:00:00.000Z');
+describe('bundled site pages', () => {
+  it('content/pages/index.ts lists every page file', () => {
+    expect(PAGE_FILES).toHaveLength(files.length);
+    const listed = new Set((PAGE_FILES as { slug: string }[]).map((p) => p.slug));
+    for (const f of files) expect(listed).toContain(JSON.parse(readFileSync(`content/pages/${f}`, 'utf8')).slug);
   });
 
-  it('returns null for a draft', async () => {
-    const { loadPublishedPage } = await import('@/lib/content/pages');
-    await pages().insertOne(doc({ status: 'draft' }));
-    expect(await loadPublishedPage('law-industry')).toBeNull();
+  // The loader drops an invalid block (or page) at runtime; here it must fail instead, so it never ships.
+  it.each(files)('%s is fully valid', (f) => {
+    const r = PageSchema.safeParse(JSON.parse(readFileSync(`content/pages/${f}`, 'utf8')));
+    expect(r.success ? [] : r.error.issues.map((i) => i.path.join('.'))).toEqual([]);
+  });
+
+  it('serves published pages by slug, including home', async () => {
+    expect(PAGE_SLUGS.has('home')).toBe(true);
+    const p = await getPublishedPage('law-industry');
+    expect(p?.title).toBeTruthy();
+    expect(p?.blocks.length).toBeGreaterThan(0);
   });
 
   it('returns null for a missing, reserved or malformed slug', async () => {
-    const { loadPublishedPage } = await import('@/lib/content/pages');
-    await pages().insertOne(doc({ slug: 'admin' }));
-    expect(await loadPublishedPage('nope')).toBeNull();
-    expect(await loadPublishedPage('admin')).toBeNull();
-    expect(await loadPublishedPage('../etc')).toBeNull();
+    expect(await getPublishedPage('nope')).toBeNull();
+    expect(await getPublishedPage('admin')).toBeNull();
+    expect(await getPublishedPage('../etc')).toBeNull();
   });
 
-  it('skips invalid blocks', async () => {
-    const { loadPublishedPage } = await import('@/lib/content/pages');
-    const log = vi.spyOn(console, 'error').mockImplementation(() => {});
-    await pages().insertOne(doc({ blocks: [{ type: 'hero', variant: 'page' }, doc().blocks[0]] }));
-    const p = await loadPublishedPage('law-industry');
-    expect(p?.blocks.map((b) => b.type)).toEqual(['cta']);
-    expect(log).toHaveBeenCalledTimes(1);
-    expect(log).toHaveBeenCalledWith('[page] skipped invalid block law-industry#0');
+  it('never serves a draft or an invalid page', () => {
+    const home = JSON.parse(readFileSync('content/pages/home.json', 'utf8'));
+    const pages = indexPages([home, { ...home, slug: 'secret-draft', status: 'draft' }, { ...home, slug: 'bad-accent', theme: { accent: 'red;x' } }]);
+    expect([...pages.keys()]).toEqual(['home']);
   });
 
-  it('returns null when the stored accent is unsafe', async () => {
-    const { loadPublishedPage } = await import('@/lib/content/pages');
-    vi.spyOn(console, 'error').mockImplementation(() => {});
-    await pages().insertOne(doc({ theme: { accent: 'red;x:url(y)' } }));
-    expect(await loadPublishedPage('law-industry')).toBeNull();
-  });
-});
-
-describe('loadPublishedPages', () => {
-  it('lists only published pages with their dates', async () => {
-    const { loadPublishedPages } = await import('@/lib/content/pages');
-    await pages().insertMany([doc(), doc({ slug: 'secret', status: 'draft' }), doc({ slug: 'home', type: 'standard' })]);
-    const list = await loadPublishedPages();
-    expect(list.map((p) => p.slug).sort()).toEqual(['home', 'law-industry']);
-    expect(list[0]).toHaveProperty('updatedAt');
+  it('lists every published page once', async () => {
+    const list = await listPublishedPages();
+    expect(list.map((p) => p.slug)).toEqual([...PAGE_SLUGS]);
+    expect(new Set(list.map((p) => p.slug)).size).toBe(list.length);
   });
 });

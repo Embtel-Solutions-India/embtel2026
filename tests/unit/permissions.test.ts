@@ -3,7 +3,7 @@ import { can, normalizeRole, PERMISSIONS } from '@/lib/auth/permissions';
 
 const marketingTrue = new Set<string>([
   'blog.write', 'blog.publish', 'taxonomy.write', 'media.write', 'seo.write',
-  'seo.insights', 'page.editContent', 'page.create', 'leads.view', 'profile.self',
+  'seo.insights', 'leads.view', 'profile.self',
 ]);
 
 describe('permissions', () => {

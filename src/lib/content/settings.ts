@@ -1,6 +1,7 @@
 import { cacheLife, cacheTag } from 'next/cache';
 import { requestTime } from '@/lib/content/request-time';
 import { z } from 'zod';
+import settingsFile from '../../../content/settings.json';
 import { connectDB } from '@/lib/db/connect';
 import { Settings } from '@/lib/db/models/Settings';
 import { isAllowedImageUrl } from './image-hosts';
@@ -95,17 +96,22 @@ export const DEFAULT_SETTINGS: SiteSettings = SiteSettingsSchema.parse({
   defaultOgImage: '',
 });
 
-// Uncached loader (tests call this). Each field is validated on its own so one bad field
-// falls back to its default instead of taking the header/footer down.
+// The repo's content/settings.json is the base, so a fresh database still renders a full header/footer.
+// Integrations are the exception: its production IDs (Ads, Formspree, …) must never fire from a database that
+// hasn't stored them, e.g. a staging copy — they come from the database (seed or /admin/integrations) only.
+const FILE_SETTINGS: SiteSettings = { ...SiteSettingsSchema.parse(settingsFile), integrations: DEFAULT_SETTINGS.integrations };
+
+// Uncached loader (tests call this). Admin-saved fields override the file; each is validated on its own so
+// one bad field falls back to the file's value instead of taking the header/footer down.
 export async function loadSiteSettings(): Promise<SiteSettings> {
   await connectDB();
   const doc = (await Settings.findOne({ key: 'site' }).lean()) as Record<string, unknown> | null;
-  const out: Record<string, unknown> = { ...DEFAULT_SETTINGS };
+  const out: Record<string, unknown> = { ...FILE_SETTINGS };
   for (const [field, schema] of Object.entries(FIELDS)) {
     if (doc?.[field] === undefined) continue;
     const parsed = schema.safeParse(doc[field]);
     if (parsed.success) out[field] = parsed.data;
-    else console.error('[settings] invalid field, using default:', field);
+    else console.error('[settings] invalid field, using content/settings.json:', field);
   }
   return out as SiteSettings;
 }

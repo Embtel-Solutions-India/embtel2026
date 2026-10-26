@@ -24,7 +24,7 @@ Embtel Solutions is a US company selling web, automation and AI services to US s
    - SEO/AEO/GEO tooling for every post and page.
    - Keyword/trend suggestions from **Google Search Console** data.
    - **Integrations** screen (Google Ads, GA4, GTM, Search Console, Formspree, Tawk.to, Elfsight; WhatsApp button in Settings).
-   - Pages are edited through **plain fields** (title, search snippet, top-section texts and buttons, FAQs) — no block editor (owner, 2026-10-22). Ads landing pages are locked to Admins.
+   - ~~Pages are edited through plain fields in the admin~~ — superseded 2026-10-26 (owner): **site pages live in the repo** (`content/pages/*.json`, listed in `content/pages/index.ts`) and ship with each deploy; there is no page editor. Only the blog (posts, categories, tags, authors), settings and integrations are edited in the admin.
 6. Leads from the contact form are stored in our own database and forwarded to **Formspree** (owner, 2026-10-22: the live form already uses it), which emails the team.
 
 ## 3. Non-goals (v1)
@@ -151,7 +151,7 @@ Generated for every public URL from data, never hand-written per page:
 - Internal linking: related posts by category/tags; "related services" on posts by tag→service mapping set in admin.
 - IndexNow ping to Bing/Yandex on publish/update. *(Architect's call — cheap and helps Bing/Copilot freshness.)*
 
-**Admin SEO panel** (on every post and page editor), live, rule-based score with a checklist:
+**Admin SEO panel** (on every post editor), live, rule-based score with a checklist:
 - focus keyword in title, H1, slug, first 100 words, meta description; meta title/description length; image alt texts present; at least N internal links; readability (sentence/paragraph length); FAQ present; key takeaways present (AEO); sources cited (GEO); author bio present; not duplicate title/description across site.
 - Google-style SERP preview and social-card preview.
 - Score is advisory; it never blocks publishing.

@@ -17,11 +17,6 @@ beforeAll(async () => {
   mongo = await startMemoryMongo();
   const { connectDB } = await import('@/lib/db/connect');
   await connectDB(mongo.uri);
-  await db().collection('pages').insertMany([
-    { slug: 'web-development', title: 'Web Development', status: 'published', type: 'service', blocks: [] },
-    { slug: 'about', title: 'About', status: 'published', type: 'standard', blocks: [] },
-    { slug: 'secret-landing', title: 'Secret', status: 'draft', type: 'landing', blocks: [] },
-  ]);
 });
 afterAll(async () => mongo?.stop());
 
@@ -65,7 +60,9 @@ describe('tags', () => {
     expect((await db().collection('tags').findOne({ slug: t.slug }))?.serviceSlug).toBe('web-development');
     await expect(saveTag({ name: 'Bad', serviceSlug: 'about' }, actor)).rejects.toThrow(/service/i);
     await expect(saveTag({ name: 'Bad2', serviceSlug: 'secret-landing' }, actor)).rejects.toThrow(/service/i);
-    expect((await serviceOptions()).map((o) => o.slug)).toEqual(['web-development']);
+    const options = (await serviceOptions()).map((o) => o.slug);
+    expect(options).toContain('web-development');
+    expect(options).not.toContain('about');
   });
 
   it('removes a deleted tag from trashed posts', async () => {

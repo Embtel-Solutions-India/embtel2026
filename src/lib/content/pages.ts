@@ -1,75 +1,48 @@
-import { cacheLife, cacheTag } from 'next/cache';
-import { requestTime } from '@/lib/content/request-time';
-import { connectDB } from '@/lib/db/connect';
-import { PageModel } from '@/lib/db/models/Page';
+import { PAGE_FILES } from '../../../content/pages';
 import { BlockSchema, PageSchema, SlugSchema, type Block, type Page } from './blocks';
 
-export const PAGES_TAG = 'pages';
-export const pageTag = (slug: string) => `page:${slug}`;
+// Site pages live in the repo (content/pages/*.json) and ship with the build; only the blog is in the database.
+export type PublishedPage = Omit<Page, 'blocks' | 'publishedAt'> & { blocks: Block[] };
+export type PageSummary = { slug: string; title: string; type: Page['type']; noindex: boolean };
 
-export type PublishedPage = Omit<Page, 'blocks' | 'publishedAt'> & {
-  id: string;
-  blocks: Block[];
-  updatedAt: string;
-};
-export type PageSummary = { slug: string; title: string; type: Page['type']; noindex: boolean; updatedAt: string };
-
-const iso = (d: unknown) => (d instanceof Date ? d.toISOString() : new Date(0).toISOString());
-
-// Uncached loaders (tests call these). Invalid blocks are dropped one by one so a single bad block
-// can't take a page down; an invalid page shell (slug, accent, …) is never rendered.
-export async function loadPublishedPage(slug: string): Promise<PublishedPage | null> {
-  if (!SlugSchema.safeParse(slug).success) return null;
-  await connectDB();
-  const doc = (await PageModel.findOne({ slug, status: 'published' }).lean()) as Record<string, unknown> | null;
-  if (!doc) return null;
-
-  const rawBlocks = Array.isArray(doc.blocks) ? doc.blocks : [];
-  const blocks: Block[] = [];
-  rawBlocks.forEach((raw, i) => {
-    const parsed = BlockSchema.safeParse(raw);
-    if (parsed.success) blocks.push(parsed.data);
-    else console.error(`[page] skipped invalid block ${slug}#${i}`);
-  });
-
+// Invalid blocks are dropped one by one so a single bad block can't take a page down; an invalid
+// page shell (slug, accent, …) is never rendered. Unit tests fail on either, so neither should ship.
+function parsePage(raw: unknown, i: number): PublishedPage | null {
+  const doc = raw as Record<string, unknown>;
   const shell = PageSchema.omit({ blocks: true, publishedAt: true }).safeParse({ ...doc, seo: doc.seo ?? { noindex: false } });
   if (!shell.success) {
-    console.error(`[page] invalid page shell ${slug}`);
+    console.error(`[page] invalid page shell #${i}`);
     return null;
   }
-  return { ...shell.data, id: String(doc._id), blocks, updatedAt: iso(doc.updatedAt) };
+  const blocks: Block[] = [];
+  (Array.isArray(doc.blocks) ? doc.blocks : []).forEach((b, j) => {
+    const parsed = BlockSchema.safeParse(b);
+    if (parsed.success) blocks.push(parsed.data);
+    else console.error(`[page] skipped invalid block ${shell.data.slug}#${j}`);
+  });
+  return { ...shell.data, blocks };
 }
 
-export async function loadPublishedPages(): Promise<PageSummary[]> {
-  await connectDB();
-  const docs = (await PageModel.find({ status: 'published' }, { slug: 1, title: 1, type: 1, seo: 1, updatedAt: 1 })
-    .sort({ slug: 1 })
-    .lean()) as Record<string, unknown>[];
-  return docs
-    .filter((d) => SlugSchema.safeParse(d.slug).success)
-    .map((d) => ({
-      slug: d.slug as string,
-      title: d.title as string,
-      type: d.type as Page['type'],
-      noindex: Boolean((d.seo as { noindex?: boolean } | undefined)?.noindex),
-      updatedAt: iso(d.updatedAt),
-    }));
+// Published pages only, by slug; drafts and invalid pages are never served.
+export function indexPages(files: readonly unknown[]): Map<string, PublishedPage> {
+  return new Map(
+    files
+      .map(parsePage)
+      .filter((p): p is PublishedPage => p !== null && p.status === 'published')
+      .sort((a, b) => a.slug.localeCompare(b.slug))
+      .map((p) => [p.slug, p]),
+  );
 }
 
-async function getPublishedPageCached(slug: string): Promise<PublishedPage | null> {
-  'use cache';
-  cacheTag(pageTag(slug), PAGES_TAG);
-  cacheLife('max');
-  return loadPublishedPage(slug);
+const PAGES = indexPages(PAGE_FILES);
+
+export const PUBLISHED_PAGES: readonly PublishedPage[] = [...PAGES.values()];
+export const PAGE_SLUGS: ReadonlySet<string> = new Set(PAGES.keys());
+
+export async function getPublishedPage(slug: string): Promise<PublishedPage | null> {
+  return SlugSchema.safeParse(slug).success ? (PAGES.get(slug) ?? null) : null;
 }
 
-async function listPublishedPagesCached(): Promise<PageSummary[]> {
-  'use cache';
-  cacheTag(PAGES_TAG);
-  cacheLife('max');
-  return loadPublishedPages();
+export async function listPublishedPages(): Promise<PageSummary[]> {
+  return PUBLISHED_PAGES.map((p) => ({ slug: p.slug, title: p.title, type: p.type, noindex: p.seo.noindex }));
 }
-
-// Public readers wait for a request (connection()) so nothing reads the DB during `next build`.
-export const getPublishedPage = requestTime(getPublishedPageCached);
-export const listPublishedPages = requestTime(listPublishedPagesCached);

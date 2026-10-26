@@ -11,7 +11,7 @@ export async function signIn(page: Page, who: 'admin' | 'marketing') {
   const { email, password } = who === 'admin' ? c : c.marketing;
   await page.goto('/admin/login');
   await page.getByLabel('Email').fill(email);
-  await page.getByLabel('Password').fill(password);
+  await page.getByLabel('Password', { exact: true }).fill(password);
   await page.getByRole('button', { name: 'Sign in' }).click();
   await expect(page).toHaveURL(/\/admin\/dashboard$/);
 }

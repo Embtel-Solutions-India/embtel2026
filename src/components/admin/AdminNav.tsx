@@ -12,7 +12,6 @@ const GROUPS: { title: string; items: Item[] }[] = [
     items: [
       { href: '/admin/dashboard', label: 'Dashboard', icon: 'dashboard' },
       { href: '/admin/posts', label: 'Posts', icon: 'posts', needs: 'blog.write' },
-      { href: '/admin/pages', label: 'Pages', icon: 'pages', needs: 'page.editContent' },
       { href: '/admin/media', label: 'Media', icon: 'media', needs: 'media.write' },
       { href: '/admin/categories', label: 'Categories', icon: 'folder', needs: 'taxonomy.write' },
       { href: '/admin/tags', label: 'Tags', icon: 'tag', needs: 'taxonomy.write' },

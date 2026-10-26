@@ -24,15 +24,6 @@ beforeAll(async () => {
   });
   const { connectDB } = await import('@/lib/db/connect');
   await connectDB();
-  const base = { status: 'published', theme: { accent: '#1A6BFF' }, locked: false, updatedAt: new Date('2026-10-01T00:00:00Z') };
-  const hero = (lead: string) => [{ type: 'hero', variant: 'page', heading: 'H', lead }];
-  await mongoose.connection.db!.collection('pages').insertMany([
-    { ...base, slug: 'home', title: 'Embtel Solutions', type: 'standard', seo: { noindex: false }, blocks: hero('Home lead.') },
-    { ...base, slug: 'web-development', title: 'Web Development', type: 'service', seo: { noindex: false }, blocks: hero('Websites built right.') },
-    { ...base, slug: 'law-industry', title: 'Law Industry', type: 'industry', seo: { noindex: false }, blocks: hero('Law firms.') },
-    { ...base, slug: 'hidden', title: 'Hidden', type: 'standard', seo: { noindex: true }, blocks: hero('x') },
-    { ...base, slug: 'draft', title: 'Draft', type: 'standard', status: 'draft', seo: { noindex: false }, blocks: hero('x') },
-  ]);
   // Blog: one public post (with category/tag/author), plus draft, future and deleted posts.
   const db = mongoose.connection.db!;
   const cat = new mongoose.Types.ObjectId();
@@ -94,9 +85,8 @@ describe('llms.txt', () => {
     const { GET } = await import('@/app/llms.txt/route');
     const text = await (await GET()).text();
     expect(text).toMatch(/^# Embtel Solutions\n/);
-    expect(text).toContain('## Services\n- [Web Development](https://www.embtelsolutions.com/web-development): Websites built right.');
-    expect(text).toContain('## Industries\n- [Law Industry](https://www.embtelsolutions.com/law-industry): Law firms.');
-    expect(text).not.toContain('Hidden');
+    expect(text).toMatch(/## Services\n(- .+\n)*- \[Web Development\]\(https:\/\/www\.embtelsolutions\.com\/web-development\): \S/);
+    expect(text).toMatch(/## Industries\n(- .+\n)*- \[Law Industry\]\(https:\/\/www\.embtelsolutions\.com\/law-industry\): \S/);
   });
 });
 

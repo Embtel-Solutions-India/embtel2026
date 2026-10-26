@@ -1,0 +1,33 @@
+// Every site page, bundled into the build. Adding a page: add its JSON here and to this list (a unit test checks they match).
+import p0 from './about.json';
+import p1 from './accounting-firm-industry.json';
+import p2 from './ai-integrations.json';
+import p3 from './analytics-dashboards.json';
+import p4 from './business-automation.json';
+import p5 from './cleaning-industry.json';
+import p6 from './contact.json';
+import p7 from './cybersecurity.json';
+import p8 from './cyber-security-industry.json';
+import p9 from './dental-automation.json';
+import p10 from './digital-marketing.json';
+import p11 from './e-commerce.json';
+import p12 from './healthcare-industry.json';
+import p13 from './home.json';
+import p14 from './home-services-automation.json';
+import p15 from './home-services-industry.json';
+import p16 from './immigration-firm-industry.json';
+import p17 from './industries.json';
+import p18 from './it-industry.json';
+import p19 from './law-industry.json';
+import p20 from './privacy-policy.json';
+import p21 from './process.json';
+import p22 from './real-estate-automation.json';
+import p23 from './restaurant-automation.json';
+import p24 from './retail-industry.json';
+import p25 from './seo-geo.json';
+import p26 from './services.json';
+import p27 from './terms-of-service.json';
+import p28 from './web-development.json';
+import p29 from './work.json';
+
+export const PAGE_FILES: unknown[] = [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29];

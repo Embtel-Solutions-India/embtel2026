@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   pages.sort((a, b) => (a.slug === 'home' ? -1 : b.slug === 'home' ? 1 : a.slug.localeCompare(b.slug)));
   const latestPost = posts[0]?.modifiedAt;
   return [
-    ...pages.map((p) => ({ url: canonicalUrl(pagePath(p.slug)), lastModified: p.updatedAt })),
+    ...pages.map((p) => ({ url: canonicalUrl(pagePath(p.slug)) })),
     ...(posts.length ? [{ url: canonicalUrl('/blog'), lastModified: latestPost }] : []),
     ...posts.map((p) => ({ url: canonicalUrl(`/blog/${p.slug}`), lastModified: p.modifiedAt })),
     ...taxonomy.categories.map((c) => ({ url: canonicalUrl(`/blog/category/${c.slug}`) })),

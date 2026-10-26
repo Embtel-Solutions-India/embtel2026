@@ -30,11 +30,11 @@ Vercel environment variables (Production and Preview separately; generate secret
 ## 2. Staging database (a copy of production) — [owner go: create the copy]
 
 1. Restore the latest production backup into a new staging database (Atlas "restore to another cluster", or `mongodump` → `mongorestore`). **[owner go]**
-2. Point `.env.local` at the staging database: `vercel env pull .env.local --environment=preview`, then check `MONGODB_URI` (staging) and `SITE_URL` (the preview URL — set-password links are built from it).
+2. Point `.env` at the staging database: set `MONGODB_URI` (staging) and `SITE_URL` (the preview URL — set-password links are built from it).
 3. Run, in order, in an interactive terminal. Every command shows the database name and refuses unless you type it exactly:
    ```
    npm run db:migrate -- --cutover        # 001 editor→marketing + author slugs, 002 legacy GA4/Search Console IDs
-   npm run content:seed                   # 30 pages, settings, 6 blog posts (only what is missing)
+   npm run content:seed                   # settings, 6 blog posts (only what is missing)
    npm run cutover:accounts -- --cutover  # keep / deactivate (legacy seeded admin) / one-time set-password links
    npm run cutover:authors -- --cutover   # REQUIRED: credit every imported post (the legacy admin can't edit posts without an author)
    npm run admin:create                   # only if no admin you can sign in with remains
@@ -57,7 +57,7 @@ Vercel environment variables (Production and Preview separately; generate secret
 
 1. **48 h before:** lower the DNS TTL for `www` and the apex to 300 s. **[owner go]**
 2. **Freeze** content in the legacy admin; take a fresh production backup. **[owner go]**
-3. **Target production:** `vercel env pull .env.local --environment=production`; check `MONGODB_URI` is the production cluster and `SITE_URL` is `https://www.embtelsolutions.com`. Then run §2 step 3 against it; `content:seed` additionally needs `-- --yes` (with `VERCEL_ENV=production`). Each command asks for the database name. After migration 001 the legacy admin no longer accepts Marketing users (expected — it is retired). **[owner go]**
+3. **Target production:** in `.env`, set `MONGODB_URI` to the production cluster and `SITE_URL` to `https://www.embtelsolutions.com`. Then run §2 step 3 against it; `content:seed` additionally needs `-- --yes` (with `VERCEL_ENV=production`). Each command asks for the database name. After migration 001 the legacy admin no longer accepts Marketing users (expected — it is retired). **[owner go]**
 4. Merge `feat/nextjs-foundation` into `main`; Vercel builds Production with the Production env vars. **[owner go]**
 5. In Vercel, add `www.embtelsolutions.com` (primary) and `embtelsolutions.com` (redirect to www). Point DNS at Vercel. **[owner go]**
 6. Verify on the live domain (read-only): `npm run cutover:parity -- https://www.embtelsolutions.com --inventory search-console-pages.csv --expect-indexable`; `/robots.txt` allows crawling; `/sitemap.xml` lists pages and posts; Tag Assistant; one test lead.
@@ -69,7 +69,7 @@ Write the exact steps once §0 confirms the current host — they differ:
 - **Legacy site on another host (Render, static hosting):** point the DNS records back to it (it stays running, untouched, for 2 weeks) and remove the domains from the new Vercel project. **[owner go]**
 - **Legacy site is itself a Vercel project** (`embtel-final/vercel.json` suggests it may be): a domain can belong to only one Vercel project, so adding it to the new project in §4.5 detaches it from the old one. Rollback = remove `www`/apex from the new project and add them back to the legacy project (DNS may not change at all). Rehearse this on a spare subdomain first. **[owner go]**
 - **Legacy admin:** only if it must be used again — `db.users.updateMany({ role: 'marketing' }, { $set: { role: 'editor' } })` on production. All other database changes are additive and harmless to the legacy site. **[owner go]**
-- **Content written in the new admin** during the window (new posts, page edits) is **not** on the legacy static site; note it before rolling back and re-publish it after the fix.
+- **Content written in the new admin** during the window (new posts, settings changes) is **not** on the legacy static site; note it before rolling back and re-publish it after the fix.
 
 ## 6. After launch
 
