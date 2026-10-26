@@ -23,7 +23,7 @@
     "cutover:authors": "tsx --env-file=.env.local scripts/cutover/assign-authors.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1155.0",
+    "@aws-sdk/client-s3": "^3.1156.0",
     "@tiptap/extension-image": "^3.32.0",
     "@tiptap/pm": "^3.32.0",
     "@tiptap/react": "^3.32.0",
