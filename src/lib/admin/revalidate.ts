@@ -1,6 +1,5 @@
 import 'server-only';
 import { revalidateTag, updateTag } from 'next/cache';
-import { PAGES_TAG, pageTag } from '@/lib/content/pages';
 import { POSTS_TAG, TAXONOMY_TAG, postTag } from '@/lib/content/posts';
 import { SETTINGS_TAG } from '@/lib/content/settings';
 
@@ -9,7 +8,7 @@ import { SETTINGS_TAG } from '@/lib/content/settings';
 // 'background' (route handlers such as the cron): updateTag is not allowed there, so revalidateTag with
 // expire 0 — never serve the stale copy (e.g. a just-scheduled post's cached "not found" to Bing).
 // allPosts: every post page and listing (all post caches carry POSTS_TAG), e.g. after a category rename.
-export function refreshContent(change: { posts?: string[]; allPosts?: boolean; taxonomy?: boolean; pages?: string[]; settings?: boolean }, mode: 'action' | 'background' = 'action'): void {
+export function refreshContent(change: { posts?: string[]; allPosts?: boolean; taxonomy?: boolean; settings?: boolean }, mode: 'action' | 'background' = 'action'): void {
   const tags = new Set<string>();
   if (change.allPosts) tags.add(POSTS_TAG);
   if (change.posts?.length) {
@@ -17,10 +16,6 @@ export function refreshContent(change: { posts?: string[]; allPosts?: boolean; t
     for (const s of change.posts) tags.add(postTag(s));
   }
   if (change.taxonomy) tags.add(TAXONOMY_TAG);
-  if (change.pages?.length) {
-    tags.add(PAGES_TAG);
-    for (const s of change.pages) tags.add(pageTag(s));
-  }
   if (change.settings) tags.add(SETTINGS_TAG);
   for (const t of tags) {
     if (mode === 'action') updateTag(t);

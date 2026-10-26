@@ -3,8 +3,8 @@ import { expect, test, type Page } from '@playwright/test';
 import { readCreds, signIn } from './login';
 
 const SCREENS = {
-  admin: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/pages', '/admin/leads', '/admin/seo', '/admin/users', '/admin/settings', '/admin/integrations', '/admin/audit', '/admin/profile'],
-  marketing: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/pages', '/admin/leads', '/admin/seo', '/admin/profile'],
+  admin: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/leads', '/admin/seo', '/admin/users', '/admin/settings', '/admin/integrations', '/admin/audit', '/admin/profile'],
+  marketing: ['/admin/dashboard', '/admin/posts', '/admin/posts/new', '/admin/categories', '/admin/tags', '/admin/media', '/admin/comments', '/admin/leads', '/admin/seo', '/admin/profile'],
 } as const;
 
 const serious = async (page: Page) =>
@@ -59,19 +59,19 @@ test('admin invites a person who sets a password and signs in', async ({ page, b
   await p.goto(new URL(link).pathname);
   expect(await serious(p)).toEqual([]);
   const password = 'ivy-chose-a-long-passphrase';
-  await p.getByLabel('New password').fill(password);
-  await p.getByLabel('Confirm password').fill(password);
+  await p.getByLabel('New password', { exact: true }).fill(password);
+  await p.getByLabel('Confirm password', { exact: true }).fill(password);
   await p.getByRole('button', { name: 'Set password' }).click();
   await expect(p.getByRole('status')).toContainText('Your password is set');
   await p.goto('/admin/login');
   await p.getByLabel('Email').fill(email);
-  await p.getByLabel('Password').fill(password);
+  await p.getByLabel('Password', { exact: true }).fill(password);
   await p.getByRole('button', { name: 'Sign in' }).click();
   await expect(p).toHaveURL(/\/admin\/dashboard$/);
   // The link is single-use.
   await p.goto(new URL(link).pathname);
-  await p.getByLabel('New password').fill(password);
-  await p.getByLabel('Confirm password').fill(password);
+  await p.getByLabel('New password', { exact: true }).fill(password);
+  await p.getByLabel('Confirm password', { exact: true }).fill(password);
   await p.getByRole('button', { name: 'Set password' }).click();
   await expect(p.locator('form').getByRole('alert')).toContainText('invalid or has expired');
   await fresh.close();

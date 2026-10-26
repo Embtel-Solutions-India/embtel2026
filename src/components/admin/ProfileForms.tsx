@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { changePasswordAction, updateProfileAction } from '@/app/admin/(panel)/profile/actions';
 import { Field } from './Field';
 import { ProfileFields, type ProfileValue } from './ProfileFields';
+import { PasswordInput } from './PasswordInput';
 
 export function ProfileForms({ initial }: { initial: ProfileValue }) {
   const router = useRouter();
@@ -65,13 +66,13 @@ export function ProfileForms({ initial }: { initial: ProfileValue }) {
         <h2>Change password</h2>
         <div className="adm-grid">
           <Field label="Current password">
-            <input name="current" type="password" autoComplete="current-password" required />
+            <PasswordInput name="current" autoComplete="current-password" required />
           </Field>
           <Field label="New password" hint="At least 12 characters">
-            <input name="password" type="password" autoComplete="new-password" minLength={12} maxLength={128} required />
+            <PasswordInput name="password" autoComplete="new-password" minLength={12} maxLength={128} required />
           </Field>
           <Field label="Confirm new password">
-            <input name="confirm" type="password" autoComplete="new-password" required />
+            <PasswordInput name="confirm" autoComplete="new-password" required />
           </Field>
         </div>
         <div className="adm-row">

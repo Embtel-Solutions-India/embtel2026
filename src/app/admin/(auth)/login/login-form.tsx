@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useActionState } from 'react';
 import { loginAction } from './actions';
+import { PasswordInput } from '@/components/admin/PasswordInput';
 
 const input = 'w-full rounded border border-gray-300 px-3 py-2';
 
@@ -15,16 +16,16 @@ export function LoginForm({ redirectTo }: { redirectTo?: string }) {
         Email
         <input name="email" type="email" autoComplete="email" required className={input} />
       </label>
-      <label className="flex flex-col gap-1">
-        Password
-        <input
+      <div className="flex flex-col gap-1">
+        <label htmlFor="login-password">Password</label>
+        <PasswordInput
+          id="login-password"
           name="password"
-          type="password"
           autoComplete="current-password"
           required
           className={input}
         />
-      </label>
+      </div>
       <label className="flex items-center gap-2">
         <input name="remember" type="checkbox" />
         Remember me for 30 days

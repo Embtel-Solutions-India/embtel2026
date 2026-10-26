@@ -8,7 +8,7 @@ Requires Node 22 or newer.
 
 ```bash
 npm install
-cp .env.example .env.local   # then fill in values
+cp .env.example .env   # then fill in values
 npm run dev
 ```
 
@@ -28,23 +28,23 @@ npm run dev
 
 ## Secrets
 
-Secrets never go in the repo. `.env.example` holds placeholders only; real values live in `.env.local` (git-ignored) and in Vercel project settings.
+Secrets never go in the repo. `.env.example` holds placeholders only; real values live in `.env` (git-ignored; delete any old `.env.local`, which `next dev` would let override `.env` while the scripts ignore it) and in Vercel project settings.
 
 ## Operator scripts
 
-`npm run db:migrate` and `npm run admin:create` connect to the real database and load `.env.local` (`tsx --env-file=.env.local`). Populate it first, e.g. `vercel env pull .env.local`. To use another file, run `npx tsx --env-file=<file> scripts/migrate-db.ts` directly. `admin:create` prompts for name, email and password (hidden, entered twice, min 12 chars); credentials are never read from arguments, env or files.
+`npm run db:migrate` and `npm run admin:create` connect to the real database and load `.env` (`tsx --env-file=.env`). Don't use `vercel env pull`: Sensitive variables come down as placeholders. To use another file, run `npx tsx --env-file=<file> scripts/migrate-db.ts` directly. `admin:create` prompts for name, email and password (hidden, entered twice, min 12 chars); credentials are never read from arguments, env or files.
 
 ## Content
 
 Public pages are stored as page documents (ordered, validated blocks) in the `pages` collection; header, footer,
-organisation details, offices and the integration IDs (Google Ads, GA4, GTM, Formspree, Tawk.to, Elfsight, Search Console verification) live in the `settings` document. Admins edit them in `/admin/settings` and `/admin/integrations`; page titles, search snippets, top sections and FAQs are edited in `/admin/pages` (no block editor).
+organisation details, offices and the integration IDs (Google Ads, GA4, GTM, Formspree, Tawk.to, Elfsight, Search Console verification) live in the `settings` document. Admins edit them in `/admin/settings` and `/admin/integrations`; site pages are JSON files in `content/pages/` (listed in `content/pages/index.ts`) and change through a code deploy.
 
 - `npm run content:import` — one-time conversion of the legacy `embtel-final/` HTML into reviewable JSON in
   `content/pages/` (30 pages) and the legacy blog into `content/blog/` (6 posts, categories, tags with their
   related-service links). Any section it does not recognise stops the import.
-- `npm run content:seed` — loads `content/settings.json`, `content/pages/*.json` and `content/blog/` into the database (env from
-  `.env.local`). Idempotent: existing pages are never overwritten (admin edits win) unless named with
-  `-- --force=home,about`; settings only receive fields that are empty. Refuses to run with `VERCEL_ENV=production`
+- `npm run content:seed` — loads `content/settings.json` and `content/blog/` into the database (env from
+  `.env`). Site pages are not seeded: they ship in the build. Idempotent: existing posts are never overwritten;
+  settings only receive fields that are empty. Refuses to run with `VERCEL_ENV=production`
   unless `-- --yes` is passed. Admin saves refresh the affected cached pages immediately.
 
 ## Leads and integrations

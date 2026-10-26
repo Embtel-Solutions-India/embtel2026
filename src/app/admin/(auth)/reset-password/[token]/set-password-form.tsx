@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { setPasswordAction } from './actions';
+import { PasswordInput } from '@/components/admin/PasswordInput';
 
 const input = 'w-full rounded border border-gray-300 px-3 py-2';
 
@@ -30,17 +31,17 @@ export function SetPasswordForm({ token }: { token: string }) {
 
   return (
     <form onSubmit={submit} className="flex w-full max-w-sm flex-col gap-4">
-      <label className="flex flex-col gap-1">
-        New password
-        <input name="password" type="password" autoComplete="new-password" minLength={12} maxLength={128} required className={input} aria-describedby="pw-hint" />
-      </label>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="new-password">New password</label>
+        <PasswordInput id="new-password" name="password" autoComplete="new-password" minLength={12} maxLength={128} required className={input} aria-describedby="pw-hint" />
+      </div>
       <span id="pw-hint" className="text-sm">
         At least 12 characters. A short sentence works well.
       </span>
-      <label className="flex flex-col gap-1">
-        Confirm password
-        <input name="confirm" type="password" autoComplete="new-password" required className={input} />
-      </label>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="confirm-password">Confirm password</label>
+        <PasswordInput id="confirm-password" name="confirm" autoComplete="new-password" required className={input} />
+      </div>
       {error && (
         <p role="alert" className="text-red-300">
           {error}

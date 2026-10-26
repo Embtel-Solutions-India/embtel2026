@@ -31,12 +31,21 @@ afterAll(async () => {
 });
 
 describe('loadSiteSettings', () => {
-  it('returns defaults when no settings document exists', async () => {
-    const { loadSiteSettings, DEFAULT_SETTINGS } = await import('@/lib/content/settings');
-    expect(await loadSiteSettings()).toEqual(DEFAULT_SETTINGS);
+  it('returns content/settings.json when no settings document exists', async () => {
+    const { loadSiteSettings, SiteSettingsSchema } = await import('@/lib/content/settings');
+    const { DEFAULT_SETTINGS } = await import('@/lib/content/settings');
+    const file = SiteSettingsSchema.parse(JSON.parse(readFileSync('content/settings.json', 'utf8')));
+    expect(await loadSiteSettings()).toEqual({ ...file, integrations: DEFAULT_SETTINGS.integrations });
+    expect(file.headerNav.length).toBeGreaterThan(0);
   });
 
-  it('merges stored fields over defaults', async () => {
+  it("never falls back to the repo file's production integration IDs", async () => {
+    const { loadSiteSettings } = await import('@/lib/content/settings');
+    expect(JSON.parse(readFileSync('content/settings.json', 'utf8')).integrations.googleAdsId).toMatch(/^AW-/);
+    expect((await loadSiteSettings()).integrations).toMatchObject({ googleAdsId: '', formspreeFormId: '' });
+  });
+
+  it('merges stored fields over the file', async () => {
     const { loadSiteSettings } = await import('@/lib/content/settings');
     await mongoose.connection.db!.collection('settings').insertOne({
       key: 'site',
@@ -47,11 +56,12 @@ describe('loadSiteSettings', () => {
     const s = await loadSiteSettings();
     expect(s.organization.phone).toBe('+15109627900');
     expect(s.integrations.googleAdsId).toBe('AW-18518114785');
-    expect(s.headerNav).toEqual([]);
+    expect(s.headerNav.length).toBeGreaterThan(0); // not stored → from the file
   });
 
   it('falls back per field when a stored field is invalid, logging only the path', async () => {
-    const { loadSiteSettings, DEFAULT_SETTINGS } = await import('@/lib/content/settings');
+    const { loadSiteSettings, SiteSettingsSchema } = await import('@/lib/content/settings');
+    const file = SiteSettingsSchema.parse(JSON.parse(readFileSync('content/settings.json', 'utf8')));
     const log = vi.spyOn(console, 'error').mockImplementation(() => {});
     await mongoose.connection.db!.collection('settings').insertOne({
       key: 'site',
@@ -59,9 +69,9 @@ describe('loadSiteSettings', () => {
       whatsapp: { number: '15109627900', message: 'Hi' },
     });
     const s = await loadSiteSettings();
-    expect(s.social).toEqual(DEFAULT_SETTINGS.social);
+    expect(s.social).toEqual(file.social);
     expect(s.whatsapp?.number).toBe('15109627900');
-    expect(log).toHaveBeenCalledWith('[settings] invalid field, using default:', 'social');
+    expect(log).toHaveBeenCalledWith('[settings] invalid field, using content/settings.json:', 'social');
   });
 });
 

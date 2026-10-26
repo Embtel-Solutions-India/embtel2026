@@ -27,7 +27,6 @@ afterEach(() => {
 const SETTINGS: SiteSettings = SiteSettingsSchema.parse(JSON.parse(readFileSync('content/settings.json', 'utf8')));
 
 const page = (over: Partial<PublishedPage> = {}): PublishedPage => ({
-  id: '1',
   slug: 'law-industry',
   title: 'Law Industry',
   status: 'published',
@@ -35,7 +34,6 @@ const page = (over: Partial<PublishedPage> = {}): PublishedPage => ({
   theme: { accent: '#1A6BFF' },
   seo: { noindex: false },
   locked: false,
-  updatedAt: '2026-10-01T00:00:00.000Z',
   blocks: [
     {
       type: 'hero',

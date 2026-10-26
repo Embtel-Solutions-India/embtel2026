@@ -2,7 +2,6 @@
 const PATHS: Record<string, string> = {
   dashboard: 'M3 13h8V3H3zM13 21h8V11h-8zM3 21h8v-6H3zM13 3v6h8V3z',
   posts: 'M4 4h16v16H4zM8 8h8M8 12h8M8 16h5',
-  pages: 'M6 2h9l5 5v15H6zM14 2v6h6',
   media: 'M3 5h18v14H3zM8 10a1.5 1.5 0 1 0 0-.01M21 16l-5-5-9 8',
   tag: 'M20 12l-8 8-9-9V3h8zM7.5 7.5h.01',
   folder: 'M3 6h6l2 2h10v11H3z',
@@ -21,6 +20,8 @@ const PATHS: Record<string, string> = {
   alert: 'M12 3l10 18H2zM12 10v4M12 17h.01',
   arrow: 'M5 12h14M13 6l6 6-6 6',
   external: 'M14 4h6v6M20 4l-9 9M18 14v6H4V6h6',
+  eye: 'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
+  eyeOff: 'M3 3l18 18M10.6 5.1A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3 3.9M6.6 6.6A17 17 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2',
 };
 
 export type IconName = keyof typeof PATHS;

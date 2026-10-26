@@ -8,7 +8,6 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { User } from '../../src/lib/db/models/User';
 import { CREDS_FILE, E2E_PORT } from './creds';
-import { PAGE_FIXTURES } from '../helpers/page-fixtures';
 import { readContent } from '../../scripts/seed-content';
 import { seedContent } from '../../src/lib/content/seed';
 import { connectDB } from '../../src/lib/db/connect';
@@ -23,11 +22,8 @@ async function main() {
   await connectDB(uri); // fills the shared connection cache so seedContent() reuses it
   const password = rnd(16);
   await User.create({ name: 'E2E Admin', email: 'admin@example.com', password, role: 'admin' });
-  // Full imported content (as production will have it) plus a draft fixture for 404 checks.
+  // Full imported settings and blog content, as production will have it (site pages ship in the build).
   await seedContent(readContent());
-  await mongoose.connection.db!.collection('pages').insertMany(
-    PAGE_FIXTURES.filter((p) => p.status === 'draft').map((p) => ({ ...p, updatedAt: new Date() })),
-  );
   // Authors: one with a published post (author page + byline link), one without (404).
   const writer = await User.create({ name: 'Ritu Writer', email: 'ritu@example.com', password: rnd(16), role: 'marketing', slug: 'ritu-writer', bio: 'Writes about dashboards and reporting.', jobTitle: 'Content Lead', expertise: ['Analytics'] });
   await User.create({ name: 'Idle Writer', email: 'idle@example.com', password: rnd(16), role: 'marketing', slug: 'idle-writer' });

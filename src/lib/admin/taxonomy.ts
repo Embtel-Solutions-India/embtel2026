@@ -4,7 +4,7 @@ import { audit } from '@/lib/audit';
 import { connectDB } from '@/lib/db/connect';
 import { Blog } from '@/lib/db/models/Blog';
 import { Category } from '@/lib/db/models/Category';
-import { PageModel } from '@/lib/db/models/Page';
+import { PUBLISHED_PAGES } from '@/lib/content/pages';
 import { Tag } from '@/lib/db/models/Tag';
 import type { UserDoc } from '@/lib/db/models/User';
 import { toSlug } from '@/lib/slug';
@@ -34,9 +34,9 @@ const label = (kind: Kind) => (kind === 'category' ? 'category' : 'tag');
 
 // Service pages a tag can point at ("related services" on posts).
 export async function serviceOptions(): Promise<{ slug: string; title: string }[]> {
-  await connectDB();
-  const pages = await PageModel.find({ status: 'published', type: { $in: ['service', 'landing'] } }, { slug: 1, title: 1 }).sort({ title: 1 }).lean<Raw[]>();
-  return pages.map((p) => ({ slug: String(p.slug), title: String(p.title) }));
+  return PUBLISHED_PAGES.filter((p) => p.type === 'service' || p.type === 'landing')
+    .map((p) => ({ slug: p.slug, title: p.title }))
+    .sort((a, b) => a.title.localeCompare(b.title));
 }
 
 async function save(kind: Kind, input: { id?: string; name: string; slug?: string } & Raw, extra: Raw, user: UserDoc) {

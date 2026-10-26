@@ -74,9 +74,7 @@ describe('cutover rehearsal on a legacy-shaped database', () => {
     expect(s.headerNav.length).toBeGreaterThan(0);
   });
 
-  it('pages are seeded and the imported posts are the ones left to assign', async () => {
-    const { loadPublishedPage } = await import('@/lib/content/pages');
-    expect(await loadPublishedPage('dental-automation')).toMatchObject({ locked: true });
+  it('the imported posts are the ones left to assign', async () => {
     const { postsWithoutAuthor, assignAuthor } = await import('@/lib/cutover/accounts');
     const unassigned = await postsWithoutAuthor();
     expect(unassigned.map((p) => p.slug)).not.toContain('a-legacy-admin-post');
