@@ -97,7 +97,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               </Link>
             </span>
           ))}
-          {' · '}
+          {footer.legalLinks.length > 0 && ' · '}
           <PrivacyChoicesLink className="hover:text-white" />
         </span>
       </div>

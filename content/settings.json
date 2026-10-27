@@ -1,7 +1,7 @@
 {
   "organization": {
     "name": "Embtel Solutions",
-    "legalName": "Embtel Solutions Ltd",
+    "legalName": "Embtel Solutions, Inc.",
     "email": "info@embtelsolutions.com",
     "phone": "+15109627900",
     "phoneDisplay": "+1 (510) 962-7900",
@@ -13,7 +13,7 @@
       "country": "US"
     },
     "openingHours": [],
-    "description": "Embtel Solutions Ltd delivers tailored web design, development, and digital marketing services focused on client success. We prioritize customer satisfaction through expert support and guidance at every stage.",
+    "description": "Embtel Solutions, Inc. delivers tailored web design, development, and digital marketing services focused on client success. We prioritize customer satisfaction through expert support and guidance at every stage.",
     "offices": [
       {
         "label": "India Office",
@@ -180,7 +180,7 @@
     "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi"
   },
   "footer": {
-    "description": "Embtel Solutions Ltd delivers tailored web design, development, and digital marketing services focused on client success. We prioritize customer satisfaction through expert support and guidance at every stage.",
+    "description": "Embtel Solutions, Inc. delivers tailored web design, development, and digital marketing services focused on client success. We prioritize customer satisfaction through expert support and guidance at every stage.",
     "columns": [
       {
         "title": "Services",
@@ -306,7 +306,7 @@
         ]
       }
     ],
-    "copyright": "© 2026 Embtel Solutions Ltd. All rights reserved.",
+    "copyright": "© 2026 Embtel Solutions, Inc. All rights reserved.",
     "legalLinks": [
       {
         "label": "Privacy Policy",

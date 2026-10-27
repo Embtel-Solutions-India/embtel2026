@@ -9,6 +9,8 @@ const TAWK_PROPERTY = /^[a-f0-9]{24}$/;
 const TAWK_WIDGET = /^[a-z0-9]{6,20}$/;
 const ATTR_KEYS = ['gclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 // EEA + UK + Switzerland (ISO 3166-1), where analytics/ads cookies need opt-in consent.
+// True when the visitor opted out ("Essential only" in CookieConsent) or sends Global Privacy Control; checked at use time.
+const OPTED_OUT = "function(){try{if(localStorage.getItem('embtel_consent')==='essential')return true}catch(e){}return !!navigator.globalPrivacyControl}";
 const CONSENT_REGIONS = 'AT BE BG HR CY CZ DK EE FI FR DE GR HU IS IE IT LV LI LT LU MT NL NO PL PT RO SK SI ES SE GB CH'.split(' ');
 
 // Marketing tags configured on the admin Integrations screen (owner decision 2026-10-23):
@@ -27,16 +29,18 @@ export function MarketingTags({ integrations: i, nonce }: { integrations: SiteSe
     ...(gtm ? [`https://www.googletagmanager.com/gtm.js?id=${gtm}`] : []),
     ...(tawk ? [`https://embed.tawk.to/${tawk}`] : []),
   ];
-  // Booking links carry no hard-coded UTMs (audit F-01/F-02); on click they get the visitor's own click ID/UTMs, if any.
-  const attribution = `try{var q=new URLSearchParams(location.search),a={};${JSON.stringify(ATTR_KEYS)}.forEach(function(k){var v=q.get(k);if(v)a[k]=v.slice(0,200)});if(Object.keys(a).length){a.at=Date.now();localStorage.setItem('embtel_attr',JSON.stringify(a))}}catch(e){}
-document.addEventListener('click',function(e){var l=e.target&&e.target.closest&&e.target.closest('a[href*="leadconnectorhq.com/widget/booking"]');if(!l)return;try{var q=new URLSearchParams(location.search),s=JSON.parse(localStorage.getItem('embtel_attr')||'{}'),u=new URL(l.href);if(!(Date.now()-s.at<7776e6))s={};${JSON.stringify(ATTR_KEYS)}.forEach(function(k){var v=q.get(k)||s[k];if(v&&!u.searchParams.has(k))u.searchParams.set(k,String(v).slice(0,200))});l.href=u.href}catch(x){}},true);`;
+  // Booking links carry no hard-coded UTMs (audit F-01/F-02); on click (incl. middle-click / context menu) they get the
+  // visitor's own click ID/UTMs, if any. Nothing is stored or appended for visitors who opted out.
+  const attribution = `var embtelOut=${OPTED_OUT};if(!embtelOut())try{var q=new URLSearchParams(location.search),a={};${JSON.stringify(ATTR_KEYS)}.forEach(function(k){var v=q.get(k);if(v)a[k]=v.slice(0,200)});if(Object.keys(a).length){a.at=Date.now();localStorage.setItem('embtel_attr',JSON.stringify(a))}}catch(e){}
+['click','auxclick','contextmenu'].forEach(function(t){document.addEventListener(t,function(e){var l=e.target&&e.target.closest&&e.target.closest('a[href*="leadconnectorhq.com/widget/booking"]');if(!l||embtelOut())return;try{var q=new URLSearchParams(location.search),s=JSON.parse(localStorage.getItem('embtel_attr')||'{}'),u=new URL(l.href);if(!(Date.now()-s.at<7776e6))s={};${JSON.stringify(ATTR_KEYS)}.forEach(function(k){var v=q.get(k)||s[k];if(v&&!u.searchParams.has(k))u.searchParams.set(k,String(v).slice(0,200))});l.href=u.href}catch(x){}},true)});`;
   // Consent Mode v2: EEA/UK/CH visitors are denied until they accept; elsewhere granted until they opt out
-  // (CookieConsent banner / "Do Not Sell or Share" link). A browser Global Privacy Control signal opts out of ads.
+  // (CookieConsent banner / "Your Privacy Choices" link). A browser Global Privacy Control signal opts out of ads.
   const consent = [
     `gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500,region:${JSON.stringify(CONSENT_REGIONS)}});`,
     "gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});",
-    "try{var c=localStorage.getItem('embtel_consent');if(c){var g=c==='all'?'granted':'denied';gtag('consent','update',{ad_storage:g,ad_user_data:g,ad_personalization:g,analytics_storage:g})}}catch(e){}",
-    "if(navigator.globalPrivacyControl)gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});",
+    // A stored choice is re-sent on every page as a dataLayer event too, so GTM tags (Meta, LinkedIn, …) can gate on it.
+    "try{var c=localStorage.getItem('embtel_consent');if(c){var g=c==='all'?'granted':'denied';gtag('consent','update',{ad_storage:g,ad_user_data:g,ad_personalization:g,analytics_storage:g});dataLayer.push({event:'consent_update',consent:c})}}catch(e){}",
+    "if(navigator.globalPrivacyControl){gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});dataLayer.push({event:'consent_update',consent:'gpc'})}",
   ].join('\n');
   const queue = [
     'window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;',
@@ -44,7 +48,7 @@ document.addEventListener('click',function(e){var l=e.target&&e.target.closest&&
     ...(gtagIds.length ? ["gtag('js', new Date());", ...gtagIds.map((id) => `gtag('config', '${id}');`)] : []),
     ...(gtm ? ["dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});"] : []),
   ].join('\n');
-  const loader = `(function(){var ev=['scroll','pointerdown','keydown','touchstart'],done=false;function load(){if(done)return;done=true;ev.forEach(function(e){removeEventListener(e,load,true)});${JSON.stringify(deferred)}.forEach(function(src){var s=document.createElement('script');s.async=true;s.src=src;s.nonce=${JSON.stringify(nonce ?? '')};document.head.appendChild(s)})}ev.forEach(function(e){addEventListener(e,load,{capture:true,passive:true})})})();`;
+  const loader = `(function(){var ev=['scroll','pointerdown','keydown','touchstart'],done=false;function load(){if(done)return;done=true;ev.forEach(function(e){removeEventListener(e,load,true)});var out=${OPTED_OUT};${JSON.stringify(deferred)}.forEach(function(src){if(src.indexOf('embed.tawk.to')>-1&&out())return;var s=document.createElement('script');s.async=true;s.src=src;s.nonce=${JSON.stringify(nonce ?? '')};document.head.appendChild(s)})}ev.forEach(function(e){addEventListener(e,load,{capture:true,passive:true})})})();`;
   return (
     <>
       <Script id="attribution" strategy="afterInteractive" nonce={nonce}>
