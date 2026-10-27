@@ -1,6 +1,6 @@
 {
   "slug": "cyber-security-industry",
-  "title": "Cyber Security Industry",
+  "title": "Marketing for Cybersecurity Firms",
   "status": "published",
   "type": "industry",
   "theme": {
@@ -20,7 +20,7 @@
           "href": "/industries"
         },
         {
-          "label": "Cyber Security"
+          "label": "Cybersecurity Firms"
         }
       ],
       "heading": "Digital Solutions for *Cyber Security Firms*",
@@ -39,17 +39,14 @@
       ],
       "stats": [
         {
-          "value": "SOC2",
-          "label": "Compliant"
+          "value": "8",
+          "suffix": "+",
+          "label": "Years in Business"
         },
         {
-          "value": "256-bit",
-          "label": "Encryption"
-        },
-        {
-          "value": "99.9",
-          "suffix": "%",
-          "label": "Uptime SLA"
+          "value": "120",
+          "suffix": "+",
+          "label": "Projects Delivered"
         },
         {
           "value": "24/7",
@@ -160,7 +157,7 @@
       "buttons": [
         {
           "label": "Book Free Discovery Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]

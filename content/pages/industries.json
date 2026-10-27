@@ -53,14 +53,14 @@
           "linkLabel": "Learn more"
         },
         {
-          "title": "Cyber Security Industry Digital Marketing Services",
+          "title": "Marketing for Cybersecurity Firms",
           "body": "Establish authority and drive qualified leads with targeted digital strategies for cybersecurity firms, including content marketing, B2B SEO, and LinkedIn advertising.",
           "href": "/cyber-security-industry",
           "linkLabel": "Learn more"
         },
         {
           "title": "Healthcare Industry Digital Marketing Services",
-          "body": "Grow your practice with HIPAA-compliant digital marketing that builds trust, ranks high in search, and drives appointment bookings.",
+          "body": "Grow your practice with HIPAA-aligned digital marketing that builds trust, ranks high in search, and drives appointment bookings.",
           "href": "/healthcare-industry",
           "linkLabel": "Learn more"
         },
@@ -72,7 +72,7 @@
         },
         {
           "title": "Immigration Firm Industry Digital Marketing Services",
-          "body": "Attract high-value clients through proven legal marketing tactics—SEO, paid ads, and conversion-optimized websites built for immigration firms and attorneys.",
+          "body": "Reach visa, green-card, and citizenship clients with multilingual SEO, Google Ads, and trust-building websites made for immigration firms and consultants.",
           "href": "/immigration-firm-industry",
           "linkLabel": "Learn more"
         },
@@ -103,7 +103,7 @@
       "buttons": [
         {
           "label": "Book Free Discovery Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]

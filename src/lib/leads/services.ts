@@ -1,2 +1,17 @@
-// Options of the legacy contact form (embtel-final/contact.html), kept verbatim. Shared by the form and the server.
-export const SERVICES = ['Web Development', 'SEO & Digital Marketing', 'Business Automation', 'AI Integrations', 'Analytics & Dashboards', 'Paid Advertising', 'Full-Stack Partnership', 'Not sure yet'] as const;
+// "Service Needed" options on the contact form, matching the site's service pages (audit F-17). Shared by the form and the server.
+export const SERVICES = [
+  'Web Development',
+  'Digital Marketing',
+  'SEO & GEO',
+  'Paid Ads',
+  'Business Automation',
+  'AI Integrations',
+  'Analytics & Dashboards',
+  'Cybersecurity',
+  'E-Commerce',
+  'Home Services Automation',
+  'Dental Automation',
+  'Restaurant Automation',
+  'Real Estate Automation',
+  'Not sure yet',
+] as const;

@@ -39,24 +39,19 @@
       ],
       "stats": [
         {
-          "value": "3",
-          "suffix": "x",
-          "label": "Avg Traffic Growth"
-        },
-        {
-          "value": "200",
+          "value": "8",
           "suffix": "+",
-          "label": "Keywords Ranked"
+          "label": "Years in Business"
         },
         {
-          "value": "92",
-          "suffix": "%",
-          "label": "Client Retention"
+          "value": "100",
+          "suffix": "+",
+          "label": "Happy Clients"
         },
         {
-          "value": "6",
-          "suffix": "mo",
-          "label": "Avg to First-Page Rank"
+          "value": "120",
+          "suffix": "+",
+          "label": "Projects Delivered"
         }
       ]
     },
@@ -179,9 +174,9 @@
           "href": "/web-development"
         },
         {
-          "title": "SEO & GEO",
+          "title": "Paid Ads",
           "body": "Paid ads to amplify organic efforts",
-          "href": "/seo-geo"
+          "href": "/paid-ads"
         },
         {
           "title": "Analytics & Dashboards",

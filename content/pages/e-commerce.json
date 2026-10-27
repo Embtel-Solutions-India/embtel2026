@@ -39,24 +39,19 @@
       ],
       "stats": [
         {
-          "value": "3",
-          "suffix": "x",
-          "label": "Avg Revenue Increase"
+          "value": "8",
+          "suffix": "+",
+          "label": "Years in Business"
         },
         {
-          "value": "40",
-          "suffix": "%",
-          "label": "Conversion Lift"
-        },
-        {
-          "value": "24",
-          "suffix": "/7",
-          "label": "Store Uptime"
+          "value": "120",
+          "suffix": "+",
+          "label": "Projects Delivered"
         },
         {
           "value": "30",
           "suffix": "d",
-          "label": "Avg Launch Time"
+          "label": "Typical Launch Time"
         }
       ]
     },

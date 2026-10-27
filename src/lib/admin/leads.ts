@@ -17,6 +17,7 @@ export type LeadRow = {
   service: string;
   message: string;
   smsConsent: boolean;
+  smsConsentNote: string; // when and under which wording version, for leads that opted in
   sourcePage: string;
   utm: Record<string, string>;
   gclid: string;
@@ -34,6 +35,7 @@ const toRow = (d: Raw): LeadRow => ({
   service: String(d.service ?? ''),
   message: String(d.message ?? ''),
   smsConsent: Boolean(d.smsConsent),
+  smsConsentNote: d.smsConsentAt instanceof Date ? `${d.smsConsentAt.toISOString()} (${String(d.smsConsentVersion ?? '')})` : '',
   sourcePage: String(d.sourcePage ?? ''),
   utm: Object.fromEntries(Object.entries((d.utm as Record<string, unknown>) ?? {}).filter(([, v]) => v).map(([k, v]) => [k, String(v)])),
   gclid: String(d.gclid ?? ''),
@@ -89,10 +91,10 @@ const cell = (v: unknown) => {
 export async function leadsCsv(opts: { status?: string; q?: string } = {}): Promise<string> {
   await connectDB();
   const docs = await Lead.find(filterOf(opts)).sort({ createdAt: -1 }).limit(10_000).lean<Raw[]>();
-  const head = ['Date', 'First name', 'Last name', 'Email', 'Phone', 'Business', 'Service', 'Message', 'SMS consent', 'Source page', 'UTM source', 'UTM medium', 'UTM campaign', 'gclid', 'Formspree'];
+  const head = ['Date', 'First name', 'Last name', 'Email', 'Phone', 'Business', 'Service', 'Message', 'SMS consent', 'SMS consent at', 'SMS consent version', 'Source page', 'UTM source', 'UTM medium', 'UTM campaign', 'gclid', 'Formspree'];
   const rows = docs.map((d) => {
     const utm = (d.utm as Record<string, unknown>) ?? {};
-    return [d.createdAt instanceof Date ? d.createdAt.toISOString() : '', d.firstName, d.lastName, d.email, d.phone, d.businessName, d.service, d.message, d.smsConsent ? 'yes' : 'no', d.sourcePage, utm.source, utm.medium, utm.campaign, d.gclid, d.forwardStatus];
+    return [d.createdAt instanceof Date ? d.createdAt.toISOString() : '', d.firstName, d.lastName, d.email, d.phone, d.businessName, d.service, d.message, d.smsConsent ? 'yes' : 'no', d.smsConsentAt instanceof Date ? d.smsConsentAt.toISOString() : '', d.smsConsentVersion, d.sourcePage, utm.source, utm.medium, utm.campaign, d.gclid, d.forwardStatus];
   });
   return [head, ...rows].map((r) => r.map(cell).join(',')).join('\r\n');
 }

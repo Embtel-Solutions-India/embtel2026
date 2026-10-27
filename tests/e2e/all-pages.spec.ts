@@ -20,8 +20,8 @@ async function stubThirdParties(page: Page) {
   );
 }
 
-test('the content set covers all 30 legacy non-blog pages', () => {
-  expect(SLUGS).toHaveLength(30);
+test('the content set covers all 30 legacy non-blog pages plus /paid-ads', () => {
+  expect(SLUGS).toHaveLength(31);
 });
 
 for (const path of PATHS) {

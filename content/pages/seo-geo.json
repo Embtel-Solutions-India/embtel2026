@@ -23,77 +23,72 @@
           "label": "SEO & GEO"
         }
       ],
-      "heading": "Paid Ads & GEO Targeting that *Maximise Your ROI*",
-      "lead": "Meta, Google, and LinkedIn ads managed for maximum return. Precise audience targeting, compelling creative, and relentless optimisation — every rupee accountable, every campaign scalable.",
+      "heading": "SEO & GEO that gets you found *on Google and in AI answers*",
+      "lead": "Search engine optimisation and generative engine optimisation for growing businesses — so customers find you whether they search on Google or ask ChatGPT, Gemini, or Perplexity.",
       "buttons": [
         {
-          "label": "Launch My Campaigns →",
+          "label": "Get My Free SEO Audit →",
           "href": "/contact",
           "variant": "primary"
         },
         {
-          "label": "View Results",
+          "label": "View Our Work",
           "href": "/work",
           "variant": "ghost"
         }
       ],
       "stats": [
         {
-          "value": "4",
-          "suffix": "x",
-          "label": "Average ROAS"
+          "value": "8",
+          "suffix": "+",
+          "label": "Years in Business"
         },
         {
-          "value": "40",
-          "suffix": "%",
-          "label": "Lower CPA"
+          "value": "100",
+          "suffix": "+",
+          "label": "Happy Clients"
         },
         {
-          "value": "300",
-          "suffix": "%",
-          "label": "Avg ROI Increase"
-        },
-        {
-          "value": "7",
-          "suffix": "d",
-          "label": "Avg Campaign Launch"
+          "value": "120",
+          "suffix": "+",
+          "label": "Projects Delivered"
         }
       ]
     },
     {
       "type": "cardGrid",
       "header": {
-        "eyebrow": "What We Manage",
-        "title": "Every paid channel, *fully optimised*",
-        "subtitle": "From search intent to social discovery — we run campaigns that reach the right people at the right moment.",
+        "eyebrow": "What We Do",
+        "title": "Search visibility, *old and new*",
+        "subtitle": "Classic SEO still drives most traffic. GEO makes sure AI assistants know, trust, and cite your business too.",
         "align": "center"
       },
       "variant": "feature",
       "columns": 3,
       "items": [
         {
-          "title": "Google Search Ads",
-          "body": "High-intent keyword campaigns with smart bidding, ad copy testing, and Quality Score optimisation to capture buyers actively searching for you."
+          "title": "Technical SEO",
+          "body": "Site speed, Core Web Vitals, crawlability, indexing, redirects, and sitemaps — the foundation every ranking depends on."
         },
         {
-          "title": "Meta Ads (FB & IG)",
-          "body": "Audience-driven social campaigns with creative testing, lookalike audiences, and funnel-stage targeting to turn scrollers into customers."
+          "title": "On-Page & Content SEO",
+          "body": "Keyword research, page optimisation, and helpful content that answers what your customers are actually searching for."
         },
         {
-          "title": "LinkedIn Ads",
-          "body": "B2B targeting by job title, company size, industry, and seniority — ideal for enterprise software, consulting, and professional services."
+          "title": "Local SEO",
+          "body": "Google Business Profile optimisation, local citations, and reviews strategy so you show up in the map pack where you work."
         },
         {
-          "title": "YouTube Ads",
-          "body": "Video ad campaigns for brand awareness and retargeting — skippable, non-skippable, and bumper ads optimised for view-through conversions."
+          "title": "Generative Engine Optimisation",
+          "body": "Clear, well-structured, citable content and brand signals that help AI assistants like ChatGPT, Gemini, and Perplexity recommend you."
         },
         {
-          "title": "GEO Targeting",
-          "body": "Hyper-local campaigns by city, postcode, or radius around your location — perfect for retail, hospitality, clinics, and local services."
+          "title": "Structured Data & Entity SEO",
+          "body": "Schema markup and consistent business information so search engines and AI models understand exactly who you are."
         },
         {
-          "title": "Retargeting",
-          "body": "Re-engage website visitors, abandoned cart users, and warm audiences with precision retargeting that converts consideration into purchase."
+          "title": "Reporting",
+          "body": "Monthly reports on rankings, organic traffic, leads, and AI-search visibility — in plain language, tied to business results."
         }
       ]
     },
@@ -101,31 +96,31 @@
       "type": "steps",
       "header": {
         "eyebrow": "Our Process",
-        "title": "How we make *every rupee work*",
-        "subtitle": "No set-and-forget campaigns. We monitor, test, and optimise continuously.",
+        "title": "How we *grow your visibility*",
+        "subtitle": "SEO compounds over time. We start with the fixes that matter most and build from there.",
         "align": "center"
       },
       "variant": "compact",
       "items": [
         {
           "num": "01",
-          "title": "Account Audit",
-          "body": "We analyse existing campaigns — identifying wasted spend, missed audiences, and quick wins that can improve performance immediately."
+          "title": "Audit",
+          "body": "A technical, content, and competitor audit of your site, plus a check of how AI assistants describe your business today."
         },
         {
           "num": "02",
-          "title": "Strategy & Creative",
-          "body": "Audience research, campaign structure planning, ad copy writing, and creative briefing — all aligned to your specific conversion goals."
+          "title": "Strategy",
+          "body": "A prioritised plan of keywords, pages, and fixes, focused on the searches that bring you customers."
         },
         {
           "num": "03",
-          "title": "Launch & Optimise",
-          "body": "Campaigns launched with A/B testing baked in from day one. Bid adjustments, negative keywords, and creative swaps based on live data."
+          "title": "Optimise & Create",
+          "body": "We fix technical issues, optimise key pages, publish new content, and strengthen your local and brand signals."
         },
         {
           "num": "04",
-          "title": "Weekly Reporting",
-          "body": "Clear weekly performance reports with impressions, clicks, conversions, CPA, and ROAS — no jargon, just the numbers that matter."
+          "title": "Measure & Refine",
+          "body": "Monthly reporting on rankings, traffic, and leads, with the next month’s priorities based on what the data shows."
         }
       ]
     },
@@ -133,33 +128,33 @@
       "type": "pills",
       "header": {
         "eyebrow": "Platforms & Tools",
-        "title": "Certified on *every major ad platform*",
+        "title": "Tools we use *every day*",
         "align": "center"
       },
       "items": [
         {
-          "label": "Google Ads"
-        },
-        {
-          "label": "Meta Ads Manager"
-        },
-        {
-          "label": "LinkedIn Campaign Mgr"
-        },
-        {
-          "label": "YouTube Ads"
-        },
-        {
-          "label": "Google Tag Manager"
+          "label": "Google Search Console"
         },
         {
           "label": "Google Analytics 4"
         },
         {
-          "label": "Hotjar"
+          "label": "Google Business Profile"
         },
         {
-          "label": "Meta Pixel"
+          "label": "Bing Webmaster Tools"
+        },
+        {
+          "label": "Semrush"
+        },
+        {
+          "label": "Ahrefs"
+        },
+        {
+          "label": "Screaming Frog"
+        },
+        {
+          "label": "Schema.org"
         }
       ]
     },
@@ -174,29 +169,29 @@
       "columns": 3,
       "items": [
         {
+          "title": "Paid Ads",
+          "body": "Instant visibility while SEO builds",
+          "href": "/paid-ads"
+        },
+        {
           "title": "Digital Marketing",
-          "body": "Organic growth to complement paid ads",
+          "body": "Content, social, and email to grow your brand",
           "href": "/digital-marketing"
         },
         {
-          "title": "Analytics & Dashboards",
-          "body": "Track ROAS and CPA in real time",
-          "href": "/analytics-dashboards"
-        },
-        {
           "title": "Web Development",
-          "body": "High-converting landing pages for your ads",
+          "body": "Fast, SEO-ready websites",
           "href": "/web-development"
         }
       ]
     },
     {
       "type": "cta",
-      "heading": "Ready to *scale your ad spend profitably?*",
-      "body": "Book a free ad account audit. We'll show you exactly where budget is being wasted and how to fix it in 7 days.",
+      "heading": "Ready to *get found?*",
+      "body": "Get a free SEO & GEO audit. We'll show you what's holding your site back on Google and in AI search, and what to fix first.",
       "buttons": [
         {
-          "label": "Get My Free Ad Audit →",
+          "label": "Get My Free SEO Audit →",
           "href": "/contact",
           "variant": "primary"
         }
@@ -204,7 +199,8 @@
     }
   ],
   "seo": {
-    "noindex": false
+    "noindex": false,
+    "metaDescription": "SEO and generative engine optimisation (GEO) for growing businesses: technical SEO, content, local SEO and AI-search visibility. Get a free SEO audit."
   },
   "locked": false
 }

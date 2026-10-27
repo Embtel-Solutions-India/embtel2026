@@ -29,6 +29,15 @@
         {
           "icon": {
             "kind": "emoji",
+            "value": "📞"
+          },
+          "label": "Phone",
+          "value": "+1 (510) 962-7900",
+          "href": "tel:+15109627900"
+        },
+        {
+          "icon": {
+            "kind": "emoji",
             "value": "💬"
           },
           "label": "WhatsApp",
@@ -41,7 +50,7 @@
             "value": "📍"
           },
           "label": "US Office",
-          "value": "39159, Paseo Padre Pkwy, Suite #119, Fremont, CA 94538"
+          "value": "39159 Paseo Padre Pkwy, Suite #119, Fremont, CA 94538"
         },
         {
           "icon": {
@@ -64,7 +73,8 @@
     }
   ],
   "seo": {
-    "noindex": false
+    "noindex": false,
+    "metaDescription": "Contact Embtel Solutions in Fremont, CA or Zirakpur, India. Call +1 (510) 962-7900, email us, or send a message, and we will reply within 24 hours."
   },
   "locked": false
 }

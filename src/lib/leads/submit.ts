@@ -16,11 +16,14 @@ export const LeadInputSchema = z.object({
   businessName: z.string().trim().max(120).default(''),
   service: z.union([z.enum(SERVICES), z.literal('')]).default(''),
   message: z.string().trim().min(1, 'Tell us a little about your project').max(5000),
-  smsConsent: z.literal(true, { error: 'Please agree to receive SMS messages so we can follow up' }),
+  smsConsent: z.boolean().default(false), // optional opt-in, separate from submitting (A2P 10DLC, audit F-12)
   website: z.string().max(200).default(''), // honeypot: humans never see or fill it
 });
 
 const UtmSchema = z.object({ source: z.string(), medium: z.string(), campaign: z.string(), term: z.string(), content: z.string() }).partial();
+// Bump when the consent wording in LeadForm changes, so each stored consent maps to the text the person saw.
+export const SMS_CONSENT_VERSION = 'sms-2026-10-27';
+
 export type LeadMeta = { ip: string; sourcePage: string; utm: z.infer<typeof UtmSchema>; gclid: string };
 export type LeadResult = { ok: true } | { ok: false; error: string; fieldErrors?: Record<string, string> };
 
@@ -47,6 +50,7 @@ export async function forwardLead(lead: { _id: unknown } & Record<string, unknow
         service: lead.service,
         message: lead.message,
         smsConsent: lead.smsConsent ? 'yes' : 'no',
+        ...(lead.smsConsentAt instanceof Date && { smsConsentAt: lead.smsConsentAt.toISOString(), smsConsentVersion: lead.smsConsentVersion }),
         sourcePage: lead.sourcePage,
         _subject: `New lead: ${lead.firstName} ${lead.lastName}`,
       }),
@@ -75,7 +79,8 @@ export async function submitLead(input: unknown, meta: LeadMeta): Promise<LeadRe
   const { website, ...v } = parsed.data;
   if (website) return { ok: true }; // bot: pretend success, keep nothing
   const utm = UtmSchema.safeParse(meta.utm).success ? Object.fromEntries(Object.entries(meta.utm).map(([k, x]) => [k, clip(x, 200)])) : {};
-  const lead = await Lead.create({ ...v, sourcePage: clip(meta.sourcePage, 300), utm, gclid: clip(meta.gclid, 200) });
+  const consent = v.smsConsent ? { smsConsentAt: new Date(), smsConsentVersion: SMS_CONSENT_VERSION } : {};
+  const lead = await Lead.create({ ...v, ...consent, sourcePage: clip(meta.sourcePage, 300), utm, gclid: clip(meta.gclid, 200) });
   await forwardLead(lead.toObject() as { _id: unknown } & Record<string, unknown>);
   return { ok: true };
 }
