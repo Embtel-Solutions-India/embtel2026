@@ -40,11 +40,19 @@ describe('submitLead', () => {
     expect(l).not.toHaveProperty('ip');
   });
 
-  it('requires SMS consent and valid fields', async () => {
+  it('requires valid fields', async () => {
     const { submitLead } = await import('@/lib/leads/submit');
-    const r = await submitLead(valid({ smsConsent: false, email: 'nope', phone: 'call me' }), meta('203.0.113.2'));
+    const r = await submitLead(valid({ email: 'nope', phone: 'call me' }), meta('203.0.113.2'));
     expect(r.ok).toBe(false);
-    expect(r.ok === false && Object.keys(r.fieldErrors ?? {})).toEqual(expect.arrayContaining(['smsConsent', 'email', 'phone']));
+    expect(r.ok === false && Object.keys(r.fieldErrors ?? {})).toEqual(expect.arrayContaining(['email', 'phone']));
+  });
+
+  it('SMS consent is optional and stored with its time and wording version', async () => {
+    const { submitLead, SMS_CONSENT_VERSION } = await import('@/lib/leads/submit');
+    expect(await submitLead(valid({ email: 'nosms@example.com', smsConsent: false }), meta('203.0.113.5'))).toEqual({ ok: true });
+    expect(await leads().findOne({ email: 'nosms@example.com' })).toMatchObject({ smsConsent: false });
+    expect((await leads().findOne({ email: 'nosms@example.com' }))?.smsConsentAt).toBeUndefined();
+    expect(await leads().findOne({ email: 'jane@example.com' })).toMatchObject({ smsConsent: true, smsConsentVersion: SMS_CONSENT_VERSION });
   });
 
   it('a filled honeypot looks accepted but saves and sends nothing', async () => {

@@ -39,24 +39,18 @@
       ],
       "stats": [
         {
-          "value": "24",
-          "suffix": "/7",
+          "value": "24/7",
           "label": "AI Availability"
         },
         {
-          "value": "3",
-          "suffix": "x",
-          "label": "Faster Lead Response"
-        },
-        {
-          "value": "60",
-          "suffix": "%",
-          "label": "Support Cost Reduction"
+          "value": "8",
+          "suffix": "+",
+          "label": "Years in Business"
         },
         {
           "value": "21",
           "suffix": "d",
-          "label": "Avg Time to Go Live"
+          "label": "Typical Time to Go Live"
         }
       ]
     },
@@ -77,7 +71,7 @@
         },
         {
           "title": "Document AI",
-          "body": "Extract, classify, and summarise invoices, contracts, reports, and forms automatically — cutting document processing time by 80%+."
+          "body": "Extract, classify, and summarise invoices, contracts, reports, and forms automatically — cutting document processing from hours to minutes."
         },
         {
           "title": "Intelligent Search",
@@ -197,7 +191,7 @@
       "buttons": [
         {
           "label": "Book AI Strategy Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]

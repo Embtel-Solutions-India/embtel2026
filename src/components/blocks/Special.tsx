@@ -131,14 +131,16 @@ export function WorkGrid({ block }: { block: BlockOf<'workGrid'> }) {
               </ul>
               <h3>{w.url ? <a href={w.url} rel="noopener" target="_blank">{w.title}</a> : w.title}</h3>
               <p>{w.body}</p>
-              <dl className="wc-metrics">
-                {w.metrics.map((m, j) => (
-                  <div key={j} className="wm flex flex-col-reverse">
-                    <dt className="wm-l">{m.l}</dt>
-                    <dd className="wm-n">{m.n}</dd>
-                  </div>
-                ))}
-              </dl>
+              {w.metrics.length > 0 && (
+                <dl className="wc-metrics">
+                  {w.metrics.map((m, j) => (
+                    <div key={j} className="wm flex flex-col-reverse">
+                      <dt className="wm-l">{m.l}</dt>
+                      <dd className="wm-n">{m.n}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
             </div>
           </li>
         ))}

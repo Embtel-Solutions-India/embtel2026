@@ -10,13 +10,13 @@
     {
       "type": "hero",
       "variant": "home",
-      "badge": "USA Based",
+      "badge": "US & India Offices",
       "heading": "SMB Technology & *Automation Partner*",
       "lead": "AI-powered automation solutions for growing businesses — from websites and SEO to smart workflows, automation, and ongoing support.",
       "buttons": [
         {
           "label": "Schedule Free Consultation →",
-          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=organic",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         },
         {
@@ -29,17 +29,17 @@
         {
           "label": "Web Development",
           "sub": "Modern, fast, SEO-ready",
-          "stat": "+180% Traffic"
+          "stat": "Built to convert"
         },
         {
           "label": "Automation",
           "sub": "AI-powered workflows",
-          "stat": "20+ hrs/week saved"
+          "stat": "Runs 24/7"
         },
         {
           "label": "SEO & Marketing",
           "sub": "Data-driven growth",
-          "stat": "3× avg ROI"
+          "stat": "Reported monthly"
         }
       ]
     },
@@ -69,12 +69,12 @@
         {
           "value": "120",
           "suffix": "+",
-          "label": "Businesses Transformed"
+          "label": "Projects Delivered"
         },
         {
-          "value": "3",
-          "suffix": "×",
-          "label": "Average Efficiency Gain"
+          "value": "100",
+          "suffix": "+",
+          "label": "Happy Clients"
         },
         {
           "value": "24",
@@ -111,38 +111,6 @@
         "href": "/services",
         "variant": "ghost"
       }
-    },
-    {
-      "type": "stats",
-      "header": {
-        "eyebrow": "Real Impact",
-        "title": "Numbers that *speak for themselves.*",
-        "align": "center"
-      },
-      "variant": "counters",
-      "animate": true,
-      "items": [
-        {
-          "value": "12,400",
-          "suffix": "+",
-          "label": "Hours Saved for Clients"
-        },
-        {
-          "value": "120",
-          "suffix": "+",
-          "label": "Businesses Transformed"
-        },
-        {
-          "value": "850",
-          "suffix": "+",
-          "label": "Automations Deployed"
-        },
-        {
-          "value": "100",
-          "suffix": "+",
-          "label": "Happy Clients"
-        }
-      ]
     },
     {
       "type": "cardGrid",
@@ -216,7 +184,7 @@
       "header": {
         "eyebrow": "Before & After",
         "title": "What automation *actually looks like.*",
-        "subtitle": "Real workflows we've transformed. See the before — then see what we built.",
+        "subtitle": "Typical workflows we automate. See the before — then see what we build.",
         "align": "center"
       },
       "labels": {
@@ -242,7 +210,7 @@
               "Overdue reminders fire automatically on day 3, 7, 14",
               "Dashboard updates in real time — zero manual entry"
             ],
-            "saving": "Saves 8–12 hrs/week"
+            "saving": "Hours back every week"
           }
         },
         {
@@ -263,7 +231,7 @@
               "Automated WhatsApp + email sequence nurtures cold leads",
               "CRM logs every interaction, conversion tracked automatically"
             ],
-            "saving": "3× more leads converted"
+            "saving": "No lead left behind"
           }
         },
         {
@@ -284,7 +252,7 @@
               "Always fresh, always consistent, zero manual work",
               "Stakeholders have access anytime from any device"
             ],
-            "saving": "Saves 20+ hrs/month"
+            "saving": "Reports on autopilot"
           }
         }
       ]
@@ -554,7 +522,7 @@
     {
       "type": "cta",
       "heading": "Ready to put your business on *autopilot?*",
-      "body": "Our automation solutions save SMBs an average of 20+ hours per week on repetitive tasks. Imagine what you could do with that time back.",
+      "body": "Automation takes repetitive work off your team's plate, freeing hours every week for the work that actually grows your business.",
       "buttons": [
         {
           "label": "Get Your Free Audit →",

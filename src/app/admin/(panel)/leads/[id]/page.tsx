@@ -14,7 +14,7 @@ export default async function LeadPage({ params }: { params: Promise<{ id: strin
     ['Phone', <a key="p" href={`tel:${lead.phone.replace(/[^\d+]/g, '')}`}>{lead.phone}</a>],
     ['Business', lead.businessName || '—'],
     ['Service', lead.service || '—'],
-    ['SMS consent', lead.smsConsent ? 'Yes' : 'No'],
+    ['SMS consent', lead.smsConsent ? `Yes${lead.smsConsentNote ? ` — ${lead.smsConsentNote}` : ''}` : 'No'],
     ['Page', lead.sourcePage || '—'],
     ['Campaign', Object.keys(lead.utm).length ? Object.entries(lead.utm).map(([k, v]) => `${k}: ${v}`).join(' · ') : '—'],
     ['Google Ads click (gclid)', lead.gclid || '—'],

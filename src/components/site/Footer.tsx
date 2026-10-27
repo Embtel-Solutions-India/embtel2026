@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { SiteSettings } from '@/lib/content/settings';
+import { PrivacyChoicesLink } from './CookieConsent';
 import { NETWORK_LABELS, SocialIcon } from './SocialIcon';
 
 const HOVER: Record<string, string> = {
@@ -96,6 +97,8 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               </Link>
             </span>
           ))}
+          {' · '}
+          <PrivacyChoicesLink className="hover:text-white" />
         </span>
       </div>
     </footer>

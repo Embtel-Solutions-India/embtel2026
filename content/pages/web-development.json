@@ -24,7 +24,7 @@
         }
       ],
       "heading": "Custom Development Services *to Power Your Business Growth*",
-      "lead": "Build Scalable, High-Performance Digital Solutions.",
+      "lead": "We build scalable, high-performance websites and web apps that load fast, rank well, and turn visitors into customers.",
       "buttons": [
         {
           "label": "Start a Project →",
@@ -39,24 +39,24 @@
       ],
       "stats": [
         {
-          "value": "50",
+          "value": "120",
           "suffix": "+",
           "label": "Projects Delivered"
         },
         {
-          "value": "98",
-          "suffix": "%",
-          "label": "Client Satisfaction"
-        },
-        {
-          "value": "95",
+          "value": "100",
           "suffix": "+",
-          "label": "PageSpeed Score"
+          "label": "Happy Clients"
         },
         {
-          "value": "14",
-          "suffix": "d",
-          "label": "Avg Launch Time"
+          "value": "8",
+          "suffix": "+",
+          "label": "Years in Business"
+        },
+        {
+          "value": "2–6",
+          "suffix": "wk",
+          "label": "Typical Website Launch"
         }
       ]
     },
@@ -244,14 +244,15 @@
       "buttons": [
         {
           "label": "Book Free Discovery Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]
     }
   ],
   "seo": {
-    "noindex": false
+    "noindex": false,
+    "metaDescription": "Custom websites, web apps, landing pages and online stores built with React, Next.js and WordPress: fast, SEO-ready, and launched in 2–6 weeks."
   },
   "locked": false
 }

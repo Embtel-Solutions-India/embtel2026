@@ -39,23 +39,18 @@
       ],
       "stats": [
         {
-          "value": "24",
-          "suffix": "/7",
+          "value": "8",
+          "suffix": "+",
+          "label": "Years in Business"
+        },
+        {
+          "value": "120",
+          "suffix": "+",
+          "label": "Projects Delivered"
+        },
+        {
+          "value": "24/7",
           "label": "Monitoring"
-        },
-        {
-          "value": "99",
-          "suffix": "%",
-          "label": "Threat Detection"
-        },
-        {
-          "value": "30",
-          "suffix": "min",
-          "label": "Response Time"
-        },
-        {
-          "value": "0",
-          "label": "Breaches"
         }
       ]
     },

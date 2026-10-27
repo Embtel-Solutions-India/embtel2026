@@ -1,6 +1,7 @@
 import '@/components/blocks/blocks.css';
 import '@/components/blocks/blocks-special.css';
 import '@/components/blog/blog.css';
+import { CookieConsent } from '@/components/site/CookieConsent';
 import { Footer } from '@/components/site/Footer';
 import { Header } from '@/components/site/Header';
 import { MarketingTags } from '@/components/site/ThirdPartyScripts';
@@ -32,6 +33,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <Footer settings={settings} />
       <WhatsAppLink whatsapp={settings.whatsapp} />
       <MarketingTags integrations={settings.integrations} nonce={nonce} />
+      <CookieConsent />
     </>
   );
 }

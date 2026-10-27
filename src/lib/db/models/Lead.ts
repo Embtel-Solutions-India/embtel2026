@@ -12,6 +12,8 @@ const leadSchema = new Schema(
     service: { type: String, default: '' },
     message: { type: String, required: true },
     smsConsent: { type: Boolean, required: true },
+    smsConsentAt: { type: Date },
+    smsConsentVersion: { type: String, default: '' },
     sourcePage: { type: String, default: '' },
     utm: { source: String, medium: String, campaign: String, term: String, content: String },
     gclid: { type: String, default: '' },

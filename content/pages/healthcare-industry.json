@@ -24,7 +24,7 @@
         }
       ],
       "heading": "Digital Solutions for *Healthcare Providers*",
-      "lead": "HIPAA-compliant digital platforms that improve patient care and streamline operations.",
+      "lead": "HIPAA-aligned digital platforms, with Business Associate Agreements available, that improve patient care and streamline operations.",
       "buttons": [
         {
           "label": "Start a Project →",
@@ -40,17 +40,11 @@
       "stats": [
         {
           "value": "HIPAA",
-          "label": "Compliant"
+          "label": "Aligned Workflows"
         },
         {
-          "value": "100",
-          "suffix": "%",
-          "label": "Secure"
-        },
-        {
-          "value": "40",
-          "suffix": "%",
-          "label": "Efficiency Gain"
+          "value": "BAAs",
+          "label": "Available"
         },
         {
           "value": "24/7",
@@ -91,7 +85,7 @@
         },
         {
           "title": "Compliance Tools",
-          "body": "HIPAA-compliant document management, audit trails, and security monitoring to ensure regulatory compliance."
+          "body": "HIPAA-aligned document management, audit trails, and security monitoring to ensure regulatory compliance."
         }
       ]
     },
@@ -108,12 +102,12 @@
         {
           "num": "01",
           "title": "Compliance Review",
-          "body": "We conduct a thorough HIPAA compliance assessment and design systems with security and privacy built in from day one."
+          "body": "We conduct a thorough HIPAA readiness review and design systems with security and privacy built in from day one."
         },
         {
           "num": "02",
           "title": "Secure Architecture",
-          "body": "We design HIPAA-compliant architecture with encryption, access controls, audit logging, and Business Associate Agreements."
+          "body": "We design HIPAA-aligned architecture with encryption, access controls, and audit logging, and sign Business Associate Agreements where required."
         },
         {
           "num": "03",
@@ -148,9 +142,9 @@
           "href": "/it-industry"
         },
         {
-          "title": "Business Automation",
-          "body": "Automate your workflows",
-          "href": "/business-automation"
+          "title": "Accounting Firm",
+          "body": "Financial services & bookkeeping",
+          "href": "/accounting-firm-industry"
         }
       ]
     },
@@ -161,7 +155,7 @@
       "buttons": [
         {
           "label": "Book Free Discovery Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]

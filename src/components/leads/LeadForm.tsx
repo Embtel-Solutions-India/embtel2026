@@ -26,7 +26,7 @@ function attribution(): { utm: Record<string, string>; gclid: string } {
   };
 }
 
-// Contact form (fields, copy and SMS consent text carried over verbatim from the legacy contact page).
+// Contact form. SMS consent is an optional, unchecked opt-in; its wording is versioned (SMS_CONSENT_VERSION in submit.ts).
 // Leads are saved by the server and forwarded to Formspree; conversions fire only after a confirmed save.
 export function LeadForm({ adsId, adsLabel, ga4Id, gtmId, email }: { adsId: string; adsLabel: string; ga4Id: string; gtmId: string; email: string }) {
   const [state, setState] = useState<'idle' | 'busy' | 'sent'>('idle');
@@ -162,10 +162,11 @@ export function LeadForm({ adsId, adsLabel, ga4Id, gtmId, email }: { adsId: stri
         <input id="lead-website" type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
       <div className="consent-box">
-        <input type="checkbox" id="smsConsent" name="smsConsent" value="yes" required {...a11y('smsConsent')} />
+        <input type="checkbox" id="smsConsent" name="smsConsent" value="yes" {...a11y('smsConsent')} />
         <label htmlFor="smsConsent">
-          By providing your phone number, you agree to receive SMS messages from Embtel Solutions regarding IT services, meeting follow-ups, and client updates. Message frequency
-          varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time. View our <Link href="/privacy-policy">Privacy Policy</Link>.
+          (Optional) I agree to receive SMS messages from Embtel Solutions about my inquiry, booked consultations (including automated confirmations and reminders), and
+          client updates. Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out,{' '}
+          <strong>HELP</strong> for help. View our <Link href="/privacy-policy">Privacy Policy</Link>.
         </label>
       </div>
       {err('smsConsent')}

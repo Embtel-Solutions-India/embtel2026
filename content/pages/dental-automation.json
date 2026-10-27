@@ -16,7 +16,8 @@
           "href": "/"
         },
         {
-          "label": "AI Automation"
+          "label": "AI Automation",
+          "href": "/business-automation"
         },
         {
           "label": "Dental & Med Spas"
@@ -27,7 +28,7 @@
       "buttons": [
         {
           "label": "Get Your Free Automation Audit →",
-          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         },
         {
@@ -113,8 +114,8 @@
       "columns": 3,
       "items": [
         {
-          "title": "HIPAA-Aware Workflows",
-          "body": "Patient data handled with healthcare-grade care."
+          "title": "HIPAA-Aligned Workflows",
+          "body": "Patient data handled with care. BAAs available."
         },
         {
           "title": "USA-Based Support",
@@ -130,7 +131,7 @@
         },
         {
           "title": "No Long-Term Contracts",
-          "body": "Month-to-month. If chairs stay empty, walk away."
+          "body": "Month-to-month, cancel with 14 days' notice. If chairs stay empty, walk away."
         }
       ]
     },
@@ -163,7 +164,7 @@
       ],
       "button": {
         "label": "Get Your Free Automation Audit →",
-        "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+        "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
         "variant": "primary"
       }
     },
@@ -201,7 +202,7 @@
       "buttons": [
         {
           "label": "Get Your Free Automation Audit →",
-          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         },
         {

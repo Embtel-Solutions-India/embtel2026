@@ -1,0 +1,206 @@
+{
+  "slug": "paid-ads",
+  "title": "Paid Ads",
+  "status": "published",
+  "type": "service",
+  "theme": {
+    "accent": "#FF5080"
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "variant": "page",
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        },
+        {
+          "label": "Paid Ads"
+        }
+      ],
+      "heading": "Paid Ads & Geo Targeting that *Maximise Your ROI*",
+      "lead": "Meta, Google, and LinkedIn ads managed for maximum return. Precise audience targeting, compelling creative, and relentless optimisation — every dollar accountable, every campaign scalable.",
+      "buttons": [
+        {
+          "label": "Launch My Campaigns →",
+          "href": "/contact",
+          "variant": "primary"
+        },
+        {
+          "label": "View Results",
+          "href": "/work",
+          "variant": "ghost"
+        }
+      ],
+      "stats": [
+        {
+          "value": "8",
+          "suffix": "+",
+          "label": "Years in Business"
+        },
+        {
+          "value": "100",
+          "suffix": "+",
+          "label": "Happy Clients"
+        },
+        {
+          "value": "7",
+          "suffix": "d",
+          "label": "Typical Campaign Launch"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "What We Manage",
+        "title": "Every paid channel, *fully optimised*",
+        "subtitle": "From search intent to social discovery — we run campaigns that reach the right people at the right moment.",
+        "align": "center"
+      },
+      "variant": "feature",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Google Search Ads",
+          "body": "High-intent keyword campaigns with smart bidding, ad copy testing, and Quality Score optimisation to capture buyers actively searching for you."
+        },
+        {
+          "title": "Meta Ads (FB & IG)",
+          "body": "Audience-driven social campaigns with creative testing, lookalike audiences, and funnel-stage targeting to turn scrollers into customers."
+        },
+        {
+          "title": "LinkedIn Ads",
+          "body": "B2B targeting by job title, company size, industry, and seniority — ideal for enterprise software, consulting, and professional services."
+        },
+        {
+          "title": "YouTube Ads",
+          "body": "Video ad campaigns for brand awareness and retargeting — skippable, non-skippable, and bumper ads optimised for view-through conversions."
+        },
+        {
+          "title": "GEO Targeting",
+          "body": "Hyper-local campaigns by city, postcode, or radius around your location — perfect for retail, hospitality, clinics, and local services."
+        },
+        {
+          "title": "Retargeting",
+          "body": "Re-engage website visitors, abandoned cart users, and warm audiences with precision retargeting that converts consideration into purchase."
+        }
+      ]
+    },
+    {
+      "type": "steps",
+      "header": {
+        "eyebrow": "Our Process",
+        "title": "How we make *every ad dollar work*",
+        "subtitle": "No set-and-forget campaigns. We monitor, test, and optimise continuously.",
+        "align": "center"
+      },
+      "variant": "compact",
+      "items": [
+        {
+          "num": "01",
+          "title": "Account Audit",
+          "body": "We analyse existing campaigns — identifying wasted spend, missed audiences, and quick wins that can improve performance immediately."
+        },
+        {
+          "num": "02",
+          "title": "Strategy & Creative",
+          "body": "Audience research, campaign structure planning, ad copy writing, and creative briefing — all aligned to your specific conversion goals."
+        },
+        {
+          "num": "03",
+          "title": "Launch & Optimise",
+          "body": "Campaigns launched with A/B testing baked in from day one. Bid adjustments, negative keywords, and creative swaps based on live data."
+        },
+        {
+          "num": "04",
+          "title": "Weekly Reporting",
+          "body": "Clear weekly performance reports with impressions, clicks, conversions, CPA, and ROAS — no jargon, just the numbers that matter."
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "header": {
+        "eyebrow": "Platforms & Tools",
+        "title": "Platforms we run *every day*",
+        "align": "center"
+      },
+      "items": [
+        {
+          "label": "Google Ads"
+        },
+        {
+          "label": "Meta Ads Manager"
+        },
+        {
+          "label": "LinkedIn Campaign Mgr"
+        },
+        {
+          "label": "YouTube Ads"
+        },
+        {
+          "label": "Google Tag Manager"
+        },
+        {
+          "label": "Google Analytics 4"
+        },
+        {
+          "label": "Hotjar"
+        },
+        {
+          "label": "Meta Pixel"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Explore More",
+        "title": "Related *Services*",
+        "align": "center"
+      },
+      "variant": "related",
+      "columns": 3,
+      "items": [
+        {
+          "title": "SEO & GEO",
+          "body": "Organic and AI-search visibility to complement paid ads",
+          "href": "/seo-geo"
+        },
+        {
+          "title": "Analytics & Dashboards",
+          "body": "Track ROAS and CPA in real time",
+          "href": "/analytics-dashboards"
+        },
+        {
+          "title": "Web Development",
+          "body": "High-converting landing pages for your ads",
+          "href": "/web-development"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "heading": "Ready to *scale your ad spend profitably?*",
+      "body": "Book a free ad account audit. We'll show you where budget is being wasted and how to fix it.",
+      "buttons": [
+        {
+          "label": "Get My Free Ad Audit →",
+          "href": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "noindex": false,
+    "metaDescription": "Google, Meta, LinkedIn and YouTube ads managed for return: precise geo and audience targeting, retargeting, testing and weekly reporting. Free ad audit."
+  },
+  "locked": false
+}

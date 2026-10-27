@@ -68,11 +68,11 @@
       "items": [
         {
           "title": "Fast Delivery",
-          "body": "We move 3× faster than traditional agencies. Depending on the service, projects go from kickoff to launch in under a week to six weeks. No endless back-and-forth."
+          "body": "We move faster than traditional agencies. Depending on the service, projects go from kickoff to launch in under a week to six weeks. No endless back-and-forth."
         },
         {
           "title": "Scalable Architecture",
-          "body": "We build for where you're going, not just where you are. Every system handles 10× growth without a rebuild."
+          "body": "We build for where you're going, not just where you are. Every system is built to grow with you without a rebuild."
         },
         {
           "title": "AI-Native Thinking",
@@ -99,14 +99,15 @@
       "buttons": [
         {
           "label": "Book Discovery Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]
     }
   ],
   "seo": {
-    "noindex": false
+    "noindex": false,
+    "metaDescription": "How Embtel Solutions works: discovery call, custom roadmap, design, build, QA and launch, with weekly check-ins and delivery in under a week to six weeks."
   },
   "locked": false
 }

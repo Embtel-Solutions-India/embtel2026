@@ -22,7 +22,7 @@
           "body": "Comprehensive visa consultation and immigration services platform with streamlined application processes, document management, and expert guidance for global travelers.",
           "url": "https://uso1visa.com/",
           "logo": {
-            "src": "https://www.google.com/s2/favicons?domain=uso1visa.com&sz=128",
+            "src": "/images/work/uso1visa.png",
             "alt": "USO1 Visa"
           },
           "fallbackEmoji": "🛂",
@@ -37,27 +37,14 @@
               "tone": "t"
             }
           ],
-          "metrics": [
-            {
-              "n": "24/7",
-              "l": "Support"
-            },
-            {
-              "n": "100+",
-              "l": "Countries"
-            },
-            {
-              "n": "98%",
-              "l": "Success rate"
-            }
-          ]
+          "metrics": []
         },
         {
           "title": "International Evaluations — Credential Assessment",
           "body": "Expert credential evaluation services for international students and professionals, ensuring accurate recognition of academic and professional qualifications worldwide.",
           "url": "https://internationalevaluations.com/",
           "logo": {
-            "src": "https://www.google.com/s2/favicons?domain=internationalevaluations.com&sz=128",
+            "src": "/images/work/internationalevaluations.png",
             "alt": "International Evaluations"
           },
           "fallbackEmoji": "🎓",
@@ -72,27 +59,14 @@
               "tone": "b"
             }
           ],
-          "metrics": [
-            {
-              "n": "99%",
-              "l": "Accuracy"
-            },
-            {
-              "n": "2-3 Days",
-              "l": "Turnaround"
-            },
-            {
-              "n": "150+",
-              "l": "Countries Served"
-            }
-          ]
+          "metrics": []
         },
         {
           "title": "Bay Area Immigration Services",
           "body": "Professional immigration consulting firm serving the Bay Area with expert guidance on visa applications, green card processes, and citizenship services for individuals and families.",
           "url": "https://bayareaimmigrationservices.com/",
           "logo": {
-            "src": "https://www.google.com/s2/favicons?domain=bayareaimmigrationservices.com&sz=128",
+            "src": "/images/work/bayareaimmigrationservices.png",
             "alt": "Bay Area Immigration Services"
           },
           "fallbackEmoji": "🌉",
@@ -107,27 +81,14 @@
               "tone": "t"
             }
           ],
-          "metrics": [
-            {
-              "n": "15+",
-              "l": "Years Experience"
-            },
-            {
-              "n": "5000+",
-              "l": "Cases Served"
-            },
-            {
-              "n": "98%",
-              "l": "Success Rate"
-            }
-          ]
+          "metrics": []
         },
         {
           "title": "USA Area Immigration Services",
           "body": "Nationwide immigration services providing comprehensive support for work visas, family sponsorship, asylum applications, and deportation defense with personalized legal strategies.",
           "url": "https://usareaimmigrationservices.com/",
           "logo": {
-            "src": "https://www.google.com/s2/favicons?domain=usareaimmigrationservices.com&sz=128",
+            "src": "/images/work/usareaimmigrationservices.png",
             "alt": "USA Area Immigration Services"
           },
           "fallbackEmoji": "🇺🇸",
@@ -142,20 +103,7 @@
               "tone": "b"
             }
           ],
-          "metrics": [
-            {
-              "n": "50+",
-              "l": "States Served"
-            },
-            {
-              "n": "24/7",
-              "l": "Support"
-            },
-            {
-              "n": "95%",
-              "l": "Client Satisfaction"
-            }
-          ]
+          "metrics": []
         },
         {
           "title": "Xperts Portal — Professional Services Platform",
@@ -173,27 +121,14 @@
               "tone": "o"
             }
           ],
-          "metrics": [
-            {
-              "n": "500+",
-              "l": "Experts"
-            },
-            {
-              "n": "24/7",
-              "l": "Availability"
-            },
-            {
-              "n": "99%",
-              "l": "Satisfaction"
-            }
-          ]
+          "metrics": []
         },
         {
           "title": "Bay Area Accounting Solutions",
           "body": "Professional accounting and financial services firm providing comprehensive bookkeeping, tax preparation, payroll management, and business consulting for small and medium-sized businesses in the Bay Area.",
           "url": "https://bayareaaccountingsolutions.com/",
           "logo": {
-            "src": "https://www.google.com/s2/favicons?domain=bayareaaccountingsolutions.com&sz=128",
+            "src": "/images/work/bayareaaccountingsolutions.jpg",
             "alt": "Bay Area Accounting Solutions"
           },
           "fallbackEmoji": "📊",
@@ -208,20 +143,7 @@
               "tone": "b"
             }
           ],
-          "metrics": [
-            {
-              "n": "20+",
-              "l": "Years Experience"
-            },
-            {
-              "n": "1000+",
-              "l": "Clients"
-            },
-            {
-              "n": "98%",
-              "l": "Retention Rate"
-            }
-          ]
+          "metrics": []
         }
       ]
     },
@@ -239,7 +161,8 @@
     }
   ],
   "seo": {
-    "noindex": false
+    "noindex": false,
+    "metaDescription": "Websites and platforms Embtel Solutions has built for immigration, credential-evaluation, professional-services and accounting firms in the US and beyond."
   },
   "locked": false
 }

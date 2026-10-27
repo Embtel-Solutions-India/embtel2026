@@ -17,15 +17,15 @@
     {
       "type": "split",
       "image": {
-        "src": "https://lh3.googleusercontent.com/p/AF1QipM81q_hRq8dgNsnqmPQNYHaawq6899qUK34ENiW=w800-h600-k-no",
-        "alt": "Embtel Solutions Office Location",
+        "src": "/images/office.jpg",
+        "alt": "Embtel Solutions office",
         "width": 800,
-        "height": 600
+        "height": 534
       },
       "heading": "Our Mission *and Vision.*",
       "paragraphs": [
-        "Embtel Solutions is dedicated to enabling businesses to use advanced digital solutions that advance their virtual exposure while stimulating business expansion. They provide innovative websites with excellent user experiences that enable successful brand-audience connections, making customer satisfaction the central focus of all operations.",
-        "The company strives to become an industry-leading digital solutions company known for superior quality, innovative creativity, and dependable performance. Their operation aims to develop enduring client relationships while supporting the lasting expansion of customers of all sizes, using modern technologies and proven industry practices."
+        "We help businesses use modern digital solutions to grow their online presence and their business. We build websites with excellent user experiences that connect brands with their audiences, and we keep customer satisfaction at the centre of everything we do.",
+        "Our vision is to be a leading digital solutions partner known for quality, creativity, and dependable delivery. We build lasting client relationships and support businesses of every size as they grow, using modern technology and proven industry practices."
       ]
     },
     {
@@ -215,7 +215,7 @@
             },
             {
               "name": "Compliance Management",
-              "desc": "PCI-DSS for payment processing, HIPAA for healthcare, SOC 2 for B2B services, and CCPA privacy compliance."
+              "desc": "PCI-DSS for payment processing, HIPAA-aligned workflows for healthcare (BAAs available), SOC 2 readiness for B2B services, and CCPA privacy compliance."
             },
             {
               "name": "Penetration Testing",
@@ -316,7 +316,7 @@
       "animate": false,
       "items": [
         {
-          "value": "50",
+          "value": "100",
           "suffix": "+",
           "label": "Happy Clients"
         },
@@ -331,9 +331,8 @@
           "label": "In Business"
         },
         {
-          "value": "4.9",
-          "suffix": "/5",
-          "label": "Avg. Client Rating"
+          "value": "9",
+          "label": "Industries Served"
         }
       ]
     },
@@ -348,7 +347,7 @@
       "items": [
         {
           "q": "How long has Embtel Solutions been in business?",
-          "a": "Embtel Solutions has been in business for 8 years, serving clients across India, UK, and North America with digital solutions."
+          "a": "Since 2018 — over 8 years. We have offices in Fremont, California and Zirakpur, India, and serve clients across North America, the UK, and India."
         },
         {
           "q": "What makes Embtel Solutions different from other agencies?",
@@ -391,7 +390,8 @@
     }
   ],
   "seo": {
-    "noindex": false
+    "noindex": false,
+    "metaDescription": "Meet Embtel Solutions: since 2018 we have helped 100+ businesses grow with websites, SEO, automation and AI, from offices in California and India."
   },
   "locked": false
 }

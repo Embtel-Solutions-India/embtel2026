@@ -39,19 +39,14 @@
       ],
       "stats": [
         {
-          "value": "40",
-          "suffix": "%",
-          "label": "More Bookings"
+          "value": "8",
+          "suffix": "+",
+          "label": "Years in Business"
         },
         {
-          "value": "60",
-          "suffix": "%",
-          "label": "Time Saved"
-        },
-        {
-          "value": "95",
-          "suffix": "%",
-          "label": "Client Retention"
+          "value": "120",
+          "suffix": "+",
+          "label": "Projects Delivered"
         },
         {
           "value": "24/7",
@@ -162,7 +157,7 @@
       "buttons": [
         {
           "label": "Book Free Discovery Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]

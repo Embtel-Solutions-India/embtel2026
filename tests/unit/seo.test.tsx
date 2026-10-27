@@ -190,7 +190,7 @@ describe('offices (US + India)', () => {
 
   it('the settings schema accepts US/IN offices and rejects other countries', () => {
     expect(withIndia().organization.offices).toHaveLength(1);
-    expect(SETTINGS.organization.offices).toEqual([]);
+    expect(SETTINGS.organization.offices.map((o) => o.country)).toEqual(['IN']);
     expect(SiteSettingsSchema.safeParse({ ...SETTINGS, organization: { ...SETTINGS.organization, offices: [{ ...INDIA, country: 'FR' }] } }).success).toBe(false);
   });
 
@@ -199,7 +199,7 @@ describe('offices (US + India)', () => {
     const ld = organizationLd(withIndia()) as unknown as { address: { addressCountry: string }; location: { name: string; address: { addressCountry: string; addressLocality: string } }[] };
     expect(ld.address.addressCountry).toBe('US');
     expect(ld.location).toEqual([expect.objectContaining({ '@type': 'Place', name: 'India office', telephone: '+918000000000', address: expect.objectContaining({ addressCountry: 'IN', addressLocality: 'Bengaluru' }) })]);
-    expect('location' in organizationLd(SETTINGS)).toBe(false);
+    expect('location' in organizationLd({ ...SETTINGS, organization: { ...SETTINGS.organization, offices: [] } })).toBe(false);
   });
 
   it('the footer shows the US address and every office', async () => {

@@ -116,8 +116,9 @@ describe('specialised blocks', () => {
   it('contact info renders the lead form with the SMS consent', () => {
     const { container } = renderBlocks([byType('contactInfo')]);
     expect(container.querySelector('form[aria-label="Contact form"]')).not.toBeNull();
-    expect(container.querySelector('#smsConsent[required]')).not.toBeNull();
-    expect(container.querySelector('label[for="smsConsent"]')?.textContent).toContain('Reply STOP to opt out at any time');
+    // Optional, unchecked opt-in (A2P 10DLC): never required to submit.
+    expect(container.querySelector('#smsConsent:not([required]):not([checked])')).not.toBeNull();
+    expect(container.querySelector('label[for="smsConsent"]')?.textContent).toContain('Reply STOP to opt out');
     expect(container.querySelector('a[href="mailto:info@embtelsolutions.com"]')).not.toBeNull();
   });
 

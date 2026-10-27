@@ -39,14 +39,8 @@
       ],
       "stats": [
         {
-          "value": "Real",
-          "suffix": "-Time",
+          "value": "Real-Time",
           "label": "Live Data Updates"
-        },
-        {
-          "value": "50",
-          "suffix": "+",
-          "label": "Data Integrations"
         },
         {
           "value": "100",
@@ -56,7 +50,7 @@
         {
           "value": "10",
           "suffix": "d",
-          "label": "Avg Time to First Dashboard"
+          "label": "Typical Time to First Dashboard"
         }
       ]
     },
@@ -182,7 +176,7 @@
       "buttons": [
         {
           "label": "Book Data Strategy Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]

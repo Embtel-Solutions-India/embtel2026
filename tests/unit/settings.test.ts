@@ -84,7 +84,7 @@ describe('content/settings.json', () => {
     expect(parsed.headerNav.map((n) => n.label)).toEqual([
       'Home', 'About', 'Services', 'Industries', 'Work', 'Process', 'Blog', 'Contact',
     ]);
-    expect(parsed.headerNav.find((n) => n.label === 'Services')?.children).toHaveLength(12);
+    expect(parsed.headerNav.find((n) => n.label === 'Services')?.children).toHaveLength(13);
     expect(parsed.headerNav.find((n) => n.label === 'Industries')?.children).toHaveLength(9);
   });
 });

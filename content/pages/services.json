@@ -47,39 +47,39 @@
           "linkLabel": "Explore more"
         },
         {
-          "title": "Web Design",
-          "body": "Use our effective SEO techniques to increase your internet presence with fast, responsive, and search-optimized websites.",
+          "title": "Web Development",
+          "body": "Fast, responsive websites and web apps designed around your brand, built to rank and to turn visitors into customers.",
           "href": "/web-development",
           "linkLabel": "Explore more"
         },
         {
-          "title": "Pay Per Click PPC",
-          "body": "Use our effective SEO techniques to increase your internet presence and drive high-converting traffic with targeted ad campaigns.",
+          "title": "SEO & GEO",
+          "body": "Get found on Google and in AI answers with technical SEO, content, local SEO, and generative engine optimisation.",
           "href": "/seo-geo",
           "linkLabel": "Explore more"
         },
         {
+          "title": "Paid Ads (PPC)",
+          "body": "Google, Meta, and LinkedIn campaigns with precise targeting and weekly reporting, built to turn ad spend into qualified leads.",
+          "href": "/paid-ads",
+          "linkLabel": "Explore more"
+        },
+        {
           "title": "Digital Marketing",
-          "body": "Maximize your brand visibility with our strategic marketing solutions with social media to targeted ads.",
+          "body": "Maximize your brand visibility with strategic marketing, from social media to content and email.",
           "href": "/digital-marketing",
           "linkLabel": "Explore more"
         },
         {
-          "title": "DA & AI",
-          "body": "Leverage AI insights for smart decisions, performance and driving with data-driven strategies.",
+          "title": "AI Integrations",
+          "body": "Chatbots, document AI, and LLM workflows that answer customers, process paperwork, and support smarter decisions.",
           "href": "/ai-integrations",
           "linkLabel": "Explore more"
         },
         {
-          "title": "Graphic Designing",
-          "body": "Elevate your brand with eye-catching designs that captivate audiences.",
-          "href": "/web-development",
-          "linkLabel": "Explore more"
-        },
-        {
-          "title": "Development",
-          "body": "We create websites tailored to your company's goals, ensuring a seamless online presence.",
-          "href": "/web-development",
+          "title": "Analytics & Dashboards",
+          "body": "Real-time dashboards that bring your sales, marketing, and operations data together in one place.",
+          "href": "/analytics-dashboards",
           "linkLabel": "Explore more"
         },
         {
@@ -90,8 +90,45 @@
         },
         {
           "title": "E-Commerce",
-          "body": "Build and scale your online store with Shopify, WooCommerce, and marketplace integrations for maximum revenue.",
+          "body": "Build and scale your online store with Shopify, WooCommerce, and marketplace integrations.",
           "href": "/e-commerce",
+          "linkLabel": "Explore more"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "header": {
+        "eyebrow": "Industry Automation",
+        "title": "Ready-made systems *for your industry*",
+        "subtitle": "AI receptionists, booking, reminders, and follow-up, set up for how your industry works.",
+        "align": "center"
+      },
+      "variant": "service",
+      "columns": 4,
+      "items": [
+        {
+          "title": "Home Services Automation",
+          "body": "AI receptionist, job booking, and follow-up for home service pros.",
+          "href": "/home-services-automation",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Dental Automation",
+          "body": "Reminders, online booking, and patient recall for dental practices and med spas.",
+          "href": "/dental-automation",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Restaurant Automation",
+          "body": "Commission-free online ordering, reservations, and review management.",
+          "href": "/restaurant-automation",
+          "linkLabel": "Explore more"
+        },
+        {
+          "title": "Real Estate Automation",
+          "body": "Speed-to-lead responses and long-term nurture for agents and teams.",
+          "href": "/real-estate-automation",
           "linkLabel": "Explore more"
         }
       ]
@@ -107,14 +144,13 @@
           "label": "Projects Delivered"
         },
         {
-          "value": "50",
+          "value": "100",
           "suffix": "+",
           "label": "Happy Clients"
         },
         {
-          "value": "98",
-          "suffix": "%",
-          "label": "Client Satisfaction"
+          "value": "9",
+          "label": "Industries Served"
         },
         {
           "value": "8",
@@ -207,14 +243,15 @@
       "buttons": [
         {
           "label": "Schedule a Call →",
-          "href": "/contact",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         }
       ]
     }
   ],
   "seo": {
-    "noindex": false
+    "noindex": false,
+    "metaDescription": "Web development, SEO & GEO, paid ads, business automation, AI, analytics, cybersecurity and e-commerce for growing businesses. Book a free strategy call."
   },
   "locked": false
 }

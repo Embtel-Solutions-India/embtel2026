@@ -8,6 +8,8 @@ const GTM_ID = /^GTM-[A-Z0-9]{4,12}$/;
 const TAWK_PROPERTY = /^[a-f0-9]{24}$/;
 const TAWK_WIDGET = /^[a-z0-9]{6,20}$/;
 const ATTR_KEYS = ['gclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+// EEA + UK + Switzerland (ISO 3166-1), where analytics/ads cookies need opt-in consent.
+const CONSENT_REGIONS = 'AT BE BG HR CY CZ DK EE FI FR DE GR HU IS IE IT LV LI LT LU MT NL NO PL PT RO SK SI ES SE GB CH'.split(' ');
 
 // Marketing tags configured on the admin Integrations screen (owner decision 2026-10-23):
 // - the gtag config is queued at once (window.dataLayer), so nothing configured is lost;
@@ -25,9 +27,20 @@ export function MarketingTags({ integrations: i, nonce }: { integrations: SiteSe
     ...(gtm ? [`https://www.googletagmanager.com/gtm.js?id=${gtm}`] : []),
     ...(tawk ? [`https://embed.tawk.to/${tawk}`] : []),
   ];
-  const attribution = `try{var q=new URLSearchParams(location.search),a={};${JSON.stringify(ATTR_KEYS)}.forEach(function(k){var v=q.get(k);if(v)a[k]=v.slice(0,200)});if(Object.keys(a).length){a.at=Date.now();localStorage.setItem('embtel_attr',JSON.stringify(a))}}catch(e){}`;
+  // Booking links carry no hard-coded UTMs (audit F-01/F-02); on click they get the visitor's own click ID/UTMs, if any.
+  const attribution = `try{var q=new URLSearchParams(location.search),a={};${JSON.stringify(ATTR_KEYS)}.forEach(function(k){var v=q.get(k);if(v)a[k]=v.slice(0,200)});if(Object.keys(a).length){a.at=Date.now();localStorage.setItem('embtel_attr',JSON.stringify(a))}}catch(e){}
+document.addEventListener('click',function(e){var l=e.target&&e.target.closest&&e.target.closest('a[href*="leadconnectorhq.com/widget/booking"]');if(!l)return;try{var q=new URLSearchParams(location.search),s=JSON.parse(localStorage.getItem('embtel_attr')||'{}'),u=new URL(l.href);if(!(Date.now()-s.at<7776e6))s={};${JSON.stringify(ATTR_KEYS)}.forEach(function(k){var v=q.get(k)||s[k];if(v&&!u.searchParams.has(k))u.searchParams.set(k,String(v).slice(0,200))});l.href=u.href}catch(x){}},true);`;
+  // Consent Mode v2: EEA/UK/CH visitors are denied until they accept; elsewhere granted until they opt out
+  // (CookieConsent banner / "Do Not Sell or Share" link). A browser Global Privacy Control signal opts out of ads.
+  const consent = [
+    `gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500,region:${JSON.stringify(CONSENT_REGIONS)}});`,
+    "gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});",
+    "try{var c=localStorage.getItem('embtel_consent');if(c){var g=c==='all'?'granted':'denied';gtag('consent','update',{ad_storage:g,ad_user_data:g,ad_personalization:g,analytics_storage:g})}}catch(e){}",
+    "if(navigator.globalPrivacyControl)gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});",
+  ].join('\n');
   const queue = [
     'window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;',
+    consent,
     ...(gtagIds.length ? ["gtag('js', new Date());", ...gtagIds.map((id) => `gtag('config', '${id}');`)] : []),
     ...(gtm ? ["dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});"] : []),
   ].join('\n');

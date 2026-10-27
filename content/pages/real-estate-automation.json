@@ -16,7 +16,8 @@
           "href": "/"
         },
         {
-          "label": "AI Automation"
+          "label": "AI Automation",
+          "href": "/business-automation"
         },
         {
           "label": "Real Estate"
@@ -27,7 +28,7 @@
       "buttons": [
         {
           "label": "Get Your Free Automation Audit →",
-          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         },
         {
@@ -130,7 +131,7 @@
         },
         {
           "title": "No Long-Term Contracts",
-          "body": "Month-to-month. If the leads don't convert, walk away."
+          "body": "Month-to-month, cancel with 14 days' notice. If the leads don't convert, walk away."
         }
       ]
     },
@@ -163,7 +164,7 @@
       ],
       "button": {
         "label": "Get Your Free Automation Audit →",
-        "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+        "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
         "variant": "primary"
       }
     },
@@ -201,7 +202,7 @@
       "buttons": [
         {
           "label": "Get Your Free Automation Audit →",
-          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi?utm_source=google&utm_medium=cpc&utm_campaign=ai-automation-ca",
+          "href": "https://api.leadconnectorhq.com/widget/booking/847QsLhZnPZ1OAGTTcNi",
           "variant": "primary"
         },
         {

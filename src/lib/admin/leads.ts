@@ -17,6 +17,7 @@ export type LeadRow = {
   service: string;
   message: string;
   smsConsent: boolean;
+  smsConsentNote: string; // when and under which wording version, for leads that opted in
   sourcePage: string;
   utm: Record<string, string>;
   gclid: string;
@@ -34,6 +35,7 @@ const toRow = (d: Raw): LeadRow => ({
   service: String(d.service ?? ''),
   message: String(d.message ?? ''),
   smsConsent: Boolean(d.smsConsent),
+  smsConsentNote: d.smsConsentAt instanceof Date ? `${d.smsConsentAt.toISOString()} (${String(d.smsConsentVersion ?? '')})` : '',
   sourcePage: String(d.sourcePage ?? ''),
   utm: Object.fromEntries(Object.entries((d.utm as Record<string, unknown>) ?? {}).filter(([, v]) => v).map(([k, v]) => [k, String(v)])),
   gclid: String(d.gclid ?? ''),
